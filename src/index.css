@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0.5rem 2rem;
+  background-color: #eee;
+}
+
+h1 {
+  font-size: 1.2rem;
+  text-align: center;
+  align-self: center;
+  font-family: "Poppins";
+}
+
+.logo-name,
+h1 {
+  text-transform: uppercase;
+
+}
+
+.logo-name {
+  letter-spacing: 5px;
+  font-weight: 900;
+  font-family: Impact;
+  align-self: center;
+  rotate: -90deg;
+}
+
+header {
+  display: flex;
+}
+
+.logo-image {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+}
+
+nav ul {
+  text-transform: uppercase;
+  list-style: none;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: #1B85B8;
+  display: flex;
+}
+
+nav ul a span {
+  margin-right: 10px;
+}
+
+.app-container {
+  display: flex;
+}
+
+main {
+  width: 100%;
+}
+
+.search {
+  text-indent: 1.1rem;
+  padding: 0.8em 1em;
+  border-radius: 25px;
+  border: 1px solid #eee;
+  max-width: 500px;
+  width: 60%;
+  min-width: 400px;
+  margin-left: 1rem;
+}
+
+aside {
+  width: 400px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container i {
+  position: absolute;
+  left: 1.7rem;
+  top: 0.75rem
+}
+
+.search:focus {
+  outline: none;
+  border: 0.5px solid #1B85B8;
+}
+
+.menu-list {
+  margin-top: 0.5rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.menu-list li {
+  padding: 5px 10px;
+  border-bottom: 1px solid #1B85B8;
+  background-color: aliceblue;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.menu-list li.active {
+  background-color: #382f2f;
+  border: none
+}
+
+li.active a {
+  color: #fff
+}
+
+.toolbar-filter {
+  margin: 0.5em 1.1em;
+  display: flex;
+  padding: 0.5em;
+  border: 1px solid #1B85B8;
+}
+
+.toolbar-filter i {
+  margin-right: 1.5em;
+  color: #382f2f;
+}
