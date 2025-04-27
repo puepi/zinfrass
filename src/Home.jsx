@@ -1,9 +1,7 @@
-
-
 import logoImage from './assets/second-logo.jpg'
+import SideBar from './components/SideBar';
 
 function Home() {
-
   return (
     <div id="infra-container">
       <header>
@@ -12,35 +10,26 @@ function Home() {
         <h1>Infrastructures du Ministère de la Promotion de la Femme et de la Famille</h1>
       </header>
       <div className="app-container">
-        <aside>
-          <nav>
-            <ul className='menu-list'>
-              <li className='active'><a href=""><span><i className="fa-solid fa-file-invoice-dollar fa-sm"></i></span>Factures</a></li>
-              <li><a href=""><span><i className="fa-solid fa-building fa-sm"></i></span>Bâtiments</a></li>
-              <li><a href=""><span><i className="fa-solid fa-car fa-sm"></i></span>Parc AUTO</a></li>
-              <li><a href=""><span><i className="fa-solid fa-motorcycle fa-sm"></i></span>Parc MOTO</a></li>
-              <li><a href=""><span><i className="fa-solid fa-computer fa-sm"></i></span>Parc INFO</a></li>
-              <li><a href=""><span><i className="fa-solid fa-toolbox fa-sm"></i></span>Autres ...</a></li>
-            </ul>
-          </nav>
-        </aside>
+        <SideBar />
         <main>
           <section className='input-container'>
             <i className="fa-solid fa-magnifying-glass"></i><input className='search' placeholder="Please enter your search here ..." type="text" />
+            {/* <label htmlFor="services-centraux">Services centraux <input type="radio" name="services" id="services-centraux" /></label>
+            <label htmlFor="services-deconcentres">Services déconcentrés <input type="radio" name="services" id="services-deconcentres" /></label> */}
+            <button>Filtrer la recherche</button>
           </section>
           <section className='toolbar-filter'>
-            <i className="fa-solid fa-rotate-right"></i>Eau
-            <i className="fa-solid fa-filter"></i>
-            <i className="fa-solid fa-signal"></i>Electricité
-            <i className="fa-solid fa-circle-chevron-down"></i>
-            <i className="fa-solid fa-location-dot"></i>Téléphone
-            <i className="fa-solid fa-layer-group"></i>
-            <i className="fa-solid fa-image"></i>Internet
+            <ul>
+              <li className='active'><a href=""><i className="fa-solid fa-rotate-right fa-small"></i>Eau</a></li>
+              <li><a href=""><i className="fa-solid fa-signal"></i>Electricité</a></li>
+              <li><a href=""><i className="fa-solid fa-location-dot"></i>Téléphone</a></li>
+              <li><a href=""><i className="fa-solid fa-image"></i>Internet</a></li>
+            </ul>
           </section>
         </main>
       </div>
     </div>
-  );
+  )
 }
 
 export default Home;
