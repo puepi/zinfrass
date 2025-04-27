@@ -2,7 +2,7 @@
 
 import logoImage from './assets/second-logo.jpg'
 
-function App() {
+function Home() {
 
   return (
     <div id="infra-container">
@@ -43,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
