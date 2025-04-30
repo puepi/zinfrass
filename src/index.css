@@ -31,6 +31,7 @@ h1 {
 
 header {
   display: flex;
+  justify-content: center;
 }
 
 .logo-image {
@@ -67,9 +68,7 @@ main {
   padding: 0.8em 1em;
   border-radius: 25px;
   border: 1px solid #eee;
-  max-width: 500px;
-  width: 60%;
-  min-width: 400px;
+  width: 50%;
   margin-left: 1rem;
 }
 
@@ -79,12 +78,23 @@ aside {
 
 .input-container {
   position: relative;
+  width: 50%;
 }
 
 .input-container i {
   position: absolute;
   left: 1.7rem;
   top: 0.75rem
+}
+
+.input-container button {
+  padding: 0.6em 1.5em;
+  margin-left: 0.5em;
+  border: 1px solid #000;
+}
+
+.input-container button:hover {
+  cursor: pointer;
 }
 
 .search:focus {
@@ -107,27 +117,29 @@ aside {
 }
 
 .menu-list li.active {
-  background-color: #1a1010;
-  border: none
+  background-color: #10113d;
+  border: none;
 }
+
+
 
 li.active a {
   color: #fff
 }
 
-.toolbar-filter ul {
+.toolbar-filter > ul {
   margin: 0.5em 1.1em;
   display: flex;
-  padding: 0.5em;
-  border: 1px solid #1B85B8;
+  padding: 0;
+  border: none;
   list-style-type: none;
-  justify-content: space-around;
+  /*justify-content: space-around;*/
   text-transform: uppercase;
-  background-color: rgb(230, 173, 18);
+  background-color: #ffc736;
 }
 
 .toolbar-filter i {
-  margin-right: 0.2em;
+  margin-right: 0;
 }
 
 .toolbar-filter a {
@@ -137,19 +149,20 @@ li.active a {
 
 .toolbar-filter li:hover {
   color: #fff;
-  background-color: #1a1010;
+  background-color: #10113d;
 }
 
 .toolbar-filter li {
-  margin-right: 1.5em;
+  margin-right: .3em;
   padding: 0.5em 1em;
-  background-color: rgb(230, 173, 18);
+  background-color: #ffc736;
   font-size: 0.9rem;
   letter-spacing: 1.5px;
 }
 
 .toolbar-filter li.active {
-  background-color: #1a1010;
+  background-color: #10113d;
+  position:relative;
 }
 
 .input-container label {
@@ -157,3 +170,26 @@ li.active a {
   text-transform: uppercase;
   font-size: 0.8rem;
 }
+
+main>div {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-actions{
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  left:0;
+  top:2.3em;
+  display: none;
+}
+
+.menu li.active:hover .toolbar-actions{
+  display:block;
+}
+
+.menu{
+  position: relative;
+}
+
