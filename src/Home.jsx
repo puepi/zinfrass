@@ -36,6 +36,10 @@ function Home() {
               <label htmlFor="services-deconcentres">Services déconcentrés <input type="radio" name="services" id="services-deconcentres" /></label> */}
               <button>Filtrer la recherche</button>
             </section>
+            <section>
+              <form action="">
+              </form>
+            </section>
           </div>
         </main>
       </div>
