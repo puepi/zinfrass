@@ -261,3 +261,8 @@ input[type="radio"]{
   max-height: 400px;
   padding: 10px 10px 20px;
 }
+
+.accordion input[type="radio"]:checked + label::before{
+  content: "-";
+  font-size: 36px;
+}
