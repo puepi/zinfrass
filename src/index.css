@@ -127,7 +127,7 @@ li.active a {
   color: #fff
 }
 
-.toolbar-filter > ul {
+.toolbar-filter>ul {
   margin: 0.5em 1.1em;
   display: flex;
   padding: 0;
@@ -162,7 +162,7 @@ li.active a {
 
 .toolbar-filter li.active {
   background-color: #10113d;
-  position:relative;
+  position: relative;
 }
 
 .input-container label {
@@ -176,20 +176,20 @@ main>div {
   align-items: center;
 }
 
-.toolbar-actions{
+.toolbar-actions {
   list-style-type: none;
   padding: 0;
   position: absolute;
-  left:0;
-  top:2.2em;
+  left: 0;
+  top: 2.2em;
   display: none;
 }
 
-.menu li.active:hover .toolbar-actions{
-  display:block;
+.menu li.active:hover .toolbar-actions {
+  display: block;
 }
 
-.menu{
+.menu {
   position: relative;
 }
 
@@ -197,19 +197,23 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+
+th,
+td {
   border: 1px solid black;
   padding: 10px;
   text-align: center;
 }
+
 th {
   background-color: #4CAF50;
   color: white;
 }
+
 tr:nth-child(even) {
   background-color: #eec;
 }
+
 tr:hover {
   background-color: #ddd;
 }
-

@@ -9,7 +9,7 @@ export default function SideBar() {
           <li><a href=""><span><i className="fa-solid fa-car fa-sm"></i></span>Parc AUTOMOBILE</a></li>
           <li><a href=""><span><i className="fa-solid fa-motorcycle fa-sm"></i></span>Parc MOTO</a></li>
           <li><a href=""><span><i className="fa-solid fa-computer fa-sm"></i></span>Parc INFORMATIQUE</a></li>
-          <li><a href=""><span><i className="fa-solid fa-toolbox fa-sm"></i></span>Autres ...</a></li>
+          <li><a href=""><span><i className="fa-solid fa-toolbox fa-sm"></i></span>materiel divers</a></li>
         </ul>
       </nav>
     </aside>
