@@ -28,8 +28,10 @@ export default function Men(){
                 <div className="content">
                     <p>Enregistrer un nouveau matériel</p>
                     <p>Créer des catégories d'équipements</p>
-                    <p>Affecter du matériel à un service</p>
+                    <p>Affecter du matériel à un service, à un individu ou à un poste de travail</p>
                     <p>Procéder à l'installation d'un équipement</p>
+                    <p>Consulter les équipements affectés à un espace</p>
+                    <p>Rechercher un équipement par nom ou par catégorie</p>
                 </div>
             </li>
             <li>
@@ -37,7 +39,7 @@ export default function Men(){
                 <label htmlFor="third">Structures et postes de responsabilités</label>
                 <div className="content">
                     <p>Créer des structures et leurs postes de responsabilités</p>
-                    <p>Affecter le personnel dans un espace</p>
+                    <p>Affecter le personnel à un espace</p>
                 </div>
             </li>
             <li>
