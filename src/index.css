@@ -251,7 +251,6 @@ input[type="radio"]{
 .accordion .content{
   color:#555;
   padding: 0 10px;
-  line-height: 26px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s, padding 0.5s;
