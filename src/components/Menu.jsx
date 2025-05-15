@@ -32,6 +32,8 @@ export default function Men(){
                     <p>Procéder à l'installation d'un équipement</p>
                     <p>Consulter les équipements affectés à un espace</p>
                     <p>Rechercher un équipement par nom ou par catégorie</p>
+                    <p>Connaître le nombre de matériel restant par catégorie</p>
+                    <p>Lister les logiciels installés sur un ordinateur</p>
                 </div>
             </li>
             <li>
