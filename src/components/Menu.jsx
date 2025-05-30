@@ -18,7 +18,6 @@ export default function Men(){
                     <p>Enregistrer un nouveau bâtiment</p>
                     <p>Créer des espaces au sein du bâtiment</p>
                     <p>Créer différents usages de ces espaces</p>
-                    <p>Enregistrer des installations propres au bâtiment</p>
                     <p>Consulter les espaces au sein du bâtiment</p>
                 </div>
             </li>
