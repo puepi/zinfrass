@@ -25,7 +25,7 @@ function Home() {
                     <li className='list-actions'><a href="">Consulter</a></li>
                   </ul>
                 </li>
-                
+
                 <li><a href=""><i className="fa-solid fa-bolt list-item"></i>Electricité</a></li>
                 <li><a href=""><i className="fa-solid fa-phone list-item"></i>Téléphone</a></li>
                 <li><a href=""><i className="fa-solid fa-globe list-item"></i>Internet</a></li>
@@ -41,137 +41,91 @@ function Home() {
               <form action="">
               </form>
             </section>
-            
+
           </div>
           <section>
-              <table>
-                <thead>
-                  <tr>
-                    <th>N°</th>
-                    <th>Compteur n°</th>
-                    <th>Ancien index</th>
-                    <th>Nouvel index</th>
-                    <th>Consommation</th>
-                    <th>Montant</th>
-                    <th>Période début</th>
-                    <th>Période fin</th>
-                    <th>Bâtiment</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                      <td>12</td>
-                      <td>2105</td>
-                      <td>12458</td>
-                      <td>13589</td>
-                      <td>254.5</td>
-                      <td>254 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment principal services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>23</td>
-                      <td>33512</td>
-                      <td>10987</td>
-                      <td>13589</td>
-                      <td>2987.5</td>
-                      <td>512 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment annexe services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>23</td>
-                      <td>33512</td>
-                      <td>10987</td>
-                      <td>13589</td>
-                      <td>2987.5</td>
-                      <td>512 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment annexe services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>23</td>
-                      <td>33512</td>
-                      <td>10987</td>
-                      <td>13589</td>
-                      <td>2987.5</td>
-                      <td>512 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment annexe services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>23</td>
-                      <td>33512</td>
-                      <td>10987</td>
-                      <td>13589</td>
-                      <td>2987.5</td>
-                      <td>512 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment annexe services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>23</td>
-                      <td>33512</td>
-                      <td>10987</td>
-                      <td>13589</td>
-                      <td>2987.5</td>
-                      <td>512 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment annexe services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>12</td>
-                      <td>2105</td>
-                      <td>12458</td>
-                      <td>13589</td>
-                      <td>254.5</td>
-                      <td>254 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment principal services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>12</td>
-                      <td>2105</td>
-                      <td>12458</td>
-                      <td>13589</td>
-                      <td>254.5</td>
-                      <td>254 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment principal services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                  <tr>
-                      <td>12</td>
-                      <td>2105</td>
-                      <td>12458</td>
-                      <td>13589</td>
-                      <td>254.5</td>
-                      <td>254 896</td>
-                      <td>02/03/2025</td>
-                      <td>10/05/2025</td>
-                      <td>Bâtiment principal services centraux</td>
-                      <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <Menu />
+            {/*  <table>
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Compteur n°</th>
+                  <th>Ancien index</th>
+                  <th>Nouvel index</th>
+                  <th>Consommation</th>
+                  <th>Montant</th>
+                  <th>Période début</th>
+                  <th>Période fin</th>
+                  <th>Bâtiment</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>12</td>
+                  <td>2105</td>
+                  <td>12458</td>
+                  <td>13589</td>
+                  <td>254.5</td>
+                  <td>254 896</td>
+                  <td>02/03/2025</td>
+                  <td>10/05/2025</td>
+                  <td>Bâtiment principal services centraux</td>
+                  <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
+                </tr>
+                <tr>
+                  <td>23</td>
+                  <td>33512</td>
+                  <td>10987</td>
+                  <td>13589</td>
+                  <td>2987.5</td>
+                  <td>512 896</td>
+                  <td>02/03/2025</td>
+                  <td>10/05/2025</td>
+                  <td>Bâtiment annexe services centraux</td>
+                  <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
+                </tr>
+                <tr>
+                  <td>23</td>
+                  <td>33512</td>
+                  <td>10987</td>
+                  <td>13589</td>
+                  <td>2987.5</td>
+                  <td>512 896</td>
+                  <td>02/03/2025</td>
+                  <td>10/05/2025</td>
+                  <td>Bâtiment annexe services centraux</td>
+                  <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
+                </tr>
+                <tr>
+                  <td>23</td>
+                  <td>33512</td>
+                  <td>10987</td>
+                  <td>13589</td>
+                  <td>2987.5</td>
+                  <td>512 896</td>
+                  <td>02/03/2025</td>
+                  <td>10/05/2025</td>
+                  <td>Bâtiment annexe services centraux</td>
+                  <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
+                </tr>
+                <tr>
+                  <td>23</td>
+                  <td>33512</td>
+                  <td>10987</td>
+                  <td>13589</td>
+                  <td>2987.5</td>
+                  <td>512 896</td>
+                  <td>02/03/2025</td>
+                  <td>10/05/2025</td>
+                  <td>Bâtiment annexe services centraux</td>
+                  <td><i className="fa-solid fa-pen"></i> <i className="fa-solid fa-trash"></i></td>
+                </tr>
+
+
+              </tbody>
+            </table> */}
+          </section>
+          <Menu />
         </main>
       </div>
     </div>
