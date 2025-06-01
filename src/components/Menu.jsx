@@ -1,8 +1,8 @@
-export default function Men(){
-    return(
+export default function Menu() {
+    return (
         <ul className="accordion">
             <li>
-                <input type="radio" name="accordion" id="fifth"/>
+                <input type="radio" name="accordion" id="fifth" />
                 <label htmlFor="fifth">Factures</label>
                 <div className="content">
                     <p>Enregistrer une facture d'eau</p>
@@ -12,7 +12,7 @@ export default function Men(){
                 </div>
             </li>
             <li>
-                <input type="radio" name="accordion" id="first"/>
+                <input type="radio" name="accordion" id="first" />
                 <label htmlFor="first">Bâtiments</label>
                 <div className="content">
                     <p>Enregistrer un nouveau bâtiment</p>

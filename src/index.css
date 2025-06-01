@@ -4,7 +4,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem;
   background-color: #e3edf7;
 }
 
@@ -13,6 +13,7 @@ h1 {
   text-align: center;
   align-self: center;
   font-family: "Poppins";
+  font-weight: bold;
 }
 
 .logo-name,
@@ -25,19 +26,19 @@ h1 {
   letter-spacing: 5px;
   font-weight: 900;
   font-family: Impact;
-  align-self: center;
   rotate: -90deg;
 }
 
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .logo-image {
-  width: 150px;
-  height: 100px;
-  object-fit: cover;
+  width: 250px;
+  height: 150px;
+  object-fit: contain;
+  margin-right: 2rem;
 }
 
 nav ul {
@@ -63,6 +64,11 @@ main {
   width: 100%;
 }
 
+#infra-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
 .search {
   text-indent: 1.1rem;
   padding: 0.8em 1em;
@@ -73,7 +79,7 @@ main {
 }
 
 aside {
-  width: 400px;
+  width: 450px;
 }
 
 .input-container {
@@ -103,17 +109,22 @@ aside {
 }
 
 .menu-list {
-  margin-top: 0.5rem;
   margin-left: 0;
   padding-left: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .menu-list li {
-  padding: 5px 10px;
+  padding: 5px;
   border-bottom: 1px solid #1B85B8;
   background-color: aliceblue;
-  margin: 0.5rem 0;
-  text-align: center;
+  margin: 0.1rem 0;
+}
+
+aside,
+nav {
+  margin: 0;
 }
 
 .menu-list li.active {
