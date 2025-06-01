@@ -12,10 +12,10 @@ function Common() {
         <SideBar />
         <h1>Infrastructures du Ministère de la Promotion de la Femme et de la Famille</h1>
       </header>
-      <div className="app-container">
-        <main>
-          <div>
-            <section className='toolbar-filter'>
+      {/* <div className="app-container"> */}
+      <main>
+        <div>
+          {/*  <section className='toolbar-filter'>
               <ul className='menu'>
                 <li className='active'><a href=""><i className="fa-solid fa-faucet-drip"></i>Eau</a>
                   <ul className='toolbar-actions'>
@@ -30,20 +30,20 @@ function Common() {
                 <li><a href=""><i className="fa-solid fa-phone list-item"></i>Téléphone</a></li>
                 <li><a href=""><i className="fa-solid fa-globe list-item"></i>Internet</a></li>
               </ul>
-            </section>
-            <section className='input-container'>
-              <i className="fa-solid fa-magnifying-glass"></i><input className='search' placeholder="Please enter your search here ..." type="text" />
-              {/* <label htmlFor="services-centraux">Services centraux <input type="radio" name="services" id="services-centraux" /></label>
+            </section> */}
+          {/* <section className='input-container'>
+              <i className="fa-solid fa-magnifying-glass"></i><input className='search' placeholder="Please enter your search here ..." type="text" /> */}
+          {/* <label htmlFor="services-centraux">Services centraux <input type="radio" name="services" id="services-centraux" /></label>
               <label htmlFor="services-deconcentres">Services déconcentrés <input type="radio" name="services" id="services-deconcentres" /></label> */}
-              <button>Filtrer la recherche</button>
-            </section>
-            <section>
+          {/* <button>Filtrer la recherche</button>
+            </section> */}
+          {/* <section>
               <form action="">
               </form>
-            </section>
-          </div>
-          <section>
-            {/*  <table>
+            </section> */}
+        </div>
+        <section>
+          {/*  <table>
               <thead>
                 <tr>
                   <th>N°</th>
@@ -123,9 +123,9 @@ function Common() {
 
               </tbody>
             </table> */}
-          </section>
-        </main>
-      </div>
+        </section>
+      </main>
+      {/* </div> */}
     </div>
   )
 }

@@ -12,8 +12,9 @@ h1 {
   font-size: 1.2rem;
   text-align: center;
   align-self: center;
-  font-family: "Poppins";
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: bold;
+  color: #1B85B8;
 }
 
 .logo-name,
@@ -36,7 +37,7 @@ header {
 
 .logo-image {
   width: 250px;
-  height: 150px;
+  height: 140px;
   object-fit: contain;
   margin-right: 2rem;
 }
@@ -79,7 +80,7 @@ main {
 }
 
 aside {
-  width: 450px;
+  width: 500px;
 }
 
 .input-container {
@@ -109,6 +110,7 @@ aside {
 }
 
 .menu-list {
+  margin: 0;
   margin-left: 0;
   padding-left: 0;
   font-size: 0.8rem;
@@ -232,12 +234,14 @@ tr:hover {
 .accordion {
   margin: 20px auto;
   width: 600px;
+  text-transform: uppercase;
 }
 
 .accordion li {
   list-style: none;
   width: 100%;
   margin: 20px;
+  background-color: #fff;
   padding: 5px 10px;
   border-radius: 8px;
   box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
@@ -248,9 +252,11 @@ tr:hover {
   display: flex;
   align-items: center;
   padding: 0px 10px;
-  font-size: 18px;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
+  background-color: #ffc736;
+  color: #1B85B8;
 }
 
 .accordion li label::before {
@@ -268,8 +274,14 @@ input[type="radio"] {
   color: #555;
   padding: 0 10px;
   max-height: 0;
+  font-size: 0.8rem;
   overflow: hidden;
   transition: max-height 0.5s, padding 0.5s;
+  background-color: #10113d;
+}
+
+.accordion .content p {
+  color: #fff;
 }
 
 .accordion input[type="radio"]:checked+label+.content {
