@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom'
+
+import './menu.css'
+
 export default function Menu() {
     return (
         <ul className="accordion">
@@ -5,20 +9,20 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="fifth" />
                 <label htmlFor="fifth">Factures</label>
                 <div className="content">
-                    <p>Enregistrer une facture d'eau</p>
+                    <p><Link className="show-link" to="/factures/save">Enregistrer une facture d'eau</Link></p>
                     <p>Enregistrer une facture d'électricité</p>
                     <p>Enregistrer une facture de téléphone</p>
-                    <p>Consulter les factures</p>
+                    <p><Link className='show-link' to="/factures/show">Consulter les factures</Link></p>
                 </div>
             </li>
             <li>
                 <input type="radio" name="accordion" id="first" />
                 <label htmlFor="first">Bâtiments</label>
                 <div className="content">
-                    <p>Enregistrer un nouveau bâtiment</p>
-                    <p>Créer des espaces au sein du bâtiment</p>
+                    <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un nouveau bâtiment</Link></p>
+                    <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces au sein du bâtiment</Link></p>
                     <p>Créer différents usages de ces espaces</p>
-                    <p>Consulter les espaces au sein du bâtiment</p>
+                    <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
             <li>
@@ -27,12 +31,10 @@ export default function Menu() {
                 <div className="content">
                     <p>Enregistrer un nouveau matériel</p>
                     <p>Créer des catégories d'équipements</p>
-                    <p>Affecter du matériel à un service, à un individu ou à un poste de travail</p>
+                    <p>Affecter du matériel </p>
                     <p>Procéder à l'installation d'un équipement</p>
-                    <p>Consulter les équipements affectés à un espace</p>
-                    <p>Rechercher un équipement par nom ou par catégorie</p>
-                    <p>Connaître le nombre de matériel restant par catégorie</p>
-                    <p>Lister les logiciels installés sur un ordinateur</p>
+                    <p>Rechercher un équipement</p>
+                    <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
             <li>
@@ -41,15 +43,17 @@ export default function Menu() {
                 <div className="content">
                     <p>Créer des structures et leurs postes de responsabilités</p>
                     <p>Affecter le personnel à un espace</p>
+                    <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
             <li>
                 <input type="radio" name="accordion" id="fourth" />
-                <label htmlFor="fourth">Maintenance</label>
+                <label htmlFor="fourth">Interventions et Maintenance</label>
                 <div className="content">
                     <p>Enregistrer un incident déclaré</p>
                     <p>Enregistrer une intervention</p>
                     <p>Consulter les interventions et les incidents</p>
+                    <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
         </ul>

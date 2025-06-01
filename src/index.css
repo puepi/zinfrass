@@ -5,7 +5,7 @@
 body {
   font-family: "Roboto", sans-serif;
   padding: 0.5rem;
-  background-color: #e3edf7;
+  background-color: wheat;
 }
 
 h1 {
@@ -231,65 +231,7 @@ tr:hover {
   background-color: #ddd;
 }
 
-.accordion {
-  margin: 20px auto;
-  width: 600px;
-  text-transform: uppercase;
-}
 
-.accordion li {
-  list-style: none;
-  width: 100%;
-  margin: 20px;
-  background-color: #fff;
-  padding: 5px 10px;
-  border-radius: 8px;
-  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15), -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
-}
-
-
-.accordion li label {
-  display: flex;
-  align-items: center;
-  padding: 0px 10px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  background-color: #ffc736;
+p.suivant a {
   color: #1B85B8;
-}
-
-.accordion li label::before {
-  content: '+';
-  margin-right: 10px;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-.accordion .content {
-  color: #555;
-  padding: 0 10px;
-  max-height: 0;
-  font-size: 0.8rem;
-  overflow: hidden;
-  transition: max-height 0.5s, padding 0.5s;
-  background-color: #10113d;
-}
-
-.accordion .content p {
-  color: #fff;
-}
-
-.accordion input[type="radio"]:checked+label+.content {
-  max-height: 400px;
-  padding: 0px 10px 5px;
-}
-
-.accordion input[type="radio"]:checked+label::before {
-  content: "-";
-  font-size: 36px;
 }
