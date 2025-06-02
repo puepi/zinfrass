@@ -8,6 +8,9 @@ import FacturesSave from "./pages/factures/FacturesSave";
 import FacturesShow from "./pages/factures/FacturesShow";
 import BatimentSave from "./pages/materiels/batiments/BatimentsSave";
 import EspacesSave from "./pages/materiels/batiments/EspacesSave";
+import ConnectiquesSave from "./pages/materiels/connectiques/connectiquesSave";
+import EquipementsSave from "./pages/materiels/equipements/EquipementsSave";
+import EquipementsShow from "./pages/materiels/equipements/EquipementsShow";
 
 function App() {
     return (
@@ -20,6 +23,9 @@ function App() {
                 <Route path="/materiels" element={<Home />} />
                 <Route path="/materiels/batiments/save" element={<BatimentSave />} />
                 <Route path="/materiels/espaces/save" element={<EspacesSave />} />
+                <Route path="/materiels/equipements/save" element={<EquipementsSave />} />
+                <Route path="/materiels/equipements/show" element={<EquipementsShow />} />
+                <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites_admin/save" element={<Home />} />
                 <Route path="/interventions" element={<Home />} />
             </Routes>

@@ -25,5 +25,13 @@
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 20px);
+    grid-template-rows: repeat(6, 20px);
+}
+
+#espaces-save .empty {
+    grid-column: 3/-1;
+}
+
+#espaces-save .empty1 {
+    grid-column: 2/span 2;
 }

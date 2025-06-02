@@ -22,6 +22,7 @@ export default function Menu() {
                     <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un nouveau bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces au sein du bâtiment</Link></p>
                     <p>Créer différents usages de ces espaces</p>
+                    <p><Link className='show-link' to="/connectiques/save">Connectiques</Link></p>
                     <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
@@ -29,7 +30,7 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="second" />
                 <label htmlFor="second">Matériel/Equipement</label>
                 <div className="content">
-                    <p>Enregistrer un nouveau matériel</p>
+                    <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un nouveau matériel</Link></p>
                     <p>Créer des catégories d'équipements</p>
                     <p>Affecter du matériel </p>
                     <p>Procéder à l'installation d'un équipement</p>

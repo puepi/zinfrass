@@ -1,6 +1,7 @@
 .factures {
     width: 60%;
     margin: 0 auto;
+    border: 1px solid #1B85B8;
 }
 
 #save-form {
@@ -8,7 +9,6 @@
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
-    border: 1px solid #1B85B8;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 20px);
 }

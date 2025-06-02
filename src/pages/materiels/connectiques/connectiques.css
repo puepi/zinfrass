@@ -1,0 +1,18 @@
+.connectiques {
+    width: 60%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #1B85B8;
+}
+
+#connectiques-save {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 20px);
+}
+
+#connectiques-save .empty {
+    grid-column: 2/ span 2;
+}
