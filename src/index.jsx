@@ -13,6 +13,8 @@ import EquipementsSave from "./pages/materiels/equipements/EquipementsSave";
 import EquipementsShow from "./pages/materiels/equipements/EquipementsShow";
 import EquipementsAffecter from "./pages/materiels/equipements/EquipementsAffecter";
 import EquipementsInstaller from "./pages/materiels/equipements/EquipementsInstaller";
+import BatimentsLoger from "./pages/materiels/batiments/BatimentsLoger";
+import EquipementsAffecterShow from "./pages/materiels/equipements/EquipementsAffecterShow";
 
 function App() {
     return (
@@ -24,10 +26,12 @@ function App() {
                 <Route path="/factures/show" element={<FacturesShow />} />
                 <Route path="/materiels" element={<Home />} />
                 <Route path="/materiels/batiments/save" element={<BatimentSave />} />
+                <Route path="/materiels/batiments/loger" element={<BatimentsLoger />} />
                 <Route path="/materiels/espaces/save" element={<EspacesSave />} />
                 <Route path="/materiels/equipements/save" element={<EquipementsSave />} />
                 <Route path="/materiels/equipements/show" element={<EquipementsShow />} />
                 <Route path="/materiels/equipements/affecter" element={<EquipementsAffecter />} />
+                <Route path="/materiels/equipements-affectation/show" element={<EquipementsAffecterShow />} />
                 <Route path="/materiels/equipements/installer" element={<EquipementsInstaller />} />
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites_admin/save" element={<Home />} />
