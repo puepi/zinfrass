@@ -29,7 +29,7 @@ export default function EquipementsSave() {
                         <option value="">Table</option>
                         <option value="">Multifonction</option>
                     </select>
-                    <div className="empty"></div>
+                    <Link className="create-link" to="/materiels/categories/save">...Créer</Link>
                     <label htmlFor="">Lot n° :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
@@ -64,10 +64,10 @@ export default function EquipementsSave() {
                     <label htmlFor="">Caractéristiques :</label>
                     <textarea name="" id=""></textarea>
                     <button>Ajouter</button>
-                    <button>VALIDER</button>
+                    <button>Valider</button>
                     <div className="empty2"></div>
                 </form>
-                <Link className='show-link' to="/materiels/equipements/show">Consulter</Link>
+                <span className="right"><Link className='show-link' to="/materiels/equipements/show">Consulter</Link></span>
             </section>
         </>
     )
