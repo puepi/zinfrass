@@ -32,10 +32,10 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un nouveau matériel</Link></p>
                     <p>Créer des catégories d'équipements</p>
-                    <p>Affecter du matériel </p>
-                    <p>Procéder à l'installation d'un équipement</p>
+                    <p><Link className='show-link' to="/materiels/equipements/affecter">Affecter du matériel</Link> </p>
+                    <p><Link className='show-link' to="/materiels/equipements/installer">Procéder à l'installation d'un équipement</Link></p>
                     <p>Rechercher un équipement</p>
-                    <p className="suivant"><a href="#">Autres actions</a></p>
+                    <p className="suivant"><Link to="">Autres actions</Link></p>
                 </div>
             </li>
             <li>
@@ -43,7 +43,7 @@ export default function Menu() {
                 <label htmlFor="third">Structures et postes de responsabilités</label>
                 <div className="content">
                     <p>Créer des structures et leurs postes de responsabilités</p>
-                    <p>Affecter le personnel à un espace</p>
+                    <p><Link className='show-link' to="/batiments/loger">Affecter le personnel à un espace</Link></p>
                     <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>

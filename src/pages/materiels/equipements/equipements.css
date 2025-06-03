@@ -42,11 +42,48 @@
     font-size: 1.1rem;
 }
 
-textarea {
+#equipements-save textarea {
     grid-column: 2/-1;
     grid-row: 11/-1;
 }
 
 #equipements-save .empty3 {
     grid-column: 5/-1;
+}
+
+#equipements-affecter {
+    display: grid;
+    border: 1px solid #1B85B8;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 20px);
+}
+
+#equipements-affecter .empty {
+    grid-column: 3/-1;
+}
+
+#equipements-installer {
+    display: grid;
+    border: 1px solid #1B85B8;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 20px);
+}
+
+#equipements-installer .empty {
+    grid-column: 3/-1;
+}
+
+#equipements-installer textarea {
+    grid-column: 2/span 2;
+    grid-row: 6/-1;
+}
+
+.empty-row {
+    grid-row: 7 / span 1;
 }

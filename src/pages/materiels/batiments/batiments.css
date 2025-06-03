@@ -2,15 +2,17 @@
     width: 60%;
     padding: 1rem;
     margin: 0 auto;
-    border-radius: 8px;
-    border: 1px solid #1B85B8;
+
 }
 
 #batiments-save {
+    padding: 0.5rem;
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 20px);
+    border-radius: 8px;
+    border: 1px solid #1B85B8;
 }
 
 #batiments-save .empty {
@@ -34,4 +36,9 @@
 
 #espaces-save .empty1 {
     grid-column: 2/span 2;
+}
+
+.create-link {
+    color: #1B85B8;
+    font-weight: bold;
 }

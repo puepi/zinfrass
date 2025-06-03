@@ -14,7 +14,7 @@ export default function BatimentSave() {
                         <option value="">Région</option>
                         <option value="">Département</option>
                     </select>
-                    <Link className="show-link" to="/administration/unite_admin/save">Créer</Link>
+                    <Link className="create-link" to="/administration/unite_admin/save">...Créer</Link>
                     <div className='empty'></div>
                     <label htmlFor="">Nom du bâtiment :</label>
                     <input type="text" />
@@ -33,6 +33,7 @@ export default function BatimentSave() {
                     <div className='empty2'></div>
                     <button>Valider et poursuivre</button>
                 </form>
+                <Link className='show-link' to="/materiels/batiments/show">Consulter</Link>
             </section>
         </>
     )
