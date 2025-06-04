@@ -15,6 +15,8 @@ import EquipementsAffecter from "./pages/materiels/equipements/EquipementsAffect
 import EquipementsInstaller from "./pages/materiels/equipements/EquipementsInstaller";
 import BatimentsLoger from "./pages/materiels/batiments/BatimentsLoger";
 import EquipementsAffecterShow from "./pages/materiels/equipements/EquipementsAffecterShow";
+import StructureSave from "./pages/administration/StructureSave";
+import UnitesAdminSave from "./pages/administration/UnitesAdminSave";
 
 function App() {
     return (
@@ -34,7 +36,8 @@ function App() {
                 <Route path="/materiels/equipements-affectation/show" element={<EquipementsAffecterShow />} />
                 <Route path="/materiels/equipements/installer" element={<EquipementsInstaller />} />
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
-                <Route path="/administration/unites_admin/save" element={<Home />} />
+                <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />
+                <Route path="/administration/structures/save" element={<StructureSave />} />
                 <Route path="/interventions" element={<Home />} />
             </Routes>
         </BrowserRouter>

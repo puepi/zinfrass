@@ -55,6 +55,7 @@
     grid-template-rows: repeat(4, 20px);
     border-radius: 8px;
     border: 1px solid #1B85B8;
+    background-color: #fff;
 }
 
 #batiments-loger .empty {
