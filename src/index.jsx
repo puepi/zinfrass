@@ -20,6 +20,7 @@ import UnitesAdminSave from "./pages/administration/UnitesAdminSave";
 import EquipementsReception from "./pages/materiels/equipements/EquipementsReception";
 import IncidentsSave from "./pages/maintenance/IncidentsSave";
 import InterventionsSave from "./pages/maintenance/InterventionsSave";
+import MaintenanceShow from "./pages/maintenance/MaintenanceShow";
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                 <Route path="/administration/structures/save" element={<StructureSave />} />
                 <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
+                <Route path="/maintenance/show" element={<MaintenanceShow />} />
             </Routes>
         </BrowserRouter>
     )

@@ -1,5 +1,5 @@
 .maintenance{
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -14,3 +14,25 @@
     background-color: #fff;
 }
 
+#interventions-save{
+    display: grid;
+    border: 1px solid #1B85B8;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(9, 20px);
+    background-color: #fff;
+}
+
+
+#maintenance-show{
+    display: grid;
+    border: 1px solid #1B85B8;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 20px);
+    background-color: #fff;
+}

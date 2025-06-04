@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 export default function InterventionsSave(){
     return(
         <>
@@ -22,7 +22,7 @@ export default function InterventionsSave(){
                     <label htmlFor="">Noms de l'intervenant :</label>
                     <input type="text" />
                     <label htmlFor="">Poste :</label>
-                    <input type="text" />
+                    <input type="text" /><div></div>
                     <label htmlFor="">Nature de l'intervention :</label>
                     <select name="" id="">
                         <option value="">Sélectionner une option</option>
@@ -31,13 +31,20 @@ export default function InterventionsSave(){
                         <option value="">Batiments</option>
                         <option value="">Espaces</option>
                     </select>
-                    <label htmlFor="">Nature de l'incident :</label>
-                    <input type="text" />
-                    <Link className="search-link" to="materiels/show">...rechercher</Link>
-                    <input type="text" disabled/>
-                    <label htmlFor="">Image ou vidéo :</label>
-                    <input type="text" /><div></div>
-                    <button>Enregistrer</button>
+                    <label htmlFor="">Objet :</label>
+                    <input type="text" disabled/><div></div>
+                    <label htmlFor="">Diagnostic :</label>
+                    <input type="text" /><div></div><div></div><div></div>
+                    <label htmlFor="">Solution proposée :</label>
+                    <input type="text" /><div></div><div></div><div></div>
+                    <label htmlFor="">Description de l'intervention :</label>
+                    <input type="text" /><div></div><div></div><div></div>
+                    <label htmlFor="">Date :</label>
+                    <input type="date" /><div></div><div></div><div></div>
+                    <label htmlFor="">Appréciation du résultat :</label>
+                    <input type="text" /><div></div><div></div><div></div>
+                    <button>Enregistrer</button><div></div><div></div>
+                    <button>Imprimer la fiche</button>
                 </form>
             </section>
         </>

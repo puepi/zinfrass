@@ -53,8 +53,8 @@ export default function Menu() {
                 <label htmlFor="fourth">Interventions et Maintenance</label>
                 <div className="content">
                     <p><Link className='show-link' to="maintenance/incidents/save">Enregistrer un incident déclaré</Link></p>
-                    <p><Link className='show-link'>Enregistrer une intervention</Link></p>
-                    <p><Link className='show-link'>Consulter les interventions et les incidents</Link></p>
+                    <p><Link className='show-link' to="maintenance/interventions/save">Enregistrer une intervention</Link></p>
+                    <p><Link className='show-link' to="maintenance/show">Consulter les interventions et les incidents</Link></p>
                     <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>
