@@ -23,6 +23,8 @@ export default function ConnectiquesSave() {
                     <input type="text" />
                     <Link className="search-link" to="materiels/espaces/show">...rechercher</Link><div></div>
                     <button>Ajouter</button>
+                    <div></div>
+                    <div></div>
                     <button>Valider</button>
                 </form>
             </section>

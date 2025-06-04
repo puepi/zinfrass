@@ -8,7 +8,7 @@ import FacturesSave from "./pages/factures/FacturesSave";
 import FacturesShow from "./pages/factures/FacturesShow";
 import BatimentSave from "./pages/materiels/batiments/BatimentsSave";
 import EspacesSave from "./pages/materiels/batiments/EspacesSave";
-import ConnectiquesSave from "./pages/materiels/connectiques/connectiquesSave";
+import ConnectiquesSave from "./pages/materiels/connectiques/ConnectiquesSave";
 import EquipementsSave from "./pages/materiels/equipements/EquipementsSave";
 import EquipementsShow from "./pages/materiels/equipements/EquipementsShow";
 import EquipementsAffecter from "./pages/materiels/equipements/EquipementsAffecter";
@@ -18,6 +18,8 @@ import EquipementsAffecterShow from "./pages/materiels/equipements/EquipementsAf
 import StructureSave from "./pages/administration/StructureSave";
 import UnitesAdminSave from "./pages/administration/UnitesAdminSave";
 import EquipementsReception from "./pages/materiels/equipements/EquipementsReception";
+import IncidentsSave from "./pages/maintenance/IncidentsSave";
+import InterventionsSave from "./pages/maintenance/InterventionsSave";
 
 function App() {
     return (
@@ -40,7 +42,8 @@ function App() {
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />
                 <Route path="/administration/structures/save" element={<StructureSave />} />
-                <Route path="/interventions" element={<Home />} />
+                <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
+                <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
             </Routes>
         </BrowserRouter>
     )

@@ -1,0 +1,16 @@
+.maintenance{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#incidents-save{
+    display: grid;
+    border: 1px solid #1B85B8;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 20px);
+    background-color: #fff;
+}
+
