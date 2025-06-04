@@ -1,8 +1,7 @@
 .factures {
     width: 60%;
     margin: 0 auto;
-    border: 1px solid #1B85B8;
-}
+    
 
 #save-form {
     display: grid;
@@ -11,6 +10,9 @@
     border-radius: 8px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 20px);
+    border: 1px solid #1B85B8;
+    background-color: #fff;
+}
 }
 
 .empty {
@@ -36,6 +38,7 @@ button {
     border: 1px solid #1B85B8;
     grid-template-columns: repeat(3, 1fr);
     margin-bottom: 1rem;
+    background-color: #fff;
 }
 
 .factures .show-link {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 
+import './equipements.css'
 export default function EquipementsAffecter() {
     return (
         <>
