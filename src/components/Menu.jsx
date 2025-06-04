@@ -42,7 +42,8 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="third" />
                 <label htmlFor="third">Structures et postes de responsabilités</label>
                 <div className="content">
-                    <p>Créer des structures et leurs postes de responsabilités</p>
+                    <p><Link className='show-link' to="/administration/unites-admin/save">Définir les subdivisions administratives</Link></p>
+                    <p><Link className='show-link' to="/administration/structures/save">Créer des structures et leurs postes de responsabilités</Link></p>
                     <p><Link className='show-link' to="/materiels/batiments/loger">Affecter le personnel à un espace</Link></p>
                     <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
