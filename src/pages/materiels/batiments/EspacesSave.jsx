@@ -13,8 +13,11 @@ export default function EspacesSave() {
                     <input type="text" />
                     <label htmlFor="">Usage :</label>
                     <select name="" id="">
+                        <option value="">Sélectionner une option</option>
+                        <option value="">Rez de chaussée</option>
                         <option value="">Etage</option>
                         <option value="">Bureau</option>
+                        <option value="">Sous-sol</option>
                         <option value="">Toilettes/WC</option>
                         <option value="">Salle de réunion</option>
                         <option value="">Bibliothèque</option>

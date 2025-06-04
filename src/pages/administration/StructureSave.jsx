@@ -6,7 +6,7 @@ export default function StructureSave() {
             <h1>Créer une structure avec ses postes de responsabilité</h1>
             <section className="structures">
                 <form action="" id="structures-save">
-                    <label htmlFor="">Unité administrative :</label>
+                    <label htmlFor="">Type de subdivision :</label>
                     <select name="" id="">
                         <option value="">Sélectionner une option</option>
                         <option value="">Services centraux</option>
@@ -15,7 +15,8 @@ export default function StructureSave() {
                         <option value="">Arrondissement</option>
                     </select>
                     <Link className="search-link" to="/administration/unites_admin/show">...rechercher</Link>
-                    <div className="empty"></div>
+                    <input type="text" disabled value={"Région - OUEST"} />
+                    <div className="empty2"></div>
                     <label htmlFor="">Nom de la structure :</label>
                     <input type="text" />
                     <label htmlFor="">Rattachée à  :</label>
@@ -23,11 +24,31 @@ export default function StructureSave() {
                     <Link className="search-link" to="/administration/structures/show">...rechercher</Link>
                     <label htmlFor="">Abréviation :</label>
                     <input type="text" />
+                    <label htmlFor="">Type de structure  :</label>
+                    <select name="" id="">
+                        <option value="">Sélectionner une option</option>
+                        <option value="">Cabinet du Ministre</option>
+                        <option value="">Secrétariat Général</option>
+                        <option value="">Direction</option>
+                        <option value="">Division</option>
+                        <option value="">Cellule</option>
+                        <option value="">Service</option>
+                        <option value="">Bureau</option>
+                    </select>
                     <div className='empty2'></div>
                     <label htmlFor="">Responsabilité :</label>
                     <input type="text" />
                     <label htmlFor="">Rang :</label>
-                    <input type="text" />
+                    <select name="" id="">
+                        <option value="">Sélectionenr une option</option>
+                        <option value="">Ministre</option>
+                        <option value="">Secrétaire Général</option>
+                        <option value="">Directeur</option>
+                        <option value="">Directeur Adjoint</option>
+                        <option value="">Sous-Directeur</option>
+                        <option value="">Chef de Service</option>
+                        <option value="">Chef de bureau</option>
+                    </select>
                     <div className="empty2"></div>
                     <label htmlFor="">Abréviation :</label>
                     <input type="text" />

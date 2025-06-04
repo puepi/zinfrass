@@ -11,6 +11,7 @@
     grid-template-rows: repeat(7, 20px);
     border-radius: 8px;
     border: 1px solid #1B85B8;
+    background-color: #fff;
 }
 
 #structures-save .empty {
@@ -23,4 +24,19 @@
 
 #structures-save .empty3 {
     grid-column: 2/-1;
+}
+
+#structures-unites-admin {
+    padding: 1rem;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 20px);
+    border-radius: 8px;
+    border: 1px solid #1B85B8;
+    background-color: #fff;
+}
+
+#structures-unites-admin .empty {
+    grid-column: 4/-1;
 }
