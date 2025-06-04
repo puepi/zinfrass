@@ -90,3 +90,27 @@
 .empty-row {
     grid-row: 7 / span 1;
 }
+
+#equipements-reception{
+    display: grid;
+    border: 1px solid #1B85B8;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(9, 20px);
+    background-color: #fff;
+}
+
+#equipements-reception .empty{
+    grid-column: 3/-1;
+}
+
+
+
+#equipements-reception textarea{
+    grid-column: 2/-1;
+    grid-row: 6/ span 3;
+}
+
+

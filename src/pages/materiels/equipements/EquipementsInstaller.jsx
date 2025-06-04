@@ -4,12 +4,12 @@ export default function EquipementsInstaller() {
     return (
         <>
             <section className="equipements">
-                <h1>Installer un équipement</h1>
+                <h1>Installer un équipement ou un logiciel</h1>
                 <form action="" id="equipements-installer">
                     <label htmlFor="">Repérage de l'espace :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
-                    <label htmlFor="">Identifiant du matériel :</label>
+                    <label htmlFor="">Identifiant de l'équipement :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
                     <label htmlFor="">Date d'installation :</label>

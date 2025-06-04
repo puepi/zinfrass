@@ -1,5 +1,5 @@
 .connectiques {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -15,5 +15,5 @@
 }
 
 #connectiques-save .empty {
-    grid-column: 2/ span 2;
+    grid-column: 3/-1;
 }

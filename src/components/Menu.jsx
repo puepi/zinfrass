@@ -30,12 +30,12 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="second" />
                 <label htmlFor="second">Matériel/Equipement</label>
                 <div className="content">
-                    <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un nouveau matériel</Link></p>
+                    <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un nouveau matériel ou logiciel</Link></p>
                     <p>Créer des catégories d'équipements</p>
                     <p><Link className='show-link' to="/materiels/equipements/affecter">Affecter du matériel</Link> </p>
-                    <p><Link className='show-link' to="/materiels/equipements/installer">Procéder à l'installation d'un équipement</Link></p>
+                    <p><Link className='show-link' to="/materiels/equipements/installer">Procéder à l'installation d'un équipement ou d'un logiciel</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements-affectation/show">Rechercher un équipement affecté</Link></p>
-                    <p className="suivant"><Link to="">Autres actions</Link></p>
+                    <p className="suivant"><Link to="/materiels/equipements/reception">Autres actions</Link></p>
                 </div>
             </li>
             <li>
@@ -52,9 +52,9 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="fourth" />
                 <label htmlFor="fourth">Interventions et Maintenance</label>
                 <div className="content">
-                    <p>Enregistrer un incident déclaré</p>
-                    <p>Enregistrer une intervention</p>
-                    <p>Consulter les interventions et les incidents</p>
+                    <p><Link className='show-link'>Enregistrer un incident déclaré</Link></p>
+                    <p><Link className='show-link'>Enregistrer une intervention</Link></p>
+                    <p><Link className='show-link'>Consulter les interventions et les incidents</Link></p>
                     <p className="suivant"><a href="#">Autres actions</a></p>
                 </div>
             </li>

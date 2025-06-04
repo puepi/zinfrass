@@ -4,7 +4,7 @@ import './equipements.css'
 export default function EquipementsSave() {
     return (
         <>
-            <h1>Enregistrer un équipement</h1>
+            <h1>Enregistrer un équipement ou un logiciel</h1>
             <section className="equipements">
                 <form action="" id="equipements-save">
                     <label htmlFor="">Nature :</label>
@@ -20,6 +20,7 @@ export default function EquipementsSave() {
                         <option value="">Unité centrale</option>
                         <option value="">Imprimante</option>
                         <option value="">Copieur</option>
+                        <option value="">Logiciels</option>
                         <option value="">Scanner</option>
                         <option value="">Compteur</option>
                         <option value="">Voiture</option>
@@ -53,16 +54,18 @@ export default function EquipementsSave() {
                     <span className="prec-suiv-buttons"><span>&lt;| </span><span>|&gt;</span></span>
                     <Link className="show-link">Annuler</Link>
                     <label htmlFor="">Marque :</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <div className='empty2'></div>
                     <label htmlFor="">Modèle :</label>
-                    <input type="text" />
-                    <div className='empty2'></div>
+                    <input type="text" disabled/>
+                    <label htmlFor="">Version :</label>
+                    <input type="text" disabled />
+                    <div></div>
                     <label htmlFor="">Couleur :</label>
-                    <input type="text" />
+                    <input type="text" disabled/>
                     <div className='empty2'></div>
                     <label htmlFor="">Caractéristiques :</label>
-                    <textarea name="" id=""></textarea>
+                    <textarea name="" id="" disabled></textarea>
                     <button>Ajouter</button>
                     <button>Valider</button>
                     <div className="empty2"></div>

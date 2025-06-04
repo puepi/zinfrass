@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 export default function EspacesSave() {
     return (
@@ -11,7 +11,7 @@ export default function EspacesSave() {
                     <div className="empty"></div>
                     <label htmlFor="">Nom de l'espace :</label>
                     <input type="text" />
-                    <label htmlFor="">Usage :</label>
+                    <label htmlFor="">Usage : <Link className="create-link">...Créer</Link></label>
                     <select name="" id="">
                         <option value="">Sélectionner une option</option>
                         <option value="">Rez de chaussée</option>
