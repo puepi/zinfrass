@@ -1,9 +1,9 @@
-.maintenance{
-    width: 60%;
+.maintenance {
+    width: 75%;
     margin: 0 auto;
 }
 
-#incidents-save{
+#incidents-save {
     display: grid;
     border: 1px solid #1B85B8;
     border-radius: 8px;
@@ -14,19 +14,19 @@
     background-color: #fff;
 }
 
-#interventions-save{
+#interventions-save {
     display: grid;
     border: 1px solid #1B85B8;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr 0.75fr 0.75fr 0.75fr 0.75fr;
     grid-template-rows: repeat(9, 20px);
     background-color: #fff;
 }
 
 
-#maintenance-show{
+#maintenance-show {
     display: grid;
     border: 1px solid #1B85B8;
     border-radius: 8px;
