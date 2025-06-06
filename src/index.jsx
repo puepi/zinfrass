@@ -21,6 +21,7 @@ import EquipementsReception from "./pages/materiels/equipements/EquipementsRecep
 import IncidentsSave from "./pages/maintenance/IncidentsSave";
 import InterventionsSave from "./pages/maintenance/InterventionsSave";
 import MaintenanceShow from "./pages/maintenance/MaintenanceShow";
+import EquipementsDeplacer from "./pages/materiels/equipements/EquipementsDeplacer";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/materiels/equipements/affecter" element={<EquipementsAffecter />} />
                 <Route path="/materiels/equipements-affectation/show" element={<EquipementsAffecterShow />} />
                 <Route path="/materiels/equipements/installer" element={<EquipementsInstaller />} />
+                <Route path="/materiels/equipements/deplacer" element={<EquipementsDeplacer />} />
                 <Route path="/materiels/equipements/reception" element={<EquipementsReception />} />
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />

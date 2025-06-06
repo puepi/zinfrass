@@ -9,7 +9,7 @@ export default function EquipementsInstaller() {
                     <label htmlFor="">Repérage de l'espace :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
-                    <label htmlFor="">Identifiant de l'équipement ou du logiciel :</label>
+                    <label htmlFor="">Identifiant (Equipement ou logiciel) :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
                     <label htmlFor="">Date d'installation :</label>

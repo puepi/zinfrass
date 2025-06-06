@@ -30,10 +30,10 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="second" />
                 <label htmlFor="second">Matériel/Equipement</label>
                 <div className="content">
-                    <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un nouveau matériel ou logiciel</Link></p>
-                    <p>Créer des catégories d'équipements</p>
+                    <p><Link className='show-link' to="materiels/equipements/save">Enregistrer un matériel ou logiciel</Link></p>
+                    <p><Link className='show-link' to="/materiels/equipements/deplacer">Déplacer un équipement</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements/affecter">Affecter du matériel</Link> </p>
-                    <p><Link className='show-link' to="/materiels/equipements/installer">Procéder à l'installation d'un équipement ou d'un logiciel</Link></p>
+                    <p><Link className='show-link' to="materiels/equipements/installer">Installer un équipement ou un logiciel</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements-affectation/show">Rechercher un équipement affecté</Link></p>
                     <p className="suivant"><Link to="/materiels/equipements/reception">Autres actions</Link></p>
                 </div>

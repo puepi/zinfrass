@@ -7,7 +7,7 @@
 .accordion li {
     list-style: none;
     width: 100%;
-    margin: 20px;
+    margin: 15px;
     background-color: #fff;
     padding: 5px 10px;
     border-radius: 8px;
@@ -39,6 +39,7 @@ input[type="radio"] {
 
 .accordion .content {
     padding: 0 10px;
+    border-radius: 0 0 20px 20px;
     max-height: 0;
     font-size: 0.8rem;
     overflow: hidden;

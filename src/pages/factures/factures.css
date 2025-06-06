@@ -1,18 +1,18 @@
 .factures {
     width: 60%;
     margin: 0 auto;
-    
 
-#save-form {
-    display: grid;
-    gap: 5px;
-    padding: 1rem;
-    border-radius: 8px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 20px);
-    border: 1px solid #1B85B8;
-    background-color: #fff;
-}
+
+    #save-form {
+        display: grid;
+        gap: 5px;
+        padding: 1rem;
+        border-radius: 8px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 20px);
+        border: 5px solid #ffc736;
+        background-color: #fff;
+    }
 }
 
 .empty {
@@ -35,7 +35,7 @@ button {
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     grid-template-columns: repeat(3, 1fr);
     margin-bottom: 1rem;
     background-color: #fff;

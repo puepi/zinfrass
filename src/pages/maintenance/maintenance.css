@@ -5,7 +5,7 @@
 
 #incidents-save {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
@@ -16,7 +16,7 @@
 
 #interventions-save {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
@@ -28,7 +28,7 @@
 
 #maintenance-show {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;

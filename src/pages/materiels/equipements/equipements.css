@@ -1,11 +1,11 @@
 .equipements {
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
 }
 
 #equipements-save {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
@@ -54,7 +54,7 @@
 
 #equipements-affecter {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
@@ -69,7 +69,7 @@
 
 #equipements-installer {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
@@ -91,9 +91,9 @@
     grid-row: 7 / span 1;
 }
 
-#equipements-reception{
+#equipements-reception {
     display: grid;
-    border: 1px solid #1B85B8;
+    border: 5px solid #ffc736;
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
@@ -102,15 +102,24 @@
     background-color: #fff;
 }
 
-#equipements-reception .empty{
+#equipements-reception .empty {
     grid-column: 3/-1;
 }
 
 
 
-#equipements-reception textarea{
+#equipements-reception textarea {
     grid-column: 2/-1;
     grid-row: 6/ span 3;
 }
 
-
+#equipements-deplacer {
+    display: grid;
+    border: 5px solid #ffc736;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 20px);
+    background-color: #fff;
+}
