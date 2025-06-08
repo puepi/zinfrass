@@ -1,0 +1,39 @@
+/* style.css */
+.menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100vh;
+    background: #444;
+    transition: right 0.3s ease-in-out;
+}
+
+.menu:hover {
+    right: 0;
+}
+
+.menu-trigger {
+    position: absolute;
+    top: 20px;
+    left: -40px;
+    background: #444;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.menu-content a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}

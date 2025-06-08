@@ -26,6 +26,7 @@
 .popup-digit {
     font-size: 0.6rem;
     font-weight: bold;
+    font-style: italic;
     color: #fff;
 }
 
@@ -37,6 +38,9 @@
     font-size: 0.6rem;
     color: #1B85B8;
     font-weight: bold;
+    background-color: aliceblue;
+    padding: 4px 7px;
+    border-radius: 8px;
 }
 
 .popup:nth-child(2) .symbol {

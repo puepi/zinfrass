@@ -22,6 +22,7 @@ import IncidentsSave from "./pages/maintenance/IncidentsSave";
 import InterventionsSave from "./pages/maintenance/InterventionsSave";
 import MaintenanceShow from "./pages/maintenance/MaintenanceShow";
 import EquipementsDeplacer from "./pages/materiels/equipements/EquipementsDeplacer";
+import SmallMenu from "./components/SmallMenu";
 
 function App() {
     return (
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
                 <Route path="/maintenance/show" element={<MaintenanceShow />} />
+                <Route path="/large/materiel" element={<SmallMenu />} />
             </Routes>
         </BrowserRouter>
     )

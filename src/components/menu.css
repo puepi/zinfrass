@@ -51,6 +51,10 @@ input[type="radio"] {
     color: #1B85B8;
 }
 
+.accordion .content p a:hover {
+    font-weight: bold;
+}
+
 .accordion .content p.suivant {
     text-align: end;
     text-transform: capitalize;

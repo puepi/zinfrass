@@ -1,0 +1,30 @@
+.glass-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+.submenu li {
+    background-color: aliceblue;
+    padding: 2px 20px;
+    margin: 2px 0;
+    color: #1B85B8;
+}
+
+.glass span {
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid aliceblue;
+}
+
+
+.glass:hover {}
