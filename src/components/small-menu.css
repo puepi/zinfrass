@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 2.5rem;
-    position: relative;
 }
 
 .sub {
@@ -11,10 +10,11 @@
     margin: 0;
     padding: 0;
     position: absolute;
-    top:-40%;
-    left:51%;
+    top:-100%;
+    left:50%;
     transition: display 0.5s ease-in;
     display: none;
+    margin-left: 2px;
 }
 
 .sub li {
@@ -24,21 +24,19 @@
     color: #1B85B8;
 }
 
-.glass-title{
-    
-}
 .glass{
     cursor: pointer;
     margin-bottom: 5px;
+    position:relative;
 }
 
 .glass span {
-    padding: 20px;
+    padding: 20px 25px;
     border-radius: 8px;
     border: 1px solid aliceblue;
 }
 
-.glass:hover +p+ .sub{
+.glass:hover .sub{
     display: block;
 }
 
