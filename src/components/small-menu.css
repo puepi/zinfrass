@@ -2,25 +2,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     position: relative;
 }
 
-.submenu {
+.sub {
     list-style: none;
     margin: 0;
     padding: 0;
     position: absolute;
-    top: -20px;
-    display: none;
+    top:-40%;
+    left:51%;
     transition: display 0.5s ease-in;
+    display: none;
 }
 
-.submenu li {
+.sub li {
     background-color: aliceblue;
     padding: 2px 20px;
     margin: 2px 0;
     color: #1B85B8;
+}
+
+.glass-title{
+    
+}
+.glass{
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .glass span {
@@ -29,7 +38,7 @@
     border: 1px solid aliceblue;
 }
 
-.glass:hover+p+.submenu {
+.glass:hover +p+ .sub{
     display: block;
 }
 

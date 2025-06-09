@@ -1,4 +1,5 @@
 import './small-menu.css'
+import { Link } from 'react-router-dom'
 
 
 export default function SmallMenu() {
@@ -8,8 +9,8 @@ export default function SmallMenu() {
                 <span>1</span>
             </div>
             <p className='glass-title'>Réseau électrique</p>
-            <ul className="submenu">
-                <li>Equipements</li>
+            <ul className="sub">
+                <li><Link to="" className="show-link">Equipements</Link></li>
                 <li>Connectiques</li>
                 <li>Maintenance</li>
             </ul>

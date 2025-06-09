@@ -1,0 +1,48 @@
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #333;
+}
+
+.menu > li {
+    position: relative;
+    display: inline-block;
+}
+
+.menu > li > a {
+    padding: 10px 20px;
+    color: violet;
+    text-decoration: none;
+    display: block;
+}
+
+/* Sous-menu */
+.submenu {
+    display: none;
+    position: absolute;
+    background: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    left: 0%;
+    transition: display 0.8s ease-in-out;
+}
+
+.submenu li {
+    width: 150px;
+}
+
+.submenu li a {
+    padding: 10px;
+    color: blueviolet;
+    text-decoration: none;
+    display: block;
+}
+
+/* Affichage au survol */
+.menu li:hover .submenu {
+    display: block;
+    
+}
