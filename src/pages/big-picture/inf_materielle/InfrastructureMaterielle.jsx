@@ -6,6 +6,8 @@ export default function InfrastructureMaterielle() {
         <>
             <h1>INFRASTRUCTURE MATERIELLE</h1>
             <SmallMenu />
+
+
         </>
     )
 }

@@ -14,5 +14,6 @@ export default function SmallMenu() {
                 <li>Maintenance</li>
             </ul>
         </div>
+
     )
 }

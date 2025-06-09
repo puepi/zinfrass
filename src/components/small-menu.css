@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     margin-top: 2rem;
+    position: relative;
 }
 
 .submenu {
@@ -11,6 +11,9 @@
     margin: 0;
     padding: 0;
     position: absolute;
+    top: -20px;
+    display: none;
+    transition: display 0.5s ease-in;
 }
 
 .submenu li {
@@ -26,5 +29,8 @@
     border: 1px solid aliceblue;
 }
 
+.glass:hover+p+.submenu {
+    display: block;
+}
 
-.glass:hover {}
+/**/
