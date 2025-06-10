@@ -44,11 +44,12 @@ input[type="radio"] {
     font-size: 0.8rem;
     overflow: hidden;
     transition: max-height 0.5s, padding 0.5s;
-    background-color: aliceblue;
+    background-color: wheat;
 }
 
 .accordion .content p {
     color: #1B85B8;
+    font-weight: bold;
 }
 
 .accordion .content p a:hover {

@@ -56,3 +56,10 @@
     background-color: rgba(13, 139, 13, 0.959);
     border-radius: 50%;
 }
+
+.popup:nth-child(4) .symbol {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(0, 152, 253, 0.959);
+    border-radius: 50%;
+}

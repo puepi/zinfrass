@@ -12,16 +12,17 @@
     position: absolute;
     top: -20%;
     left: 50%;
-    transition: display 0.5s ease-in;
     display: none;
     margin-left: 10px;
 }
 
 .sub li {
     background-color: aliceblue;
-    padding: 2px 20px;
+    padding: 2px 15px;
     margin: 2px 0;
     color: #1B85B8;
+    border-radius: 5px;
+    font-size: 0.9rem;
 }
 
 .glass {
@@ -44,7 +45,8 @@
     color: aliceblue;
 }
 
-.glass:hover {}
+.glass:hover,
+.glass:hover+p {}
 
 .glass-title {
     color: #1B85B8;

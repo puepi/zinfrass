@@ -13,42 +13,42 @@ export default function InfrastructureMaterielle() {
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
+                    title="Réseau hydraulique"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
+                    title="Réseau téléphonique"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
+                    title="Réseau informatique"
+                    subtitles={["Parc", "Connectiques", "Adressage", "Maintenance"]}
+                />
+                <SmallMenu
+                    icon="1"
+                    title="Bâtiments"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
+                    title="Matériel roulant"
+                    subtitles={["Voitures", "Motos", "Bus", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
+                    title="Mobilier de bureau"
+                    subtitles={["Categories", "Par bureau", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
+                    title="Matériel didactique"
+                    subtitles={[]}
                 />
                 <SmallMenu
                     icon="1"
-                    title="Réseau électrique"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
-                />
-                <SmallMenu
-                    icon="1"
-                    title="Réseau électrique"
+                    title="Sanitaires"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
 
