@@ -1,9 +1,9 @@
 
 
-export default function InfrastructureLogicielle(){
-    return(
+export default function InfrastructureLogicielle() {
+    return (
         <>
-            <h1>Infrastructure logicielle</h1>
+            <h1>Infrastucture Logicielle</h1>
         </>
     )
 }

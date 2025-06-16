@@ -25,8 +25,8 @@ import EquipementsDeplacer from "./pages/materiels/equipements/EquipementsDeplac
 import SmallMenu from "./components/SmallMenu";
 import InfrastructureMaterielle from "./pages/big-picture/inf_materielle/InfrastructureMaterielle";
 import InfrastructureLogicielle from "./pages/big-picture/inf_logicielle/InfrastructureLogicielle";
-import InfrastructureMaintenance from "./pages/big-picture/maintenance/InfrastructureMaintenance";
-import InfrastructureAdministration from "./pages/big-picture/administration/InfrastructureAdministration";
+import InfrastructureMaintenance from "./pages/big-picture/int_maintenance/InfrastructureMaintenance";
+import InfrastructureAdministration from "./pages/big-picture/admin_org/InfrastructureAdministration";
 
 function App() {
     return (
@@ -54,9 +54,9 @@ function App() {
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
                 <Route path="/maintenance/show" element={<MaintenanceShow />} />
                 <Route path="/large/materiel" element={<InfrastructureMaterielle />} />
-                <Route path="/large/logiciel" element={<InfrastructureLogicielle/>} />
-                <Route path="/large/maintenance" element={<InfrastructureMaintenance/>} />
-                <Route path="/large/administration" element={<InfrastructureAdministration/>} />
+                <Route path="/large/logiciel" element={<InfrastructureLogicielle />} />
+                <Route path="/large/maintenance" element={<InfrastructureMaintenance />} />
+                <Route path="/large/administration" element={<InfrastructureAdministration />} />
             </Routes>
         </BrowserRouter>
     )

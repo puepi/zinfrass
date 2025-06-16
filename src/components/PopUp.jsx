@@ -21,6 +21,12 @@ export default function PopUp() {
                 </div>
                 <Link className='show-link'><span className="popup-title">Interventions</span></Link>
             </div>
+            <div className="popup">
+                <div className="symbol">
+                    <span className='popup-digit'>97</span>
+                </div>
+                <Link className='show-link'><span className="popup-title">Stock</span></Link>
+            </div>
 
         </section>
     )
