@@ -29,7 +29,7 @@ export default function InfrastructureMaterielle() {
                 <SmallMenu
                     icon="1"
                     title="Bâtiments"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
+                    subtitles={["Equipements", "Espaces", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
@@ -48,8 +48,8 @@ export default function InfrastructureMaterielle() {
                 />
                 <SmallMenu
                     icon="1"
-                    title="Sanitaires"
-                    subtitles={["Equipements", "Connectiques", "Maintenance"]}
+                    title="Demandes de matériels"
+                    subtitles={[]}
                 />
 
             </div>
