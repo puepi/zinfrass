@@ -9,8 +9,7 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="fifth" />
                 <label htmlFor="fifth">Factures</label>
                 <div className="content">
-                    <p><Link className="show-link" to="/factures/save">Enregistrer une facture d'eau</Link></p>
-                    <p>Enregistrer une facture d'électricité</p>
+                    <p><Link className="show-link" to="/factures/save">Enregistrer une facture d'eau ou d'électricité</Link></p>
                     <p>Enregistrer une facture de téléphone</p>
                     <p><Link className='show-link' to="/factures/show">Consulter les factures</Link></p>
                 </div>

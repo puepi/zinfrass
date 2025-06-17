@@ -22,11 +22,11 @@ import IncidentsSave from "./pages/maintenance/IncidentsSave";
 import InterventionsSave from "./pages/maintenance/InterventionsSave";
 import MaintenanceShow from "./pages/maintenance/MaintenanceShow";
 import EquipementsDeplacer from "./pages/materiels/equipements/EquipementsDeplacer";
-import SmallMenu from "./components/SmallMenu";
 import InfrastructureMaterielle from "./pages/big-picture/inf_materielle/InfrastructureMaterielle";
 import InfrastructureLogicielle from "./pages/big-picture/inf_logicielle/InfrastructureLogicielle";
 import InfrastructureMaintenance from "./pages/big-picture/int_maintenance/InfrastructureMaintenance";
-import InfrastructureAdministration from "./pages/big-picture/admin_org/InfrastructureAdministration";
+import InfrastructureAdministration from "./pages/big-picture/administration/InfrastructureAdministration";
+import InfrastructureFactures from "./pages/big-picture/factures/InfrastructureFactures";
 
 function App() {
     return (
@@ -54,6 +54,7 @@ function App() {
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
                 <Route path="/maintenance/show" element={<MaintenanceShow />} />
                 <Route path="/large/materiel" element={<InfrastructureMaterielle />} />
+                <Route path="/large/factures" element={<InfrastructureFactures />} />
                 <Route path="/large/logiciel" element={<InfrastructureLogicielle />} />
                 <Route path="/large/maintenance" element={<InfrastructureMaintenance />} />
                 <Route path="/large/administration" element={<InfrastructureAdministration />} />

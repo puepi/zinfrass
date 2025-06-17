@@ -5,7 +5,7 @@ export default function SideBar() {
     <aside>
       <nav>
         <ul className='menu-list'>
-          <li className='active'><Link to="/factures/save"><span><i className="fa-solid fa-file-invoice-dollar fa-sm"></i></span>Factures</Link></li>
+          <li className='active'><Link to="/large/factures"><span><i className="fa-solid fa-file-invoice-dollar fa-sm"></i></span>Factures</Link></li>
           <li><Link to="/large/materiel"><span><i className="fa-solid fa-car fa-sm"></i></span>Infrastructure matérielle</Link></li>
           <li><Link to="/large/logiciel"><span><i className="fa-solid fa-computer fa-sm"></i></span>Infrastructure logicielle</Link></li>
           <li><Link to="/large/maintenance"><span><i className="fa-solid fa-toolbox fa-sm"></i></span>Interventions et Maintenance</Link></li>
