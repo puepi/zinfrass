@@ -3,7 +3,7 @@ import './factures.css'
 export default function FacturesSave() {
     return (
         <>
-            <h1>Enregistrement d'une facture d'eau</h1>
+            <h1>Enregistrement d'une facture d'eau ou d'électricité</h1>
             <section className="factures">
                 <form action="" id="save-form">
                     <label htmlFor="">Numéro de la facture :</label>
@@ -14,9 +14,14 @@ export default function FacturesSave() {
                     <input type="date" />
                     <label htmlFor="">Au :</label>
                     <input type="date" />
+                    <label htmlFor="">Type de facture :</label>
+                    <select name="" id="">
+                        <option value="">Sélectionner une option</option>
+                        <option value="">Facture d'eau</option>
+                        <option value="">Facture d'électricité</option>
+                    </select>
                     <label htmlFor="">Montant :</label>
                     <input type="text" />
-                    <div className='empty'></div>
                     <label htmlFor="">Ancien index :</label>
                     <input type="text" />
                     <label htmlFor="">Nouvel index :</label>
@@ -27,8 +32,8 @@ export default function FacturesSave() {
                     <label htmlFor="">Mètres cube (m3)</label>
                     <button>Valider</button>
                     <div className='empty2'></div>
-                    <Link className='show-link' to="/factures/show">Consulter</Link>
                 </form>
+                <Link className='show-link' to="/factures/show">Consulter</Link>
             </section>
         </>
     )
