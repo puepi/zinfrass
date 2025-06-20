@@ -4,9 +4,14 @@ import './factures.css'
 export default function FacturesShow() {
     return (
         <>
-            <h1>Consultation d'une facture d'eau</h1>
+            <h1>Consultation d'une facture d'eau ou d'électricité</h1>
             <section className='factures'>
-                <Link className='show-link' to="/factures/save">Enregistrer une facture</Link>
+                <label for="browser">Quel type de facture:</label>
+                <select name="" id="">
+                    <option value="">Faites un choix</option>
+                    <option value="">Factures d'eau</option>
+                    <option value="">Facture d'électricité</option>
+                </select>
                 <form action="" id="show-form">
                     <label htmlFor="">Rechercher selon :</label>
                     <select name="" id="">
@@ -30,8 +35,10 @@ export default function FacturesShow() {
                     <span>Ancien index</span>
                     <span>Nouvel index</span>
                 </div>
-
+                <Link className='show-link' to="/factures/save">Enregistrer une facture</Link>
+                
             </section>
+            
         </>
     )
 }
