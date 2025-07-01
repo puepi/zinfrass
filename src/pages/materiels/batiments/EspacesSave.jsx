@@ -7,10 +7,10 @@ export default function EspacesSave() {
             <section className="batiments">
                 <form action="" id="espaces-save">
                     <label htmlFor="">Nom du bâtiment :</label>
-                    <input type="text" />
-                    <div className="empty"></div>
+                    <input type="text" disabled />
+                    <Link className="search-link">...rechercher</Link><div></div>
                     <label htmlFor="">Nom de l'espace :</label>
-                    <input type="text" />
+                    <input type="text" placeholder="Bureau des cadres..." />
                     <label htmlFor="">Usage : <Link className="create-link">...Créer</Link></label>
                     <select name="" id="">
                         <option value="">Sélectionner une option</option>
@@ -24,13 +24,13 @@ export default function EspacesSave() {
                         <option value="">Parking</option>
                     </select>
                     <label htmlFor="">Repérage unique :</label>
-                    <input type="text" />
+                    <input type="text" placeholder="Porte R3" />
                     <label htmlFor="">Dimensions :</label>
                     <input type="text" />
-                    <label htmlFor="">Fenêtres :</label>
-                    <input type="text" />
-                    <label htmlFor="">Portes :</label>
-                    <input type="text" />
+                    <label htmlFor="">Photos :</label>
+                    <input type="file" />
+                    <div></div>
+                    <div></div>
                     <button>Valider et pousruivre </button>
                     <div className="empty1"></div>
                     <button>Quitter </button>

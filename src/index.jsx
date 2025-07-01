@@ -27,6 +27,7 @@ import InfrastructureLogicielle from "./pages/big-picture/inf_logicielle/Infrast
 import InfrastructureMaintenance from "./pages/big-picture/int_maintenance/InfrastructureMaintenance";
 import InfrastructureAdministration from "./pages/big-picture/administration/InfrastructureAdministration";
 import InfrastructureFactures from "./pages/big-picture/factures/InfrastructureFactures";
+import EquipementsDemande from "./pages/materiels/equipements/EquipementsDemande";
 
 function App() {
     return (
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/materiels/equipements/installer" element={<EquipementsInstaller />} />
                 <Route path="/materiels/equipements/deplacer" element={<EquipementsDeplacer />} />
                 <Route path="/materiels/equipements/reception" element={<EquipementsReception />} />
+                <Route path="/materiels/equipements/demandes" element={<EquipementsDemande />} />
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />
                 <Route path="/administration/structures/save" element={<StructureSave />} />

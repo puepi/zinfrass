@@ -7,16 +7,19 @@ export default function BatimentsLoger() {
             <section className="batiments">
                 <form action="" id="batiments-loger">
                     <label htmlFor="">Identification de l'espace :</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <Link className="search-link" to="/materiels/batiments/show">...rechercher</Link>
                     <div className='empty'></div>
+                    <div></div><div></div><div></div>
+                    <Link className="search-link" to="/materiels/batiments/show">...rechercher la personne</Link>
                     <label htmlFor="">Noms et prénoms :</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <label htmlFor="">Poste de travail :</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <label htmlFor="">Date de prise d'effet :</label>
                     <input type="date" />
-                    <div className='empty'></div>
+                    <Link className="search-link" to="/materiels/batiments/show">...rechercher la structure</Link>
+                    <input type="text" disabled />
                     <button>Ajouter</button>
                     <div className="empty2"></div>
                     <button>Valider et quitter</button>

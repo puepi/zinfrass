@@ -11,17 +11,17 @@ export default function InfrastructureMaintenance() {
                 <SmallMenu
                     icon="4"
                     title="Sur le bâtiment"
-                    subtitles={["Incidents","Interventions","Rapports"]}
+                    subtitles={["Incidents", "Interventions", "Rapports"]}
                 />
                 <SmallMenu
                     icon="4"
                     title="Sur l'équipement"
-                    subtitles={["Incidents","Interventions","Rapports"]}
+                    subtitles={["Incidents", "Interventions", "Rapports"]}
                 />
                 <SmallMenu
                     icon="4"
                     title="Sur un logiciel"
-                    subtitles={["Incidents","Interventions","Rapports"]}
+                    subtitles={["Incidents", "Interventions", "Rapports"]}
                 />
                 <SmallMenu
                     icon="4"
@@ -32,12 +32,22 @@ export default function InfrastructureMaintenance() {
                     icon="4"
                     title="Missions de contrôle"
                     subtitles={[]}
-                />   
+                />
                 <SmallMenu
                     icon="4"
                     title="Rapports"
                     subtitles={[]}
-                />   
+                />
+                <SmallMenu
+                    icon="4"
+                    title="Sur un espace"
+                    subtitles={["Incidents", "Interventions", "Rapports"]}
+                />
+                <SmallMenu
+                    icon="4"
+                    title="Appréciations des utilisateurs"
+                    subtitles={[]}
+                />
             </div>
         </>
     )

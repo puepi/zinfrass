@@ -18,14 +18,12 @@ export default function ConnectiquesSave() {
                         <option value="">Informatique</option>
                         <option value="">Téléphonique</option>
                     </select>
-                    <div className='empty'></div>
+                    <label htmlFor="">Décrire la position :</label>
+                    <textarea name="" id=""></textarea>
                     <label htmlFor="">Emplacement:</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <Link className="search-link" to="materiels/espaces/show">...rechercher</Link><div></div>
-                    <button>Ajouter</button>
-                    <div></div>
-                    <div></div>
-                    <button>Valider</button>
+                    <button>Enregistrer</button>
                 </form>
             </section>
         </>

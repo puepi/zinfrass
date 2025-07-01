@@ -13,9 +13,10 @@ export default function BatimentSave() {
                         <option value="">Service centraux</option>
                         <option value="">Région</option>
                         <option value="">Département</option>
+                        <option value="">Arrondissement</option>
                     </select>
-                    <Link className="create-link" to="/administration/unite_admin/save">...Créer</Link>
-                    <div className='empty'></div>
+                    <Link className="search-link" to="/administration/unite_admin/save">...rechercher</Link>
+                    <input type="text" disabled />
                     <label htmlFor="">Nom du bâtiment :</label>
                     <input type="text" />
                     <label htmlFor="">Description :</label>

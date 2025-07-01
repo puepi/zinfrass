@@ -1,7 +1,15 @@
-.inf-mat-container {
-    width: 45%;
-    margin: 0 auto;
+.side-menu .menu-list {
+    /* text-transform: uppercase; */
+    list-style: none;
+}
+
+
+
+
+.content .inf-mat-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    width: 70%;
+    margin-left: 3rem;
 }

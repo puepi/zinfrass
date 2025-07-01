@@ -123,3 +123,77 @@
     grid-template-rows: repeat(4, 20px);
     background-color: #fff;
 }
+
+
+#reception {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.reception-lots {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 20px);
+    gap: 5px;
+}
+
+.reception-lots textarea.descriptive {
+    grid-column: 6/-1;
+    grid-row: 4/-1;
+}
+
+#reception-fournisseur {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 20px);
+    gap: 5px;
+}
+
+.reception-lots textarea.caracteristiques {
+    grid-column: 2/span 3;
+    grid-row: 4/-1;
+}
+
+#reception-technicien {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+}
+
+.livreurs {
+    grid-column: 5/-1;
+}
+
+#reception-equipements {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 5px;
+}
+
+#reception-equipements span {
+    font-weight: bold;
+}
+
+#reception-conclusions {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 20px);
+    gap: 5px;
+}
+
+#reception-conclusions textarea {
+    grid-column: 6/-1;
+    grid-row: 1/-1;
+}
+
+#equipements-demande {
+    display: grid;
+    border: 5px solid #ffc736;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 20px);
+    background-color: #fff;
+}

@@ -1,8 +1,8 @@
 import SmallMenu from "../../../components/SmallMenu";
 
 import './index.css'
-export default function InfrastructureAdministration(){
-    return(
+export default function InfrastructureAdministration() {
+    return (
         <>
             <h1>Administration, Organigramme et Cartographie</h1>
             <div className="inf-mat-container">
@@ -18,14 +18,14 @@ export default function InfrastructureAdministration(){
                 />
                 <SmallMenu
                     icon="5"
-                    title="Créer des services"
-                    subtitles={[]}
+                    title="Structures et services"
+                    subtitles={["Créer", "Consulter"]}
                 />
                 <SmallMenu
                     icon="5"
-                    title="Créer des subdivisions"
-                    subtitles={[]}
-                />    
+                    title="Subdivisions administratives"
+                    subtitles={["Créer", "Consulter"]}
+                />
             </div>
         </>
     )

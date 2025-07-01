@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-export default function InterventionsSave(){
-    return(
+export default function InterventionsSave() {
+    return (
         <>
             <h1>Enregistrement des interventions</h1>
             <section className="maintenance">
@@ -17,29 +17,30 @@ export default function InterventionsSave(){
                         <option value="">Mission</option>
                     </select>
                     <label htmlFor="">Numéro incident :</label>
-                    <input type="text" />
+                    <input type="text" disabled />
                     <Link className="search-link" to="administration/structures/show">...rechercher</Link>
-                    <label htmlFor="">Noms de l'intervenant :</label>
-                    <input type="text" />
+                    <label htmlFor="">Noms du technicien :</label>
+                    <input type="text" disabled />
                     <label htmlFor="">Poste :</label>
-                    <input type="text" /><div></div>
-                    <label htmlFor="">Nature de l'intervention :</label>
-                    <select name="" id="">
-                        <option value="">Sélectionner une option</option>
-                        <option value="">Matériel</option>
-                        <option value="">Logiciel</option>
-                        <option value="">Batiments</option>
-                        <option value="">Espaces</option>
-                    </select>
-                    <label htmlFor="">Objet :</label>
-                    <input type="text" disabled/><div></div>
+                    <input type="text" disabled />
+                    <Link className="search-link" to="administration/structures/show">...rechercher</Link>
+                    <label htmlFor="">Sur un bâtiment :</label>
+                    <Link className="search-link" to="administration/structures/show">...rechercher</Link>
+                    <input type="text" disabled /><div></div><div></div>
+                    <label htmlFor="">Sur un espace :</label>
+                    <Link className="search-link" to="administration/structures/show">...rechercher</Link>
+                    <input type="text" disabled /><div></div><div></div>
+                    <label htmlFor="">Sur un équipement :</label>
+                    <Link className="search-link" to="administration/structures/show">...rechercher</Link>
+                    <input type="text" disabled /><div></div><div></div>
+
                     <label htmlFor="">Diagnostic :</label>
                     <input type="text" /><div></div><div></div><div></div>
                     <label htmlFor="">Solution proposée :</label>
                     <input type="text" /><div></div><div></div><div></div>
-                    <label htmlFor="">Description de l'intervention :</label>
-                    <input type="text" /><div></div><div></div><div></div>
-                    <label htmlFor="">Date :</label>
+                    <label htmlFor="">Décrire l'intervention :</label>
+                    <textarea name="" id=""></textarea><div></div><div></div><div></div>
+                    <label htmlFor="">Date de l'intervention :</label>
                     <input type="date" /><div></div><div></div><div></div>
                     <label htmlFor="">Appréciation du résultat :</label>
                     <input type="text" /><div></div><div></div><div></div>
