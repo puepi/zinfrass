@@ -1,0 +1,10 @@
+h5.history {
+    color: #1B85B8;
+    margin-left: 22rem;
+    margin-block: 5px;
+    display: inline-block;
+    background-color: aliceblue;
+    padding: 4px 15px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+}

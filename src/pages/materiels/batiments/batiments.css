@@ -1,5 +1,5 @@
 .batiments {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
 
 }
@@ -11,8 +11,9 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 20px);
     border-radius: 8px;
-    border: 5px solid #ffc736;
+    border: 5px solid wheat;
     background-color: #fff;
+    margin-bottom: 0.5rem;
 }
 
 #batiments-save .empty {
@@ -23,8 +24,32 @@
     grid-column: 3/-1;
 }
 
+.batiments-table-search {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.batiments-table-search .show-tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 20px);
+    gap: 1px;
+}
+
+.batiments-table-search .show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 #espaces-save {
-    border: 5px solid #ffc736;
+    border: 5px solid wheat;
+    font-size: 0.8rem;
     border-radius: 8px;
     padding: 1rem;
     display: grid;

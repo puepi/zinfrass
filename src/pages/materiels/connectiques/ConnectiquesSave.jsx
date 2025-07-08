@@ -1,3 +1,4 @@
+import FacturesShow from '../../factures/FacturesShow'
 import './connectiques.css'
 import { Link } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ export default function ConnectiquesSave() {
                     <button>Enregistrer</button>
                 </form>
             </section>
+            <FacturesShow />
         </>
     )
 }

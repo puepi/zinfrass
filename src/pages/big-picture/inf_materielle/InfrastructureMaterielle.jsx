@@ -22,48 +22,57 @@ export default function InfrastructureMaterielle() {
             <div className="inf-mat-container">
                 <SmallMenu
                     icon="1"
+                    title="Actions diverses"
+                    link="/large/materiel/autres"
+                    subtitles={["Réception", "Stock", "Demandes", "Installer", "Déplacer", "Rechercher"]}
+                />
+                <SmallMenu
+                    icon="1"
                     title="Réseau électrique"
+                    link="/large/materiel/res-electrique"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Réseau hydraulique"
+                    link="/large/materiel/res-hydraulique"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Réseau téléphonique"
+                    link="/large/materiel/res-telephonique"
                     subtitles={["Equipements", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Informatique et Electronique"
+                    link="/large/materiel/informatique-electronique"
                     subtitles={["Parc", "Connectiques", "Adressage", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Bâtiments"
+                    link="/large/materiel/batiments"
                     subtitles={["Equipements", "Espaces", "Connectiques", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Matériel roulant"
+                    link="/large/materiel/materiel-roulant"
                     subtitles={["Voitures", "Motos", "Bus", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Mobilier de bureau"
+                    link="/large/materiel/mobilier-bureau"
                     subtitles={["Categories", "Par bureau", "Maintenance"]}
                 />
                 <SmallMenu
                     icon="1"
                     title="Matériel didactique"
-                    subtitles={[]}
-                />
-                <SmallMenu
-                    icon="1"
-                    title="Demandes de matériels"
-                    subtitles={[]}
+                    link="/large/materiel/materiel-didactique"
+                    subtitles={["Enregistrer", "Consulter"]}
                 />
 
             </div>

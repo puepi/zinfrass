@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 import PopUp from './components/PopUp';
 import { useState } from 'react';
 
-function Common() {
+function Common({ menu, handleClick, selectedId }) {
+
   const [seuil, setSeuil] = useState(0)
   const [incidents, setIncidents] = useState(0)
   const [interventions, setInterventions] = useState(0)
   const [stock, setStock] = useState(0)
+
   return (
     <div id="infra-container">
       <header>
@@ -18,7 +20,7 @@ function Common() {
           <img src={logoImage} alt="The Infrastructure logo for MINPROFF" className="logo-image" />
         </Link>
 
-        <SideBar />
+        <SideBar data={menu} handleClick={handleClick} selectedId={selectedId} />
         <div>
           <h1>Infrastructures du Ministère de la Promotion de la Femme et de la Famille</h1>
           <PopUp

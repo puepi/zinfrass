@@ -127,6 +127,8 @@ aside {
   margin: 0.1rem 0;
 }
 
+.menu-list li:hover {}
+
 aside,
 nav {
   margin: 0;
@@ -135,6 +137,7 @@ nav {
 .menu-list li.active {
   background-color: #10113d;
   border: none;
+  color: #fff
 }
 
 

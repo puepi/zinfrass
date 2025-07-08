@@ -9,21 +9,25 @@ export default function InfrastructureAdministration() {
                 <SmallMenu
                     icon="5"
                     title="Cartographie des services"
-                    subtitles={[]}
+                    link="/large/administration/cartographie"
+                    subtitles={["Consulter"]}
                 />
                 <SmallMenu
                     icon="5"
                     title="Se connecter"
-                    subtitles={[]}
+                    link="/large/administration/login"
+                    subtitles={["Login"]}
                 />
                 <SmallMenu
                     icon="5"
                     title="Structures et services"
+                    link="/large/administration/services"
                     subtitles={["Créer", "Consulter"]}
                 />
                 <SmallMenu
                     icon="5"
                     title="Subdivisions administratives"
+                    link="/large/administration/subdivisions"
                     subtitles={["Créer", "Consulter"]}
                 />
             </div>

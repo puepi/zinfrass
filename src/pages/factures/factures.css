@@ -1,18 +1,22 @@
 .factures {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
+}
 
+.factures-heading {
+    margin-block: 0.2rem;
+}
 
-    #save-form {
-        display: grid;
-        gap: 5px;
-        padding: 1rem;
-        border-radius: 8px;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, 20px);
-        border: 5px solid #ffc736;
-        background-color: #fff;
-    }
+#save-form {
+    display: grid;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 20px);
+    border: 5px solid wheat;
+    background-color: #fff;
+    font-size: 0.85rem;
 }
 
 .empty {
@@ -34,10 +38,10 @@ button {
     display: grid;
     gap: 5px;
     padding: 1rem;
-    border-radius: 8px;
-    border: 5px solid #ffc736;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: 5px solid wheat;
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 0.5rem;
     background-color: #fff;
 }
 
@@ -46,25 +50,39 @@ button {
     color: #1B85B8;
 }
 
-.show-tab {
+.factures .show-tab {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 0.1rem;
+    grid-template-rows: repeat(1, 20px);
+    gap: 1px;
 }
 
-.show-tab span {
-    border: 1px solid #10113d;
+.show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .batiments-search {
-    padding: 10px;
+    padding: 5px 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 20px);
-    row-gap: 30px;
-    column-gap: 5px;
+    gap: 5px;
 }
 
 .result {
     grid-column: 3 / span 2;
+}
+
+.modal h4 {
+    margin: 5px;
+}
+
+.factures table {
+    margin: 5px 0;
 }

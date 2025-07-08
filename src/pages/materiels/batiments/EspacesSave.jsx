@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import FacturesShow from "../../factures/FacturesShow"
 
 export default function EspacesSave() {
     return (
@@ -36,6 +37,7 @@ export default function EspacesSave() {
                     <button>Quitter </button>
                 </form>
             </section>
+            <FacturesShow />
         </>
     )
 }

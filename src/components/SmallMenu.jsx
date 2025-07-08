@@ -2,7 +2,7 @@ import './small-menu.css'
 import { Link } from 'react-router-dom'
 
 
-export default function SmallMenu({ icon, title, subtitles }) {
+export default function SmallMenu({ icon, title, subtitles, link }) {
 
     return (
         <div className='glass-container'>
@@ -11,7 +11,7 @@ export default function SmallMenu({ icon, title, subtitles }) {
                 <ul className="sub">
                     {
                         subtitles.map(
-                            tile => <li><Link to="/materiels/equipements" className="show-link">{tile}</Link></li>
+                            tile => <li><Link to={link + `?r=${tile}`.toLowerCase()} className="show-link">{tile}</Link></li>
                         )
                     }
                 </ul>

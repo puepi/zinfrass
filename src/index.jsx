@@ -28,11 +28,63 @@ import InfrastructureMaintenance from "./pages/big-picture/int_maintenance/Infra
 import InfrastructureAdministration from "./pages/big-picture/administration/InfrastructureAdministration";
 import InfrastructureFactures from "./pages/big-picture/factures/InfrastructureFactures";
 import EquipementsDemande from "./pages/materiels/equipements/EquipementsDemande";
+import ReseauElectrique from "./pages/big-picture/inf_materielle/res-electrique/ReseauElectrique";
+import ReseauHydraulique from "./pages/big-picture/inf_materielle/ReseauHydraulique";
+import ReseauTelephonique from "./pages/big-picture/inf_materielle/ReseauTelephonique";
+import InformatiqueElectronique from "./pages/big-picture/inf_materielle/InformatiqueElectronique";
+import Batiments from "./pages/big-picture/inf_materielle/Batiments";
+import MaterielRoulant from "./pages/big-picture/inf_materielle/MaterielRoulant";
+import MobilierBureau from "./pages/big-picture/inf_materielle/MobilierBureau";
+import MaterielDidactique from "./pages/big-picture/inf_materielle/MaterielDidactique";
+import ActionsDiverses from "./pages/big-picture/inf_materielle/ActionsDiverses";
+import { useState } from "react";
+
+
 
 function App() {
+    const data = [
+        {
+            id: 1,
+            title: "Factures",
+            icon: "fa-solid fa-file-invoice-dollar fa-sm",
+            link: "./large/factures"
+        },
+        {
+            id: 2,
+            title: "Infrastructure matérielle",
+            icon: "fa-solid fa-car fa-sm",
+            link: "./large/materiel"
+        },
+        {
+            id: 3,
+            title: "Infrastructure logicielle",
+            icon: "fa-solid fa-computer fa-sm",
+            link: "./large/logiciel"
+        },
+        {
+            id: 4,
+            title: "Interventions et Maintenance",
+            icon: "fa-solid fa-toolbox fa-sm",
+            link: "./large/maintenance"
+        },
+        {
+            id: 5,
+            title: "Organigramme et Administration",
+            icon: "fa-solid fa-building fa-sm",
+            link: "./large/administration"
+        },
+    ]
+
+    const [selectedId, setSelectedId] = useState(null)
+    const [menu, setMenu] = useState(data)
+    const handleClick = (id) => {
+        setSelectedId(id)
+}
+
+
     return (
         <BrowserRouter>
-            <Common />
+            <Common selectedId={selectedId} menu={menu} handleClick={handleClick} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/factures/save" element={<FacturesSave />} />
@@ -56,6 +108,15 @@ function App() {
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
                 <Route path="/maintenance/show" element={<MaintenanceShow />} />
                 <Route path="/large/materiel" element={<InfrastructureMaterielle />} />
+                <Route path="/large/materiel/res-electrique" element={<ReseauElectrique />} />
+                <Route path="/large/materiel/informatique-electronique" element={<InformatiqueElectronique />} />
+                <Route path="/large/materiel/res-hydraulique" element={<ReseauHydraulique />} />
+                <Route path="/large/materiel/res-telephonique" element={<ReseauTelephonique />} />
+                <Route path="/large/materiel/batiments" element={<Batiments />} />
+                <Route path="/large/materiel/materiel-roulant" element={<MaterielRoulant />} />
+                <Route path="/large/materiel/mobilier-bureau" element={<MobilierBureau />} />
+                <Route path="/large/materiel/materiel-didactique" element={<MaterielDidactique />} />
+                <Route path="/large/materiel/autres" element={<ActionsDiverses />} />
                 <Route path="/large/factures" element={<InfrastructureFactures />} />
                 <Route path="/large/logiciel" element={<InfrastructureLogicielle />} />
                 <Route path="/large/maintenance" element={<InfrastructureMaintenance />} />

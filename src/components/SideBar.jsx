@@ -1,15 +1,18 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default function SideBar() {
+export default function SideBar({ data, selectedId, handleClick }) {
+
+
+  const menu = data.map(obj =>
+    <li onClick={() => handleClick(obj.id)} key={obj.id} className={selectedId === obj.id ? 'active' : ''}>
+      <Link to={obj.link}><span><i className={obj.icon}></i></span>{obj.title}</Link>
+    </li>)
   return (
     <aside>
       <nav>
         <ul className='menu-list'>
-          <li className='active'><Link to="/large/factures"><span><i className="fa-solid fa-file-invoice-dollar fa-sm"></i></span>Factures</Link></li>
-          <li><Link to="/large/materiel"><span><i className="fa-solid fa-car fa-sm"></i></span>Infrastructure matérielle</Link></li>
-          <li><Link to="/large/logiciel"><span><i className="fa-solid fa-computer fa-sm"></i></span>Infrastructure logicielle</Link></li>
-          <li><Link to="/large/maintenance"><span><i className="fa-solid fa-toolbox fa-sm"></i></span>Interventions et Maintenance</Link></li>
-          <li><Link to="/large/administration"><span><i className="fa-solid fa-building fa-sm"></i></span>Organigramme et Administration</Link></li>
+          {menu}
         </ul>
       </nav>
     </aside>

@@ -9,9 +9,7 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="fifth" />
                 <label htmlFor="fifth">Factures</label>
                 <div className="content">
-                    <p><Link className="show-link" to="/factures/save">Enregistrer une facture d'eau ou d'électricité</Link></p>
-                    <p>Enregistrer une facture de téléphone</p>
-                    <p><Link className='show-link' to="/factures/show">Consulter les factures</Link></p>
+                    <p><Link className="show-link" to="/factures/save">Enregistrer une facture</Link></p>
                 </div>
             </li>
             <li>
@@ -20,7 +18,6 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un nouveau bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces au sein du bâtiment</Link></p>
-                    <p>Créer différents usages de ces espaces</p>
                     <p><Link className='show-link' to="/connectiques/save">Connectiques</Link></p>
 
                 </div>
@@ -54,7 +51,7 @@ export default function Menu() {
                     <p><Link className='show-link' to="maintenance/incidents/save">Déclarer un incident</Link></p>
                     <p><Link className='show-link' to="maintenance/interventions/save">Enregistrer une intervention</Link></p>
                     <p><Link className='show-link' to="maintenance/show">Voir les interventions et les incidents</Link></p>
-                    <p><Link className='show-link' to="maintenance/show/observations">Voir les observations des utilisateurs finaux</Link></p>
+                    <p><Link className='show-link' to="maintenance/show/observations">Voir les observations des utilisateurs</Link></p>
 
                 </div>
             </li>
