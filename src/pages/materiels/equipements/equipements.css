@@ -1,5 +1,5 @@
 .equipements {
-    width: 65%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -126,7 +126,7 @@
 
 
 #reception {
-    width: 75%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -196,4 +196,9 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 20px);
     background-color: #fff;
+}
+
+#reception fieldset{
+    padding:15px;
+    margin-block: 10px;
 }
