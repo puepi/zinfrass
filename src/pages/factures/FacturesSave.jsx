@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import './factures.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../../Modal'
 import Batiment from '../materiels/batiments/Batiment'
 import FacturesShow from './FacturesShow'
 export default function FacturesSave() {
+    const [isDisabled, setIsDisabled] = useState(true)
+    const [isDisabled2, setIsDisabled2] = useState(true)
+
+    const [subdivisionName, setSubdivisionName] = useState('')
+    const [batimentResponse, setBatimentResponse] = useState([])
 
     const [facture, setFacture] = useState({
         numFacture: "",
@@ -33,6 +38,17 @@ export default function FacturesSave() {
     const handleSubmit = (formData) => {
         const data = Object.fromEntries(formData)
 
+    }
+    function handleChange(e) {
+        setIsDisabled(prev => !prev)
+    }
+    function handleChange2(e) {
+        setIsDisabled2(prev => !prev)
+    }
+    function handleRechercher() {
+        useEffect(() => {
+
+        })
     }
     return (
         <>
@@ -81,14 +97,14 @@ export default function FacturesSave() {
                 <Modal>
                     <h4>Rechercher un bâtiment</h4>
                     <div className='batiments-search'>
-                        <input type="checkbox" name="" id="" />
-                        <label htmlFor="">Nom de la subdivision :</label>
-                        <input type="text" name="" id="" />
-                        <button>Chercher</button>
+                        <input type="checkbox" name="subdivisionName" id="subdivisionName" onChange={(e) => handleChange(e)} />
+                        <label htmlFor="subdivisionName">Nom de la subdivision :</label>
+                        <input type="text" name="" id="" disabled={isDisabled} />
                         <div></div>
-                        <input type="checkbox" name="" id="" />
-                        <label htmlFor="">Nature de la subdivision</label>
-                        <select name="" id="">
+                        <div></div>
+                        <input type="checkbox" name="subdivision-nature" id="subdivision-nature" onChange={handleChange2} />
+                        <label htmlFor="subdivision-nature">Nature de la subdivision</label>
+                        <select name="" id="" disabled={isDisabled2}>
                             <option value="">Choisir</option>
                             <option value="">Services centraux</option>
                             <option value="">Région</option>
@@ -97,12 +113,14 @@ export default function FacturesSave() {
                             <label htmlFor="">Rattachée à</label>
                         </select>
                         <label htmlFor="">Rattachée à :</label>
-                        <select name="" id="">
+                        <select name="" id="" disabled={isDisabled2}>
                             <option value="">Choisir</option>
                         </select>
-                        <div></div><div></div>
-                        <input type="text" disabled className='result' />
-                        <button onClick={handleCloseModal}>Valider ou Quitter</button>
+                        <button onClick={handleRechercher}>Rechercher</button>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <button onClick={handleCloseModal}>Quitter</button>
                     </div>
                 </Modal>
             }
