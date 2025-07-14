@@ -52,7 +52,6 @@ export default function FacturesSave() {
         await addFactures(newFacture)
             .then(response => {
                 setFactures(prev => [response, ...prev])
-                console.log(response)
             })
             .catch(error => console.log(error))
             .finally(() => {
