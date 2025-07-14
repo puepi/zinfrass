@@ -1,5 +1,5 @@
 .factures {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -50,10 +50,10 @@ button {
     color: #1B85B8;
 }
 
-.factures .show-tab {
+.factures thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 20px);
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
 
@@ -70,7 +70,7 @@ button {
 .batiments-search {
     padding: 5px 10px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 50px 200px repeat(3, 1fr);
     grid-template-rows: repeat(4, 20px);
     gap: 5px;
 }
@@ -85,4 +85,67 @@ button {
 
 .factures table {
     margin: 5px 0;
+}
+
+#batiment-modal-result {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#batiment-modal-result tr.title {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+#batiment-modal-result thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+#batiment-modal-result thead {
+    border: 1px solid #1B85B8;
+}
+
+#batiment-modal-result tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.dynamic-row:hover {
+    background-color: goldenrod;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.factures tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.factures tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.factures-body {
+    background-color: #fff;
 }

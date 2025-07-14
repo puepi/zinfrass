@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
+
 import './factures.css'
 
-export default function FacturesShow() {
+export default function FacturesShow({ factures }) {
+
     return (
         <>
             <section className='factures'>
@@ -30,6 +31,7 @@ export default function FacturesShow() {
                     <thead>
                         <tr className='show-tab'>
                             <th>N° facture</th>
+                            <th>Subdivision</th>
                             <th>N° compteur</th>
                             <th>Montant</th>
                             <th>Consommation</th>
@@ -37,8 +39,26 @@ export default function FacturesShow() {
                             <th>Fin</th>
                             <th>Ancien index</th>
                             <th>Nouvel index</th>
+                            <th>Batiment</th>
                         </tr>
                     </thead>
+                    <tbody className='factures-body'>
+                        {factures && factures.length === 0 && <tr className='titles'><td>Aucun élément trouvé</td></tr>}
+                        {factures && factures.length > 0 && (
+                            factures.map((facture, id) => <tr key={facture.id} className='dynamic-row'>
+                                <td>{facture.numeroFacture}</td>
+                                <td>{facture.subdivisionName}</td>
+                                <td>{facture.numéroCompteur}</td>
+                                <td>{facture.montant}</td>
+                                <td>{facture.consommation}</td>
+                                <td>{facture.debut}</td>
+                                <td>{facture.fin}</td>
+                                <td>{facture.ancienIndex}</td>
+                                <td>{facture.nouvelIndex}</td>
+                                <td>{facture.batimentName}</td>
+                            </tr>)
+                        )}
+                    </tbody>
                 </table>
             </section>
 

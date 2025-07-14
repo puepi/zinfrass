@@ -2,36 +2,64 @@ import { useState } from 'react'
 import './factures.css'
 import Modal from '../../Modal'
 import { getBatiments } from '../../utils/ApiFunctions'
+import BatimentSearchResult from './BatimentSearchResult'
 
-export default function BatimentSearchModal({handleCloseModal}){
+export default function BatimentSearchModal({ handleCloseModal, handleSelectBatiment }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [isDisabled2, setIsDisabled2] = useState(true)
-
+    const [isDisabled3, setIsDisabled3] = useState(true)
+    const [isChecked, setIsChecked] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [messageButton, setMessageButton] = useState('Rechercher')
+    const [errorMessage, setErrorMessage] = useState('')
+    const [batiments, setBatiments] = useState([])
     const [subdivisionName, setSubdivisionName] = useState('')
+
 
     function handleChange(e) {
         setIsDisabled(prev => !prev)
-        if(!isDisabled){
-            setSubdivisionName(e.target.value)
+        setIsChecked(e.target.checked)
+        if (!e.target.checked) {
+            setIsDisabled3(true)
+            setSubdivisionName('')
+        }
+    }
+    function handleChange3(e) {
+        const sub = e.target.value
+        setSubdivisionName(sub)
+        if (sub) {
+            setIsDisabled3(false)
+        } else {
+            setIsDisabled3(true)
         }
     }
     function handleChange2(e) {
         setIsDisabled2(prev => !prev)
     }
-    function handleRechercher() {
-        useEffect(() => {
-            getBatiments()
-            .then(data=>console.log(data))
-            .catch(error=>console.log(error))
-        },[])
+    async function handleRechercher() {
+        setIsDisabled3(true)
+        setMessageButton('...Loading')
+        getBatiments(subdivisionName)
+            .then(response => {
+                setBatiments(response)
+            })
+            .catch(error => console.log('error'))
+            .finally(() => {
+                setIsDisabled3(false)
+                setMessageButton('Rechercher')
+            })
     }
-    return(
+    function handleSelectRow(e, batiment) {
+        handleSelectBatiment(batiment)
+        handleCloseModal()
+    }
+    return (
         <Modal>
             <h4>Rechercher un bâtiment</h4>
             <div className='batiments-search'>
-                <input type="checkbox" value={subdivisionName} name="subdivisionName" id="subdivisionName" onChange={(e) => handleChange(e)} />
+                <input type="checkbox" checked={isChecked} onChange={handleChange} id="subdivisionName" />
                 <label htmlFor="subdivisionName">Nom de la subdivision :</label>
-                <input type="text" name="" id="" disabled={isDisabled} />
+                <input type="text" name="subdivisionName" id="subdivisionName" disabled={isDisabled} value={subdivisionName} onChange={handleChange3} />
                 <div></div>
                 <div></div>
                 <input type="checkbox" name="subdivision-nature" id="subdivision-nature" onChange={handleChange2} />
@@ -47,12 +75,13 @@ export default function BatimentSearchModal({handleCloseModal}){
                 <select name="" id="" disabled={isDisabled2}>
                     <option value="">Choisir</option>
                 </select>
-                <button onClick={handleRechercher}>Rechercher</button>
                 <div></div>
+                <button disabled={isDisabled3} onClick={handleRechercher}>{messageButton}</button>
                 <div></div>
                 <div></div>
                 <button onClick={handleCloseModal}>Quitter</button>
             </div>
+            <BatimentSearchResult batiments={batiments} handleSelectRow={handleSelectRow} />
         </Modal>
     )
 }

@@ -7,7 +7,7 @@ export default function PopUp({ seuil, incidents, interventions, stock }) {
                 <div className="symbol">
                     <span className='popup-digit'>{seuil}</span>
                 </div>
-                <Link className='show-link'><span className="popup-title">Seuils dépassés</span></Link>
+                <Link className='show-link'><span className="popup-title">Seuils</span></Link>
             </div>
             <div className="popup">
                 <div className="symbol">
