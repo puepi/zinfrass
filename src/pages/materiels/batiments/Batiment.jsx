@@ -1,36 +1,36 @@
 import { Link } from 'react-router-dom'
 import './batiments.css'
 
-export default function Batiment() {
+export default function Batiment({ handleSubmit, isDisabled, messageButton }) {
     return (
         <section className="batiments">
-            <form action="" id="batiments-save">
-                <label htmlFor="">Unité administrative :</label>
-                <select name="" id="">
+            <form action={handleSubmit} id="batiments-save">
+                <label htmlFor="sub-type">Unité administrative :</label>
+                <select name="sub-type" id="sub-type">
                     <option value="">Selectionner une option</option>
-                    <option value="">Service centraux</option>
-                    <option value="">Région</option>
-                    <option value="">Département</option>
-                    <option value="">Arrondissement</option>
+                    <option value="CENTRAUX">Service centraux</option>
+                    <option value="REGION">Région</option>
+                    <option value="DEPARTEMENT">Département</option>
+                    <option value="ARRONDISSEMENT">Arrondissement</option>
                 </select>
                 <Link className="search-link" to="/administration/unite_admin/save">...rechercher</Link>
-                <input type="text" disabled />
-                <label htmlFor="">Nom du bâtiment :</label>
-                <input type="text" />
-                <label htmlFor="">Description :</label>
-                <input type="text" />
-                <label htmlFor="">Rétrocédé à l'Etat :</label>
-                <select name="" id="">
+                <input type="text" disabled name="subdivision-name" />
+                <label htmlFor="batiment">Nom du bâtiment :</label>
+                <input type="text" name="batiment" id="batiment" />
+                <label htmlFor="description">Description :</label>
+                <input type="text" name="description" id="description" />
+                <label htmlFor="retrocede">Rétrocédé à l'Etat :</label>
+                <select name="retrocede" id="retrocede">
                     <option value="">Sélectionenr une option</option>
-                    <option value="">OUI</option>
-                    <option value="">NOON</option>
+                    <option value="1">OUI</option>
+                    <option value="0">NON</option>
                 </select>
-                <label htmlFor="">Date de rétrocession :</label>
-                <input type="date" />
-                <label htmlFor="">Nature du bâtiment :</label>
-                <input type="text" />
+                <label htmlFor="dateRetrocession">Date de rétrocession :</label>
+                <input type="date" name="dateRetrocession" id="dateRetrocession" />
+                <label htmlFor="nature">Nature du bâtiment :</label>
+                <input type="text" name="nature" id="nature" />
                 <div className='empty2'></div>
-                <button>Valider et poursuivre</button>
+                <button disabled={isDisabled}>{messageButton}</button>
             </form>
         </section>
     )

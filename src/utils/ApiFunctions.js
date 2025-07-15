@@ -42,3 +42,24 @@ export async function addFactures(facture) {
     }
 }
 
+export async function addBatiment(batiment) {
+    const formData = new FormData();
+    formData.append("nom", batiment.nom);
+    formData.append("nature", batiment.nature);
+    formData.append("retrocede", batiment.isRetrocede);
+    formData.append("dateRetrocession", batiment.dateRetrocession);
+    formData.append("description", batiment.description);
+    formData.append("subdivisionId", Number.parseInt(batiment.subdivisionId));
+    try {
+        const plainObject = Object.fromEntries(formData.entries())
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post("/batiments/add", JSON.stringify(plainObject), {
+            headers: { "Content-Type": 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
