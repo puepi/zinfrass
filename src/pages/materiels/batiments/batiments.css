@@ -118,3 +118,31 @@
     grid-column: 2/-1;
     grid-row: 10/-1;
 }
+
+#show-form {
+    display: grid;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid wheat;
+    grid-template-columns: repeat(6, 1fr);
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+}
+
+.batiments thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
