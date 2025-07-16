@@ -63,3 +63,16 @@ export async function addBatiment(batiment) {
     }
 }
 
+
+export async function getSubdivisions(subdivisionName) {
+    try {
+        const parameters = {}
+        parameters.name = subdivisionName
+        const response = await api.get("/subdivisions/get-name", { params: parameters })
+        // const response = await api.get("/batiments/getall")
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

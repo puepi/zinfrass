@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './batiments.css'
-import Modal from '../../Modal'
-import { getSubdivisions } from '../../utils/ApiFunctions'
-import BatimentSearchResult from './BatimentSearchResult'
+import Modal from '../../../Modal'
+// import { getSubdivisions } from '../../../utils/ApiFunctions'
 import SubdivisionSearchResult from './SubdivisionSearchResult'
+import { getSubdivisions } from '../../../utils/ApiFunctions'
 
-export default function SubdivisionSearchModal({ handleCloseModal, handleSelectSubdivision }) {
+export default function SubdivisionSearchModal({ handleCloseModal }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [isDisabled2, setIsDisabled2] = useState(true)
     const [isDisabled3, setIsDisabled3] = useState(true)
@@ -13,8 +13,8 @@ export default function SubdivisionSearchModal({ handleCloseModal, handleSelectS
     const [isLoading, setIsLoading] = useState(false)
     const [messageButton, setMessageButton] = useState('Rechercher')
     const [errorMessage, setErrorMessage] = useState('')
-    const [batiments, setBatiments] = useState([])
     const [subdivisionName, setSubdivisionName] = useState('')
+    const[subdivisions,setSubdivisions]=useState([])
 
 
     function handleChange(e) {
@@ -40,9 +40,9 @@ export default function SubdivisionSearchModal({ handleCloseModal, handleSelectS
     async function handleRechercher() {
         setIsDisabled3(true)
         setMessageButton('...Loading')
-        getBatiments(subdivisionName)
+        getSubdivisions(subdivisionName)
             .then(response => {
-                setBatiments(response)
+                setSubdivisions(response)
             })
             .catch(error => console.log('error'))
             .finally(() => {
@@ -82,7 +82,7 @@ export default function SubdivisionSearchModal({ handleCloseModal, handleSelectS
                 <div></div>
                 <button onClick={handleCloseModal}>Quitter</button>
             </div>
-            <SubdivisionSearchResult batiments={batiments} handleSelectRow={handleSelectRow} />
+            <SubdivisionSearchResult subdivisions={subdivisions} handleSelectRow={handleSelectRow} />
         </Modal>
     )
 }
