@@ -10,7 +10,14 @@ export default function BatimentSave() {
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [subdivision, setSubdivision] = useState({})
     const [batiments, setBatiments] = useState([])
-    const [batiment,setBatiment]=useState()
+    const [batiment, setBatiment] = useState({
+        subdivisionName:'',
+        nom:'',
+        description:'',
+        retrocede:'',
+        retrocession:'',
+        nature:'',
+    })
     const [showModal,setShowModal]=useState(false)
 
     function handleClick(){
@@ -20,7 +27,19 @@ export default function BatimentSave() {
     function handleCloseModal(){
         setShowModal(false)
     }
-
+    
+    function handleSelectSubdivision(subdivision){
+        setSubdivision(subdivision)
+    }
+    function handleChange(e){
+        const name=e.target.name
+        let value=e.target.value
+        setBatiment(prev=>(
+            {
+                ...prev,[name]:value
+            }
+        ))
+    }
     const handleSubmit = async (formData) => {
         setIsDisabled(true)
         setMessageButton("...Loading")
@@ -47,11 +66,16 @@ export default function BatimentSave() {
     return (
         <>
             <h1>Enregistrement d'un nouveau bâtiment</h1>
-            <Batiment handleClick={handleClick} handleSubmit={handleSubmit} isDisabled={isDisabled} messageButton={messageButton} />
-            <BatimentsShow />
+            <Batiment 
+                handleChange={handleChange}
+                handleClick={handleClick} 
+                handleSubmit={handleSubmit} 
+                isDisabled={isDisabled} messageButton={messageButton} 
+            />
+            
             {
                 showModal &&
-                <SubdivisionSearchModal handleCloseModal={handleCloseModal}  />
+                <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
             }
         </>
     )

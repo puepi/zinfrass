@@ -5,7 +5,7 @@ import Modal from '../../../Modal'
 import SubdivisionSearchResult from './SubdivisionSearchResult'
 import { getSubdivisions } from '../../../utils/ApiFunctions'
 
-export default function SubdivisionSearchModal({ handleCloseModal }) {
+export default function SubdivisionSearchModal({ handleCloseModal, handleSelectSubdivision }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [isDisabled2, setIsDisabled2] = useState(true)
     const [isDisabled3, setIsDisabled3] = useState(true)
@@ -50,8 +50,8 @@ export default function SubdivisionSearchModal({ handleCloseModal }) {
                 setMessageButton('Rechercher')
             })
     }
-    function handleSelectRow(e, batiment) {
-        handleSelectBatiment(batiment)
+    function handleSelectRow(e, subdivision) {
+        handleSelectSubdivision(subdivision)
         handleCloseModal()
     }
     return (

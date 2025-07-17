@@ -16,7 +16,7 @@ export default function SubdivisionSearchResult({ subdivisions, handleSelectRow 
                 <tbody>
                     {subdivisions && subdivisions.length === 0 && <tr className='title'><td>Aucun élément trouvé</td></tr>}
                     {subdivisions && (
-                        subdivisions.map((subdivision, id) => <tr key={subdivision.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, batiment)}>
+                        subdivisions.map((subdivision, id) => <tr key={subdivision.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, subdivision)}>
                             <td>{id + 1}</td>
                             <td>{subdivision.nom}</td>
                             <td>{subdivision.type}</td>
