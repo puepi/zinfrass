@@ -4,19 +4,25 @@ import Batiment from "./Batiment";
 import './batiments.css'
 import BatimentsShow from "./BatimentsShow";
 import SubdivisionSearchModal from "./SuvdivisionSearchModal";
-import { set } from "react-hook-form";
+import { addBatiment } from "../../../utils/ApiFunctions";
 export default function BatimentSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Enregistrer')
-    const [subdivision, setSubdivision] = useState({})
+    const [subdivision, setSubdivision] = useState({
+        id:'',
+        nom:'',
+        parent:'',
+        type:'',
+        subdivisions:[]
+    })
     const [batiments, setBatiments] = useState([])
     const [batiment, setBatiment] = useState({
-        subdivisionName:'',
         nom:'',
+        nature:'',
         description:'',
         retrocede:'',
-        retrocession:'',
-        nature:'',
+        dateRetrocession:'',
+        subdivisionId:''
     })
     const [showModal,setShowModal]=useState(false)
 
@@ -30,6 +36,7 @@ export default function BatimentSave() {
     
     function handleSelectSubdivision(subdivision){
         setSubdivision(subdivision)
+        console.log(subdivision)
     }
     function handleChange(e){
         const name=e.target.name
@@ -51,8 +58,8 @@ export default function BatimentSave() {
             dateRetrocession: formData.get("dateRetrocession"),
             subdivisionId: subdivision.id
         }
-        setFacture(newBatiment)
-        await addFactures(newBatiment)
+        setBatiment(newBatiment)
+        await addBatiment(newBatiment)
             .then(response => {
                 setBatiments(prev => [response, ...prev])
                 console.log(response)
@@ -67,6 +74,7 @@ export default function BatimentSave() {
         <>
             <h1>Enregistrement d'un nouveau bâtiment</h1>
             <Batiment 
+                subdivision={subdivision}
                 handleChange={handleChange}
                 handleClick={handleClick} 
                 handleSubmit={handleSubmit} 
@@ -77,6 +85,7 @@ export default function BatimentSave() {
                 showModal &&
                 <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
             }
+            <BatimentsShow />
         </>
     )
 }
