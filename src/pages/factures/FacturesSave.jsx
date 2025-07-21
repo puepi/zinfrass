@@ -6,7 +6,7 @@ import BatimentSearchModal from './BatimentSearchModal'
 import { addFactures } from '../../utils/ApiFunctions'
 export default function FacturesSave() {
     const [batimentResponse, setBatimentResponse] = useState({})
-    const [messageButton, setMessageButton] = useState('Rechercher')
+    const [messageButton, setMessageButton] = useState('Enregistrer')
     const [isDisabled, setIsDisabled] = useState(false)
     const [factures, setFactures] = useState([])
     const [facture, setFacture] = useState({

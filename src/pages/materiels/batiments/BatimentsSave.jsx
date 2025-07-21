@@ -9,41 +9,41 @@ export default function BatimentSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [subdivision, setSubdivision] = useState({
-        id:'',
-        nom:'',
-        parent:'',
-        type:'',
-        subdivisions:[]
+        id: '',
+        nom: '',
+        parent: '',
+        type: '',
+        subdivisions: []
     })
     const [batiments, setBatiments] = useState([])
     const [batiment, setBatiment] = useState({
-        nom:'',
-        nature:'',
-        description:'',
-        retrocede:'',
-        dateRetrocession:'',
-        subdivisionId:''
+        nom: '',
+        nature: '',
+        description: '',
+        retrocede: '',
+        dateRetrocession: '',
+        subdivisionId: ''
     })
-    const [showModal,setShowModal]=useState(false)
+    const [showModal, setShowModal] = useState(false)
 
-    function handleClick(){
+    function handleClick() {
         setShowModal(true)
     }
 
-    function handleCloseModal(){
+    function handleCloseModal() {
         setShowModal(false)
     }
-    
-    function handleSelectSubdivision(subdivision){
+
+    function handleSelectSubdivision(subdivision) {
         setSubdivision(subdivision)
         console.log(subdivision)
     }
-    function handleChange(e){
-        const name=e.target.name
-        let value=e.target.value
-        setBatiment(prev=>(
+    function handleChange(e) {
+        const name = e.target.name
+        let value = e.target.value
+        setBatiment(prev => (
             {
-                ...prev,[name]:value
+                ...prev, [name]: value
             }
         ))
     }
@@ -73,19 +73,21 @@ export default function BatimentSave() {
     return (
         <>
             <h1>Enregistrement d'un nouveau bâtiment</h1>
-            <Batiment 
+            <Batiment
                 subdivision={subdivision}
                 handleChange={handleChange}
-                handleClick={handleClick} 
-                handleSubmit={handleSubmit} 
-                isDisabled={isDisabled} messageButton={messageButton} 
+                handleClick={handleClick}
+                handleSubmit={handleSubmit}
+                isDisabled={isDisabled} messageButton={messageButton}
             />
-            
+
             {
                 showModal &&
                 <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
             }
-            <BatimentsShow />
+            <BatimentsShow
+                batiments={batiments}
+            />
         </>
     )
 }

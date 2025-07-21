@@ -15,7 +15,7 @@ export default function UnitesAdminSave() {
                         <option value="">Arrondissement</option>
                     </select>
                     <label htmlFor="">Rattachée à :</label>
-                    <input type="text" disabled value={"Région - OUEST"} />
+                    <input type="text" disabled />
                     <Link className="search-link" to="/administration/unites_admin/show">...rechercher</Link>
                     <label htmlFor="">Nombre :</label>
                     <input type="text" />

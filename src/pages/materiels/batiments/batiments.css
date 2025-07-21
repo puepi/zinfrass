@@ -1,5 +1,5 @@
 .batiments {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 
 }
@@ -198,4 +198,24 @@
     background-color: goldenrod;
     opacity: 0.9;
     cursor: pointer;
+}
+
+
+
+.batiments-body {
+    background-color: #fff;
+}
+
+.batiments-body tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.batiments tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
 }

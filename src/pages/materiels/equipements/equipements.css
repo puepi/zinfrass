@@ -1,5 +1,5 @@
 .equipements {
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -124,81 +124,116 @@
     background-color: #fff;
 }
 
-
 #reception {
-    width: 60%;
     margin: 0 auto;
+    width: 70%;
 }
 
-.reception-lots {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 20px);
-    gap: 5px;
+#reception fieldset {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
 }
 
-.reception-lots textarea.descriptive {
-    grid-column: 6/-1;
-    grid-row: 4/-1;
+#reception legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
 }
 
-#reception-fournisseur {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 20px);
-    gap: 5px;
-}
-
-.reception-lots textarea.caracteristiques {
-    grid-column: 2/span 3;
-    grid-row: 4/-1;
-}
-
-#reception-technicien {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5px;
-}
-
-.livreurs {
-    grid-column: 5/-1;
-}
-
-#reception-equipements {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-
-    gap: 5px;
-}
-
-#reception-equipements span {
-    font-weight: bold;
-}
-
-#reception-conclusions {
+.fournisseur-entries {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(2, 20px);
-    gap: 5px;
-}
-
-#reception-conclusions textarea {
-    grid-column: 6/-1;
-    grid-row: 1/-1;
-}
-
-#equipements-demande {
-    display: grid;
-    border: 5px solid #ffc736;
-    border-radius: 8px;
-    padding: 1rem;
-    gap: 5px;
-    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 20px);
-    background-color: #fff;
+    font-size: 0.8rem;
+    gap: 3px;
 }
 
-#reception fieldset{
-    padding:15px;
-    margin-block: 10px;
+
+
+.fournisseur thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-search {
+    grid-column: 2 / span 3;
+}
+
+.fournisseur-entries span {
+    grid-column: 5 / span 2;
+}
+
+.fournisseur-entries button {
+    grid-column: 1 / span 2;
+}
+
+p.search-place {
+    margin: 0;
+    padding: 10px 1px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+p.nav-buttons {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-buttons button {
+    margin-inline: 5px;
+}
+
+p.suivant {
+    text-align: end;
+    margin: 5px;
+}
+
+#reception .entries {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 20px);
+    font-size: 0.8rem;
+    gap: 3px;
+}
+
+.entries textarea {
+    grid-column: 2 / -1;
+    grid-row: 3 / span 2;
+}
+
+.entries select {
+    grid-column: 2 / span 2;
+}
+
+.entries .show-search {
+    grid-column: 2 / span 2;
+}
+
+.type-equipement thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.caracteristics {
+    grid-row: 5 / span 1;
 }

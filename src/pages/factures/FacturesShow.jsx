@@ -25,7 +25,7 @@ export default function FacturesShow({ factures }) {
                         <option value="">Numéro de compteur</option>
                     </select>
                     <div></div><div></div>
-                    <button>Valider</button>
+                    <button>Rechercher</button>
                 </form>
                 <table>
                     <thead>

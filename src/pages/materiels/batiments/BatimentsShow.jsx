@@ -6,22 +6,19 @@ export default function BatimentsShow({ batiments }) {
         <>
             <section className='batiments'>
                 <form action="" id="show-form">
-                    <label htmlFor="">Type de facture :</label>
+                    <label htmlFor="">Type de subdivision :</label>
                     <select name="" id="">
                         <option value="">Faites un choix</option>
-                        <option value="">Eau</option>
-                        <option value="">Electrictié</option>
-                        <option value="">Téléphone</option>
-                        <option value="">Internet</option>
+                        <option value="">Services centraux</option>
+                        <option value="">Région</option>
+                        <option value="">Département</option>
+                        <option value="">Arrondissement</option>
                     </select>
                     <select name="" id="">
-                        <option value="">Selectionner une option</option>
-                        <option value="">Numéro de facture</option>
-                        <option value="">Période</option>
-                        <option value="">Bâtiment</option>
-                        <option value="">Unité administrative</option>
-                        <option value="">Consommation</option>
-                        <option value="">Numéro de compteur</option>
+                        <option value="">Selectionner la nature</option>
+                        <option value="">R+1</option>
+                        <option value="">R+2</option>
+                        <option value="">R+3</option>
                     </select>
                     <div></div><div></div>
                     <button>Valider</button>
@@ -39,7 +36,18 @@ export default function BatimentsShow({ batiments }) {
                         </tr>
                     </thead>
                     <tbody className='batiments-body'>
-
+                        {batiments && batiments.length === 0 && <tr className='titles'><td>Aucun élément trouvé</td></tr>}
+                        {batiments && batiments.length > 0 && (
+                            batiments.map((batiment, id) => <tr key={batiment.id} className='dynamic-row'>
+                                <td>{id + 1}</td>
+                                <td>{batiment.nom}</td>
+                                <td>{batiment.subdivisionName}</td>
+                                <td>{batiment.nature}</td>
+                                <td>{batiment.description}</td>
+                                <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td>
+                                <td>{batiment.dateRetrocession}</td>
+                            </tr>)
+                        )}
                     </tbody>
                 </table>
             </section>
