@@ -215,8 +215,8 @@ p.suivant {
 }
 
 .entries textarea {
-    grid-column: 2 / -1;
-    grid-row: 3 / span 2;
+    grid-column: 2 / span 3;
+    grid-row: 3 / span 3;
 }
 
 .entries select {
@@ -235,5 +235,26 @@ p.suivant {
 }
 
 .caracteristics {
-    grid-row: 5 / span 1;
+    grid-row: 3 / span 3;
+}
+
+.equipement .entries{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 20px);
+    font-size: 0.8rem;
+    gap: 3px;
+}
+
+.equipement .entries textarea:nth-of-type(1){
+    grid-column: 2 / -1;
+}
+
+.equipement .entries textarea:nth-of-type(2){
+    grid-column: 2 / span 4;
+}
+
+.equipement .entries span{
+    grid-column: 1/-1;
+    text-align: center;
 }
