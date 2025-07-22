@@ -3,7 +3,7 @@ import Equipement from "./Equipement"
 
 
 
-export default function TypeEquipement({ handlePrecedent, toShow }) {
+export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [isActive,setIsActive]=useState(true)
     const [toShow2,setToShow2]=useState(false)
     function handleChange(e){
@@ -62,7 +62,7 @@ export default function TypeEquipement({ handlePrecedent, toShow }) {
                     <button className="suivant" onClick={handleSuivant}>Suivant</button>
                 </p>
             </fieldset>
-            {toShow2 && <Equipement />}
+            {toShow2 && <Equipement handleSuivant={handleSuiv} />}
         </>
     )
 }
