@@ -22,13 +22,16 @@ export default function EquipementsReception() {
     function handleSuivant(){
         setToShow2(true)
     }
+    function handlePrec(){
+        setToShow('type-equipement')
+    }
     return (
         <>
             <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur handleClick={handleClick} />}
                 {toShow === 'type-equipement' && <TypeEquipement handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} />}
-                {toShow === 'lot' && <Lot />}
+                {toShow === 'lot' && <Lot handlePrecedent={handlePrec}/>}
             </section>
         </>
     )
