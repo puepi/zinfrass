@@ -77,3 +77,95 @@ export async function getSubdivisions(subdivisionName) {
     }
 }
 
+
+export async function addFournisseur(fournisseur) {
+    const formData = new FormData();
+    formData.append("nom", fournisseur.nom)
+    formData.append("representant", fournisseur.representant)
+    formData.append("type", fournisseur.type)
+    formData.append("adresse", fournisseur.adresse)
+    formData.append("contact", fournisseur.contact)
+    formData.append("email", fournisseur.email)
+    formData.append("niu", fournisseur.niu)
+    try {
+        const plainObject = Object.fromEntries(formData.entries())
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post("/fournisseurs/add", JSON.stringify(plainObject), {
+            headers: { "Content-Type": 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllFournisseurs() {
+    try {
+        const response = await api.get("/fournisseurs/getall")
+        // const response = await api.get("/batiments/getall")
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function addCategorie(categorie) {
+    const formData = new FormData()
+    formData.append('nom', categorie.nom)
+    try {
+        const plainObject = Object.fromEntries(formData.entries())
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post("/categories/add", JSON.stringify(plainObject), {
+            headers: { "Content-Type": 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getAllCategories() {
+    try {
+        const response = await api.get("/categories/getall")
+        // const response = await api.get("/batiments/getall")
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function addTypeEquipement(typeEquipement) {
+    const formData = new FormData()
+    formData.append("nom", typeEquipement.nom)
+    formData.append("caracteristiques", typeEquipement.caracteristiques)
+    formData.append("type", fournisseur.type)
+    formData.append("abreviation", typeEquipement.abreviation)
+    formData.append("id", typeEquipement.id)
+    try {
+        const plainObject = Object.fromEntries(formData.entries)
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post('/types-equipement/add', JSON.stringify(plainObject), {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+
+
+export async function getAllTypesEquipement() {
+    try {
+        const response = await api.post('/types-equipement/add')
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
