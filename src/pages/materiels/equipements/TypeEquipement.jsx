@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react"
 import Equipement from "./Equipement"
-import { getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
+import { addTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
 
 
 
 export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [isActive, setIsActive] = useState(true)
+    const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
     const [toShow2, setToShow2] = useState(false)
     const [categories, setCategories] = useState([])
     const [typesEquipement, setTypesEquipement] = useState([])
-    const [selectedCategorie, setSelectedCategorie] = useState('')
+    const [typeEquipement, setTypeEquipement] = useState({})
+    const [selectedCategorie, setSelectedCategorie] = useState({ nom: '', id: '' })
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
+    const [loadingMessage2, setLoadingMessage2] = useState('...is Loading...')
+    const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
+    const [messageButton, setMessageButton] = useState('Rechercher')
     function handleChange(e) {
         if (e.target.value === 'add') {
             setIsActive(true)
@@ -24,10 +29,10 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     function handleChange(e) {
         if (e.target.value === 'add a category') {
             setIsActive(false)
-            setSelectedCategorie('')
+            setSelectedCategorie({ nom: '', id: '' })
         } else {
             setIsActive(true)
-            setSelectedCategorie(e.target.value)
+            setSelectedCategorie(prev => ({ ...prev, nom: e.target.value }))
         }
     }
     function handleChangeInput(e) {
@@ -39,8 +44,8 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
         }
     }
     function handleAjouter() {
-        setCategories(prev => [{ nom: selectedCategorie }, ...prev])
-        setSelectedCategorie('')
+        setCategories(prev => [{ nom: selectedCategorie.nom, id: '' }, ...prev])
+        setSelectedCategorie({ nom: '', id: '' })
     }
     useEffect(() => {
         getAllCategories()
@@ -49,17 +54,47 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
             })
             .catch(error => console.log(error))
             .finally(() => setLoadingMessage('Sélectionnez une option'))
-
-        // getAllTypesEquipement()
-        //     .then(data => {
-        //         setTypesEquipement(data)
-        //     })
-        //     .catch(error => console.log(error))
-        //     .finally(() => setLoadingMessage('Sélectionnez une option'))
-
+        chercherTypesEqupement()
     }, [])
-    function handleRegister(formData) {
 
+    async function handleRegister(formData) {
+        setIsDisabled(true)
+        setMessageButton("...Loading")
+        const newTypeEquipement = {
+            nom: formData.get("nom"),
+            abreviation: formData.get("abreviation"),
+            caracteristiques: formData.get("caracteristiques"),
+            categorieId: selectedTypeEquipement.id,
+        }
+        setTypeEquipement(newTypeEquipement)
+        await addTypeEquipement(newTypeEquipement)
+            .then(response => {
+                setTypesEquipement(prev => ([...prev, response]))
+                setSelectedTypeEquipement({
+                    nom: response.nom,
+                    id: response.id
+                })
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                setIsDisabled(false)
+                setMessageButton('Rechercher')
+            })
+    }
+    function chercherTypesEqupement() {
+        getAllTypesEquipement()
+            .then(data => setTypesEquipement(data))
+            .catch(error => console.log(error))
+            .finally(() => { setLoadingMessage2('Aucun élément trouvé'); })
+    }
+    function handleSelectRow(e, type) {
+        setSelectedTypeEquipement({
+            nom: type.nom,
+            id: type.id
+        })
+    }
+    function handleChangeSelectedInput(e) {
+        setSelectedTypeEquipement(prev => ({ ...prev, nom: e.target.value }))
     }
     return (
         <>
@@ -67,7 +102,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                 <legend>Type d'équipement</legend>
                 <form className="entries" action={handleRegister}>
                     <div></div>
-                    <input type="text" disabled className="show-search" />
+                    <input type="text" disabled className="show-search" value={selectedTypeEquipement.nom} onChange={handleChangeSelectedInput} />
                     <span>(Sélectionnez une ligne)</span><div></div>
                     <label htmlFor="nom">Nom : </label>
                     <input type="text" name='nom' id='nom' required />
@@ -81,8 +116,8 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                         <option value="add a category">--- Ajouter une catégorie ---</option>
                         {categoriesElts}
                     </select>
-                    <input type="text" disabled={isActive} value={selectedCategorie} onChange={handleChangeInput} /><button disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
-                    <button>Enregistrer</button>
+                    <input type="text" disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
+                    <button disabled={isDisabled}>{messageButton}</button>
                 </form>
                 <p className="search-place">
                     <label htmlFor="">Chercher par nom :  </label>
@@ -99,16 +134,13 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                         </tr>
                     </thead>
                     <tbody className='type-equipement-body'>
-                        {typesEquipement && typesEquipement.length === 0 && <tr className='titles'><td>Aucun élément trouvé</td></tr>}
+                        {typesEquipement && typesEquipement.length === 0 && <tr className='titles'><td>{loadingMessage2}</td></tr>}
                         {typesEquipement && typesEquipement.length > 0 && (
-                            typesEquipement.map((type, id) => <tr key={type.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, fournisseur)}>
+                            typesEquipement.map((type, id) => <tr key={type.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, type)}>
                                 <td>{type.nom}</td>
-                                <td>{type.representant}</td>
-                                <td>{type.type}</td>
-                                <td>{type.adresse}</td>
-                                <td>{type.email}</td>
-                                <td>{type.niu}</td>
-                                <td>{type.contact}</td>
+                                <td>{type.abreviation}</td>
+                                <td>{type.categorieNom}</td>
+                                <td>{type.caracteristiques.substring(0, 40) + '...'}</td>
                             </tr>)
                         )}
                     </tbody>

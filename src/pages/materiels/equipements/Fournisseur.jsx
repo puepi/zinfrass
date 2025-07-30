@@ -47,7 +47,7 @@ export default function Fournisseur({ handleSuivant, handleChange, registerFourn
             <p className="search-place">
                 <label htmlFor="">Chercher par nom :  </label>
                 <input type="text" />
-                <button onClick={chercherFournisseurs} disabled={isLoading}>Chercher</button>
+                <button disabled={isLoading}>Chercher</button>
             </p>
             <table>
                 <thead>

@@ -141,9 +141,8 @@ export async function addTypeEquipement(typeEquipement) {
     const formData = new FormData()
     formData.append("nom", typeEquipement.nom)
     formData.append("caracteristiques", typeEquipement.caracteristiques)
-    formData.append("type", fournisseur.type)
+    formData.append("categorieId", Number.parseInt(typeEquipement.categorieId))
     formData.append("abreviation", typeEquipement.abreviation)
-    formData.append("id", typeEquipement.id)
     try {
         const plainObject = Object.fromEntries(formData.entries)
         console.log(JSON.stringify(plainObject))
@@ -154,18 +153,14 @@ export async function addTypeEquipement(typeEquipement) {
     } catch (error) {
         console.log(error)
     }
-
-
 }
 
 
 export async function getAllTypesEquipement() {
     try {
-        const response = await api.post('/types-equipement/add')
+        const response = await api.get('/types-equipement/getall')
         return response.data.data
     } catch (error) {
         console.log(error)
     }
-
-
 }
