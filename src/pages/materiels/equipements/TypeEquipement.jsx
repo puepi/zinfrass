@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Equipement from "./Equipement"
-import { addTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
+import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
 
 
 
@@ -8,6 +8,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [isActive, setIsActive] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
+    const [isSelectDisabled,setIsSelectDisabled]=useState(false)
     const [toShow2, setToShow2] = useState(false)
     const [categories, setCategories] = useState([])
     const [typesEquipement, setTypesEquipement] = useState([])
@@ -16,7 +17,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
     const [loadingMessage2, setLoadingMessage2] = useState('...is Loading...')
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
-    const [messageButton, setMessageButton] = useState('Rechercher')
+    const [messageButton, setMessageButton] = useState('Enregistrer')
     function handleChange(e) {
         if (e.target.value === 'add') {
             setIsActive(true)
@@ -36,16 +37,25 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
         }
     }
     function handleChangeInput(e) {
-        setSelectedCategorie(e.target.value)
+        setSelectedCategorie(prev=>({...prev,nom:e.target.value}))
         if (e.target.value.trim()) {
             setIsButtonActive(false)
         } else {
             setIsButtonActive(true)
         }
     }
-    function handleAjouter() {
-        setCategories(prev => [{ nom: selectedCategorie.nom, id: '' }, ...prev])
-        setSelectedCategorie({ nom: '', id: '' })
+    async function handleAjouter() {
+        setIsSelectDisabled(true)
+        await addCategorie({nom:selectedCategorie.nom})
+            .then(response=>{
+                setCategories(prev => [{ nom: response.nom, id: response.id }, ...prev])
+            })
+            .catch(error=>console.log(error))
+            .finally(()=>{
+                setSelectedCategorie({ nom: '', id: '' })
+                setIsButtonActive(true)
+                setIsSelectDisabled(false)
+            })
     }
     useEffect(() => {
         getAllCategories()
@@ -111,12 +121,12 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                     <label htmlFor="caracteristiques" className="caracteristics">Caractéristiques : </label>
                     <textarea required name="caracteristiques" id="caracteristiques" placeholder="Enter caracteristics separated by double slashes (//)"></textarea><div></div><div></div><div></div>
                     <label htmlFor="categorie">Categorie : </label>
-                    <select name="categorie" id="categorie" onChange={handleChange} >
+                    <select name="categorie" id="categorie" onChange={handleChange} disabled={isSelectDisabled}>
                         <option value="">{loadingMessage}</option>
                         <option value="add a category">--- Ajouter une catégorie ---</option>
                         {categoriesElts}
                     </select>
-                    <input type="text" disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
+                    <input type="text" disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button type="button" disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
                     <button disabled={isDisabled}>{messageButton}</button>
                 </form>
                 <p className="search-place">

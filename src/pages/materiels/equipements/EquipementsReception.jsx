@@ -62,6 +62,7 @@ export default function EquipementsReception() {
                     nom: response.nom,
                     id: response.id
                 })
+                console.log(response)
             })
             .catch(error => console.log(error))
             .finally(() => {
