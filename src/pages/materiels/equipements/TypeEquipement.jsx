@@ -18,22 +18,25 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [loadingMessage2, setLoadingMessage2] = useState('...is Loading...')
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
     const [messageButton, setMessageButton] = useState('Enregistrer')
-    function handleChange(e) {
-        if (e.target.value === 'add') {
-            setIsActive(true)
-        }
-    }
     function handleSuivant() {
         setToShow2(true)
     }
-    const categoriesElts = categories.map((t, id) => <option key={id} value={t.nom}>{t.nom}</option>)
+    const categoriesElts = categories.map((t, id) => <option key={t.id} value={t.nom}>{t.nom}</option>)
     function handleChange(e) {
+        console.log(categories)
         if (e.target.value === 'add a category') {
             setIsActive(false)
             setSelectedCategorie({ nom: '', id: '' })
+        }else if(e.target.value===""){
+            setIsActive(true)
+            setSelectedCategorie({ nom: '', id: '' })
         } else {
             setIsActive(true)
-            setSelectedCategorie(prev => ({ ...prev, nom: e.target.value }))
+            const obj=categories.filter(c=>c.nom===e.target.value)
+            setSelectedCategorie({
+                nom:e.target.value,
+                id:obj[0].id
+            })
         }
     }
     function handleChangeInput(e) {
@@ -45,6 +48,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
         }
     }
     async function handleAjouter() {
+        
         setIsSelectDisabled(true)
         await addCategorie({nom:selectedCategorie.nom})
             .then(response=>{
@@ -74,16 +78,20 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
             nom: formData.get("nom"),
             abreviation: formData.get("abreviation"),
             caracteristiques: formData.get("caracteristiques"),
-            categorieId: selectedTypeEquipement.id,
+            categorieId: selectedCategorie.id,
         }
         setTypeEquipement(newTypeEquipement)
         await addTypeEquipement(newTypeEquipement)
             .then(response => {
-                setTypesEquipement(prev => ([...prev, response]))
-                setSelectedTypeEquipement({
-                    nom: response.nom,
-                    id: response.id
-                })
+                if(response) {
+                    setTypesEquipement(prev => ([response,...prev]))
+                    setSelectedTypeEquipement({
+                        nom: response.nom,
+                        id: response.id
+                    })
+                }
+                console.log(response)
+                
             })
             .catch(error => console.log(error))
             .finally(() => {
@@ -121,7 +129,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                     <label htmlFor="caracteristiques" className="caracteristics">Caractéristiques : </label>
                     <textarea required name="caracteristiques" id="caracteristiques" placeholder="Enter caracteristics separated by double slashes (//)"></textarea><div></div><div></div><div></div>
                     <label htmlFor="categorie">Categorie : </label>
-                    <select name="categorie" id="categorie" onChange={handleChange} disabled={isSelectDisabled}>
+                    <select name="categorie" id="categorie" onChange={handleChange} disabled={isSelectDisabled} required>
                         <option value="">{loadingMessage}</option>
                         <option value="add a category">--- Ajouter une catégorie ---</option>
                         {categoriesElts}

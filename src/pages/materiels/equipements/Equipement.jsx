@@ -30,7 +30,7 @@ export default function Equipement({handleSuivant}){
             <p className="count"><span>( 0 )</span></p>
             <p className="navs">
                 <button>Précédent</button>
-                <button>Ajouter un autre type d'équipement</button>
+                <button>Enregistrer</button>
                 <button onClick={handleSuivant}>Suivant</button>
             </p>
         </fieldset>

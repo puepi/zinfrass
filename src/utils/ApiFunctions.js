@@ -141,10 +141,10 @@ export async function addTypeEquipement(typeEquipement) {
     const formData = new FormData()
     formData.append("nom", typeEquipement.nom)
     formData.append("caracteristiques", typeEquipement.caracteristiques)
-    formData.append("categorieId", Number.parseInt(typeEquipement.categorieId))
+    formData.append("categoryId", Number.parseInt(typeEquipement.categorieId))
     formData.append("abreviation", typeEquipement.abreviation)
     try {
-        const plainObject = Object.fromEntries(formData.entries)
+        const plainObject = Object.fromEntries(formData.entries())
         console.log(JSON.stringify(plainObject))
         const response = await api.post('/types-equipement/add', JSON.stringify(plainObject), {
             headers: { 'Content-Type': 'application/json' }
