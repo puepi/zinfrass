@@ -206,6 +206,10 @@ p.suivant {
     margin: 5px;
 }
 
+p.suivant button {
+    margin-inline: 5px;
+}
+
 #reception .type-equipement .entries {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -270,13 +274,18 @@ textarea.caracteristiques {
 p.count {
     text-align: center;
     font-weight: bold;
-    margin: 5px;
+    margin: 8px;
     font-size: 0.9rem;
 }
 
-p.navs {
+.equipement p.navs {
+    margin: 10px;
     display: flex;
     justify-content: space-between;
+}
+
+.equipement p.navs button {
+    margin-inline: 10px;
 }
 
 .lot .entries {
@@ -347,7 +356,7 @@ p.navs {
 .type-equipement tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 45px);
+    grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
 }

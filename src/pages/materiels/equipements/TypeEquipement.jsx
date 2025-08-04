@@ -8,7 +8,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [isActive, setIsActive] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
-    const [isSelectDisabled,setIsSelectDisabled]=useState(false)
+    const [isSelectDisabled, setIsSelectDisabled] = useState(false)
     const [toShow2, setToShow2] = useState(false)
     const [categories, setCategories] = useState([])
     const [typesEquipement, setTypesEquipement] = useState([])
@@ -23,24 +23,23 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     }
     const categoriesElts = categories.map((t, id) => <option key={t.id} value={t.nom}>{t.nom}</option>)
     function handleChange(e) {
-        console.log(categories)
         if (e.target.value === 'add a category') {
             setIsActive(false)
             setSelectedCategorie({ nom: '', id: '' })
-        }else if(e.target.value===""){
+        } else if (e.target.value === "") {
             setIsActive(true)
             setSelectedCategorie({ nom: '', id: '' })
         } else {
             setIsActive(true)
-            const obj=categories.filter(c=>c.nom===e.target.value)
+            const obj = categories.filter(c => c.nom === e.target.value)
             setSelectedCategorie({
-                nom:e.target.value,
-                id:obj[0].id
+                nom: e.target.value,
+                id: obj[0].id
             })
         }
     }
     function handleChangeInput(e) {
-        setSelectedCategorie(prev=>({...prev,nom:e.target.value}))
+        setSelectedCategorie(prev => ({ ...prev, nom: e.target.value }))
         if (e.target.value.trim()) {
             setIsButtonActive(false)
         } else {
@@ -48,14 +47,14 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
         }
     }
     async function handleAjouter() {
-        
+
         setIsSelectDisabled(true)
-        await addCategorie({nom:selectedCategorie.nom})
-            .then(response=>{
+        await addCategorie({ nom: selectedCategorie.nom })
+            .then(response => {
                 setCategories(prev => [{ nom: response.nom, id: response.id }, ...prev])
             })
-            .catch(error=>console.log(error))
-            .finally(()=>{
+            .catch(error => console.log(error))
+            .finally(() => {
                 setSelectedCategorie({ nom: '', id: '' })
                 setIsButtonActive(true)
                 setIsSelectDisabled(false)
@@ -72,6 +71,9 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     }, [])
 
     async function handleRegister(formData) {
+        if (selectedCategorie.id === '') {
+            return
+        }
         setIsDisabled(true)
         setMessageButton("...Loading")
         const newTypeEquipement = {
@@ -83,20 +85,20 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
         setTypeEquipement(newTypeEquipement)
         await addTypeEquipement(newTypeEquipement)
             .then(response => {
-                if(response) {
-                    setTypesEquipement(prev => ([response,...prev]))
+                if (response) {
+                    setTypesEquipement(prev => ([response, ...prev]))
                     setSelectedTypeEquipement({
                         nom: response.nom,
                         id: response.id
                     })
                 }
                 console.log(response)
-                
+
             })
             .catch(error => console.log(error))
             .finally(() => {
                 setIsDisabled(false)
-                setMessageButton('Rechercher')
+                setMessageButton('Enregistrer')
             })
     }
     function chercherTypesEqupement() {
@@ -134,7 +136,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                         <option value="add a category">--- Ajouter une catégorie ---</option>
                         {categoriesElts}
                     </select>
-                    <input type="text" disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button type="button" disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
+                    <input type="text" required disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button type="button" disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
                     <button disabled={isDisabled}>{messageButton}</button>
                 </form>
                 <p className="search-place">

@@ -1,38 +1,57 @@
+import { useState } from "react"
 
 
-export default function Equipement({handleSuivant}){
-    return(
+export default function Equipement({ handleSuivant }) {
+    const [equipements, setEquipements] = useState([])
+    const [dataEquipement, setDataEquipement] = useState({})
+    const [count, setCount] = useState(0)
+    function handleRegister(formData) {
+        const newEquipement = {
+            descriptive: formData.get("descriptive"),
+            marque: formData.get("marque"),
+            modele: formData.get("modele"),
+            quantite: formData.get("quantite"),
+            caracteristiques: formData.get("caracteristiques"),
+            photo: formData.get("couleur"),
+            equipements: equipements
+        }
+    }
+    function handleAjouter() {
+
+        setCount(prev => prev + 1)
+    }
+    return (
         <fieldset className="equipement">
             <legend>Equipements</legend>
-            <div className="entries">
-                <label htmlFor="">Fiche descriptive : </label>
-                <textarea name="" id="" placeholder="Describe how this new product will help employee perform fast and better"></textarea><div></div><div></div><div></div><div></div><div><div></div></div>
-                <label htmlFor="">Marque : </label>
-                <input type="text" />
-                <label htmlFor="">Modèle : </label>
-                <input type="text" />
-                <label htmlFor="">Quantité : </label>
-                <input type="text" /><div></div>
-                <label htmlFor="" className="caracteres">Caractéristiques : </label>
-                <textarea className="caracteristiques" name="" id="" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
+            <form className="entries" action={handleRegister}>
+                <label htmlFor="descriptive">Fiche descriptive</label>
+                <textarea required name="descriptive" id="descriptive" placeholder="Describe how this new product will help employee perform fast and better"></textarea><div></div><div></div><div></div><div></div><div><div></div></div>
+                <label htmlFor="marque">Marque : </label>
+                <input type="text" name="marque" id="marque" required />
+                <label htmlFor="modele">Modèle : </label>
+                <input type="text" name="modele" id="modele" required />
+                <label htmlFor="quantite">Quantité : </label>
+                <input type="number" name="quantite" id="quantite" required /><div></div>
+                <label htmlFor="caracteristiques" className="caracteres">Caractéristiques:</label>
+                <textarea required className="caracteristiques" name="caracteristiques" id="caracteristiques" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
                 <label htmlFor="" className="photos">Photos</label>
                 <input type="file" name="" id="" />
                 <div>1</div><div>2</div><div>3</div><div>4</div><div></div>
-                <label htmlFor="">Couleur</label>
-                <input type="text" />
+                <label htmlFor="couleur">Couleur</label>
+                <input type="text" name="couleur" id="couleur" />
                 <span>( Equipement un par un )</span>
-                <label htmlFor="">Numéro de série : </label>
-                <input type="text" />
-                <label htmlFor="">Identifiant unique : </label>
-                <input type="text" disabled/>
-                <button>Ajouter</button>
-            </div>
-            <p className="count"><span>( 0 )</span></p>
-            <p className="navs">
-                <button>Précédent</button>
-                <button>Enregistrer</button>
-                <button onClick={handleSuivant}>Suivant</button>
-            </p>
+                <label htmlFor="numSerie">N° de série</label>
+                <input type="text" nom="numSerie" id="numSerie" required />
+                <label htmlFor="identifiant">Identifiant</label>
+                <input type="text" disabled name="identifiant" id="identifiant" required />
+                <button type="button" onClick={handleAjouter}>Ajouter</button>
+                <div></div><div></div><div></div><div></div>
+                <p className="count"><span>( {count} )</span></p>
+                <p className="navs">
+                    <button>Enregistrer</button>
+                    <button onClick={handleSuivant} type="button">Suivant</button>
+                </p>
+            </form>
         </fieldset>
     )
 }
