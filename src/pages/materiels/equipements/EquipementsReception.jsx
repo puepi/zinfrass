@@ -14,6 +14,8 @@ export default function EquipementsReception() {
     const [toShow, setToShow] = useState('fournisseur')
     const [toShow2, setToShow2] = useState(false)
     const [fournisseurs, setFournisseurs] = useState([])
+    const [leLot,setLeLot]=useState({})
+    const [selectedTypeEquipement,setSelectedTypeEquipement]=useState({})
     const [selectedFournisseur, setSelectedFournisseur] = useState({
         nom: '',
         id: ''
@@ -79,12 +81,16 @@ export default function EquipementsReception() {
     function handleChange(e) {
 
     }
+    function handleReg(formData,equipements){
+        console.log(formData)
+        console.log(equipements)
+    }
     return (
         <>
             <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur handleChange={handleChange} handleSelectRow={handleSelectRow} lesFournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
-                {toShow === 'type-equipement' && <TypeEquipement handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} />}
+                {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} handleReg={handleReg} />}
                 {toShow === 'lot' && <Lot handlePrecedent={handlePrec} />}
             </section>
         </>
