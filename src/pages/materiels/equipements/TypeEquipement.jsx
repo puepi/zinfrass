@@ -15,7 +15,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
     const [typeEquipement, setTypeEquipement] = useState({})
     const [selectedCategorie, setSelectedCategorie] = useState({ nom: '', id: '' })
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
-    const [loadingMessage2, setLoadingMessage2] = useState('...is Loading...')
+    const [loadingMessage2, setLoadingMessage2] = useState('...data is Loading...')
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
     const [messageButton, setMessageButton] = useState('Enregistrer')
     function handleSuivant() {
@@ -67,7 +67,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
             })
             .catch(error => console.log(error))
             .finally(() => setLoadingMessage('Sélectionnez une option'))
-        chercherTypesEqupement()
+        chercherTypesEquipement()
     }, [])
 
     async function handleRegister(formData) {
@@ -101,11 +101,11 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv }) {
                 setMessageButton('Enregistrer')
             })
     }
-    function chercherTypesEqupement() {
+    function chercherTypesEquipement() {
         getAllTypesEquipement()
-            .then(data => setTypesEquipement(data))
+            .then(data => { console.log("data=" + data); setTypesEquipement(data) })
             .catch(error => console.log(error))
-            .finally(() => { setLoadingMessage2('Aucun élément trouvé'); })
+            .finally(() => setLoadingMessage2('Aucun élément trouvé'))
     }
     function handleSelectRow(e, type) {
         setSelectedTypeEquipement({

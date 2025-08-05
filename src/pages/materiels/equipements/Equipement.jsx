@@ -1,23 +1,26 @@
 import { useState } from "react"
 
 
-export default function Equipement({ handleSuivant }) {
+export default function Equipement({ handleSuivant, selectedTypeEquipement, leLot }) {
     const [equipements, setEquipements] = useState([])
+    const [lot, setLot] = useState(leLot)
     const [dataEquipement, setDataEquipement] = useState({})
     const [count, setCount] = useState(0)
     function handleRegister(formData) {
-        const newEquipement = {
+        const newLot = {
             descriptive: formData.get("descriptive"),
             marque: formData.get("marque"),
             modele: formData.get("modele"),
             quantite: formData.get("quantite"),
             caracteristiques: formData.get("caracteristiques"),
-            photo: formData.get("couleur"),
+            couleur: formData.get("couleur"),
+            photos: formData.get("photos"),
+            typeEquipementId: selectedTypeEquipement.id,
             equipements: equipements
         }
+        setLot({ ...leLot, newLot })
     }
     function handleAjouter() {
-
         setCount(prev => prev + 1)
     }
     return (
@@ -34,8 +37,8 @@ export default function Equipement({ handleSuivant }) {
                 <input type="number" name="quantite" id="quantite" required /><div></div>
                 <label htmlFor="caracteristiques" className="caracteres">Caractéristiques:</label>
                 <textarea required className="caracteristiques" name="caracteristiques" id="caracteristiques" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
-                <label htmlFor="" className="photos">Photos</label>
-                <input type="file" name="" id="" />
+                <label htmlFor="photos" className="photos">Photos</label>
+                <input type="file" name="photos" id="" />
                 <div>1</div><div>2</div><div>3</div><div>4</div><div></div>
                 <label htmlFor="couleur">Couleur</label>
                 <input type="text" name="couleur" id="couleur" />

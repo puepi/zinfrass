@@ -11,7 +11,7 @@ export default function Fournisseur({ handleSuivant, handleChange, registerFourn
     function chercherFournisseurs() {
         setIsLoading(true)
         getAllFournisseurs()
-            .then(data => setFournisseurs(data))
+            .then(data => { console.log("data=" + data); setFournisseurs(data) })
             .catch(error => console.log(error))
             .finally(() => { setLoadingMessage('Aucun élément trouvé'); setIsLoading(false) })
     }
@@ -41,7 +41,7 @@ export default function Fournisseur({ handleSuivant, handleChange, registerFourn
                 <label htmlFor="email">Email : </label>
                 <input type="text" name='email' id='email' required /><div></div>
                 <label htmlFor="niu">NIU : </label>
-                <input type="text" name='niu' id='niu' required maxLength={14} minLength={14}/><div></div><div></div><div></div><div></div><div></div>
+                <input type="text" name='niu' id='niu' required maxLength={14} minLength={14} /><div></div><div></div><div></div><div></div><div></div>
                 <button disabled={isDisabled}>{messageButton}</button>
             </form>
             <p className="search-place">
