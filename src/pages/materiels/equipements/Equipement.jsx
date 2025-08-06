@@ -3,7 +3,7 @@ import { useState } from "react"
 
 export default function Equipement({ handleSuivant, selectedTypeEquipement, handleRegister, leLot }) {
     const [equipements, setEquipements] = useState([])
-    const [selectedNumSerie,setSelectedNumSerie]=useState('')
+    const [selectedNumSerie, setSelectedNumSerie] = useState('')
     const [lot, setLot] = useState(leLot)
     const [count, setCount] = useState(0)
     // function handleRegister(formData) {
@@ -20,20 +20,17 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
     //     }
     //     setLot({ ...leLot, newLot })
     // }
-    function handleAjouter() 
-    {   
-        const n=equipements.length
-        setCount(n)
-        setEquipements(prev=>[...prev,{num:selectedNumSerie,identifiant:'xx'}])
+    function handleAjouter() {
+        setEquipements(prev => [...prev, { num: selectedNumSerie, identifiant: 'xx' }])
     }
-    function handleChange(e){
+    function handleChange(e) {
         setSelectedNumSerie(e.target.value)
     }
-    
+
     return (
         <fieldset className="equipement">
             <legend>Equipements</legend>
-            <form className="entries" action={(formData)=>handleRegister(formData,equipements)}>
+            <form className="entries" action={(formData) => handleRegister(formData, equipements)}>
                 <label htmlFor="descriptive">Fiche descriptive</label>
                 <textarea required name="descriptive" id="descriptive" placeholder="Describe how this new product will help employee perform fast and better"></textarea><div></div><div></div><div></div><div></div><div><div></div></div>
                 <label htmlFor="marque">Marque : </label>
@@ -51,12 +48,12 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
                 <input type="text" name="couleur" id="couleur" />
                 <span>( Equipement un par un )</span>
                 <label htmlFor="numSerie">N° de série</label>
-                <input type="text" nom="numSerie" id="numSerie" required onChange={handleChange} value={selectedNumSerie}/>
+                <input type="text" nom="numSerie" id="numSerie" required onChange={handleChange} value={selectedNumSerie} />
                 <label htmlFor="identifiant">Identifiant</label>
                 <input type="text" disabled name="identifiant" id="identifiant" required />
                 <button type="button" onClick={handleAjouter}>Ajouter</button>
                 <div></div><div></div><div></div><div></div>
-                <p className="count"><span>( {count} )</span></p>
+                <p className="count"><span>( {equipements.length} )</span></p>
                 <p className="navs">
                     <button>Enregistrer</button>
                     <button onClick={handleSuivant} type="button">Suivant</button>

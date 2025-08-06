@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import Equipement from "./Equipement"
-import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipement,selectedType } from "../../../utils/ApiFunctions"
+import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
 
 
 
-export default function TypeEquipement({ handlePrecedent, handleSuiv,handleReg }) {
+export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg, selectedType }) {
     const [isActive, setIsActive] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
@@ -116,7 +116,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv,handleReg }
     function handleChangeSelectedInput(e) {
         setSelectedTypeEquipement(prev => ({ ...prev, nom: e.target.value }))
     }
-    
+
     return (
         <>
             <fieldset className="type-equipement">
@@ -175,7 +175,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv,handleReg }
                     <button className="suivant" onClick={handleSuivant}>Suivant</button>
                 </p>
             </fieldset>
-            {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedTypeEquipement}  handleRegister={handleReg}/>}
+            {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedTypeEquipement} handleRegister={handleReg} />}
         </>
     )
 }
