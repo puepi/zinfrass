@@ -165,3 +165,60 @@ export async function getAllTypesEquipement() {
         throw error
     }
 }
+
+export async function addSubdivision(subdivision) {
+    const formData = new FormData()
+    formData.append("nom", subdivision.nom)
+    formData.append("type", subdivision.type)
+    formData.append("parentId", Number.parseInt(subdivision.parentId))
+    try {
+        const plainObject = Object.fromEntries(formData.entries())
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post('/subdivisions/add', JSON.stringify(plainObject), {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getAllSubdivisions() {
+    try {
+        const response = await api.get('/subdivisions/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+
+export async function addEspace(espace) {
+    const formData = new FormData()
+    formData.append("nom", espace.nom)
+    formData.append("type", subdivision.type)
+    formData.append("parentId", Number.parseInt(subdivision.parentId))
+    try {
+        const plainObject = Object.fromEntries(formData.entries())
+        console.log(JSON.stringify(plainObject))
+        const response = await api.post('/subdivisions/add', JSON.stringify(plainObject), {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getAllSubdivisions() {
+    try {
+        const response = await api.get('/subdivisions/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
