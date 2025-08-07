@@ -198,12 +198,14 @@ export async function getAllSubdivisions() {
 export async function addEspace(espace) {
     const formData = new FormData()
     formData.append("nom", espace.nom)
-    formData.append("type", subdivision.type)
-    formData.append("parentId", Number.parseInt(subdivision.parentId))
+    formData.append("usage", espace.usage)
+    formData.append("position", espace.position)
+    formData.append("dimensions", espace.dimensions)
+    formData.append("batimentId", Number.parseInt(espace.batimentId))
     try {
         const plainObject = Object.fromEntries(formData.entries())
         console.log(JSON.stringify(plainObject))
-        const response = await api.post('/subdivisions/add', JSON.stringify(plainObject), {
+        const response = await api.post('/espaces/add', JSON.stringify(plainObject), {
             headers: { 'Content-Type': 'application/json' }
         })
         return response.data.data
@@ -212,13 +214,16 @@ export async function addEspace(espace) {
     }
 }
 
-export async function getAllSubdivisions() {
+
+export async function getAllEspaces() {
     try {
-        const response = await api.get('/subdivisions/getall')
+        const response = await api.get('/espaces/getall')
         return response.data.data
     } catch (error) {
         console.log(error.message)
         throw error
     }
 }
+
+
 

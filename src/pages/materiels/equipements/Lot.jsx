@@ -8,17 +8,17 @@ export default function Lot({ handlePrecedent }) {
         <section className="lot">
             <fieldset>
                 <legend>Lot</legend>
-                <div className="entries">
-                    <label htmlFor="">N° du lot</label>
-                    <input type="text" />
+                <form className="entries">
+                    <label htmlFor="numLot">N° du lot</label>
+                    <input type="text" name="numLot" />
                     <label htmlFor="">Date livraison : </label>
-                    <input type="date" /><div></div>
-                    <label htmlFor="">Livreurs : </label>
-                    <input type="text" />
-                    <label htmlFor="">Technicien MINPROFF : </label>
-                    <input type="text" /><div></div>
-                    <label htmlFor="" className="label-observations">Observations : </label>
-                    <textarea name="" id=""></textarea><div></div><div></div><div></div><div></div>
+                    <input type="date" name="dateLivraison" /><div></div>
+                    <label htmlFor="livreurs">Livreurs : </label>
+                    <input type="text" name="livreurs" />
+                    <label htmlFor="technicien">Technicien MINPROFF : </label>
+                    <input type="text" name="technicien" /><div></div>
+                    <label htmlFor="observations" className="label-observations">Observations : </label>
+                    <textarea name="observations" id=""></textarea><div></div><div></div><div></div><div></div>
                     <label htmlFor="">Appreciations : </label>
                     <select name="" id="">
                         <option value="">Faites un choix</option>
@@ -27,7 +27,7 @@ export default function Lot({ handlePrecedent }) {
                     <input type="file" /><div></div>
                     <button onClick={handlePrecedent}>Précédent</button><div></div><div></div>
                     <button>Terminer</button>
-                </div>
+                </form>
             </fieldset>
             <LotShow lots={lots} />
         </section>
