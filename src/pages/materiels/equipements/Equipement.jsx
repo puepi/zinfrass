@@ -22,6 +22,7 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
     // }
     function handleAjouter() {
         setEquipements(prev => [...prev, { num: selectedNumSerie, identifiant: 'xx' }])
+        setSelectedNumSerie(' ')
     }
     function handleChange(e) {
         setSelectedNumSerie(e.target.value)
@@ -39,8 +40,8 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
                 <input type="text" name="modele" id="modele" required />
                 <label htmlFor="quantite">Quantité : </label>
                 <input type="number" name="quantite" id="quantite" required /><div></div>
-                <label htmlFor="caracteristiques" className="caracteres">Caractéristiques:</label>
-                <textarea required className="caracteristiques" name="caracteristiques" id="caracteristiques" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
+                <label htmlFor="caracteristics" className="caracteres">Caractéristiques:</label>
+                <textarea required className="caracteristiques" name="caracteristics" id="caracteristics" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
                 <label htmlFor="photos" className="photos">Photos</label>
                 <input type="file" name="photos" id="" />
                 <div>1</div><div>2</div><div>3</div><div>4</div><div></div>

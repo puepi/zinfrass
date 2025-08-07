@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
 import EspacesShow from "./EspacesShow"
+import { useState } from "react"
 
 export default function EspacesSave() {
-    const [selectedBatiment,setSelectedBatiment]=useState()
+    const [selectedBatiment,setSelectedBatiment]=useState({})
     const [espaces,setEspaces]=useState([])
     function handleRegister(){
 
@@ -42,7 +43,7 @@ export default function EspacesSave() {
                     <div className="empty1"></div>
                     
                 </form>
-                <EspacesShow />
+                <EspacesShow espaces={espaces}/>
             </section>
            
         </>

@@ -85,13 +85,16 @@ export default function EquipementsReception() {
         console.log(formData)
         console.log(equipements)
     }
+    function handleSubmitAll(formData){
+        console.log(formData)
+    }
     return (
         <>
             <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur handleChange={handleChange} handleSelectRow={handleSelectRow} lesFournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} handleReg={handleReg} />}
-                {toShow === 'lot' && <Lot handlePrecedent={handlePrec} />}
+                {toShow === 'lot' && <Lot handlePrecedent={handlePrec} handleSubmitAll={handleSubmitAll} />}
             </section>
         </>
     )

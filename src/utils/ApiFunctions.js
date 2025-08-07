@@ -212,13 +212,5 @@ export async function addEspace(espace) {
     }
 }
 
-export async function getAllSubdivisions() {
-    try {
-        const response = await api.get('/subdivisions/getall')
-        return response.data.data
-    } catch (error) {
-        console.log(error.message)
-        throw error
-    }
-}
+
 
