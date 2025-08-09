@@ -146,6 +146,11 @@ button {
     border: none;
 }
 
+.factures-body {
+    background-color: #fff;
+}
+
+
 .batiments-body {
     background-color: #fff;
 }

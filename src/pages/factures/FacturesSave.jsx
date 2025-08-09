@@ -3,9 +3,10 @@ import './factures.css'
 import { useEffect, useState } from 'react'
 import FacturesShow from './FacturesShow'
 import BatimentSearchModal from './BatimentSearchModal'
-import { addFactures } from '../../utils/ApiFunctions'
+import { addFactures, getAllFactures } from '../../utils/ApiFunctions'
 export default function FacturesSave() {
     const [batimentResponse, setBatimentResponse] = useState({})
+    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [isDisabled, setIsDisabled] = useState(false)
     const [factures, setFactures] = useState([])
@@ -59,7 +60,15 @@ export default function FacturesSave() {
                 setMessageButton('Rechercher')
             })
     }
-
+    async function shoAllFactures() {
+        setMessageLoading('...is Loading ...')
+        await getAllFactures()
+            .then(data => setFactures(data))
+            .catch(error => setMessageLoading('Aucun élément trouvé'))
+    }
+    useEffect(() => {
+        shoAllFactures()
+    }, [])
     return (
         <>
             <h1 className='factures-heading'>Enregistrement d'une facture</h1>
@@ -101,7 +110,7 @@ export default function FacturesSave() {
                     <button disabled={isDisabled}>{messageButton}</button>
                 </form>
             </section>
-            <FacturesShow factures={factures} />
+            <FacturesShow factures={factures} messageLoading={messageLoading} />
             {
                 showModal &&
                 <BatimentSearchModal handleCloseModal={handleCloseModal} handleSelectBatiment={handleSelectBatiment} />

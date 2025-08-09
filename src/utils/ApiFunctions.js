@@ -111,6 +111,18 @@ export async function getAllFournisseurs() {
     }
 }
 
+
+export async function getAllBatiments() {
+    try {
+        const response = await api.get("/batiments/getall")
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
 export async function addCategorie(categorie) {
     const formData = new FormData()
     formData.append('nom', categorie.nom)
@@ -194,6 +206,43 @@ export async function getAllSubdivisions() {
 }
 
 
+export async function getAllLots() {
+    try {
+        const response = await api.get('/lots/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+export async function addLot(lot) {
+    const payload = {
+        nroLot: lot.nroLot,
+        marque: lot.marque,
+        modele: lot.modele,
+        couleur: lot.couleur,
+        quantiteStock: lot.quantiteStock,
+        descriptive: lot.descriptive,
+        typeEquipementId: Number.parseInt(lot.typeEquipementId),
+        equipements: lot.equipements, // Send the array of objects directly
+        nomsLivreurs: lot.nomsLivreurs,
+        techniciens: lot.techniciens,
+        dateReception: lot.dateReception,
+        observations: lot.observations,
+        providerId: Number.parseInt(lot.providerId),
+        caracteristiques: lot.caracteristiques
+    };
+    try {
+        const response = await api.post("/lots/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
 
 export async function addEspace(espace) {
     const formData = new FormData()
@@ -218,6 +267,16 @@ export async function addEspace(espace) {
 export async function getAllEspaces() {
     try {
         const response = await api.get('/espaces/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllFactures() {
+    try {
+        const response = await api.get('/factures/getall')
         return response.data.data
     } catch (error) {
         console.log(error.message)

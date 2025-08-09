@@ -1,7 +1,7 @@
 
 import './factures.css'
 
-export default function FacturesShow({ factures }) {
+export default function FacturesShow({ factures, messageLoading }) {
 
     return (
         <>
@@ -33,7 +33,7 @@ export default function FacturesShow({ factures }) {
                         </tr>
                     </thead>
                     <tbody className='factures-body'>
-                        {factures && factures.length === 0 && <tr className='titles'><td>Aucun élément trouvé</td></tr>}
+                        {factures && factures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                         {factures && factures.length > 0 && (
                             factures.map((facture, id) => <tr key={facture.id} className='dynamic-row'>
                                 <td>{facture.numeroFacture}</td>

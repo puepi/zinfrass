@@ -4,7 +4,7 @@ import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipemen
 
 
 
-export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg, selectedType }) {
+export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg, selectedType, handleSelectRow }) {
     const [isActive, setIsActive] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
@@ -16,7 +16,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
     const [selectedCategorie, setSelectedCategorie] = useState({ nom: '', id: '' })
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
     const [loadingMessage2, setLoadingMessage2] = useState('...data is Loading...')
-    const [selectedTypeEquipement, setSelectedTypeEquipement] = useState(selectedType)
+    // const [selectedTypeEquipement, setSelectedTypeEquipement] = useState(selectedType)
     const [messageButton, setMessageButton] = useState('Enregistrer')
     function handleSuivant() {
         setToShow2(true)
@@ -107,12 +107,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
             .catch(error => console.log(error))
             .finally(() => setLoadingMessage2('Aucun élément trouvé'))
     }
-    function handleSelectRow(e, type) {
-        setSelectedTypeEquipement({
-            nom: type.nom,
-            id: type.id
-        })
-    }
+
     function handleChangeSelectedInput(e) {
         setSelectedTypeEquipement(prev => ({ ...prev, nom: e.target.value }))
     }
@@ -123,7 +118,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
                 <legend>Type d'équipement</legend>
                 <form className="entries" action={handleRegister}>
                     <div></div>
-                    <input type="text" disabled className="show-search" value={selectedTypeEquipement.nom} onChange={handleChangeSelectedInput} />
+                    <input type="text" disabled className="show-search" value={selectedType.nom} onChange={handleChangeSelectedInput} />
                     <span>(Sélectionnez une ligne)</span><div></div>
                     <label htmlFor="nom">Nom : </label>
                     <input type="text" name='nom' id='nom' required />
@@ -175,7 +170,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
                     <button className="suivant" onClick={handleSuivant}>Suivant</button>
                 </p>
             </fieldset>
-            {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedTypeEquipement} handleRegister={handleReg} />}
+            {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />}
         </>
     )
 }

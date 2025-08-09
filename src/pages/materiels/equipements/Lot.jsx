@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LotShow from "./LotShow";
+import { getAllLots } from "../../../utils/ApiFunctions";
 
 
-export default function Lot({ handlePrecedent, handleSubmitAll }) {
-    const [lots, setLots] = useState([])
+export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoading }) {
+
+
+    useEffect(() => {
+        showAllLots()
+    }, [])
     return (
         <section className="lot">
             <fieldset>
@@ -27,10 +32,10 @@ export default function Lot({ handlePrecedent, handleSubmitAll }) {
                     <label htmlFor="">Procès verbal: </label>
                     <input type="file" /><div></div>
                     <button onClick={handlePrecedent} type="button">Précédent</button><div></div><div></div>
-                    <button>Terminer</button>
+                    <button>{messageSubmit}</button>
                 </form>
             </fieldset>
-            <LotShow lots={lots} />
+            <LotShow lots={lots} messageLoading={messageLoading} />
         </section>
 
     )

@@ -1,5 +1,5 @@
 .connectiques {
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
 }
 
@@ -14,4 +14,27 @@
     border: 5px solid wheat;
 }
 
-#connectiques-save textarea {}
+.connectiques-body {
+    background-color: #fff;
+}
+
+.connectiques thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.connectiques tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.connectiques tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}

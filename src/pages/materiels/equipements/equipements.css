@@ -375,3 +375,34 @@ p.count {
     background-color: #fff;
     font-size: .8rem;
 }
+
+
+
+.lot tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.lot tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.lot .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.lots-body {
+    background-color: #fff;
+    font-size: .8rem;
+}

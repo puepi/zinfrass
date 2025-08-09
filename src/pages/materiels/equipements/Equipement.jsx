@@ -1,27 +1,12 @@
 import { useState } from "react"
 
 
-export default function Equipement({ handleSuivant, selectedTypeEquipement, handleRegister, leLot }) {
+export default function Equipement({ handleSuivant, selectedTypeEquipement, handleRegister }) {
     const [equipements, setEquipements] = useState([])
     const [selectedNumSerie, setSelectedNumSerie] = useState('')
-    const [lot, setLot] = useState(leLot)
-    const [count, setCount] = useState(0)
-    // function handleRegister(formData) {
-    //     const newLot = {
-    //         descriptive: formData.get("descriptive"),
-    //         marque: formData.get("marque"),
-    //         modele: formData.get("modele"),
-    //         quantite: formData.get("quantite"),
-    //         caracteristiques: formData.get("caracteristiques"),
-    //         couleur: formData.get("couleur"),
-    //         photos: formData.get("photos"),
-    //         typeEquipementId: selectedTypeEquipement.id,
-    //         equipements: equipements
-    //     }
-    //     setLot({ ...leLot, newLot })
-    // }
+
     function handleAjouter() {
-        setEquipements(prev => [...prev, { num: selectedNumSerie, identifiant: 'xx' }])
+        setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie, numeroUnique: 'xx' }])
         setSelectedNumSerie(' ')
     }
     function handleChange(e) {

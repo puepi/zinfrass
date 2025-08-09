@@ -4,7 +4,7 @@ export default function BatimentsLoger() {
     return (
         <>
             <h1>Affecter du personnel à un espace</h1>
-            <section className="batiments">
+            <section className="batiments-new">
                 <form action="" id="batiments-loger">
                     <label htmlFor="">Identification de l'espace :</label>
                     <input type="text" disabled />

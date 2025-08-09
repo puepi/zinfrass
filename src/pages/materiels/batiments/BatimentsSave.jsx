@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Batiment from "./Batiment";
 
 import './batiments.css'
 import BatimentsShow from "./BatimentsShow";
 import SubdivisionSearchModal from "./SuvdivisionSearchModal";
-import { addBatiment } from "../../../utils/ApiFunctions";
+import { addBatiment, getAllBatiments } from "../../../utils/ApiFunctions";
 export default function BatimentSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Enregistrer')
+    const [message, setMessage] = useState('Aucun élément trouvé')
     const [subdivision, setSubdivision] = useState({
         id: '',
         nom: '',
@@ -70,6 +71,15 @@ export default function BatimentSave() {
                 setMessageButton('Rechercher')
             })
     }
+    async function showAllBatiments() {
+        setMessage('...is loading...')
+        await getAllBatiments()
+            .then(data => setBatiments(data))
+            .catch(error => setMessage('Aucun élément trouvé'))
+    }
+    useEffect(() => {
+        showAllBatiments()
+    }, [])
     return (
         <>
             <h1>Enregistrement d'un nouveau bâtiment</h1>
@@ -86,7 +96,7 @@ export default function BatimentSave() {
                 <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
             }
             <BatimentsShow
-                batiments={batiments}
+                batiments={batiments} messageButton={message}
             />
         </>
     )

@@ -1,6 +1,6 @@
 import './batiments.css'
 
-export default function BatimentsShow({ batiments }) {
+export default function BatimentsShow({ batiments, messageButton }) {
 
     return (
         <>
@@ -36,12 +36,12 @@ export default function BatimentsShow({ batiments }) {
                         </tr>
                     </thead>
                     <tbody className='batiments-body'>
-                        {batiments && batiments.length === 0 && <tr className='titles'><td>Aucun élément trouvé</td></tr>}
+                        {batiments && batiments.length === 0 && <tr className='titles'><td>{messageButton}</td></tr>}
                         {batiments && batiments.length > 0 && (
                             batiments.map((batiment, id) => <tr key={batiment.id} className='dynamic-row'>
                                 <td>{id + 1}</td>
-                                <td>{batiment.nom}</td>
                                 <td>{batiment.subdivisionName}</td>
+                                <td>{batiment.nom}</td>
                                 <td>{batiment.nature}</td>
                                 <td>{batiment.description}</td>
                                 <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td>
