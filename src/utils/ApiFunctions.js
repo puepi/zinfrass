@@ -182,7 +182,9 @@ export async function addSubdivision(subdivision) {
     const formData = new FormData()
     formData.append("nom", subdivision.nom)
     formData.append("type", subdivision.type)
-    formData.append("parentId", Number.parseInt(subdivision.parentId))
+    if (subdivision.parentId) {
+        formData.append("parentId", Number.parseInt(subdivision.parentId))
+    }
     try {
         const plainObject = Object.fromEntries(formData.entries())
         console.log(JSON.stringify(plainObject))

@@ -24,15 +24,7 @@ export default function EquipementsReception() {
         nom: '',
         id: ''
     })
-    const [fournisseur, setFournisseur] = useState({
-        nom: '',
-        representant: '',
-        type: '',
-        adresse: '',
-        contact: '',
-        email: '',
-        niu: ''
-    })
+    const [fournisseur, setFournisseur] = useState({})
     function handleClick() {
         setToShow('type-equipement')
     }
@@ -63,7 +55,7 @@ export default function EquipementsReception() {
         setFournisseur(newFournisseur)
         await addFournisseur(newFournisseur)
             .then(response => {
-                setFournisseurs(prev => ([...prev, response]))
+                setFournisseurs(prev => ([response, ...prev]))
                 setSelectedFournisseur({
                     nom: response.nom,
                     id: response.id
@@ -144,7 +136,7 @@ export default function EquipementsReception() {
         <>
             <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
-                {toShow === 'fournisseur' && <Fournisseur handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} lesFournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
+                {toShow === 'fournisseur' && <Fournisseur handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
                 {toShow === 'lot' && <Lot lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePrec} handleSubmitAll={handleSubmitAll} />}
             </section>

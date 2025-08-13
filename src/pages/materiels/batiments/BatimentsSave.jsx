@@ -74,7 +74,7 @@ export default function BatimentSave() {
     async function showAllBatiments() {
         setMessage('...is loading...')
         await getAllBatiments()
-            .then(data => setBatiments(data))
+            .then(data => { setBatiments(data); setMessage('Aucun élément trouvé') })
             .catch(error => setMessage('Aucun élément trouvé'))
     }
     useEffect(() => {

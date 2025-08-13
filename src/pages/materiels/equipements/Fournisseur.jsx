@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { getAllFournisseurs } from "../../../utils/ApiFunctions"
 
-export default function Fournisseur({ handleSuivant, handleChange, registerFournisseur, selectedFournisseur, isDisabled, messageButton, lesFournisseurs, handleSelectRow }) {
-    const [fournisseurs, setFournisseurs] = useState(lesFournisseurs)
+export default function Fournisseur({ handleSuivant, handleChange, registerFournisseur, selectedFournisseur, isDisabled, messageButton, fournisseurs, handleSelectRow }) {
+
     const [isLoading, setIsLoading] = useState(false)
     const [loadingMessage, setLoadingMessage] = useState('...data is loading')
     useEffect(() => {
