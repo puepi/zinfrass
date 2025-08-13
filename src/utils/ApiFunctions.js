@@ -287,4 +287,33 @@ export async function getAllFactures() {
 }
 
 
+export async function getAllStructures() {
+    try {
+        const response = await api.get('/structures/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function addStructure(structure) {
+    const payload = {
+        nom: structure.nom,
+        abreviation: structure.abreviation,
+        type: structure.type,
+        subdivisionId: structure.subdivisionId,
+        parentId:structure.parentId
+    };
+    try {
+        const response = await api.post("/structures/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+
 

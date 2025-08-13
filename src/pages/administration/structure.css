@@ -8,7 +8,7 @@
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(7, 20px);
+    grid-template-rows: repeat(5, 20px);
     border-radius: 8px;
     border: 5px solid #ffc736;
     background-color: #fff;
@@ -39,4 +39,45 @@
 
 #structures-unites-admin .empty {
     grid-column: 4/-1;
+}
+
+
+
+.structures-body {
+    background-color: #fff;
+}
+
+.structures-body tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.structures tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.structures thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.structures input:first-of-type{
+    grid-column: 2 / span 2;
 }
