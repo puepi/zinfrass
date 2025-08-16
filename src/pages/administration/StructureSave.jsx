@@ -96,9 +96,9 @@ export default function StructureSave() {
                             <fieldset className="lastructure">
                                 <legend>Structures</legend>
                                 <form action={handleSubmit} id="structures-save">
-                                    <label htmlFor="">Structure : </label>
+                                    <label htmlFor="">Structure choisie</label>
                                     <input type="text" name="" id="" disabled value={selectedStructure.nom} onChange={handleChange3} /><div></div><div></div>
-                                    <label htmlFor="">Type de subdivision :</label>
+                                    <label htmlFor="">Subdivision :</label>
                                     <select name="" id="">
                                         <option value="">Sélectionner une option</option>
                                         <option value="">Services centraux</option>
@@ -108,7 +108,7 @@ export default function StructureSave() {
                                     </select>
                                     <Link className="search-link" to="" onClick={handleSearchSub}>...rechercher</Link>
                                     <input type="text" disabled value={selectedSubdivision.nom} onChange={handleChange2} />
-                                    <label htmlFor="nom">Nom de la structure :</label>
+                                    <label htmlFor="nom">Nom  :</label>
                                     <input type="text" name="nom" id="nom" />
                                     <label htmlFor="parent">Rattachée à  :</label>
                                     <input type="text" name="parent" id="parent" disabled value={selectedStructureParent.nom} />
@@ -130,7 +130,7 @@ export default function StructureSave() {
                                     <button disabled={isDisabled}>{messageButton}</button>
                                     <button type="button" onClick={handleSuivant}>Suivant</button>
                                 </form>
-                                <form action="" id="show-form">
+                                <form action="" class="show-form">
                                     <label htmlFor="">Type de structure :</label>
                                     <select name="" id="">
                                         <option value="">Faites un choix</option>
@@ -150,7 +150,7 @@ export default function StructureSave() {
                                             <th>Rattachée à</th>
                                         </tr>
                                     </thead>
-                                    <tbody className='structures-body'>
+                                    <tbody className='lastructure-body'>
                                         {structures && structures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                                         {structures && structures.length > 0 && (
                                             structures.map((structure, id) => <tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>

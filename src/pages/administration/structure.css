@@ -1,5 +1,5 @@
 .structures {
-    width: 65%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -41,17 +41,19 @@
 
 
 
-.structures-body {
+.lastructure-body {
     background-color: #fff;
 }
 
-.structures-body tr.titles {
+
+.lastructure-body tr.titles {
     margin: 5px;
     text-align: center;
     font-size: 0.7rem;
 }
 
-.structures tr.dynamic-row {
+
+.lastructure-body tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
@@ -59,12 +61,14 @@
     border: none;
 }
 
-.structures thead .show-tab {
+
+.lastructure thead .show-tab {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
+
 
 .show-tab th {
     border: 1px solid aliceblue;
@@ -76,30 +80,13 @@
     align-items: center;
 }
 
-.structures input:first-of-type {
+
+.lastructure input:first-of-type {
     grid-column: 2 / span 2;
 }
 
-.structures input:nth-of-type(2) {
+.lastructure input:nth-of-type(2) {
     grid-column: 4 / -1;
-}
-
-#show-form {
-    display: grid;
-    gap: 5px;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 5px solid wheat;
-    grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 0.5rem;
-    background-color: #fff;
-}
-
-.structure-postes-save {
-    display: grid;
-    gap: 5px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 20px);
 }
 
 .lastructure {
@@ -111,4 +98,58 @@
     color: #1B85B8;
     font-style: italic;
     font-size: 0.8rem;
+}
+
+.show-form {
+    display: grid;
+    gap: 5px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid wheat;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+}
+
+
+
+.structure-postes-save {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    padding-inline: 5px;
+}
+
+.leposte {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
+}
+
+.leposte legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+
+.leposte tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+
+.leposte tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.leposte thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
 }
