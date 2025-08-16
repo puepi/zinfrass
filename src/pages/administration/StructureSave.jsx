@@ -3,25 +3,31 @@ import './structure.css'
 import { useEffect, useState } from "react"
 import { addStructure, getAllStructures } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
+import StructureSearchModal from "./StructureSearchModal"
+import PosteSave from "./PosteSave"
 export default function StructureSave() {
-    const [structures,setStructures]=useState([])
-    const [messageLoading,setMessageLoading]=useState('Aucun élément trouvé')
-    const [messageButton,setMessageButton]=useState('Enregistrer')
-    const [selectedStructure,setSelectedStructure]=useState({})
-    const [selectedSubdivision,setSelectedSubdivision]=useState({})
-    const [showModal,setShowModal]=useState(false)
-    const [isDisabled,setIsDisabled]=useState(false)
-    async function getstructures(){
+    const [structures, setStructures] = useState([])
+    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    const [messageButton, setMessageButton] = useState('Enregistrer')
+    const [selectedStructure, setSelectedStructure] = useState({})
+    const [selectedStructureParent, setSelectedStructureParent] = useState({})
+    const [selectedSubdivision, setSelectedSubdivision] = useState({})
+    const [showModal, setShowModal] = useState(false)
+    const [showModal2, setShowModal2] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [isDeactivated, setIsDeactivated] = useState(false)
+    const [toContinue, setToContinue] = useState('structures')
+    async function getstructures() {
         setMessageLoading('...is Loading')
         await getAllStructures()
-            .then(data=>setStructures(data))
-            .catch(error=>console.log(error))
-            .finally(()=>setMessageLoading('Aucun élément trouvé'))
+            .then(data => setStructures(data))
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
-    useEffect(()=>{
+    useEffect(() => {
         getstructures()
-    },[])
-    async function handleSubmit(formData){
+    }, [])
+    async function handleSubmit(formData) {
         setIsDisabled(true)
         setMessageButton("...Saving")
         const newStructure = {
@@ -29,106 +35,153 @@ export default function StructureSave() {
             type: formData.get("type"),
             abreviation: formData.get("abreviation"),
             subdivisionId: selectedSubdivision.id,
-            parentId: selectedStructure.id,
+            parentId: selectedStructureParent.id,
         }
         await addStructure(newStructure)
             .then(response => {
+                setSelectedStructure(prev => ({ ...prev, nom: response.nom }))
                 setStructures(prev => [response, ...prev])
                 console.log(response)
             })
             .catch(error => console.log(error))
             .finally(() => {
                 setIsDisabled(false)
-                setMessageButton('Rechercher')
+                setMessageButton('Enregistrer')
             })
     }
-    function handleChange(){
+    function handleChange(e) {
+        setSelectedStructure(prev => ({ ...prev, nom: e.target.value }))
+    }
+    function handleChange2(e) {
 
     }
-    function handleSearchSub(){
+    function handleChange3(e) {
+
+    }
+    function handleSearchSub() {
         setShowModal(true)
     }
-    function handleCloseModal(){
+    function handleSearchStructure() {
+        setShowModal2(true)
+    }
+    function handleCloseModal() {
         setShowModal(false)
     }
-    function handleSelectSubdivision(subdivision){
+    function handleCloseModal2() {
+        setShowModal2(false)
+    }
+    function handleSelectSubdivision(subdivision) {
         setSelectedSubdivision(subdivision)
+    }
+    function handleSelectStructure(structure) {
+        setSelectedStructureParent(structure)
+    }
+    function handleClick(structure) {
+        setSelectedStructure({
+            nom: structure.nom, id: structure.id
+        })
+    }
+    function handleSuivant() {
+        setToContinue('postes')
     }
     return (
         <>
-            <h1>Créer une structure avec ses postes de responsabilité</h1>
-            <section className="structures">
-                <form action={handleSubmit} id="structures-save">
-                    <label htmlFor="">Structure : </label>
-                    <input type="text" name="" id="" disabled value={selectedStructure.nom} onChange={handleChange}/><div></div><div></div>
-                    <label htmlFor="">Type de subdivision :</label>
-                    <select name="" id="">
-                        <option value="">Sélectionner une option</option>
-                        <option value="">Services centraux</option>
-                        <option value="">Région</option>
-                        <option value="">Département</option>
-                        <option value="">Arrondissement</option>
-                    </select>
-                    <Link className="search-link" to="" onClick={handleSearchSub}>...rechercher</Link>
-                    <input type="text" disabled value={selectedSubdivision.nom} onChange={handleChange}/>
-                    <div className="empty2"></div>
-                    <label htmlFor="nom">Nom de la structure :</label>
-                    <input type="text" name="nom" id="nom"/>
-                    <label htmlFor="parent">Rattachée à  :</label>
-                    <input type="text" name="parent" id="parent" disabled/>
-                    <Link className="search-link" to="/administration/structures/show">...rechercher</Link>
-                    <label htmlFor="abreviation">Abréviation :</label>
-                    <input type="text" name='abreviation' id='abreviation'/>
-                    <label htmlFor="type">Type de structure  :</label>
-                    <select id="type" name='type'>
-                        <option value="">Sélectionner une option</option>
-                        <option value="">Cabinet du Ministre</option>
-                        <option value="">Secrétariat Général</option>
-                        <option value="">Direction</option>
-                        <option value="">Division</option>
-                        <option value="">Cellule</option>
-                        <option value="">Service</option>
-                        <option value="">Bureau</option>
-                    </select><div></div>
-                    <button disabled={isDisabled}>{messageButton}</button>
-                </form>
-                <form action="" id="show-form">
-                    <label htmlFor="">Type de structure :</label>
-                    <select name="" id="">
-                        <option value="">Faites un choix</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="">Selectionner une option</option>
-                    </select>
-                    <div></div><div></div>
-                    <button type="button">Rechercher</button>
-                </form>
-                <table>
-                    <thead>
-                        <tr className='show-tab'>
-                            <th>N° </th>
-                            <th>Nom</th>
-                            <th>Subdivision</th>
-                            <th>Abréviation</th>
-                        </tr>
-                    </thead>
-                    <tbody className='structures-body'>
-                        {structures && structures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                        {structures && structures.length > 0 && (
-                            structures.map((structure, id) => <tr key={structure.id} className='dynamic-row'>
-                                <td>{id + 1}</td>
-                                <td>{structure.nom}</td>
-                                <td>{structure.subdivision.nom}</td>
-                                <td>{structure.abreviation}</td>
-                            </tr>)
-                        )}
-                    </tbody>
-                </table>
-            </section>
             {
-                showModal &&
-                <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
+
+                <>
+                    <h1>Créer une structure avec ses postes de responsabilité</h1>
+                    <section className="structures">
+                        {
+                            toContinue === 'structures' &&
+                            <fieldset className="lastructure">
+                                <legend>Structures</legend>
+                                <form action={handleSubmit} id="structures-save">
+                                    <label htmlFor="">Structure : </label>
+                                    <input type="text" name="" id="" disabled value={selectedStructure.nom} onChange={handleChange3} /><div></div><div></div>
+                                    <label htmlFor="">Type de subdivision :</label>
+                                    <select name="" id="">
+                                        <option value="">Sélectionner une option</option>
+                                        <option value="">Services centraux</option>
+                                        <option value="">Région</option>
+                                        <option value="">Département</option>
+                                        <option value="">Arrondissement</option>
+                                    </select>
+                                    <Link className="search-link" to="" onClick={handleSearchSub}>...rechercher</Link>
+                                    <input type="text" disabled value={selectedSubdivision.nom} onChange={handleChange2} />
+                                    <label htmlFor="nom">Nom de la structure :</label>
+                                    <input type="text" name="nom" id="nom" />
+                                    <label htmlFor="parent">Rattachée à  :</label>
+                                    <input type="text" name="parent" id="parent" disabled value={selectedStructureParent.nom} />
+                                    <Link className="search-link" to="" onClick={handleSearchStructure}>...rechercher</Link>
+                                    <label htmlFor="abreviation">Abréviation :</label>
+                                    <input type="text" name='abreviation' id='abreviation' />
+                                    <label htmlFor="type">Type de structure  :</label>
+                                    <select id="type" name='type'>
+                                        <option value="">Sélectionner une option</option>
+                                        <option value="Cabinet du Ministre">Cabinet du Ministre</option>
+                                        <option value="Secrétariat Général">Secrétariat Général</option>
+                                        <option value="Inspection Générale">Inspection Générale</option>
+                                        <option value="Direction">Direction</option>
+                                        <option value="Division">Division</option>
+                                        <option value="Cellule">Cellule</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Bureau">Bureau</option>
+                                    </select><div></div>
+                                    <button disabled={isDisabled}>{messageButton}</button>
+                                    <button type="button" onClick={handleSuivant}>Suivant</button>
+                                </form>
+                                <form action="" id="show-form">
+                                    <label htmlFor="">Type de structure :</label>
+                                    <select name="" id="">
+                                        <option value="">Faites un choix</option>
+                                    </select>
+                                    <select name="" id="">
+                                        <option value="">Selectionner une option</option>
+                                    </select>
+                                    <button type="button" >Rechercher</button>
+                                </form>
+                                <table>
+                                    <thead>
+                                        <tr className='show-tab'>
+                                            <th>N° </th>
+                                            <th>Nom</th>
+                                            <th>Subdivision</th>
+                                            <th>Abréviation</th>
+                                            <th>Rattachée à</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='structures-body'>
+                                        {structures && structures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
+                                        {structures && structures.length > 0 && (
+                                            structures.map((structure, id) => <tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>
+                                                <td>{id + 1}</td>
+                                                <td>{structure.nom}</td>
+                                                <td>{structure.subdivision.nom}</td>
+                                                <td>{structure.abreviation}</td>
+                                                <td>{structure.parent}</td>
+                                            </tr>)
+                                        )}
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        }
+                        {
+                            toContinue === 'postes' && <PosteSave />
+                        }
+                    </section>
+                    {
+                        showModal &&
+                        <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
+                    }
+                    {
+                        showModal2 &&
+                        <StructureSearchModal handleCloseModal={handleCloseModal2} handleSelectStructure={handleSelectStructure} />
+                    }
+                </>
+
             }
+
+
         </>
     )
 }

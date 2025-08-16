@@ -303,7 +303,7 @@ export async function addStructure(structure) {
         abreviation: structure.abreviation,
         type: structure.type,
         subdivisionId: structure.subdivisionId,
-        parentId:structure.parentId
+        parentId: structure.parentId
     };
     try {
         const response = await api.post("/structures/add", payload)
@@ -311,6 +311,20 @@ export async function addStructure(structure) {
         return response.data.data
     } catch (error) {
         // console.log(error.message)
+        throw error
+    }
+}
+
+
+export async function getStructures(name) {
+    try {
+        const parameters = {}
+        parameters.name = name
+        const response = await api.get("/structures/get-name", { params: parameters })
+        // const response = await api.get("/batiments/getall")
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
         throw error
     }
 }

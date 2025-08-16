@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import './structure.css'
 import SubdivisionsShow from "./SubdivisionsShow"
 import { useState } from "react"
 import { addSubdivision, getAllSubdivisions } from "../../utils/ApiFunctions"
