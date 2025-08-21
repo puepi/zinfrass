@@ -130,7 +130,7 @@ export default function StructureSave() {
                                     <button disabled={isDisabled}>{messageButton}</button>
                                     <button type="button" onClick={handleSuivant}>Suivant</button>
                                 </form>
-                                <form action="" class="show-form">
+                                <form action="" className="show-form">
                                     <label htmlFor="">Type de structure :</label>
                                     <select name="" id="">
                                         <option value="">Faites un choix</option>
