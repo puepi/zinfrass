@@ -1,15 +1,62 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { addPoste, getAllPostes } from "../../utils/ApiFunctions"
 
 
-export default function PosteSave() {
+export default function PosteSave({ handlePrecedent, handleSuivant, handleClickPostes }) {
     const [postes, setPostes] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    const [messageButton, setMessageButton] = useState('Enregister')
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [selectedPoste, setSelectedPoste] = useState({})
+    async function getPostes() {
+        setMessageLoading('...Loading')
+        await getAllPostes()
+            .then(data => setPostes(data))
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
+    }
+    useEffect(() => {
+        getPostes()
+    }, [])
+    function handleClick(poste) {
+        const newPoste = {
+            nom: poste.nom,
+            id: poste.id
+        }
+        setSelectedPoste(newPoste)
+        handleClickPostes(newPoste)
+    }
+    function handleChange(e) {
+        setSelectedPoste(prev => ({ ...prev, nom: e.target.value }))
+    }
+    async function handleSubmitPoste(formData) {
+        setIsDisabled(true)
+        setMessageButton("...Saving")
+        const newPoste = {
+            nom: formData.get("nom"),
+            rang: formData.get("rang"),
+            abreviation: formData.get("abreviation")
+        }
+        await addPoste(newPoste)
+            .then(response => {
+                setSelectedPoste(prev => ({ ...prev, nom: response.nom }))
+                setPostes(prev => [response, ...prev])
+                console.log(response)
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                setIsDisabled(false)
+                setMessageButton('Enregistrer')
+            })
+    }
     return (
 
         <>
             <fieldset className="leposte">
                 <legend>Postes de responsabilité</legend>
-                <form action="" className="structure-postes-save">
+                <form action={handleSubmitPoste} className="structure-postes-save">
+                    <div></div>
+                    <input className="myinput" type="text" name="" id="" disabled value={selectedPoste.nom} onChange={handleChange} />
                     <label htmlFor="nom">Nom :</label>
                     <input type="text" name="nom" id="nom" />
                     <label htmlFor="abreviation">Abréviation :</label>
@@ -26,11 +73,12 @@ export default function PosteSave() {
                         <option value="Chef de service">Chef de Service</option>
                         <option value="Chef de Bureau">Chef de Bureau</option>
                     </select>
-                    <div></div><div></div>
-                    <button>Enregistrer</button>
+                    <button disabled={isDisabled}>{messageButton}</button>
                     <div></div>
-                    <button type="button">Précédent</button>
-                    <button type="button">Suivant</button>
+                    <button type="button" onClick={handlePrecedent}>Précédent</button>
+                    <div></div>
+                    <div></div>
+                    <button type="button" onClick={handleSuivant}>Suivant</button>
                 </form>
                 <form action="" className="show-form">
                     <label htmlFor="">Type de structure :</label>
@@ -54,11 +102,11 @@ export default function PosteSave() {
                     <tbody className='lastructure-body'>
                         {postes && postes.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                         {postes && postes.length > 0 && (
-                            postes.map((poste, id) => <tr key={poste.id} className='dynamic-row' onClick={() => handleClick(structure)}>
+                            postes.map((poste, id) => <tr key={poste.id} className='dynamic-row' onClick={() => handleClick(poste)}>
                                 <td>{id + 1}</td>
                                 <td>{poste.nom}</td>
-                                <td>{poste.subdivision.nom}</td>
                                 <td>{poste.abreviation}</td>
+                                <td>{poste.rang}</td>
                             </tr>)
                         )}
                     </tbody>

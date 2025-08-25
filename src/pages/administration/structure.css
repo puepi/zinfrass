@@ -117,7 +117,14 @@
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 20px);
     padding-inline: 5px;
+    padding-block: 5px;
+    background-color: #fff;
+}
+
+.myinput {
+    grid-column: 2/-1
 }
 
 .leposte {
@@ -150,6 +157,53 @@
 .leposte thead .show-tab {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.respos-save {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 20px);
+    padding-inline: 5px;
+    padding-block: 5px;
+    background-color: #fff;
+}
+
+.larespo {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
+}
+
+.larespo legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+
+.larespo tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.theinput {
+    grid-column: 2/ span 2;
+}
+
+.larespo tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.larespo thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }

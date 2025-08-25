@@ -329,5 +329,31 @@ export async function getStructures(name) {
     }
 }
 
+export async function addPoste(poste) {
+    const payload = {
+        nom: poste.nom,
+        abreviation: poste.abreviation,
+        rang: poste.rang
+    };
+    try {
+        const response = await api.post("/postes/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllPostes() {
+    try {
+        const response = await api.get('/postes/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
 
 

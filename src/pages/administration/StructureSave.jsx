@@ -5,12 +5,14 @@ import { addStructure, getAllStructures } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
 import StructureSearchModal from "./StructureSearchModal"
 import PosteSave from "./PosteSave"
+import RespoSave from "./RespoSave"
 export default function StructureSave() {
     const [structures, setStructures] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [selectedStructure, setSelectedStructure] = useState({})
     const [selectedStructureParent, setSelectedStructureParent] = useState({})
+    const [selectedPoste, setSelectedPoste] = useState({})
     const [selectedSubdivision, setSelectedSubdivision] = useState({})
     const [showModal, setShowModal] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
@@ -56,7 +58,7 @@ export default function StructureSave() {
 
     }
     function handleChange3(e) {
-
+        setSelectedStructure(prev => ({ ...prev, nom: e.target.value }))
     }
     function handleSearchSub() {
         setShowModal(true)
@@ -82,6 +84,18 @@ export default function StructureSave() {
         })
     }
     function handleSuivant() {
+        setToContinue('postes')
+    }
+    function handlePrevious() {
+        setToContinue('structures')
+    }
+    function handleNext() {
+        setToContinue('responsabilisations')
+    }
+    function handleClickPostes(poste) {
+        setSelectedPoste(poste)
+    }
+    function handlePrecedRespo() {
         setToContinue('postes')
     }
     return (
@@ -128,6 +142,7 @@ export default function StructureSave() {
                                         <option value="Bureau">Bureau</option>
                                     </select><div></div>
                                     <button disabled={isDisabled}>{messageButton}</button>
+                                    <div></div><div></div><div></div>
                                     <button type="button" onClick={handleSuivant}>Suivant</button>
                                 </form>
                                 <form action="" className="show-form">
@@ -166,7 +181,9 @@ export default function StructureSave() {
                             </fieldset>
                         }
                         {
-                            toContinue === 'postes' && <PosteSave />
+                            toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
+                        }{
+                            toContinue === 'responsabilisations' && <RespoSave handlePrecedent={handlePrecedRespo} />
                         }
                     </section>
                     {
