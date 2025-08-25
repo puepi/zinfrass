@@ -1,13 +1,32 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { getAllResponsabilisations } from "../../utils/ApiFunctions"
 
 
-export default function RespoSave({ handlePrecedent }) {
-    const [respos, setRespos] = useState([])
-    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos,messageLoadingRespo}) {
+    const [isChecked,setIsChecked]=useState(false)
+    function  handleCheck(e){
+        setIsChecked(e.target.checked)
+    }
+    
+    function handleSubmit(formData){
+        const newRespo={
+            debut:formData.get('debut'),
+            fin:formData.get('fin'),
+            noms:formData.get('noms'),
+            actif:formData.get('actif')==='on' ? true : false
+        }
+        handleSubmitNow(newRespo)
+    }
+    
+    
+
+    useEffect(()=>{
+        getRespos()
+    },[])
     return (
         <fieldset className="larespo">
             <legend>Responsabilisations</legend>
-            <form action="" className="respos-save">
+            <form action={handleSubmit} className="respos-save">
                 <label htmlFor="debut">Date de début :</label>
                 <input type="date" name="debut" id="debut" />
                 <span></span>
@@ -17,13 +36,13 @@ export default function RespoSave({ handlePrecedent }) {
                 <input type="text" name="noms" id="noms" className="theinput" />
                 <span></span>
                 <label htmlFor="actif">
-                    <input type="checkbox" name="actif" id="actif" />
+                    <input type="checkbox" name="actif" id="actif" checked={isChecked} onChange={handleCheck}/>
                     Actif
                 </label>
-                <button>Enregistrer</button>
+                <button type="button" onClick={handlePrecedent}>Précédent</button>
                 <span></span>
                 <div></div><div></div>
-                <button type="button" onClick={handlePrecedent}>Précédent</button>
+                <button disabled={isDisabled}>{messageButton}</button>
             </form>
             <form action="" className="show-form">
                 <label htmlFor="">Selon le rang :</label>
@@ -38,22 +57,20 @@ export default function RespoSave({ handlePrecedent }) {
             <table>
                 <thead>
                     <tr className='show-tab'>
-                        <th>N° </th>
                         <th>Structure</th>
+                        <th>Poste</th>
                         <th>Noms et prénoms</th>
                         <th>Debut</th>
-                        <th>Fin</th>
-                        <th>Actif</th>
                     </tr>
                 </thead>
                 <tbody className='lastructure-body'>
-                    {respos && respos.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
+                    {respos && respos.length === 0 && <tr className='titles'><td>{messageLoadingRespo}</td></tr>}
                     {respos && respos.length > 0 && (
-                        respos.map((respo, id) => <tr key={respo.id} className='dynamic-row' onClick={() => handleClick(poste)}>
-                            <td>{id + 1}</td>
-                            <td>{respo.nom}</td>
-                            <td>{respo.abreviation}</td>
-                            <td>{respo.rang}</td>
+                        respos.map((respo, id) => <tr key={respo.id} className='dynamic-row' >
+                            <td>{respo.nomStructure}</td>
+                            <td>{respo.nomPoste}</td>
+                            <td>{respo.noms}</td>
+                            <td>{respo.debut}</td>
                         </tr>)
                     )}
                 </tbody>

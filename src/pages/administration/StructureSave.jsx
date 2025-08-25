@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import './structure.css'
 import { useEffect, useState } from "react"
-import { addStructure, getAllStructures } from "../../utils/ApiFunctions"
+import { addRespo, addStructure, getAllResponsabilisations, getAllStructures } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
 import StructureSearchModal from "./StructureSearchModal"
 import PosteSave from "./PosteSave"
@@ -10,6 +10,10 @@ export default function StructureSave() {
     const [structures, setStructures] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
+    const [isDisabledRespo,setIsDisabledRespo]=useState(false)
+    const [messageLoadingRespo, setMessageLoadingRespo] = useState('Aucun élément trouvé')
+    const [messageButtonRespo,setMessageButtonRespo]=useState('Enregistrer')
+    const [respos, setRespos] = useState([])
     const [selectedStructure, setSelectedStructure] = useState({})
     const [selectedStructureParent, setSelectedStructureParent] = useState({})
     const [selectedPoste, setSelectedPoste] = useState({})
@@ -98,6 +102,32 @@ export default function StructureSave() {
     function handlePrecedRespo() {
         setToContinue('postes')
     }
+    async function getRespos(){
+        setMessageLoadingRespo('...is Loading')
+        await getAllResponsabilisations()
+            .then(data => {setRespos(data);console.log(data)})
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoadingRespo('Aucun élément trouvé'))
+    }
+    async function handleSubmitRespo(respo){
+        setIsDisabledRespo(true)
+        setMessageButtonRespo("...Saving")
+        const newRespo={
+            structureId:selectedStructure.id,
+            posteId:selectedPoste.id,
+            ...respo
+        }
+        await addRespo(newRespo)
+            .then(response => {
+                setRespos(prev => [response, ...prev])
+                console.log(response)
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                setIsDisabledRespo(false)
+                setMessageButtonRespo('Enregistrer')
+            })
+    }
     return (
         <>
             {
@@ -181,9 +211,9 @@ export default function StructureSave() {
                             </fieldset>
                         }
                         {
-                            toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
+                            toContinue === 'postes' && <PosteSave messageLoadingRespo={messageLoadingRespo} handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
                         }{
-                            toContinue === 'responsabilisations' && <RespoSave handlePrecedent={handlePrecedRespo} />
+                            toContinue === 'responsabilisations' && <RespoSave respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo}/>
                         }
                     </section>
                     {

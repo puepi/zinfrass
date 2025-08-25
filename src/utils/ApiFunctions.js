@@ -357,3 +357,32 @@ export async function getAllPostes() {
 
 
 
+export async function addRespo(respo) {
+    const payload = {
+        structureId:respo.structureId,
+        posteId:respo.posteId,
+        debut: respo.debut,
+        fin: respo.fin,
+        noms: respo.noms,
+        actif:respo.actif
+    }
+    try {
+        const response = await api.post("/responsabilisations/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllResponsabilisations() {
+    try {
+        const response = await api.get('/responsabilisations/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
