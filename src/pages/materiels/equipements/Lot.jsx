@@ -3,7 +3,7 @@ import LotShow from "./LotShow";
 import { getAllLots } from "../../../utils/ApiFunctions";
 
 
-export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoading }) {
+export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoadingLot }) {
 
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
                     <button>{messageSubmit}</button>
                 </form>
             </fieldset>
-            <LotShow lots={lots} messageLoading={messageLoading} />
+            <LotShow lots={lots} messageLoadingLot={messageLoadingLot} />
         </section>
 
     )

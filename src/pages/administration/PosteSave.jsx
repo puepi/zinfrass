@@ -58,11 +58,11 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                     <div></div>
                     <input className="myinput" type="text" name="" id="" disabled value={selectedPoste.nom} onChange={handleChange} />
                     <label htmlFor="nom">Nom :</label>
-                    <input type="text" name="nom" id="nom" />
+                    <input type="text" name="nom" id="nom" required />
                     <label htmlFor="abreviation">Abréviation :</label>
-                    <input type="text" name="abreviation" id="abreviation" />
+                    <input type="text" name="abreviation" id="abreviation" required />
                     <label htmlFor="rang">Rang :</label>
-                    <select name="rang" id="rang">
+                    <select name="rang" id="rang" required>
                         <option value="">Faites un choix</option>
                         <option value="Ministre">Ministre</option>
                         <option value="Sectétaire Général">Secrétaire Général</option>

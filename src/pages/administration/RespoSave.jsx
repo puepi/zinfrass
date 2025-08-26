@@ -2,41 +2,41 @@ import { useEffect, useState } from "react"
 import { getAllResponsabilisations } from "../../utils/ApiFunctions"
 
 
-export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos,messageLoadingRespo}) {
-    const [isChecked,setIsChecked]=useState(false)
-    function  handleCheck(e){
+export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
+    const [isChecked, setIsChecked] = useState(false)
+    function handleCheck(e) {
         setIsChecked(e.target.checked)
     }
-    
-    function handleSubmit(formData){
-        const newRespo={
-            debut:formData.get('debut'),
-            fin:formData.get('fin'),
-            noms:formData.get('noms'),
-            actif:formData.get('actif')==='on' ? true : false
+
+    function handleSubmit(formData) {
+        const newRespo = {
+            debut: formData.get('debut'),
+            fin: formData.get('fin'),
+            noms: formData.get('noms'),
+            actif: formData.get('actif') === 'on' ? true : false
         }
         handleSubmitNow(newRespo)
     }
-    
-    
 
-    useEffect(()=>{
+
+
+    useEffect(() => {
         getRespos()
-    },[])
+    }, [])
     return (
         <fieldset className="larespo">
             <legend>Responsabilisations</legend>
             <form action={handleSubmit} className="respos-save">
                 <label htmlFor="debut">Date de début :</label>
-                <input type="date" name="debut" id="debut" />
+                <input type="date" name="debut" id="debut" required />
                 <span></span>
                 <label htmlFor="fin">Date de fin :</label>
                 <input type="date" name="fin" id="fin" />
                 <label htmlFor="noms">Noms et prénoms :</label>
-                <input type="text" name="noms" id="noms" className="theinput" />
+                <input type="text" name="noms" id="noms" className="theinput" required />
                 <span></span>
                 <label htmlFor="actif">
-                    <input type="checkbox" name="actif" id="actif" checked={isChecked} onChange={handleCheck}/>
+                    <input type="checkbox" name="actif" id="actif" checked={isChecked} onChange={handleCheck} />
                     Actif
                 </label>
                 <button type="button" onClick={handlePrecedent}>Précédent</button>

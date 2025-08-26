@@ -1,6 +1,6 @@
 
 
-export default function LotShow({ lots, messageLoading }) {
+export default function LotShow({ lots, messageLoadingLot }) {
     return (
         <div className="lot">
             <form action="" id="show-form">
@@ -26,7 +26,7 @@ export default function LotShow({ lots, messageLoading }) {
                     </tr>
                 </thead>
                 <tbody className='lots-body'>
-                    {lots && lots.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
+                    {lots && lots.length === 0 && <tr className='titles'><td>{messageLoadingLot}</td></tr>}
                     {lots && lots.length > 0 && (
                         lots.map((lot, id) => <tr key={lot.id} className='dynamic-row'>
                             <td>{lot.nroLot}</td>

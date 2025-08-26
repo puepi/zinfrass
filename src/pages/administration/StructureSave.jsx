@@ -10,9 +10,9 @@ export default function StructureSave() {
     const [structures, setStructures] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
-    const [isDisabledRespo,setIsDisabledRespo]=useState(false)
+    const [isDisabledRespo, setIsDisabledRespo] = useState(false)
     const [messageLoadingRespo, setMessageLoadingRespo] = useState('Aucun élément trouvé')
-    const [messageButtonRespo,setMessageButtonRespo]=useState('Enregistrer')
+    const [messageButtonRespo, setMessageButtonRespo] = useState('Enregistrer')
     const [respos, setRespos] = useState([])
     const [selectedStructure, setSelectedStructure] = useState({})
     const [selectedStructureParent, setSelectedStructureParent] = useState({})
@@ -102,19 +102,19 @@ export default function StructureSave() {
     function handlePrecedRespo() {
         setToContinue('postes')
     }
-    async function getRespos(){
+    async function getRespos() {
         setMessageLoadingRespo('...is Loading')
         await getAllResponsabilisations()
-            .then(data => {setRespos(data);console.log(data)})
+            .then(data => { setRespos(data); console.log(data) })
             .catch(error => console.log(error))
             .finally(() => setMessageLoadingRespo('Aucun élément trouvé'))
     }
-    async function handleSubmitRespo(respo){
+    async function handleSubmitRespo(respo) {
         setIsDisabledRespo(true)
         setMessageButtonRespo("...Saving")
-        const newRespo={
-            structureId:selectedStructure.id,
-            posteId:selectedPoste.id,
+        const newRespo = {
+            structureId: selectedStructure.id,
+            posteId: selectedPoste.id,
             ...respo
         }
         await addRespo(newRespo)
@@ -211,9 +211,9 @@ export default function StructureSave() {
                             </fieldset>
                         }
                         {
-                            toContinue === 'postes' && <PosteSave messageLoadingRespo={messageLoadingRespo} handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
+                            toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
                         }{
-                            toContinue === 'responsabilisations' && <RespoSave respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo}/>
+                            toContinue === 'responsabilisations' && <RespoSave messageLoadingRespo={messageLoadingRespo} respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo} />
                         }
                     </section>
                     {

@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react"
 import { getAllFournisseurs } from "../../../utils/ApiFunctions"
 
-export default function Fournisseur({ handleSuivant, handleChange, registerFournisseur, selectedFournisseur, isDisabled, messageButton, fournisseurs, handleSelectRow }) {
+export default function Fournisseur({ isLoading, loadingMessage, chercherFournisseurs, handleSuivant, handleChange, registerFournisseur, selectedFournisseur, isDisabled, messageButton, fournisseurs, handleSelectRow }) {
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [loadingMessage, setLoadingMessage] = useState('...data is loading')
+
     useEffect(() => {
         chercherFournisseurs()
     }, [])
-    function chercherFournisseurs() {
-        setIsLoading(true)
-        getAllFournisseurs()
-            .then(data => { console.log("data=" + data); setFournisseurs(data) })
-            .catch(error => console.log(error))
-            .finally(() => { setLoadingMessage('Aucun élément trouvé'); setIsLoading(false) })
-    }
+
     return (
         <fieldset className="fournisseur">
             <legend>Fournisseur</legend>
@@ -29,9 +22,9 @@ export default function Fournisseur({ handleSuivant, handleChange, registerFourn
                 <label htmlFor="typeSociete" >Type : </label>
                 <select name="type" id="typeSociete" required>
                     <option value="">Faites un choix</option>
-                    <option value="sarl">SARL</option>
-                    <option value="sa">SA</option>
-                    <option value="cooperative">Coopérative</option>
+                    <option value="SARL">SARL</option>
+                    <option value="SA">SA</option>
+                    <option value="Cooperative">Coopérative</option>
                 </select>
                 <div></div>
                 <label htmlFor="adresse">Adresse : </label>
