@@ -28,7 +28,7 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="/administration/unites-admin/save">Définir les subdivisions administratives</Link></p>
                     <p><Link className='show-link' to="/administration/structures/save">Créer des structures et leurs postes de responsabilités</Link></p>
-                    <p><Link className='show-link' to="/materiels/batiments/loger">Affecter le personnel à un espace</Link></p>
+                    <p><Link className='show-link' to="/materiels/batiments/loger">Gestion du personnel</Link></p>
 
                 </div>
             </li>

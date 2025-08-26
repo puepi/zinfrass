@@ -14,6 +14,16 @@
     background-color: #fff;
 }
 
+#equipements-demande{
+    display: grid;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 20px);
+    background-color: #fff; 
+}
+
 #equipements-save .empty {
     grid-column: 5/-1;
 }
@@ -405,4 +415,49 @@ p.count {
 .lots-body {
     background-color: #fff;
     font-size: .8rem;
+}
+
+
+
+
+.lepersonnel tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.lepersonnel tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.lepersonnel .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.lepersonnel thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.lepersonnel {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
+}
+
+.lepersonnel legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
 }

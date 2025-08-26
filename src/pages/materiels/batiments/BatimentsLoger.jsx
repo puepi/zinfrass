@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export default function BatimentsLoger() {
     return (
         <>
-            <h1>Affecter du personnel à un espace</h1>
+            <h1>Enregistrer le personnel</h1>
             <section className="batiments-new">
                 <form action="" id="batiments-loger">
                     <label htmlFor="">Identification de l'espace :</label>
