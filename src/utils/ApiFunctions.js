@@ -386,3 +386,35 @@ export async function getAllResponsabilisations() {
     }
 }
 
+
+
+
+export async function addDemande(demande) {
+    const payload = {
+        noms: demande.noms,
+        objet: demande.objet,
+        service: demande.service,
+        poste: demande.poste,
+        dateReception: demande.dateReception,
+        typeEquipement: demande.typeEquipement,
+        categorieEquipement: demande.categorieEquipement,
+    };
+    try {
+        const response = await api.post("/demandes/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllDemandes() {
+    try {
+        const response = await api.get('/demandes/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
