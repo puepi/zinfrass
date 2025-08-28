@@ -7,22 +7,30 @@ export default function EquipementsAffecter() {
             <section className="equipements">
                 <h1>Octroyer du matériel</h1>
                 <form action="" id="equipements-affecter">
-                    <label htmlFor="">Numéro unique :</label>
-                    <input type="text" disabled />
+                    <label htmlFor="">N° du lot :</label>
+                    <input type="text"  />
                     <Link className="search-link">...rechercher</Link>
-                    <label htmlFor="">Service d'affectation :</label>
-                    <input type="text" disabled />
+                    <label htmlFor="">Type d'équipement :</label>
+                    <input type="text" />
+                    <div></div>
+                    <label htmlFor="">Modèle :</label>
+                    <input type="text"  />
+                    <label htmlFor="">Quantité :</label>
+                    <input type="text"  />
+                    <label htmlFor="">Structure :</label>
+                    <input type="text" />
                     <Link className="search-link">...rechercher</Link>
-                    <label htmlFor="">Nom du détenteur :</label>
-                    <input type="text" disabled />
+                    <label htmlFor="">Poste :</label>
+                    <input type="text" />
                     <Link className="search-link">...rechercher</Link>
-                    <label htmlFor="">Poste de responsabilité :</label>
-                    <input type="text" disabled />
-                    <div className="empty"></div>
-                    <label htmlFor="">Référence :</label>
+                    <label htmlFor="">Date :</label>
+                    <input type="date" />
+                    <label htmlFor="">Bénéficiaire :</label>
+                    <input type="text" />
+                    <Link className="search-link">...rechercher</Link>
+                    <label htmlFor="">Document :</label>
                     <input type="file" />
-                    <div className="empty"></div>
-                    <button>Valider</button>
+                    <button>Enregistrer</button>
                 </form>
             </section>
         </>

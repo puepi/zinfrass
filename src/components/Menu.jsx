@@ -38,7 +38,7 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="/materiels/equipements/reception">Réceptionner un lot d'équipements</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements/demandes">Demandes de matériel</Link> </p>
-                    <p><Link className='show-link' to="materiels/equipements/installer">Installer un logiciel</Link></p>
+                    <p><Link className='show-link' to="materiels/equipements/installer">Installer un équipement</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements/affecter">Octroyer du matériel</Link> </p>
                     <p><Link className='show-link' to="/materiels/equipements-affectation/show">Rechercher un équipement</Link></p>
 

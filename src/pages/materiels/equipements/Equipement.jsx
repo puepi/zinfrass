@@ -6,7 +6,14 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
     const [selectedNumSerie, setSelectedNumSerie] = useState('')
 
     function handleAjouter() {
-        setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie, numeroUnique: 'xx' }])
+        const alpha='abcdefghijklmnopqrstuvwxyz0123456'
+        
+        let x=''
+        for(let i=0;i<5;i++){
+            const j=Math.floor(Math.random()*alpha.length)
+            x+=alpha[j]
+        }
+        setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie, numeroUnique: x }])
         setSelectedNumSerie(' ')
     }
     function handleChange(e) {

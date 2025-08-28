@@ -47,7 +47,7 @@ export default function EquipementsDemande() {
             <h1>Demande de Matériel</h1>
             <section className='equipements'>
                 <fieldset className='lepersonnel'>
-                    <legend>Personnel</legend>
+                    <legend>Formulaire</legend>
                     <form action={handleSubmit} id="equipements-demande">
                         <label htmlFor="noms" >Noms :</label>
                         <input type="text"  name="noms" id="noms" required/>
