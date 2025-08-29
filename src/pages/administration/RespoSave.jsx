@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllResponsabilisations } from "../../utils/ApiFunctions"
+import { Link } from "react-router-dom"
 
 
 export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
@@ -34,7 +35,7 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                 <input type="date" name="fin" id="fin" />
                 <label htmlFor="noms">Noms et prénoms :</label>
                 <input type="text" name="noms" id="noms" className="theinput" required />
-                <span></span>
+                <Link className="search-link">...rechercher</Link>
                 <label htmlFor="actif">
                     <input type="checkbox" name="actif" id="actif" checked={isChecked} onChange={handleCheck} />
                     Actif

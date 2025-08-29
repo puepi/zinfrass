@@ -68,14 +68,20 @@
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 20px);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 20px);
     background-color: #fff;
 }
 
-#equipements-affecter .empty {
-    grid-column: 3/-1;
+
+.model{
+    grid-column: 2 / span 2;
 }
+
+.benef{
+    grid-column: 4 / span 2;
+}
+
 
 #equipements-installer {
     display: grid;
@@ -84,9 +90,11 @@
     padding: 1rem;
     border-radius: 8px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(8, 20px);
+    grid-template-rows: repeat(6, 20px);
     background-color: #fff;
 }
+
+
 
 #equipements-installer .empty {
     grid-column: 3/-1;

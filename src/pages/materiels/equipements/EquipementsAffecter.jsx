@@ -14,9 +14,10 @@ export default function EquipementsAffecter() {
                     <input type="text" />
                     <div></div>
                     <label htmlFor="">Modèle :</label>
-                    <input type="text"  />
+                    <input type="text"  className="model"/>
                     <label htmlFor="">Quantité :</label>
-                    <input type="text"  />
+                    <input type="number"  />
+                    <div></div>
                     <label htmlFor="">Structure :</label>
                     <input type="text" />
                     <Link className="search-link">...rechercher</Link>
@@ -26,7 +27,7 @@ export default function EquipementsAffecter() {
                     <label htmlFor="">Date :</label>
                     <input type="date" />
                     <label htmlFor="">Bénéficiaire :</label>
-                    <input type="text" />
+                    <input type="text" className="benef"/>
                     <Link className="search-link">...rechercher</Link>
                     <label htmlFor="">Document :</label>
                     <input type="file" />
