@@ -69,7 +69,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                         <option value="Inspecteur Général">Inspecteur Général</option>
                         <option value="Directeur">Directeur</option>
                         <option value="Directeur Adjoint">Directeur Adjoint</option>
-                        <option value="Sous-directeur">Sous-directeur</option>
+                        <option value="Sous-directeur">Sous-Directeur</option>
                         <option value="Chef de service">Chef de Service</option>
                         <option value="Chef de Bureau">Chef de Bureau</option>
                     </select>

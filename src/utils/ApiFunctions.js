@@ -359,12 +359,12 @@ export async function getAllPostes() {
 
 export async function addRespo(respo) {
     const payload = {
-        structureId:respo.structureId,
-        posteId:respo.posteId,
+        structureId: respo.structureId,
+        posteId: respo.posteId,
         debut: respo.debut,
         fin: respo.fin,
         noms: respo.noms,
-        actif:respo.actif
+        actif: respo.actif
     }
     try {
         const response = await api.post("/responsabilisations/add", payload)
@@ -412,6 +412,34 @@ export async function addDemande(demande) {
 export async function getAllDemandes() {
     try {
         const response = await api.get('/demandes/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+export async function addPersonnel(personnel) {
+    const payload = {
+        noms: personnel.noms,
+        prenoms: personnel.prenoms,
+        matricule: personnel.matricule,
+        genre: personnel.genre
+    }
+    try {
+        const response = await api.post("/personnels/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getPersonnels() {
+    try {
+        const response = await api.get('/personnels/getall')
         return response.data.data
     } catch (error) {
         console.log(error.message)

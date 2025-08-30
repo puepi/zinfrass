@@ -148,6 +148,7 @@ export default function EquipementsReception() {
                 {toShow === 'fournisseur' && <Fournisseur isLoading={isLoading} loadingMessage={loadingMessage} chercherFournisseurs={chercherFournisseurs} handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
                 {toShow === 'lot' && <Lot messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePrec} handleSubmitAll={handleSubmitAll} />}
+                {/* {toShow === 'equipement' && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />} */}
             </section>
         </>
     )

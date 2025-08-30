@@ -83,17 +83,17 @@
     background-color: #fff;
 }
 
-#personnel-save input:nth-of-type(1){
+#personnel-save input:nth-of-type(1) {
     grid-column: 2/span 2;
 }
 
-#personnel-save input:nth-of-type(2){
+#personnel-save input:nth-of-type(2) {
     grid-column: 5/-1;
 }
 
-.personnel{
+.personnel {
     width: 60%;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 
@@ -237,7 +237,7 @@
     background-color: #fff;
 }
 
-.personnel-body tr.titles {
+.lepersonnel-body tr.titles {
     margin: 5px;
     text-align: center;
     font-size: 0.7rem;
@@ -245,7 +245,7 @@
 
 .personnel tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -262,7 +262,7 @@
 
 .personnel thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -275,4 +275,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.personnel .show-form {
+    grid-template-columns: repeat(3, 1fr);
 }
