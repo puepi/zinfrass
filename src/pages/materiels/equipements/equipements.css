@@ -14,14 +14,14 @@
     background-color: #fff;
 }
 
-#equipements-demande{
+#equipements-demande {
     display: grid;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 20px);
-    background-color: #fff; 
+    background-color: #fff;
 }
 
 #equipements-save .empty {
@@ -73,12 +73,16 @@
     background-color: #fff;
 }
 
+.reference {
+    grid-column: 4 / span 2;
+}
 
-.model{
+
+.model {
     grid-column: 2 / span 2;
 }
 
-.benef{
+.benef {
     grid-column: 4 / span 2;
 }
 
@@ -260,6 +264,10 @@ p.suivant button {
     grid-row: 3 / span 3;
 }
 
+.equipement {
+    width: 85%;
+}
+
 .equipement .entries {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -301,6 +309,8 @@ p.count {
     display: flex;
     justify-content: space-between;
 }
+
+
 
 .equipement p.navs button {
     margin-inline: 10px;
@@ -426,6 +436,54 @@ p.count {
 }
 
 
+.lequipement {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.lequipement tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.lequipement tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.lequipement .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.lequipement thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+
+.lequipement legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.equipement-body {
+    background-color: #fff;
+}
+
+
 
 
 .lepersonnel tr.titles {
@@ -469,6 +527,7 @@ p.count {
     font-style: italic;
     font-size: 0.8rem;
 }
-.lepersonnel-body{
+
+.lepersonnel-body {
     background-color: #fff;
 }

@@ -1,17 +1,17 @@
 import { useState } from "react"
 
 
-export default function Equipement({ handleSuivant, selectedTypeEquipement, handleRegister }) {
+export default function Equipement({ handleSuivant, handlePrecedent, handleRegister, caracteristiques }) {
     const [equipements, setEquipements] = useState([])
     const [selectedNumSerie, setSelectedNumSerie] = useState('')
 
     function handleAjouter() {
-        const alpha='abcdefghijklmnopqrstuvwxyz0123456'
-        
-        let x=''
-        for(let i=0;i<5;i++){
-            const j=Math.floor(Math.random()*alpha.length)
-            x+=alpha[j]
+        const alpha = 'abcdefghijklmnopqrstuvwxyz0123456'
+
+        let x = ''
+        for (let i = 0; i < 5; i++) {
+            const j = Math.floor(Math.random() * alpha.length)
+            x += alpha[j]
         }
         setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie, numeroUnique: x }])
         setSelectedNumSerie(' ')
@@ -33,10 +33,16 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
                 <label htmlFor="quantite">Quantité : </label>
                 <input type="number" name="quantite" id="quantite" required /><div></div>
                 <label htmlFor="caracteristics" className="caracteres">Caractéristiques:</label>
-                <textarea required className="caracteristiques" name="caracteristics" id="caracteristics" placeholder="Enter the detail for each caracteristics after each colon"></textarea>
+                <textarea
+                    required className="caracteristiques" name="caracteristics"
+                    id="caracteristics" placeholder="Enter the detail for each caracteristics after each colon"
+                    defaultValue={caracteristiques}
+                >
+
+                </textarea>
                 <label htmlFor="photos" className="photos">Photos</label>
                 <input type="file" name="photos" id="" />
-                <div>1</div><div>2</div><div>3</div><div>4</div><div></div>
+                <div></div><div></div><div></div><div></div><div></div>
                 <label htmlFor="couleur">Couleur</label>
                 <input type="text" name="couleur" id="couleur" />
                 <span>( Equipement un par un )</span>
@@ -48,6 +54,7 @@ export default function Equipement({ handleSuivant, selectedTypeEquipement, hand
                 <div></div><div></div><div></div><div></div>
                 <p className="count"><span>( {equipements.length} )</span></p>
                 <p className="navs">
+                    <button onClick={handlePrecedent} type="button">Précédent</button>
                     <button>Enregistrer</button>
                     <button onClick={handleSuivant} type="button">Suivant</button>
                 </p>

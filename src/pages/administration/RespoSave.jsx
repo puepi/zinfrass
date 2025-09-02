@@ -4,17 +4,14 @@ import { Link } from "react-router-dom"
 
 
 export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
-    const [isChecked, setIsChecked] = useState(false)
-    function handleCheck(e) {
-        setIsChecked(e.target.checked)
-    }
+
 
     function handleSubmit(formData) {
         const newRespo = {
             debut: formData.get('debut'),
             fin: formData.get('fin'),
             noms: formData.get('noms'),
-            actif: formData.get('actif') === 'on' ? true : false
+            actif: formData.get('actif') === 'true' ? true : false
         }
         handleSubmitNow(newRespo)
     }
@@ -29,16 +26,20 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
             <legend>Responsabilisations</legend>
             <form action={handleSubmit} className="respos-save">
                 <label htmlFor="debut">Date de début :</label>
-                <input type="date" name="debut" id="debut" required />
+                <input type="date" name="debut" id="debut" />
                 <span></span>
                 <label htmlFor="fin">Date de fin :</label>
                 <input type="date" name="fin" id="fin" />
                 <label htmlFor="noms">Noms et prénoms :</label>
-                <input type="text" name="noms" id="noms" className="theinput" required />
+                <input type="text" placeholder="Poste vacant" name="noms" id="noms" className="theinput" />
                 <Link className="search-link">...rechercher</Link>
                 <label htmlFor="actif">
-                    <input type="checkbox" name="actif" id="actif" checked={isChecked} onChange={handleCheck} />
-                    Actif
+                    Actif &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select name="actif" id="actif" required>
+                        <option value="">Faites un choix</option>
+                        <option value="true">OUI</option>
+                        <option value="false">NON</option>
+                    </select>
                 </label>
                 <button type="button" onClick={handlePrecedent}>Précédent</button>
                 <span></span>

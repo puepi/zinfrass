@@ -4,7 +4,7 @@ import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipemen
 
 
 
-export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg, selectedType, handleSelectRow }) {
+export default function TypeEquipement({ handlePrecedent, handleSuivant, selectedType, handleSelectRow }) {
     const [isActive, setIsActive] = useState(true)
     const [isDisabled, setIsDisabled] = useState(false)
     const [isButtonActive, setIsButtonActive] = useState(true)
@@ -18,9 +18,9 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
     const [loadingMessage2, setLoadingMessage2] = useState('...data is Loading...')
     // const [selectedTypeEquipement, setSelectedTypeEquipement] = useState(selectedType)
     const [messageButton, setMessageButton] = useState('Enregistrer')
-    function handleSuivant() {
-        setToShow2(true)
-    }
+    // function handleSuivant() {
+    //     setToShow2(true)
+    // }
     const categoriesElts = categories.map((t, id) => <option key={t.id} value={t.nom}>{t.nom}</option>)
     function handleChange(e) {
         if (e.target.value === 'add a category') {
@@ -167,10 +167,10 @@ export default function TypeEquipement({ handlePrecedent, handleSuiv, handleReg,
                 </p>
                 <p className="suivant">
                     <button className="precedent" onClick={handlePrecedent}>Précédent</button>
-                    <button className="suivant" onClick={handleSuivant}>Suivant</button>
+                    <button className="suivant" onClick={() => handleSuivant(selectedType)}>Suivant</button>
                 </p>
             </fieldset>
-            {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />}
+            {/* {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />} */}
         </>
     )
 }

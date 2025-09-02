@@ -28,6 +28,7 @@ export default function EquipementsReception() {
         id: ''
     })
     const [fournisseur, setFournisseur] = useState({})
+    const [caracteristiques, setCaracteristiques] = useState('')
     function handleClick() {
         setToShow('type-equipement')
     }
@@ -37,8 +38,12 @@ export default function EquipementsReception() {
     function handleSuiv() {
         setToShow('lot')
     }
-    function handleSuivant() {
-        setToShow2(true)
+    function handlePre() {
+        setToShow('equipement')
+    }
+    function handleSuivant(selectedType) {
+        setToShow('equipement')
+        setCaracteristiques(selectedTypeEquipement.caracteristiques)
     }
     function handlePrec() {
         setToShow('type-equipement')
@@ -97,7 +102,8 @@ export default function EquipementsReception() {
     function handleSelectRow(e, type) {
         setSelectedTypeEquipement({
             nom: type.nom,
-            id: type.id
+            id: type.id,
+            caracteristiques: type.caracteristiques
         })
     }
     async function showAllLots() {
@@ -146,9 +152,9 @@ export default function EquipementsReception() {
             <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur isLoading={isLoading} loadingMessage={loadingMessage} chercherFournisseurs={chercherFournisseurs} handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
-                {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleSuiv={handleSuiv} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
-                {toShow === 'lot' && <Lot messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePrec} handleSubmitAll={handleSubmitAll} />}
-                {/* {toShow === 'equipement' && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />} */}
+                {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
+                {toShow === 'lot' && <Lot messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
+                {toShow === 'equipement' && <Equipement caracteristiques={caracteristiques} handleSuivant={handleSuiv} handleRegister={handleReg} handlePrecedent={handlePrec} />}
             </section>
         </>
     )

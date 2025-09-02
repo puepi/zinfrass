@@ -34,7 +34,7 @@ export default function LotShow({ lots, messageLoadingLot }) {
                             <td>{lot.quantiteStock}</td>
                             <td>{lot.dateReception}</td>
                             <td>{lot.providerName}</td>
-                            <td>{lot.caracteristiques.substring(0, 40) + '...'}</td>
+                            <td>{lot.caracteristiques.substring(0, 30) + '...'}</td>
                         </tr>)
                     )}
                 </tbody>
