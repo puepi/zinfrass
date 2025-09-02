@@ -450,7 +450,7 @@ p.count {
 .lequipement tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-rows: repeat(1, 45px);
     gap: 1px;
     border: none;
 }
@@ -530,4 +530,87 @@ p.count {
 
 .lepersonnel-body {
     background-color: #fff;
+}
+
+.lot-search{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4, 20px);
+    gap:5px;
+}
+
+.respos-search{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4, 20px);
+    gap:5px;
+}
+
+.unposte{
+    grid-column: 5/-1;
+}
+
+.table-lot tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.table-lot tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.table-lot .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.table-lot thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+
+.table-respo tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.table-respo tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.table-respo .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.table-respo thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
 }

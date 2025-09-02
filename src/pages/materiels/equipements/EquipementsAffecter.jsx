@@ -2,44 +2,99 @@ import { Link } from "react-router-dom"
 
 import './equipements.css'
 import { useState } from "react"
+import LotSearchModal from "./LotSearchModal"
+import RespoSearchModal from "./RespoSearchModal"
+import { addOctroi } from "../../../utils/ApiFunctions"
 export default function EquipementsAffecter() {
     const [octrois, setOctrois] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [isDisabled, setIsDisabled] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [selectedLot,setSelectedLot]=useState({})
+    const [showRespoModal,setShowRespoModal]=useState(false)
+    const [selectedRespo,setSelectedRespo]=useState({})
+    function openModal(){
+        setShowModal(true)
+    }
+    function handleCloseModal(){
+        setShowModal(false)
+    }
+    function handleCloseRespoModal(){
+        setShowRespoModal(false)
+    }
+    function openRespoModal(){
+        setShowRespoModal(true)
+    }
+    function handleSelectLot(lot){
+        setSelectedLot({
+            id:lot.id,
+            nroLot:lot.nroLot,
+            typeEquipementName:lot.typeEquipementName,
+            modele:lot.modele
+        })
+    }
+
+    function handleChange(e){
+
+    }
+    function handleSelectRespo(respo){
+        setSelectedRespo(respo)
+    }
+    async function handleSubmit(formData){
+        setIsDisabled(true)
+        setMessageButton("...Saving...")
+        const newOctroi={
+            lotId: selectedLot.id,
+            structureId: selectedRespo.structureId,
+            dateOctroi: formData.get("date"),
+            nomsBénéficiaire: selectedRespo.noms,
+            poste: selectedRespo.nomPoste,
+            referenceDocument: formData.get("reference")
+        }
+        console.log(newOctroi)
+         await addOctroi(newOctroi)
+            .then(response => {
+                setOctrois(prev => [response, ...prev])
+                console.log(response)
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                setIsDisabled(false)
+                setMessageButton('Enregistrer')
+            })
+    }
     return (
         <>
             <section className="lequipement">
                 <h1>Octroyer du matériel</h1>
-                <form action="" id="equipements-affecter">
+                <form action={handleSubmit} id="equipements-affecter">
                     <label htmlFor="nroLot">N° du lot :</label>
-                    <input type="text" name="nroLot" id="nroLot" disabled />
-                    <Link className="search-link">...rechercher</Link>
+                    <input type="text" name="nroLot" id="nroLot" disabled value={selectedLot.nroLot} onChange={handleChange} required/>
+                    <Link className="search-link" onClick={openModal}>...rechercher</Link>
                     <label htmlFor="typeEquipement">Type Eqpmt :</label>
-                    <input type="text" disabled name="typeEquipement" id="typeEquipement" />
-                    <div></div>
+                    <input type="text" disabled name="typeEquipement" id="typeEquipement" onChange={handleChange}  value={selectedLot.typeEquipementName}/>
+                    <input type="text" name="" id="" value={selectedLot.marque} disabled/>
                     <label htmlFor="modele">Modèle :</label>
-                    <input type="text" className="model" disabled name="modele" id="modele" />
+                    <input type="text" className="model" disabled name="modele" id="modele" onChange={handleChange} value={selectedLot.modele}/>
                     <label htmlFor="quantite">Quantité :</label>
-                    <input type="number" name="quantite" id="quantite" />
+                    <input type="number" name="quantite" id="quantite" defaultValue={"1"}/>
                     <div></div>
                     <label htmlFor="structure">Structure :</label>
-                    <input type="text" disabled name="structure" id="structure" />
+                    <input type="text" disabled name="structure" id="structure" value={selectedRespo.nomStructure} onChange={handleChange}/>
                     <div></div>
                     <label htmlFor="poste">Poste :</label>
-                    <input type="text" disabled name="poste" id="poste" />
-                    <div></div>
+                    <input type="text" className="unposte" disabled name="poste" id="poste" value={selectedRespo.nomPoste} onChange={handleChange}/>
                     <label htmlFor="date">Date :</label>
                     <input type="date" name="date" id="date" />
                     <label htmlFor="beneficiaire">Bénéficiaire :</label>
-                    <input type="text" className="benef" name="beneficiaire" id="beneficiaire" />
-                    <Link className="search-link">...rechercher</Link>
+                    <input type="text" className="benef" name="beneficiaire" id="beneficiaire" value={selectedRespo.noms} required onChange={handleChange}/>
+                    <Link className="search-link" onClick={openRespoModal}>...rechercher</Link>
                     <label htmlFor="">Document :</label>
                     <input type="file" />
                     <label htmlFor="reference">Référence :</label>
                     <input type="text" name="reference" id="reference" className="reference" />
-                    <button disabled={isDisabled}>Enregistrer</button>
+                    <button disabled={isDisabled}>{messageButton}</button>
                 </form>
                 <form action="" className="show-form">
                     <label htmlFor="">Type de structure :</label>
@@ -67,7 +122,7 @@ export default function EquipementsAffecter() {
                         {octrois && octrois.length > 0 && (
                             octrois.map((octroi, id) => <tr key={octroi.id} className='dynamic-row' onClick={() => handleClick(structure)}>
                                 <td>{octroi.typeEquipement}</td>
-                                <td>{octroi.modele}</td>
+                                <td>{octroi.marque ? octroi.marque : ""} {octroi.modele}</td>
                                 <td>{octroi.structure}</td>
                                 <td>{octroi.poste}</td>
                                 <td>{octroi.referenceDocument}</td>
@@ -79,7 +134,11 @@ export default function EquipementsAffecter() {
             </section>
             {
                 showModal &&
-                <LotSearchModal handleCloseModal={handleCloseModal} handleSelectBatiment={handleSelectBatiment} />
+                <LotSearchModal  handleCloseModal={handleCloseModal} handleSelectLot={handleSelectLot}/>
+            }
+            {
+                showRespoModal &&
+                <RespoSearchModal  handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo}/>
             }
         </>
     )

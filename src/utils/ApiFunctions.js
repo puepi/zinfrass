@@ -446,3 +446,46 @@ export async function getPersonnels() {
         throw error
     }
 }
+
+
+export async function addOctroi(octroi) {
+    const payload = {
+        lotId: octroi.lotId,
+        structureId: octroi.structureId,
+        dateOctroi: octroi.dateOctroi,
+        nomsBénéficiaire: octroi.nomsBénéficiaire,
+        poste: octroi.poste,
+        referenceDocument: octroi.referenceDocument
+    }
+    try {
+        const response = await api.post("/octrois/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllOctrois() {
+    try {
+        const response = await api.get('/octrois/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+
+export async function getResposByStructureAndPoste() {
+    try {
+        const response = await api.get('/respos/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
