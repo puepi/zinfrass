@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import './structure.css'
 import SubdivisionsShow from "./SubdivisionsShow"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { addSubdivision, getAllSubdivisions } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
 
@@ -11,6 +11,10 @@ export default function UnitesAdminSave() {
     const [showModal, setShowModal] = useState(false)
     const [selectedSubdivision, setSelectedSubdivision] = useState({})
     const [messageSaving, setMessageSaving] = useState('Enregistrer')
+
+    useEffect(()=>{
+        document.title='Enregistrer des subdivisions administratives'
+    },[])
 
     async function handleRegister(formData) {
         setMessageSaving('...is Saving...')

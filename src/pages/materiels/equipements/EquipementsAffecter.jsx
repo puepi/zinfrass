@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import './equipements.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LotSearchModal from "./LotSearchModal"
 import RespoSearchModal from "./RespoSearchModal"
 import { addOctroi } from "../../../utils/ApiFunctions"
@@ -14,6 +14,11 @@ export default function EquipementsAffecter() {
     const [selectedLot,setSelectedLot]=useState({})
     const [showRespoModal,setShowRespoModal]=useState(false)
     const [selectedRespo,setSelectedRespo]=useState({})
+
+    useEffect(()=>{
+        document.title="Octroyer du matériel"
+    },[])
+
     function openModal(){
         setShowModal(true)
     }

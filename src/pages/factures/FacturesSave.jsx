@@ -67,6 +67,7 @@ export default function FacturesSave() {
             .catch(error => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
+        document.title='Enregistrer une facture'
         shoAllFactures()
     }, [])
     return (

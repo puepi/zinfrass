@@ -31,6 +31,7 @@ export default function StructureSave() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
+        document.title = "Structures et postes de responsabilité"
         getstructures()
     }, [])
     async function handleSubmit(formData) {
