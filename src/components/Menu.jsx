@@ -11,11 +11,7 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un nouveau bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces au sein du bâtiment</Link></p>
-<<<<<<< HEAD
-                    <p><Link className='show-link' to="/materiels/espaces/affecter">Attribuer des postes par bureau</Link></p>
-=======
-                    <p><Link className='show-link' to="/materiels/batiments/loger">affecter des postes à chaque bureau</Link></p>
->>>>>>> bd990e7b167730fa31a066f3183c1737c2f75448
+                    <p><Link className='show-link' to="/materiels/batiments/loger">Affecter des postes à chaque bureau</Link></p>
                     <p><Link className='show-link' to="/connectiques/save">Connectiques</Link></p>
 
                 </div>
