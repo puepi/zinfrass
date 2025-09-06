@@ -1,50 +1,60 @@
 import { Link } from "react-router-dom"
 
 import './equipements.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LotSearchModal from "./LotSearchModal"
 import RespoSearchModal from "./RespoSearchModal"
-import { addOctroi } from "../../../utils/ApiFunctions"
+import { addOctroi, getAllOctrois } from "../../../utils/ApiFunctions"
 export default function EquipementsAffecter() {
     const [octrois, setOctrois] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [isDisabled, setIsDisabled] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const [selectedLot,setSelectedLot]=useState({})
-    const [showRespoModal,setShowRespoModal]=useState(false)
-    const [selectedRespo,setSelectedRespo]=useState({})
-    function openModal(){
+    const [selectedLot, setSelectedLot] = useState({})
+    const [showRespoModal, setShowRespoModal] = useState(false)
+    const [selectedRespo, setSelectedRespo] = useState({})
+    async function getOctrois() {
+        setMessageLoading('...loading...')
+        await getAllOctrois()
+            .then(data => setOctrois(data))
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
+    }
+    useEffect(() => {
+        getOctrois()
+    }, [])
+    function openModal() {
         setShowModal(true)
     }
-    function handleCloseModal(){
+    function handleCloseModal() {
         setShowModal(false)
     }
-    function handleCloseRespoModal(){
+    function handleCloseRespoModal() {
         setShowRespoModal(false)
     }
-    function openRespoModal(){
+    function openRespoModal() {
         setShowRespoModal(true)
     }
-    function handleSelectLot(lot){
+    function handleSelectLot(lot) {
         setSelectedLot({
-            id:lot.id,
-            nroLot:lot.nroLot,
-            typeEquipementName:lot.typeEquipementName,
-            modele:lot.modele
+            id: lot.id,
+            nroLot: lot.nroLot,
+            typeEquipementName: lot.typeEquipementName,
+            modele: lot.modele
         })
     }
 
-    function handleChange(e){
+    function handleChange(e) {
 
     }
-    function handleSelectRespo(respo){
+    function handleSelectRespo(respo) {
         setSelectedRespo(respo)
     }
-    async function handleSubmit(formData){
+    async function handleSubmit(formData) {
         setIsDisabled(true)
         setMessageButton("...Saving...")
-        const newOctroi={
+        const newOctroi = {
             lotId: selectedLot.id,
             structureId: selectedRespo.structureId,
             dateOctroi: formData.get("date"),
@@ -53,7 +63,7 @@ export default function EquipementsAffecter() {
             referenceDocument: formData.get("reference")
         }
         console.log(newOctroi)
-         await addOctroi(newOctroi)
+        await addOctroi(newOctroi)
             .then(response => {
                 setOctrois(prev => [response, ...prev])
                 console.log(response)
@@ -70,25 +80,25 @@ export default function EquipementsAffecter() {
                 <h1>Octroyer du matériel</h1>
                 <form action={handleSubmit} id="equipements-affecter">
                     <label htmlFor="nroLot">N° du lot :</label>
-                    <input type="text" name="nroLot" id="nroLot" disabled value={selectedLot.nroLot} onChange={handleChange} required/>
+                    <input type="text" name="nroLot" id="nroLot" disabled value={selectedLot.nroLot} onChange={handleChange} required />
                     <Link className="search-link" onClick={openModal}>...rechercher</Link>
                     <label htmlFor="typeEquipement">Type Eqpmt :</label>
-                    <input type="text" disabled name="typeEquipement" id="typeEquipement" onChange={handleChange}  value={selectedLot.typeEquipementName}/>
-                    <input type="text" name="" id="" value={selectedLot.marque} disabled/>
+                    <input type="text" disabled name="typeEquipement" id="typeEquipement" onChange={handleChange} value={selectedLot.typeEquipementName} />
+                    <input type="text" name="" id="" value={selectedLot.marque} disabled />
                     <label htmlFor="modele">Modèle :</label>
-                    <input type="text" className="model" disabled name="modele" id="modele" onChange={handleChange} value={selectedLot.modele}/>
+                    <input type="text" className="model" disabled name="modele" id="modele" onChange={handleChange} value={selectedLot.modele} />
                     <label htmlFor="quantite">Quantité :</label>
-                    <input type="number" name="quantite" id="quantite" defaultValue={"1"}/>
+                    <input type="number" name="quantite" id="quantite" defaultValue={"1"} />
                     <div></div>
                     <label htmlFor="structure">Structure :</label>
-                    <input type="text" disabled name="structure" id="structure" value={selectedRespo.nomStructure} onChange={handleChange}/>
+                    <input type="text" disabled name="structure" id="structure" value={selectedRespo.nomStructure} onChange={handleChange} />
                     <div></div>
                     <label htmlFor="poste">Poste :</label>
-                    <input type="text" className="unposte" disabled name="poste" id="poste" value={selectedRespo.nomPoste} onChange={handleChange}/>
+                    <input type="text" className="unposte" disabled name="poste" id="poste" value={selectedRespo.nomPoste} onChange={handleChange} />
                     <label htmlFor="date">Date :</label>
                     <input type="date" name="date" id="date" />
                     <label htmlFor="beneficiaire">Bénéficiaire :</label>
-                    <input type="text" className="benef" name="beneficiaire" id="beneficiaire" value={selectedRespo.noms} required onChange={handleChange}/>
+                    <input type="text" className="benef" name="beneficiaire" id="beneficiaire" value={selectedRespo.noms} required onChange={handleChange} />
                     <Link className="search-link" onClick={openRespoModal}>...rechercher</Link>
                     <label htmlFor="">Document :</label>
                     <input type="file" />
@@ -134,11 +144,11 @@ export default function EquipementsAffecter() {
             </section>
             {
                 showModal &&
-                <LotSearchModal  handleCloseModal={handleCloseModal} handleSelectLot={handleSelectLot}/>
+                <LotSearchModal handleCloseModal={handleCloseModal} handleSelectLot={handleSelectLot} />
             }
             {
                 showRespoModal &&
-                <RespoSearchModal  handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo}/>
+                <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
             }
         </>
     )

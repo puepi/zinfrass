@@ -79,7 +79,7 @@ function App() {
     const [menu, setMenu] = useState(data)
     const handleClick = (id) => {
         setSelectedId(id)
-}
+    }
 
 
     return (
@@ -91,7 +91,7 @@ function App() {
                 <Route path="/factures/show" element={<FacturesShow />} />
                 <Route path="/materiels" element={<Home />} />
                 <Route path="/materiels/batiments/save" element={<BatimentSave />} />
-                <Route path="/materiels/batiments/loger" element={<BatimentsLoger />} />
+                <Route path="/materiels/espaces/affecter" />
                 <Route path="/materiels/espaces/save" element={<EspacesSave />} />
                 <Route path="/materiels/equipements/save" element={<EquipementsSave />} />
                 <Route path="/materiels/equipements/show" element={<EquipementsShow />} />
