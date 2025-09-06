@@ -2,11 +2,14 @@ import FacturesShow from '../../factures/FacturesShow'
 import './connectiques.css'
 import { Link } from 'react-router-dom'
 import ConnectiquesShow from './ConnectiquesShow'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ConnectiquesSave() {
     const [connectiques, setConnectiques] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    useEffect(()=>{
+        document.title='Enregistrer des connectiques'
+    })
     return (
         <>
             <h1>Enregistrement des connectiques</h1>

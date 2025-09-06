@@ -17,6 +17,7 @@ export default function EquipementsDemande() {
                 .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(()=>{
+        document.title='Demandes de matériel'
         getDemandes()
     },[])
     async function handleSubmit(formData){

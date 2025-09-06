@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 import './equipements.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Fournisseur from "./Fournisseur"
 import TypeEquipement from "./TypeEquipement"
 import Equipement from "./Equipement"
@@ -29,6 +29,10 @@ export default function EquipementsReception() {
     })
     const [fournisseur, setFournisseur] = useState({})
     const [caracteristiques, setCaracteristiques] = useState('')
+    
+    useEffect(()=>{
+        document.title='Réceptionner un lot de matériel'
+    },[])
     function handleClick() {
         setToShow('type-equipement')
     }

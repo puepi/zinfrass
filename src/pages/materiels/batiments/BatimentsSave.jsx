@@ -78,6 +78,7 @@ export default function BatimentSave() {
             .catch(error => setMessage('Aucun élément trouvé'))
     }
     useEffect(() => {
+        document.title='Enregistrer un nouveau bâtiment'
         showAllBatiments()
     }, [])
     return (

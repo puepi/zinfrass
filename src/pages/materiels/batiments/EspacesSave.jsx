@@ -33,6 +33,7 @@ export default function EspacesSave() {
             .catch(error => { setMessageButton('Aucun élément trouvé') })
     }
     useEffect(() => {
+        document.title="Créer des espaces au sein des bâtiments"
         getEspaces()
     }, [])
     function handleClick() {
