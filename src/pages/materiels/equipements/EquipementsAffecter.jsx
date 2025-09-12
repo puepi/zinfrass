@@ -22,6 +22,7 @@ export default function EquipementsAffecter() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
+        document.title = "Octroyer du matériel"
         getOctrois()
     }, [])
     function openModal() {
@@ -41,7 +42,8 @@ export default function EquipementsAffecter() {
             id: lot.id,
             nroLot: lot.nroLot,
             typeEquipementName: lot.typeEquipementName,
-            modele: lot.modele
+            modele: lot.modele,
+            marque: lot.marque
         })
     }
 
@@ -82,7 +84,7 @@ export default function EquipementsAffecter() {
                     <label htmlFor="nroLot">N° du lot :</label>
                     <input type="text" name="nroLot" id="nroLot" disabled value={selectedLot.nroLot} onChange={handleChange} required />
                     <Link className="search-link" onClick={openModal}>...rechercher</Link>
-                    <label htmlFor="typeEquipement">Type Eqpmt :</label>
+                    <label htmlFor="typeEquipement">Type :</label>
                     <input type="text" disabled name="typeEquipement" id="typeEquipement" onChange={handleChange} value={selectedLot.typeEquipementName} />
                     <input type="text" name="" id="" value={selectedLot.marque} disabled />
                     <label htmlFor="modele">Modèle :</label>

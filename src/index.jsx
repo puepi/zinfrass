@@ -104,6 +104,7 @@ function App() {
                 <Route path="/connectiques/save" element={<ConnectiquesSave />} />
                 <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />
                 <Route path="/administration/structures/save" element={<StructureSave />} />
+                <Route path="/administration/structures/personnels" element={<BatimentsLoger />} />
                 <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
                 <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
                 <Route path="/maintenance/show" element={<MaintenanceShow />} />

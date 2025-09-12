@@ -72,6 +72,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                         <option value="Sous-Directeur">Sous-Directeur</option>
                         <option value="Chef de Service">Chef de Service</option>
                         <option value="Chef de Bureau">Chef de Bureau</option>
+                        <option value="NA">Not Available</option>
                     </select>
                     <button disabled={isDisabled}>{messageButton}</button>
                     <div></div>

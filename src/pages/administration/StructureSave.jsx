@@ -167,6 +167,7 @@ export default function StructureSave() {
                                         <option value="Secrétariat Général">Secrétariat Général</option>
                                         <option value="Inspection Générale">Inspection Générale</option>
                                         <option value="Direction">Direction</option>
+                                        <option value="Sous-direction">Sous-Direction</option>
                                         <option value="Division">Division</option>
                                         <option value="Cellule">Cellule</option>
                                         <option value="Service">Service</option>

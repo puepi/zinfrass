@@ -367,6 +367,7 @@ export async function addRespo(respo) {
         actif: respo.actif
     }
     try {
+        console.log(payload)
         const response = await api.post("/responsabilisations/add", payload)
         console.log(response.data.data)
         return response.data.data
@@ -489,3 +490,42 @@ export async function getResposByStructureAndPoste() {
     }
 }
 
+
+export async function addIncident(incident) {
+    const alpha = 'abcdefghijlmnopqrstuvwsyz0123456789'
+    let num = 'INC'
+    for (let i = 0; i < 8; i++) {
+        const rand = Math.floor(Math.random() * alpha.length)
+        num += alpha[rand]
+    }
+    const payload = {
+        nroIncident: num,
+        dateIncident: incident.dateIncident,
+        nomsDeclarant: incident.nomsDeclarant,
+        poste: incident.poste,
+        nomStructure: incident.nomStructure,
+        resolu: incident.resolu,
+        nature: incident.nature,
+        objet: incident.objet,
+        description: incident.description,
+        identifiant: incident.identifiant
+    }
+    try {
+        const response = await api.post("/incidents/add", payload)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        // console.log(error.message)
+        throw error
+    }
+}
+
+export async function getAllIncidents() {
+    try {
+        const response = await api.get('/incidents/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

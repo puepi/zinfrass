@@ -29,10 +29,10 @@ export default function EquipementsReception() {
     })
     const [fournisseur, setFournisseur] = useState({})
     const [caracteristiques, setCaracteristiques] = useState('')
-    
-    useEffect(()=>{
-        document.title='Réceptionner un lot de matériel'
-    },[])
+
+    useEffect(() => {
+        document.title = 'Réceptionner un lot de matériel'
+    }, [])
     function handleClick() {
         setToShow('type-equipement')
     }
@@ -94,7 +94,7 @@ export default function EquipementsReception() {
         console.log(equipements)
         const newEq = {
             descriptive: formData.get("descriptive"),
-            marque: formData.get("Marque"),
+            marque: formData.get("marque"),
             modele: formData.get("modele"),
             quantite: formData.get("quantite"),
             caracteristics: formData.get("caracteristics"),

@@ -37,6 +37,7 @@ export default function BatimentsLoger() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
+        document.title = "Enregistrer le personnel"
         getAllPersonnels()
     }, [])
     return (

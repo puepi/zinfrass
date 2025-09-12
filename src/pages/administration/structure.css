@@ -182,15 +182,14 @@
     font-size: 0.8rem;
 }
 
+.theinput {
+    grid-column: 2/ span 2;
+}
 
 .larespo tr.titles {
     margin: 5px;
     text-align: center;
     font-size: 0.7rem;
-}
-
-.theinput {
-    grid-column: 2/ span 2;
 }
 
 .larespo tr.dynamic-row {

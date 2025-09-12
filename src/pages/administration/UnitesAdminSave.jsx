@@ -12,9 +12,9 @@ export default function UnitesAdminSave() {
     const [selectedSubdivision, setSelectedSubdivision] = useState({})
     const [messageSaving, setMessageSaving] = useState('Enregistrer')
 
-    useEffect(()=>{
-        document.title='Enregistrer des subdivisions administratives'
-    },[])
+    useEffect(() => {
+        document.title = 'Enregistrer des subdivisions administratives'
+    }, [])
 
     async function handleRegister(formData) {
         setMessageSaving('...is Saving...')
@@ -36,8 +36,9 @@ export default function UnitesAdminSave() {
     async function getAllUnits() {
         setMessageButton('... is loading...')
         await getAllSubdivisions()
-            .then(data => { setSubdivisions(data); setMessageButton('Aucun élément trouvé') })
+            .then(data => { setSubdivisions(data); console.log(data) })
             .catch(error => setMessageButton('Aucun élément trouvé'))
+            .finally(() => setMessageButton('Aucun élément trouvé'))
     }
     function handleCloseModal() {
         setShowModal(false)
@@ -56,7 +57,7 @@ export default function UnitesAdminSave() {
                     <label htmlFor="nature">Nature :</label>
                     <select name="nature" id="nature" required>
                         <option value="">Sélectionner une option</option>
-                        <option value="Centraux">Services centraux</option>
+                        <option value="Services centraux">Services centraux</option>
                         <option value="Région">Région</option>
                         <option value="Département">Département</option>
                         <option value="Arrondissement">Arrondissement</option>

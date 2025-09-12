@@ -1,11 +1,11 @@
 .maintenance {
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
 }
 
 #incidents-save {
     display: grid;
-    border: 5px solid #ffc736;
+    border: 3px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
@@ -16,27 +16,65 @@
 
 #interventions-save {
     display: grid;
-    border: 5px solid #ffc736;
+    border: 3px solid #ffc736;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.5rem;
     gap: 5px;
-    grid-template-columns: 1fr 0.75fr 0.75fr 0.75fr 0.75fr;
-    grid-template-rows: repeat(9, 20px);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 20px);
     background-color: #fff;
 }
 
-#interventions-save textarea {
-    grid-column: 2 / span 3;
-    grid-row: 8 / span 2;
+.incidents tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
 }
 
-#maintenance-show {
+.incidents tr.dynamic-row {
     display: grid;
-    border: 5px solid #ffc736;
-    border-radius: 8px;
-    padding: 1rem;
-    gap: 5px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 20px);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.incidents thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.incidence-body {
     background-color: #fff;
+    font-size: 0.7rem;
+}
+
+
+
+.interventions tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.interventions tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.interventions thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.interventions-body {
+    background-color: #fff;
+    font-size: 0.7rem;
 }
