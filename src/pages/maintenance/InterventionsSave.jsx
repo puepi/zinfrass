@@ -36,7 +36,10 @@ export default function InterventionsSave() {
                     <label htmlFor="lieu">Lieu:</label>
                     <input type="text" name="lieu" id="lieu" />
                     <Link className="search-link" to="" >...rechercher</Link>
-                    <div></div><div></div><div></div><div></div>
+                    <div></div>
+                    <label htmlFor="autorisation">Autorisation :</label>
+                    <input type="file" name="autorisation" id="autorisation" />
+                    <div></div>
                     <label htmlFor="raison">Raison:</label>
                     <select name="raison" id="raison">
                         <option value="">Faites un choix</option>

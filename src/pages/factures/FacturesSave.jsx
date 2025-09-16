@@ -64,10 +64,11 @@ export default function FacturesSave() {
         setMessageLoading('...is Loading ...')
         await getAllFactures()
             .then(data => setFactures(data))
-            .catch(error => setMessageLoading('Aucun élément trouvé'))
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
-        document.title='Enregistrer une facture'
+        document.title = 'Enregistrer une facture'
         shoAllFactures()
     }, [])
     return (

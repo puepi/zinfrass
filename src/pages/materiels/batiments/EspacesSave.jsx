@@ -33,7 +33,7 @@ export default function EspacesSave() {
             .catch(error => { setMessageButton('Aucun élément trouvé') })
     }
     useEffect(() => {
-        document.title="Créer des espaces au sein des bâtiments"
+        document.title = "Créer des espaces au sein des bâtiments"
         getEspaces()
     }, [])
     function handleClick() {
@@ -73,10 +73,10 @@ export default function EspacesSave() {
                     <input type="text" placeholder="Porte R3" name="position" id="position" />
                     <label htmlFor="dimensions">Dimensions :</label>
                     <input type="text" name="dimensions" id="dimensions" />
+                    <label htmlFor="description">Description :</label>
+                    <input type="text" name="description" id="description" />
                     <label htmlFor="">Photos :</label>
                     <input type="file" />
-                    <div></div>
-                    <div></div>
                     <button disabled={isDisabled}>{loadingMessage} </button>
                     <div className="empty1"></div>
 

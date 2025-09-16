@@ -23,6 +23,7 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 20px);
     background-color: #fff;
+    font-size: 0.8rem;
 }
 
 .incidents tr.titles {
