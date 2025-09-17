@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import './batiments.css'
 import { useState } from 'react'
+import Toast from '../../../components/Toast'
 
 
-export default function Batiment({ handleSubmit, isDisabled, messageButton, handleClick, subdivision, handleChange }) {
+export default function Batiment({toast, handleSubmit, isDisabled, messageButton, handleClick, subdivision, handleChange }) {
 
 
     // function handleChange(e){
@@ -18,6 +19,10 @@ export default function Batiment({ handleSubmit, isDisabled, messageButton, hand
 
     return (
         <>
+            {
+                toast && 
+                <Toast message={toast.message} type={toast.type} onClose={()=>{setToast(null)}} />
+            }
             <section className="batiments">
                 <fieldset className='lebatiment'>
                     <legend>

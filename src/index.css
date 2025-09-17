@@ -6,6 +6,7 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: wheat;
   margin: 0;
+  height: 100%;
 }
 
 header h1 {
@@ -241,11 +242,22 @@ p.suivant a {
   color: #1B85B8;
 }
 
+
+.outlet{
+  display: flex;
+}
+
 aside {
   width: 400px;
   background-color: rgba(216, 144, 10, 0.767);
   flex-direction: column;
   padding: 10px 1px;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.outlet main{
+  flex:1;
 }
 
 aside .accordion {

@@ -34,12 +34,14 @@ function Common({ menu, handleClick, selectedId }) {
           />
         </div>
       </header>
-      <aside>
-        <Menu accordionWidth={"100%"} />
-      </aside>
-      <main>
-        <Outlet />
-      </main>
+      <div className='outlet'>
+        <aside>
+          <Menu accordionWidth={"100%"} />
+        </aside>
+        <main>
+          <Outlet />
+        </main>
+      </div>
     </div>
   )
 }

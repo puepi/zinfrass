@@ -3,8 +3,10 @@ import EspacesShow from "./EspacesShow"
 import { useEffect, useState } from "react"
 import { addEspace, getAllEspaces } from "../../../utils/ApiFunctions"
 import BatimentSearchModal from "../../factures/BatimentSearchModal"
+import Toast from "../../../components/Toast"
 
 export default function EspacesSave() {
+    const [toast,setToast]=useState(null)
     const [selectedBatiment, setSelectedBatiment] = useState({})
     const [espaces, setEspaces] = useState([])
     const [loadingMessage, setLoadingMessage] = useState('Enregistrer')
@@ -22,8 +24,13 @@ export default function EspacesSave() {
         setIsDisabled(true)
         setLoadingMessage('..in progress..')
         await addEspace(newEspace)
-            .then(response => setEspaces(prev => [response, ...prev]))
-            .catch(error => console.log(error))
+            .then(response => {
+                setEspaces(prev => [response, ...prev])
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => {
+                setToast({ message: "❌ Une erreur est survenue !", type: "error" });
+            })
             .finally(() => { setIsDisabled(false); setLoadingMessage('Enregistrer') })
     }
     async function getEspaces() {
@@ -31,6 +38,7 @@ export default function EspacesSave() {
         await getAllEspaces()
             .then(data => setEspaces(data))
             .catch(error => { setMessageButton('Aucun élément trouvé') })
+            .finally(() => { setMessageButton('Aucun élément trouvé') })
     }
     useEffect(() => {
         document.title = "Créer des espaces au sein des bâtiments"
@@ -47,7 +55,10 @@ export default function EspacesSave() {
     }
     return (
         <>
-            <h1>Création d'espaces au sein d'un bâtiment</h1>
+            {
+                toast && 
+                <Toast message={toast.message} type={toast.type} onClose={()=>{setToast(null)}} />
+            }
             <section className="batiments">
                 <fieldset className="lespace">
                     <legend>Création d'espaces au sein d'un bâtiment</legend>

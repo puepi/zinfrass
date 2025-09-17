@@ -5,7 +5,9 @@ import './batiments.css'
 import BatimentsShow from "./BatimentsShow";
 import SubdivisionSearchModal from "./SuvdivisionSearchModal";
 import { addBatiment, getAllBatiments } from "../../../utils/ApiFunctions";
+import Toast from "../../../components/Toast";
 export default function BatimentSave() {
+    const [toast,setToast]=useState(null)
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [message, setMessage] = useState('Aucun élément trouvé')
@@ -62,13 +64,16 @@ export default function BatimentSave() {
         setBatiment(newBatiment)
         await addBatiment(newBatiment)
             .then(response => {
+                setToast({ message: "✅ Opération réussie !", type: "success" });
                 setBatiments(prev => [response, ...prev])
                 console.log(response)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                setToast({ message: "❌ Une erreur est survenue !", type: "error" });
+            })
             .finally(() => {
                 setIsDisabled(false)
-                setMessageButton('Rechercher')
+                setMessageButton('Enregistrer')
             })
     }
     async function showAllBatiments() {
@@ -83,8 +88,9 @@ export default function BatimentSave() {
     }, [])
     return (
         <>
-            <h1>Enregistrement d'un nouveau bâtiment</h1>
+            
             <Batiment
+                toast={toast}
                 subdivision={subdivision}
                 handleChange={handleChange}
                 handleClick={handleClick}

@@ -100,9 +100,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Common selectedId={selectedId} menu={menu} handleClick={handleClick} />}>
+                    <Route index element={<Home />} />
                     <Route path="/factures/save" element={<FacturesSave />} />
                     <Route path="/factures/show" element={<FacturesShow />} />
-                    <Route path="/materiels" element={<Home />} />
                     <Route path="/materiels/batiments/save" element={<BatimentSave />} />
                     <Route path="/materiels/espaces/affecter" />
                     <Route path="/materiels/espaces/save" element={<EspacesSave />} />
