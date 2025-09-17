@@ -1,5 +1,5 @@
 .batiments {
-    width: 90%;
+    width: 70%;
     margin: 0 auto;
 
 }
@@ -8,6 +8,7 @@
     padding: 1rem;
     display: grid;
     gap: 5px;
+    font-size: 0.8rem;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 20px);
     border-radius: 8px;
@@ -46,16 +47,39 @@
     align-items: center;
 }
 
+.lespace {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
+    padding: .2rem .3rem;
+}
+
+.lespace legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.lebatiment {
+    border-radius: 8px;
+    border: 1px solid #f7b510;
+    padding: .2rem .3rem;
+}
+
+.lebatiment legend {
+    color: #1B85B8;
+    font-style: italic;
+    font-size: 0.8rem;
+}
 
 #espaces-save {
     border: 5px solid wheat;
     font-size: 0.8rem;
     border-radius: 8px;
-    padding: 1rem;
+    padding: .5rem;
     display: grid;
     gap: 5px;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 20px);
+    grid-template-rows: repeat(5, 20px);
     background-color: #fff;
 }
 
