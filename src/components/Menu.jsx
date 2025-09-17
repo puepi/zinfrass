@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 import './menu.css'
 
-export default function Menu() {
+export default function Menu({ accordionWidth }) {
     return (
-        <ul className="accordion">
+        <ul className="accordion" style={{ width: accordionWidth }}>
             <li>
                 <input type="radio" name="accordion" id="first" />
                 <label htmlFor="first">Bâtiments</label>
@@ -27,9 +27,9 @@ export default function Menu() {
                 <input type="radio" name="accordion" id="third" />
                 <label htmlFor="third">Structures et postes de responsabilités</label>
                 <div className="content">
-                    <p><Link className='show-link' to="/administration/unites-admin/save">Définir les subdivisions administratives</Link></p>
-                    <p><Link className='show-link' to="/administration/structures/save">Créer des structures et leurs postes de responsabilités</Link></p>
-                    <p><Link className='show-link' to="/administration/structures/personnels">Gestion du personnel</Link></p>
+                    <p><Link className='show-link' to="/administration/unites-admin/save">Subdivisions administratives</Link></p>
+                    <p><Link className='show-link' to="/administration/structures/save">Structures et postes de responsabilités</Link></p>
+                    <p><Link className='show-link' to="/administration/structures/personnels">Enregistrer du personnel</Link></p>
 
                 </div>
             </li>
@@ -52,7 +52,7 @@ export default function Menu() {
                 <div className="content">
                     <p><Link className='show-link' to="maintenance/incidents/save">Déclarer un incident</Link></p>
                     <p><Link className='show-link' to="maintenance/interventions/save">Enregistrer une intervention</Link></p>
-                    <p><Link className='show-link' to="maintenance/show/observations">Voir les observations des utilisateurs</Link></p>
+                    <p><Link className='show-link' to="maintenance/show/observations">Appréciations des utilisateurs</Link></p>
 
                 </div>
             </li>

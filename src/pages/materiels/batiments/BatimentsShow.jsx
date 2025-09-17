@@ -6,7 +6,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
         <>
             <section className='batiments'>
                 <form action="" id="show-form">
-                    <label htmlFor="">Type de subdivision :</label>
+                    <label htmlFor="">Subdivision :</label>
                     <select name="" id="">
                         <option value="">Faites un choix</option>
                         <option value="">Services centraux</option>

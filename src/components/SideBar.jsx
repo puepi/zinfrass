@@ -9,12 +9,12 @@ export default function SideBar({ data, selectedId, handleClick }) {
       <Link to={obj.link}><span><i className={obj.icon}></i></span>{obj.title}</Link>
     </li>)
   return (
-    <aside>
+    <div className="top-menu">
       <nav>
         <ul className='menu-list'>
           {menu}
         </ul>
       </nav>
-    </aside>
+    </div>
   )
 }

@@ -3,7 +3,7 @@ import Menu from "../components/Menu";
 export default function Home() {
     return (
         <>
-            <Menu />
+            <h2>Bienvenue!</h2>
         </>
     )
 }

@@ -71,8 +71,7 @@ export default function IncidentsSave() {
                     <label htmlFor="nature">Nature de l'incident :</label>
                     <select name="nature" id="nature" required>
                         <option value="">Sélectionner une option</option>
-                        <option value="Materiel en stock">Matériel en stock</option>
-                        <option value="Materiel octroyé">Matériel octroyé</option>
+                        <option value="Materiel en stock">Equipement</option>
                         <option value="Logiciel">Logiciel</option>
                         <option value="Bâtiment">Batiments</option>
                         <option value="Espace">Espace</option>

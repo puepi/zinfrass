@@ -4,8 +4,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  padding: 0.5rem;
   background-color: wheat;
+  margin: 0;
 }
 
 header h1 {
@@ -24,8 +24,9 @@ h1 {
 .logo-name,
 h1 {
   text-transform: uppercase;
-
 }
+
+header h1 {}
 
 .logo-name {
   letter-spacing: 5px;
@@ -36,6 +37,8 @@ h1 {
 
 header {
   display: flex;
+  background-color: rgba(216, 144, 10, 0.767);
+  justify-content: space-between;
 }
 
 .logo-image {
@@ -68,10 +71,6 @@ main {
   width: 100%;
 }
 
-#infra-container {
-  width: 90%;
-  margin: 0 auto;
-}
 
 .search {
   text-indent: 1.1rem;
@@ -82,7 +81,7 @@ main {
   margin-left: 1rem;
 }
 
-aside {
+.top-menu {
   width: 500px;
 }
 
@@ -240,4 +239,15 @@ tr:hover {
 
 p.suivant a {
   color: #1B85B8;
+}
+
+aside {
+  width: 400px;
+  background-color: rgba(216, 144, 10, 0.767);
+  flex-direction: column;
+  padding: 10px 1px;
+}
+
+aside .accordion {
+  margin-left: -50px;
 }
