@@ -12,7 +12,7 @@ export default function Menu({ accordionWidth }) {
                     <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un nouveau bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces au sein du bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/batiments/loger">Affecter des postes à un bureau</Link></p>
-                    <p><Link className='show-link' to="/materiels/batiments/receptionner">Réceptionner un bâtiment</Link></p>
+                    <p><Link className='show-link' to="/materiels/batiments/receptionner">Affecter des équipements à un espace</Link></p>
                     <p><Link className='show-link' to="/connectiques/save">Connectiques</Link></p>
 
                 </div>
@@ -41,8 +41,8 @@ export default function Menu({ accordionWidth }) {
                     <p><Link className='show-link' to="/materiels/equipements/reception">Réceptionner un lot d'équipements</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements/demandes">Demandes de matériel</Link> </p>
                     <p><Link className='show-link' to="materiels/equipements/installer">Installer un équipement</Link></p>
-                    <p><Link className='show-link' to="/materiels/equipements/affecter">Octroyer du matériel</Link> </p>
-                    <p><Link className='show-link' to="/materiels/equipements-affectation/show">Rechercher un équipement</Link></p>
+                    <p><Link className='show-link' to="/materiels/equipements/affecter">Octroyer un équipement</Link> </p>
+                    <p><Link className='show-link' to="/materiels/equipements-affectation/show">Inventaire du stock</Link></p>
 
                 </div>
             </li>

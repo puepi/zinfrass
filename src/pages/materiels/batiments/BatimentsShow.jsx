@@ -4,7 +4,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
 
     return (
         <>
-            <section className='batiments'>
+            <>
                 <form action="" id="show-form">
                     <label htmlFor="">Subdivision :</label>
                     <select name="" id="">
@@ -50,7 +50,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
                         )}
                     </tbody>
                 </table>
-            </section>
+            </>
 
         </>
     )

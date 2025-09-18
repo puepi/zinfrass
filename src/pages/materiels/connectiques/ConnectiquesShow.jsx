@@ -2,9 +2,9 @@
 
 export default function ConnectiquesShow({ connectiques, messageLoading }) {
     return (
-        <section className='connectiques'>
+        <div>
             <form action="" id="show-form">
-                <label htmlFor="">Type de facture :</label>
+                <label htmlFor="">Connectique :</label>
                 <select name="" id="">
                     <option value="">Faites un choix</option>
                 </select>
@@ -37,6 +37,6 @@ export default function ConnectiquesShow({ connectiques, messageLoading }) {
                     )}
                 </tbody>
             </table>
-        </section>
+        </div>
     )
 }

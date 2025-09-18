@@ -87,25 +87,28 @@ export default function BatimentSave() {
         showAllBatiments()
     }, [])
     return (
-        <>
-            
-            <Batiment
-                toast={toast}
-                subdivision={subdivision}
-                handleChange={handleChange}
-                handleClick={handleClick}
-                handleSubmit={handleSubmit}
-                isDisabled={isDisabled} messageButton={messageButton}
-            />
-
+        <section className="batiments">
+            <fieldset>
+                <legend>
+                    Enregistrement d'un nouveau bâtiment
+                </legend>
+                <Batiment
+                    toast={toast}
+                    subdivision={subdivision}
+                    handleChange={handleChange}
+                    handleClick={handleClick}
+                    handleSubmit={handleSubmit}
+                    isDisabled={isDisabled} messageButton={messageButton}
+                />
+                <BatimentsShow
+                    batiments={batiments} messageButton={message}
+                />
+            </fieldset>
             {
                 showModal &&
                 <SubdivisionSearchModal handleCloseModal={handleCloseModal} handleSelectSubdivision={handleSelectSubdivision} />
             }
-            <BatimentsShow
-                batiments={batiments} messageButton={message}
-            />
-        </>
+        </section>
     )
 }
 
