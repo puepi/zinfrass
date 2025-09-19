@@ -15,7 +15,7 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
                 <legend>Lot</legend>
                 <form className="entries" action={handleSubmitAll}>
                     <label htmlFor="numLot">N° du lot</label>
-                    <input type="text" name="numLot" id="numLot" required />
+                    <input type="text" name="numLot" id="numLot" disabled />
                     <label htmlFor="dateLivraison">Date livraison : </label>
                     <input type="date" name="dateLivraison" id="dateLivraison" required /><div></div>
                     <label htmlFor="livreurs">Livreurs : </label>

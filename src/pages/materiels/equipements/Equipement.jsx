@@ -31,7 +31,7 @@ export default function Equipement({ handleSuivant, handlePrecedent, handleRegis
                 <label htmlFor="modele">Modèle : </label>
                 <input type="text" name="modele" id="modele" required />
                 <label htmlFor="quantite">Quantité : </label>
-                <input type="number" name="quantite" id="quantite" required /><div></div>
+                <input type="number" name="quantite" id="quantite" required  disabled/><div></div>
                 <label htmlFor="caracteristics" className="caracteres">Caractéristiques:</label>
                 <textarea
                     required className="caracteristiques" name="caracteristics"
