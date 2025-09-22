@@ -1,11 +1,10 @@
 .maintenance {
-    width: 75%;
+    max-width: 98%;
     margin: 0 auto;
 }
 
 #incidents-save {
     display: grid;
-    border: 3px solid #ffc736;
     border-radius: 8px;
     padding: 1rem;
     gap: 5px;
@@ -16,7 +15,6 @@
 
 #interventions-save {
     display: grid;
-    border: 3px solid #ffc736;
     border-radius: 8px;
     padding: 0.5rem;
     gap: 5px;
@@ -35,7 +33,7 @@
 .incidents tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;
 }
@@ -43,7 +41,7 @@
 .incidents thead .show-tab {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
 }
 

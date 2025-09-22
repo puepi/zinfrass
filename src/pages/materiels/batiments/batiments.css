@@ -14,7 +14,7 @@
     border-radius: 8px;
     border: 5px solid wheat;
     background-color: #fff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1px;
 }
 
 #batiments-save .empty {
@@ -103,7 +103,6 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 20px);
     border-radius: 8px;
-    border: 5px solid #ffc736;
     background-color: #fff;
 }
 
@@ -116,7 +115,7 @@
 }
 
 .personnel {
-    width: 60%;
+    width: 75%;
     margin: 0 auto;
 }
 
@@ -156,13 +155,13 @@
     border-radius: 10px;
     border: 5px solid wheat;
     grid-template-columns: repeat(6, 1fr);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1px;
     background-color: #fff;
 }
 
 .batiments thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -244,7 +243,7 @@
 
 .batiments tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;

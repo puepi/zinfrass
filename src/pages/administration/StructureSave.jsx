@@ -134,14 +134,13 @@ export default function StructureSave() {
             {
 
                 <>
-                    <h1>Créer une structure avec ses postes de responsabilité</h1>
                     <section className="structures">
                         {
                             toContinue === 'structures' &&
                             <fieldset className="lastructure">
-                                <legend>Structures</legend>
+                                <legend>Enregistrer une structure</legend>
                                 <form action={handleSubmit} id="structures-save">
-                                    <label htmlFor="">Structure choisie</label>
+                                    <label htmlFor="">Structure</label>
                                     <input type="text" name="" id="" disabled value={selectedStructure.nom} onChange={handleChange3} /><div></div><div></div>
                                     <label htmlFor="">Subdivision :</label>
                                     <select name="" id="">

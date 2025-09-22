@@ -53,7 +53,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
 
         <>
             <fieldset className="leposte">
-                <legend>Postes de responsabilité</legend>
+                <legend>Créer des Postes de travail</legend>
                 <form action={handleSubmitPoste} className="structure-postes-save">
                     <div></div>
                     <input className="myinput" type="text" name="" id="" disabled value={selectedPoste.nom} onChange={handleChange} />

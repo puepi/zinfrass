@@ -153,7 +153,6 @@ export default function EquipementsReception() {
     }
     return (
         <>
-            <h1>Réception de Livraison d'Equipements</h1>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur isLoading={isLoading} loadingMessage={loadingMessage} chercherFournisseurs={chercherFournisseurs} handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}

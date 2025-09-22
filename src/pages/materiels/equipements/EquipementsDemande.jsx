@@ -3,24 +3,24 @@ import './equipements.css'
 import { useEffect, useState } from 'react'
 import { addDemande, getAllDemandes } from '../../../utils/ApiFunctions'
 export default function EquipementsDemande() {
-    const [typesEquipement,setTypesEquipement]=useState([])
-    const [categories,setCategories]=useState([])
-    const [messageButton,setMessageButton]=useState('Enregistrer')
-    const [isDisabled,setIsDisabled]=useState(false)
-    const [demandes,setDemandes]=useState([])
-    const [messageLoading,setMessageLoading]=useState('Aucun élément trouvé')
-    async function getDemandes(){
+    const [typesEquipement, setTypesEquipement] = useState([])
+    const [categories, setCategories] = useState([])
+    const [messageButton, setMessageButton] = useState('Enregistrer')
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [demandes, setDemandes] = useState([])
+    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    async function getDemandes() {
         setMessageLoading('...is Loading')
-            await getAllDemandes()
-                .then(data => setDemandes(data))
-                .catch(error => console.log(error))
-                .finally(() => setMessageLoading('Aucun élément trouvé'))
+        await getAllDemandes()
+            .then(data => setDemandes(data))
+            .catch(error => console.log(error))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
-    useEffect(()=>{
-        document.title='Demandes de matériel'
+    useEffect(() => {
+        document.title = 'Demandes de matériel'
         getDemandes()
-    },[])
-    async function handleSubmit(formData){
+    }, [])
+    async function handleSubmit(formData) {
         setIsDisabled(true)
         setMessageButton("...Saving")
         const newDemande = {
@@ -34,7 +34,7 @@ export default function EquipementsDemande() {
         }
         await addDemande(newDemande)
             .then(response => {
-                setDemandes(prev => ([response,...prev]))
+                setDemandes(prev => ([response, ...prev]))
                 console.log(response)
             })
             .catch(error => console.log(error))
@@ -45,23 +45,22 @@ export default function EquipementsDemande() {
     }
     return (
         <>
-            <h1>Demande de Matériel</h1>
             <section className='equipements'>
                 <fieldset className='lepersonnel'>
-                    <legend>Formulaire</legend>
+                    <legend>Enregistrer une demande de matériel</legend>
                     <form action={handleSubmit} id="equipements-demande">
                         <label htmlFor="noms" >Noms :</label>
-                        <input type="text"  name="noms" id="noms" required/>
+                        <input type="text" name="noms" id="noms" required />
                         <label htmlFor="poste">Poste de travail :</label>
-                        <input type="text"  name="poste" id="poste" required/>
+                        <input type="text" name="poste" id="poste" required />
                         <Link className="search-link">...rechercher</Link>
                         <label htmlFor="service">Service :</label>
-                        <input type="text" name="service" id="service"  required/>
+                        <input type="text" name="service" id="service" required />
                         <label htmlFor="dateReception">Reçue le :</label>
-                        <input type="date" name="dateReception" id="dateReception" required/>
+                        <input type="date" name="dateReception" id="dateReception" required />
                         <div></div>
                         <label htmlFor="objet">Objet :</label>
-                        <input type="text" name="objet" id="objet" required/>
+                        <input type="text" name="objet" id="objet" required />
                         <label htmlFor="">Photo :</label>
                         <input type="file" />
                         <div></div>
@@ -69,7 +68,7 @@ export default function EquipementsDemande() {
                         <select name="categorieEquipement" id="categorieEquipement" >
                             <option value="">Choose an option</option>
                         </select>
-                        <label htmlFor="typeEquipement">Type d'équipement :</label>
+                        <label htmlFor="typeEquipement">Type Equipement :</label>
                         <select name="typeEquipement" id="typeEquipement" >
                             <option value="">Choose an option</option>
                         </select>

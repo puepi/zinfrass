@@ -255,12 +255,12 @@ p.suivant a {
 }
 
 
-.outlet{
+.outlet {
   display: flex;
 }
 
 aside {
-  width: 400px;
+  width: 280px;
   background-color: rgba(216, 144, 10, 0.767);
   flex-direction: column;
   padding: 10px 1px;
@@ -268,8 +268,8 @@ aside {
   flex-shrink: 0;
 }
 
-.outlet main{
-  flex:1;
+.outlet main {
+  flex: 1;
 }
 
 aside .accordion {

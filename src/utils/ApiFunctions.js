@@ -529,3 +529,14 @@ export async function getAllIncidents() {
         throw error
     }
 }
+
+
+export async function getPersonnelsNomsEtPrenoms(id) {
+    try {
+        const response = await api.get('/personnels/get-noms/' + id)
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

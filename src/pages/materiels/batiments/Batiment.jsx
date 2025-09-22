@@ -4,24 +4,13 @@ import { useState } from 'react'
 import Toast from '../../../components/Toast'
 
 
-export default function Batiment({toast, handleSubmit, isDisabled, messageButton, handleClick, subdivision, handleChange }) {
-
-
-    // function handleChange(e){
-    //     const name=e.target.name
-    //     let value=e.target.value
-    //     setBatiment(prev=>(
-    //         {
-    //             ...prev,[name]:value
-    //         }
-    //     ))
-    // }
+export default function Batiment({ toast, handleSubmit, isDisabled, messageButton, handleClick, subdivision, handleChange }) {
 
     return (
         <>
             {
-                toast && 
-                <Toast message={toast.message} type={toast.type} onClose={()=>{setToast(null)}} />
+                toast &&
+                <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
             }
             <form action={handleSubmit} id="batiments-save">
                 <label htmlFor="sub-type">Unité administrative :</label>

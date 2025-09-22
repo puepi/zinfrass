@@ -1,5 +1,5 @@
 .equipements {
-    width: 70%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -64,7 +64,6 @@
 
 #equipements-affecter {
     display: grid;
-    border: 5px solid #ffc736;
     gap: 5px;
     padding: 1rem;
     border-radius: 8px;
@@ -148,7 +147,7 @@
 
 #reception {
     margin: 0 auto;
-    width: 70%;
+    width: 90%;
 }
 
 #reception fieldset {
@@ -167,6 +166,9 @@
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 20px);
     font-size: 0.8rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
     gap: 3px;
 }
 
@@ -237,6 +239,9 @@ p.suivant button {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 20px);
     font-size: 0.8rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
     gap: 3px;
 }
 
@@ -264,20 +269,17 @@ p.suivant button {
     grid-row: 3 / span 3;
 }
 
-.equipement {
-    width: 85%;
-}
 
-.equipement .entries {
+/* #reception .equipement .entries {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 20px);
     font-size: 0.8rem;
     gap: 3px;
-}
+} */
 
 
-.equipement .entries span {
+/* .equipement .entries span {
     grid-column: 1/-1;
     text-align: center;
     font-weight: bold;
@@ -287,40 +289,76 @@ p.suivant button {
     grid-column: 2 / span 4;
     grid-row: 1 / span 2;
 }
+*/
 
 textarea.caracteristiques {
-    grid-column: 2 / -1;
-    grid-row: 4 / span 4;
+    /* grid-column: 2 / -1;
+    grid-row: 4 / span 4; */
 }
 
 .equipement .entries .caracteres {
-    grid-row: 4 / span 4;
+    /* grid-row: 4 / span 4; */
 }
 
-p.count {
+/* p.count {
     text-align: center;
     font-weight: bold;
     margin: 8px;
     font-size: 0.9rem;
-}
+} */
 
-.equipement p.navs {
+/* .equipement p.navs {
     margin: 10px;
     display: flex;
     justify-content: space-between;
 }
 
-
-
 .equipement p.navs button {
     margin-inline: 10px;
+} */
+
+.equipement .entries {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(9, 20px);
+    font-size: 0.8rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    gap: 4px;
 }
+
+.count {
+    grid-column: 1/-1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.eq-container {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.equipement .description {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 2;
+}
+
+.equipement .caracteristiques {
+    grid-column: 2/span 3;
+    grid-row: 4 / span 3;
+}
+
+/*  */
 
 .lot .entries {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(7, 20px);
     font-size: 0.8rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
     gap: 3px;
 }
 
@@ -437,7 +475,7 @@ p.count {
 
 
 .lequipement {
-    width: 70%;
+    width: 98%;
     margin: 0 auto;
 }
 
@@ -532,23 +570,23 @@ p.count {
     background-color: #fff;
 }
 
-.lot-search{
+.lot-search {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 20px);
-    gap:5px;
+    gap: 5px;
 }
 
-.respos-search{
+.respos-search {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 20px);
-    gap:5px;
+    gap: 5px;
 }
 
-.unposte{
+.unposte {
     grid-column: 5/-1;
 }
 
@@ -611,6 +649,12 @@ p.count {
 .table-respo thead .show-tab {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-rows: repeat(1, 25px);
+    gap: 1px;
+}
+
+.table-perso thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
 }

@@ -7,17 +7,16 @@ import { useEffect, useState } from 'react'
 export default function ConnectiquesSave() {
     const [connectiques, setConnectiques] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
-    useEffect(()=>{
-        document.title='Enregistrer des connectiques'
+    useEffect(() => {
+        document.title = 'Enregistrer des connectiques'
     })
     return (
         <>
-            <h1>Enregistrement des connectiques</h1>
             <section>
                 <fieldset className="connectiques">
                     <legend>Enregistrement des connectiques</legend>
                     <form action="" id="connectiques-save">
-                        <label htmlFor="">Nature de la connectique :</label>
+                        <label htmlFor="">Nature :</label>
                         <input type="text" />
                         <label htmlFor="">Quantité :</label>
                         <input type="text" />

@@ -12,7 +12,7 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
     return (
         <section className="lot">
             <fieldset>
-                <legend>Lot</legend>
+                <legend>Terminer l'enregistrement du lot</legend>
                 <form className="entries" action={handleSubmitAll}>
                     <label htmlFor="numLot">N° du lot</label>
                     <input type="text" name="numLot" id="numLot" disabled />

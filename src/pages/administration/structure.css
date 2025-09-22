@@ -1,5 +1,5 @@
 .structures {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -31,7 +31,6 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 20px);
     border-radius: 8px;
-    border: 5px solid #ffc736;
     background-color: #fff;
 }
 
@@ -194,7 +193,7 @@
 
 .larespo tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -202,7 +201,7 @@
 
 .larespo thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }

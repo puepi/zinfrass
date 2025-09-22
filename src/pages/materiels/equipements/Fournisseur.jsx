@@ -10,7 +10,7 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
 
     return (
         <fieldset className="fournisseur">
-            <legend>Fournisseur</legend>
+            <legend>Enregistrer un Fournisseur</legend>
             <form className="fournisseur-entries" action={registerFournisseur}>
                 <div></div>
                 <input type="text" required disabled className="show-search" name='selectedName' value={selectedFournisseur.nom} onChange={handleChange} />

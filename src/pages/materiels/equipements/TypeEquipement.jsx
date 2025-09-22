@@ -115,7 +115,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
     return (
         <>
             <fieldset className="type-equipement">
-                <legend>Type d'équipement</legend>
+                <legend>Enregistrer le type d'équipement</legend>
                 <form className="entries" action={handleRegister}>
                     <div></div>
                     <input type="text" disabled className="show-search" value={selectedType.nom} onChange={handleChangeSelectedInput} />

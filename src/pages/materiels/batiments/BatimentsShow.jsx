@@ -28,10 +28,8 @@ export default function BatimentsShow({ batiments, messageButton }) {
                         <tr className='show-tab'>
                             <th>N° </th>
                             <th>Subdivision</th>
-                            <th>Nom</th>
-                            <th>Nature</th>
+                            <th>Nom (Type)</th>
                             <th>Description</th>
-                            <th>Rétrocédé ?</th>
                             <th>Date Rétrocession</th>
                         </tr>
                     </thead>
@@ -41,10 +39,9 @@ export default function BatimentsShow({ batiments, messageButton }) {
                             batiments.map((batiment, id) => <tr key={batiment.id} className='dynamic-row'>
                                 <td>{id + 1}</td>
                                 <td>{batiment.subdivisionName}</td>
-                                <td>{batiment.nom}</td>
-                                <td>{batiment.nature}</td>
-                                <td>{batiment.description}</td>
-                                <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td>
+                                <td>{batiment.nom + "(" + batiment.nature + ")"}</td>
+                                <td>{batiment.description.length > 35 ? batiment.description.substring(0, 35) + '...' : batiment.description}</td>
+                                {/* <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td> */}
                                 <td>{batiment.dateRetrocession}</td>
                             </tr>)
                         )}

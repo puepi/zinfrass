@@ -73,46 +73,48 @@ export default function FacturesSave() {
     }, [])
     return (
         <>
-            <h1 className='factures-heading'>Enregistrement d'une facture</h1>
             <section className="factures">
-                <form id="save-form" action={handleSubmit}>
-                    <label htmlFor="numFacture">Numéro facture:</label>
-                    <input type="text" id="numFacture" name="numFacture" />
-                    <div></div>
-                    <label htmlFor="numCompteur">Numéro compteur:</label>
-                    <input type="text" id="numCompteur" name="numCompteur" />
-                    <label htmlFor="debut">Période du :</label>
-                    <input type="date" id="debut" name="debut" />
-                    <div></div>
-                    <label htmlFor="fin">Au :</label>
-                    <input type="date" id="fin" name="fin" />
-                    <label htmlFor="type">Type de facture :</label>
-                    <select name="type" id="type" required>
-                        <option value="">Sélectionner une option</option>
-                        <option value="Eau">Facture d'eau</option>
-                        <option value="Electricité">Facture d'électricité</option>
-                    </select>
-                    <div></div>
-                    <label htmlFor="montant">Montant :</label>
-                    <input type="number" id="montant" name='montant' />
-                    <label htmlFor="oldIndex">Ancien index :</label>
-                    <input type="number" id="oldIndex" name="oldIndex" />
-                    <div></div>
-                    <label htmlFor="newIndex">Nouvel index :</label>
-                    <input type="number" id="newIndex" name='newIndex' />
-                    <label htmlFor="consommation">Consommation :</label>
-                    <input type="number" id="consommation" name='consommation' />
-                    <div></div>
-                    <label htmlFor="">Unités :</label>
-                    <label htmlFor="">Mètres cube (m3)</label>
-                    <label htmlFor="batiment">Bâtiment :</label>
-                    <input type="text" name="batiment" id="batiment" value={batimentResponse.nom} disabled />
-                    <Link to="#" className='search-link' onClick={handleLinkClick}>...rechercher</Link>
-                    <div></div>
-                    <button disabled={isDisabled}>{messageButton}</button>
-                </form>
+                <fieldset>
+                    <legend>Enregistrement d'une facture</legend>
+                    <form id="save-form" action={handleSubmit}>
+                        <label htmlFor="numFacture">Numéro facture:</label>
+                        <input type="text" id="numFacture" name="numFacture" />
+                        <div></div>
+                        <label htmlFor="numCompteur">Numéro compteur:</label>
+                        <input type="text" id="numCompteur" name="numCompteur" />
+                        <label htmlFor="debut">Période du :</label>
+                        <input type="date" id="debut" name="debut" />
+                        <div></div>
+                        <label htmlFor="fin">Au :</label>
+                        <input type="date" id="fin" name="fin" />
+                        <label htmlFor="type">Type de facture :</label>
+                        <select name="type" id="type" required>
+                            <option value="">Sélectionner une option</option>
+                            <option value="Eau">Facture d'eau</option>
+                            <option value="Electricité">Facture d'électricité</option>
+                        </select>
+                        <div></div>
+                        <label htmlFor="montant">Montant :</label>
+                        <input type="number" id="montant" name='montant' />
+                        <label htmlFor="oldIndex">Ancien index :</label>
+                        <input type="number" id="oldIndex" name="oldIndex" />
+                        <div></div>
+                        <label htmlFor="newIndex">Nouvel index :</label>
+                        <input type="number" id="newIndex" name='newIndex' />
+                        <label htmlFor="consommation">Consommation :</label>
+                        <input type="number" id="consommation" name='consommation' />
+                        <div></div>
+                        <label htmlFor="">Unités :</label>
+                        <label htmlFor="">Mètres cube (m3)</label>
+                        <label htmlFor="batiment">Bâtiment :</label>
+                        <input type="text" name="batiment" id="batiment" value={batimentResponse.nom} disabled />
+                        <Link to="#" className='search-link' onClick={handleLinkClick}>...rechercher</Link>
+                        <div></div>
+                        <button disabled={isDisabled}>{messageButton}</button>
+                    </form>
+                    <FacturesShow factures={factures} messageLoading={messageLoading} />
+                </fieldset>
             </section>
-            <FacturesShow factures={factures} messageLoading={messageLoading} />
             {
                 showModal &&
                 <BatimentSearchModal handleCloseModal={handleCloseModal} handleSelectBatiment={handleSelectBatiment} />
