@@ -275,3 +275,25 @@ aside {
 aside .accordion {
   margin-left: -50px;
 }
+
+.dynamic-row {
+  cursor: default;
+}
+
+.edit-btn {
+  color: rgb(5, 126, 163);
+}
+
+.delete-btn {
+  color: rgb(167, 4, 4);
+}
+
+.delete-btn,
+.edit-btn {
+  cursor: pointer;
+  background: none;
+  padding: 3px;
+  background-repeat: no-repeat;
+  border: none;
+  /* Ajoutez d'autres styles pour un meilleur affichage */
+}

@@ -1,7 +1,5 @@
 .batiments {
     width: 85%;
-    margin: 0 auto;
-
 }
 
 #batiments-save {
@@ -161,10 +159,18 @@
 
 .batiments thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
+
+.espaces thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
 
 .show-tab th {
     border: 1px solid aliceblue;
@@ -224,9 +230,10 @@
 }
 
 .dynamic-row:hover {
-    background-color: goldenrod;
+    background-color: #f0ecec;
+    /* background-color: #fff; */
     opacity: 0.9;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 
@@ -241,9 +248,20 @@
     font-size: 0.7rem;
 }
 
+.dynamic-row {}
+
 .batiments tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 40px);
+    gap: 1px;
+    border: none;
+    cursor: default;
+}
+
+.espaces tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;

@@ -31,6 +31,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
                             <th>Nom (Type)</th>
                             <th>Description</th>
                             <th>Date Rétrocession</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody className='batiments-body'>
@@ -43,6 +44,14 @@ export default function BatimentsShow({ batiments, messageButton }) {
                                 <td>{batiment.description.length > 35 ? batiment.description.substring(0, 35) + '...' : batiment.description}</td>
                                 {/* <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td> */}
                                 <td>{batiment.dateRetrocession}</td>
+                                <td>
+                                    <button className="edit-btn">
+                                        &#9998;
+                                    </button>&nbsp;
+                                    <button className="delete-btn">
+                                        &#x1F5D1;
+                                    </button>
+                                </td>
                             </tr>)
                         )}
                     </tbody>

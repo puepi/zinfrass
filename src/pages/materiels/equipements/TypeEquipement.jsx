@@ -161,10 +161,10 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                         )}
                     </tbody>
                 </table>
-                <p className="nav-buttons">
+                {/* <p className="nav-buttons">
                     <button>{"<"}</button>
                     <button>{">"}</button>
-                </p>
+                </p> */}
                 <p className="suivant">
                     <button className="precedent" onClick={handlePrecedent}>Précédent</button>
                     <button className="suivant" onClick={() => handleSuivant(selectedType)}>Suivant</button>
