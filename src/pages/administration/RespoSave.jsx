@@ -54,10 +54,13 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                         <option value="false">NON</option>
                     </select>
                 </label>
+                <label htmlFor="affecter">Affecter ce poste à un bureau :</label>
+                <input type="text" name="affecter" id="affecter" className="theinput" disabled/>
+                <Link className="search-link" onClick={openPersonnelsModal}>...rechercher</Link>
+                <div></div>
                 <button type="button" onClick={handlePrecedent}>Précédent</button>
                 <span></span>
                 <div></div><div></div>
-                <div></div>
                 <button disabled={isDisabled}>{messageButton}</button>
             </form>
             <form action="" className="show-form">

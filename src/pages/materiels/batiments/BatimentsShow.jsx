@@ -41,7 +41,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
                                 <td>{id + 1}</td>
                                 <td>{batiment.subdivisionName}</td>
                                 <td>{batiment.nom + "(" + batiment.nature + ")"}</td>
-                                <td>{batiment.description.length > 35 ? batiment.description.substring(0, 35) + '...' : batiment.description}</td>
+                                <td>{batiment.description?.length > 35 ? batiment.description.substring(0, 35) + '...' : batiment.description}</td>
                                 {/* <td>{batiment.retrocede === true ? 'OUI' : 'NON'}</td> */}
                                 <td>{batiment.dateRetrocession}</td>
                                 <td>
