@@ -37,11 +37,12 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
                 <input type="text" name='niu' id='niu' required maxLength={14} minLength={14} /><div></div><div></div><div></div><div></div><div></div>
                 <button disabled={isDisabled}>{messageButton}</button>
             </form>
-            <p className="search-place">
-                <label htmlFor="">Chercher par nom :  </label>
-                <input type="text" />
-                <button disabled={isLoading}>Chercher</button>
-            </p>
+            <form action="" className="show-form">
+                <label htmlFor="">Noms :</label>
+                <input type="text" name="" id="" />
+                <div></div>
+                <button type="button" >Rechercher</button>
+            </form>
             <table>
                 <thead>
                     <tr className='show-tab'>
@@ -52,6 +53,7 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
                         <th>Email</th>
                         <th>NIU</th>
                         <th>Contact</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='fournisseur-body'>
@@ -60,11 +62,19 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
                         fournisseurs.map((fournisseur, id) => <tr key={fournisseur.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, fournisseur)}>
                             <td>{fournisseur.nom}</td>
                             <td>{fournisseur.representant}</td>
-                            <td>{fournisseur.type}</td>
-                            <td>{fournisseur.adresse}</td>
+                            <td>{fournisseur.type.toUpperCase()}</td>
+                            <td>{fournisseur.adresse.toUpperCase()}</td>
                             <td>{fournisseur.email}</td>
                             <td>{fournisseur.niu}</td>
                             <td>{fournisseur.contact}</td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>

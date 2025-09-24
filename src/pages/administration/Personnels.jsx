@@ -76,6 +76,7 @@ export default function Personnels() {
                                 <th>Prénoms</th>
                                 <th>Matricule</th>
                                 <th>Genre</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody className='lepersonnel-body'>
@@ -87,6 +88,14 @@ export default function Personnels() {
                                     <td>{personnel.prenoms}</td>
                                     <td>{personnel.matricule}</td>
                                     <td>{personnel.genre}</td>
+                                    <td>
+                                        <button className="edit-btn">
+                                            &#9998;
+                                        </button>&nbsp;&nbsp;
+                                        <button className="delete-btn">
+                                            &#x1F5D1;
+                                        </button>
+                                    </td>
                                 </tr>)
                             )}
                         </tbody>

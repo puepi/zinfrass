@@ -96,7 +96,7 @@ export default function EquipementsReception() {
             descriptive: formData.get("descriptive"),
             marque: formData.get("marque"),
             modele: formData.get("modele"),
-            quantite: formData.get("quantite"),
+            quantite: equipements.length,
             caracteristics: formData.get("caracteristics"),
             couleur: formData.get("couleur"),
             equipements: equipements

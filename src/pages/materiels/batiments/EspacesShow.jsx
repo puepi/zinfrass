@@ -37,7 +37,14 @@ export default function EspacesShow({ espaces, messageButton }) {
                             <td>{espace.dimensions}</td>
                             <td>{espace.usage}</td>
                             <td>{espace.batimentNom}</td>
-                            <td></td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>

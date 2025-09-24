@@ -19,7 +19,7 @@
 
 .connectiques thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -32,7 +32,7 @@
 
 .connectiques tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;

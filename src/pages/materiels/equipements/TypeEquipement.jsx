@@ -135,11 +135,14 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                     <input type="text" required disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button type="button" disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
                     <button disabled={isDisabled}>{messageButton}</button>
                 </form>
-                <p className="search-place">
-                    <label htmlFor="">Chercher par nom :  </label>
-                    <input type="text" />
-                    <button>Chercher</button>
-                </p>
+                <form action="" id="show-form">
+                    <label htmlFor="">Nom :</label>
+                    <input type="text" name="" id="" />
+                    <div></div>
+                    <label htmlFor="">Catégorie :</label>
+                    <input type="text" name="" id="" />
+                    <button>Rechercher</button>
+                </form>
                 <table>
                     <thead>
                         <tr className='show-tab'>
@@ -147,6 +150,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                             <th>Abréviation</th>
                             <th>Catégorie</th>
                             <th>Caracteristiques</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody className='type-equipement-body'>
@@ -157,6 +161,14 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                                 <td>{type.abreviation}</td>
                                 <td>{type.categorieNom}</td>
                                 <td>{type.caracteristiques.substring(0, 40) + '...'}</td>
+                                <td>
+                                    <button className="edit-btn">
+                                        &#9998;
+                                    </button>&nbsp;&nbsp;
+                                    <button className="delete-btn">
+                                        &#x1F5D1;
+                                    </button>
+                                </td>
                             </tr>)
                         )}
                     </tbody>

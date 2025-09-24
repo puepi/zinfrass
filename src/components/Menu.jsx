@@ -30,7 +30,7 @@ export default function Menu({ accordionWidth }) {
                 <div className="content">
                     <p><Link className='show-link' to="/administration/unites-admin/save">Subdivisions administratives</Link></p>
                     <p><Link className='show-link' to="/administration/structures/save">Structures et postes de travail</Link></p>
-                    <p><Link className='show-link' to="/administration/structures/personnels">Enregistrer du personnel</Link></p>
+                    <p><Link className='show-link' to="/administration/structures/personnels">Enregistrer un personnel</Link></p>
 
                 </div>
             </li>

@@ -194,6 +194,7 @@ export default function StructureSave() {
                                             <th>Subdivision</th>
                                             <th>Abréviation</th>
                                             <th>Rattachée à</th>
+                                            <th>Options</th>
                                         </tr>
                                     </thead>
                                     <tbody className='lastructure-body'>
@@ -205,6 +206,14 @@ export default function StructureSave() {
                                                 <td>{structure.subdivision.nom}</td>
                                                 <td>{structure.abreviation}</td>
                                                 <td>{structure.parent}</td>
+                                                <td>
+                                                    <button className="edit-btn">
+                                                        &#9998;
+                                                    </button>&nbsp;&nbsp;
+                                                    <button className="delete-btn">
+                                                        &#x1F5D1;
+                                                    </button>
+                                                </td>
                                             </tr>)
                                         )}
                                     </tbody>

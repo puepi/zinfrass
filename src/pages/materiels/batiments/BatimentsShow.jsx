@@ -47,7 +47,7 @@ export default function BatimentsShow({ batiments, messageButton }) {
                                 <td>
                                     <button className="edit-btn">
                                         &#9998;
-                                    </button>&nbsp;
+                                    </button>&nbsp;&nbsp;
                                     <button className="delete-btn">
                                         &#x1F5D1;
                                     </button>

@@ -24,11 +24,10 @@ export default function FacturesShow({ factures, messageLoading }) {
                         <th>N° compteur</th>
                         <th>Montant</th>
                         <th>Consommation</th>
-                        <th>Début</th>
-                        <th>Fin</th>
-                        <th>Ancien index</th>
-                        <th>Nouvel index</th>
+                        <th>Période</th>
+                        <th>Index</th>
                         <th>Batiment</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='factures-body'>
@@ -40,11 +39,20 @@ export default function FacturesShow({ factures, messageLoading }) {
                             <td>{facture.numéroCompteur}</td>
                             <td>{facture.montant}</td>
                             <td>{facture.consommation}</td>
-                            <td>{facture.debut}</td>
-                            <td>{facture.fin}</td>
-                            <td>{facture.ancienIndex}</td>
-                            <td>{facture.nouvelIndex}</td>
+                            <td>{facture.debut + "-" + facture.fin}</td>
+                            <td>{facture.ancienIndex + "-" + facture.ancienIndex}</td>
                             <td>{facture.batimentName}</td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
+                            <td>
+
+                            </td>
                         </tr>)
                     )}
                 </tbody>

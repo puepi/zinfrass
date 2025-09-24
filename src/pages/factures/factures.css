@@ -51,7 +51,7 @@ button {
 
 .factures thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -139,7 +139,7 @@ button {
 
 .factures tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -154,30 +154,6 @@ button {
     background-color: #fff;
 }
 
-.subdivisions thead .show-tab {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 30px);
-    gap: 1px;
-}
-
-.subdivisions-body {
-    background-color: #fff;
-}
-
-.subdivisions tr.titles {
-    margin: 5px;
-    text-align: center;
-    font-size: 0.7rem;
-}
-
-.subdivisions tr.dynamic-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(1, 30px);
-    gap: 1px;
-    border: none;
-}
 
 
 .espaces-body {

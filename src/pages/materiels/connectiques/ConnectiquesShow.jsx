@@ -22,6 +22,7 @@ export default function ConnectiquesShow({ connectiques, messageLoading }) {
                         <th>Type de réseau</th>
                         <th>Position</th>
                         <th>Emplacement</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='connectiques-body'>
@@ -33,6 +34,14 @@ export default function ConnectiquesShow({ connectiques, messageLoading }) {
                             <td>{connectique.numéroCompteur}</td>
                             <td>{connectique.montant}</td>
                             <td>{connectique.consommation}</td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>

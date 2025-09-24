@@ -65,7 +65,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                     <select name="rang" id="rang" required>
                         <option value="">Faites un choix</option>
                         <option value="Ministre">Ministre</option>
-                        <option value="Sectétaire Général">Secrétaire Général</option>
+                        <option value="Secrétaire Général">Secrétaire Général</option>
                         <option value="Inspecteur Général">Inspecteur Général</option>
                         <option value="Directeur">Directeur</option>
                         <option value="Directeur Adjoint">Directeur Adjoint</option>
@@ -98,6 +98,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                             <th>Nom</th>
                             <th>Abréviation</th>
                             <th>Rang</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody className='lastructure-body'>
@@ -108,6 +109,14 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                                 <td>{poste.nom}</td>
                                 <td>{poste.abreviation}</td>
                                 <td>{poste.rang}</td>
+                                <td>
+                                    <button className="edit-btn">
+                                        &#9998;
+                                    </button>&nbsp;&nbsp;
+                                    <button className="delete-btn">
+                                        &#x1F5D1;
+                                    </button>
+                                </td>
                             </tr>)
                         )}
                     </tbody>

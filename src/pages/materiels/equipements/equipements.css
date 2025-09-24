@@ -172,11 +172,15 @@
     gap: 3px;
 }
 
+.fournisseur .show-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
 
 
 .fournisseur thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -260,7 +264,7 @@ p.suivant button {
 
 .type-equipement thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -392,8 +396,8 @@ textarea.caracteristiques {
 
 .fournisseur tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;
 }
@@ -412,7 +416,6 @@ textarea.caracteristiques {
 }
 
 
-
 .type-equipement tr.titles {
     margin: 5px;
     text-align: center;
@@ -421,10 +424,16 @@ textarea.caracteristiques {
 
 .type-equipement tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
+}
+
+.type-equipement .show-form {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
 }
 
 .type-equipement .dynamic-row td {

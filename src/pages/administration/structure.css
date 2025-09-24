@@ -38,6 +38,32 @@
     grid-column: 4/-1;
 }
 
+.subdivisions thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.subdivisions-body {
+    background-color: #fff;
+}
+
+.subdivisions tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.subdivisions tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+
 
 
 .lastructure-body {
@@ -54,7 +80,7 @@
 
 .lastructure-body tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -63,7 +89,7 @@
 
 .lastructure thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -147,7 +173,7 @@
 
 .leposte tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -155,7 +181,7 @@
 
 .leposte thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }
@@ -193,7 +219,7 @@
 
 .larespo tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
     border: none;
@@ -201,7 +227,55 @@
 
 .larespo thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
+}
+
+.lepersonnel-body {
+    background-color: #fff;
+}
+
+.lepersonnel-body tr.titles {
+    margin: 5px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.personnel tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+    border: none;
+}
+
+.personnel .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.personnel thead .show-tab {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 30px);
+    gap: 1px;
+}
+
+.personnel .show-tab th {
+    border: 1px solid aliceblue;
+    color: #1B85B8;
+    font-size: 0.8rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personnel .show-form {
+    grid-template-columns: repeat(3, 1fr);
 }

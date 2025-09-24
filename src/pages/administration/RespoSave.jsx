@@ -44,7 +44,7 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                 <label htmlFor="fin">Date de fin :</label>
                 <input type="date" name="fin" id="fin" />
                 <label htmlFor="noms">Noms et prénoms :</label>
-                <input type="text" placeholder="Poste vacant" name="noms" id="noms" className="theinput" value={noms} onChange={handleChange} />
+                <input disabled type="text" placeholder="Poste vacant" name="noms" id="noms" className="theinput" value={noms} onChange={handleChange} />
                 <Link className="search-link" onClick={openPersonnelsModal}>...rechercher</Link>
                 <label htmlFor="actif">
                     Actif &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -54,8 +54,8 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                         <option value="false">NON</option>
                     </select>
                 </label>
-                <label htmlFor="affecter">Affecter ce poste à un bureau :</label>
-                <input type="text" name="affecter" id="affecter" className="theinput" disabled/>
+                <label htmlFor="affecter">Affecter à ce bureau :</label>
+                <input type="text" name="affecter" id="affecter" className="theinput" disabled />
                 <Link className="search-link" onClick={openPersonnelsModal}>...rechercher</Link>
                 <div></div>
                 <button type="button" onClick={handlePrecedent}>Précédent</button>
@@ -79,6 +79,8 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                         <th>Structure</th>
                         <th>Poste</th>
                         <th>Noms et prénoms</th>
+                        <th>Bureau</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='lastructure-body'>
@@ -88,6 +90,15 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                             <td>{respo.nomStructure}</td>
                             <td>{respo.nomPoste}</td>
                             <td>{respo.noms}</td>
+                            <td></td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>

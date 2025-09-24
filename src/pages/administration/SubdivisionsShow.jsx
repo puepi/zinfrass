@@ -26,6 +26,7 @@ export default function SubdivisionsShow({ subdivisions, getAllUnits, messageBut
                         <th>Nom de la subdivision</th>
                         <th>Nature</th>
                         <th>Subdivision rattachée</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='subdivisions-body'>
@@ -35,6 +36,14 @@ export default function SubdivisionsShow({ subdivisions, getAllUnits, messageBut
                             <td>{subdivision.nom}</td>
                             <td>{subdivision.type}</td>
                             <td>{subdivision.parent}</td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>
