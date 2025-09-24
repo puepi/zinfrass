@@ -33,13 +33,6 @@ export default function InterventionsSave() {
                         <label htmlFor="indentifiant">Identifiant :</label>
                         <input type="text" name="indentifiant" id="indentifiant" />
                         <Link className="search-link" to="" >...rechercher</Link>
-                        <label htmlFor="lieu">Lieu:</label>
-                        <input type="text" name="lieu" id="lieu" />
-                        <Link className="search-link" to="" >...rechercher</Link>
-                        <div></div>
-                        <label htmlFor="autorisation">Autorisation:</label>
-                        <input type="file" name="autorisation" id="autorisation" />
-                        <div></div>
                         <label htmlFor="raison">Raison:</label>
                         <select name="raison" id="raison">
                             <option value="">Faites un choix</option>
@@ -53,6 +46,13 @@ export default function InterventionsSave() {
                         <input type="text" name="diagnostic" id="diagnostic" />
                         <label htmlFor="solution">Solution:</label>
                         <input type="text" name="solution" id="solution" />
+                        <div></div>
+                        <label htmlFor="lieu">Lieu:</label>
+                        <input type="text" name="lieu" id="lieu" />
+                        <Link className="search-link" to="" >...rechercher</Link>
+                        <div></div>
+                        <label htmlFor="autorisation">Autorisation:</label>
+                        <input type="file" name="autorisation" id="autorisation" />
                         <div></div>
                         <label htmlFor="nroIncident">N° Incident:</label>
                         <input type="text" disabled name="nroIncident" id="nroIncident" />
@@ -70,7 +70,7 @@ export default function InterventionsSave() {
                         <input type="text" name="appréciations" id="appréciations" required />
                         <label htmlFor="date">Date :</label>
                         <input type="date" name="date" id="date" required />
-                        <label htmlFor="type">Etat :</label>
+                        <label htmlFor="type">Etat de l'objet :</label>
                         <select name="type" id="type" required>
                             <option value="">Faites un choix</option>
                             <option value="bon">En bon état</option>
@@ -78,6 +78,13 @@ export default function InterventionsSave() {
                             <option value="panne">En panne</option>
                             <option value="hors-usage">Hors d'usage</option>
                         </select>
+                        <div></div>
+                        <label htmlFor="position">Position de l'équipement:</label>
+                        <select name="position" id="position">
+                            <option value="en stock">En magasin</option>
+                            <option value="out stock">Hors du magasin</option>
+                        </select>
+                        <div></div><div></div><div></div><div></div>
                         <button>Enregistrer</button>
                     </form>
                     <form action="" className="show-form">
