@@ -73,13 +73,15 @@ export default function InterventionsSave() {
                         <label htmlFor="type">Etat de l'objet :</label>
                         <select name="type" id="type" required>
                             <option value="">Faites un choix</option>
+                            <option value="neuf">Bon état, tout neuf</option>
                             <option value="bon">En bon état</option>
                             <option value="decrépitude">En décrépitude</option>
                             <option value="panne">En panne</option>
                             <option value="hors-usage">Hors d'usage</option>
+                            <option value="maintenance">En maintenance</option>
                         </select>
                         <div></div>
-                        <label htmlFor="position">Position de l'équipement:</label>
+                        <label htmlFor="position">Posit° Eqmt:</label>
                         <select name="position" id="position">
                             <option value="en stock">En magasin</option>
                             <option value="out stock">Hors du magasin</option>

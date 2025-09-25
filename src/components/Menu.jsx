@@ -12,7 +12,6 @@ export default function Menu({ accordionWidth }) {
                     <p><Link className='show-link' to="/materiels/batiments/save">Enregistrer un bâtiment</Link></p>
                     <p><Link className='show-link' to="/materiels/espaces/save">Créer des espaces</Link></p>
                     {/* <p><Link className='show-link' to="/materiels/batiments/loger">Affecter des postes à un bureau</Link></p> */}
-                    <p><Link className='show-link' to="/materiels/batiments/receptionner">Affecter des équipements</Link></p>
                     <p><Link className='show-link' to="/connectiques/save">Connectiques</Link></p>
 
                 </div>
