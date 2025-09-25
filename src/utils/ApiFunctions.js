@@ -363,7 +363,7 @@ export async function addRespo(respo) {
         posteId: respo.posteId,
         debut: respo.debut,
         fin: respo.fin,
-        noms: !(respo.noms) ? 'Poste vacant' : respo.noms,
+        noms: respo.noms,
         actif: respo.actif
     }
     try {

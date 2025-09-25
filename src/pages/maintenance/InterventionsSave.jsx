@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react"
 import './maintenance.css'
 import { Link } from "react-router-dom"
+import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
 export default function InterventionsSave() {
     const [interventions, setInterventions] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    const [showRespoModal,setShowRespoModal]=useState(false)
+    const [selectedRespo, setSelectedRespo] = useState({})
+    function handleCloseRespoModal() {
+        setShowRespoModal(false)
+    }
+    function handleSelectRespo(respo) {
+        setSelectedRespo(respo)
+    }
+    function handleOpenRespoModal() {
+        setShowRespoModal(true)
+    }
     useEffect(() => {
         document.title = 'Enregistrer des interventions'
     }, [])
@@ -19,7 +31,7 @@ export default function InterventionsSave() {
                         <input type="text" name="poste" id="poste" required />
                         <label htmlFor="service">Service:</label>
                         <input type="text" name="service" id="service" required />
-                        <Link className="search-link" to="" >...rechercher</Link>
+                        <Link className="search-link" to="" onClick={handleOpenRespoModal}>...rechercher</Link>
                         <label htmlFor="nature">Sur :</label>
                         <select name="nature" id="nature" required>
                             <option value="">Sélectionner une option</option>
@@ -128,6 +140,10 @@ export default function InterventionsSave() {
                     </table>
                 </fieldset>
             </section>
+            {
+                showRespoModal &&
+                <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
+            }
         </>
     )
 }
