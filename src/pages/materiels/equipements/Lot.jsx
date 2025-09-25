@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LotShow from "./LotShow";
 import { getAllLots } from "../../../utils/ApiFunctions";
+import { Link } from "react-router-dom";
 
 
 export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoadingLot }) {
@@ -21,7 +22,8 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
                     <label htmlFor="livreurs">Livreurs : </label>
                     <input type="text" name="livreurs" id="livreurs" required />
                     <label htmlFor="technicien">Technicien MINPROFF : </label>
-                    <input type="text" name="technicien" id="technicien" required /><div></div>
+                    <input type="text" name="technicien" id="technicien" required />
+                    <Link className="search-link" to="" >...rechercher</Link>
                     <label htmlFor="observations" className="label-observations">Observations : </label>
                     <textarea name="observations" id="observations" required></textarea><div></div><div></div><div></div><div></div>
                     <label htmlFor="appreciations">Appreciations : </label>
