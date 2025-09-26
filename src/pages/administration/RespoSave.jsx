@@ -12,9 +12,10 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
         const newRespo = {
             debut: formData.get('debut'),
             fin: formData.get('fin'),
-            noms: formData.get('noms'),
+            noms: noms,
             actif: formData.get('actif') === 'true' ? true : false
         }
+        console.log(formData.get('noms'))
         handleSubmitNow(newRespo)
     }
     function handleCloseModal() {
@@ -48,7 +49,7 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                 <Link className="search-link" onClick={openPersonnelsModal}>...rechercher</Link>
                 <label htmlFor="actif">
                     Actif &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select name="actif" id="actif" required>
+                    <select name="actif" id="actif" required defaultValue={"true"}>
                         <option value="">Faites un choix</option>
                         <option value="true">OUI</option>
                         <option value="false">NON</option>
