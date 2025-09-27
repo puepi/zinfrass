@@ -5,7 +5,7 @@ import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
 export default function InterventionsSave() {
     const [interventions, setInterventions] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
-    const [showRespoModal,setShowRespoModal]=useState(false)
+    const [showRespoModal, setShowRespoModal] = useState(false)
     const [selectedRespo, setSelectedRespo] = useState({})
     function handleCloseRespoModal() {
         setShowRespoModal(false)
@@ -59,6 +59,15 @@ export default function InterventionsSave() {
                         <label htmlFor="solution">Solution:</label>
                         <input type="text" name="solution" id="solution" />
                         <div></div>
+
+                        <label htmlFor="respoStructure">Au profit de :</label>
+                        <input type="text" disabled name="respoStructure" id="respoStructure" />
+                        <label htmlFor="respoPoste">Poste :</label>
+                        <input type="text" disabled name="respoPoste" id="respoPoste" />
+                        <label htmlFor="respoNoms">Noms :</label>
+                        <input type="text" disabled name="respoNoms" id="respoNoms" />
+                        <Link className="search-link" to="" >...rechercher</Link>
+
                         <label htmlFor="lieu">Lieu:</label>
                         <input type="text" name="lieu" id="lieu" />
                         <Link className="search-link" to="" >...rechercher</Link>
@@ -78,6 +87,7 @@ export default function InterventionsSave() {
                             <option value="non">Non</option>
                         </select>
                         <div></div>
+
                         <label htmlFor="appréciations">Observations:</label>
                         <input type="text" name="appréciations" id="appréciations" required />
                         <label htmlFor="date">Date :</label>

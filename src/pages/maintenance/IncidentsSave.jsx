@@ -81,14 +81,17 @@ export default function IncidentsSave() {
                         <label htmlFor="nature">Nature de l'obet :</label>
                         <select name="nature" id="nature" required>
                             <option value="">Sélectionner une option</option>
-                            <option value="Materiel octroyé">Déjà utilisé  </option>
-                            <option value="Materiel en stock">En stock</option>
+                            <option value="Materiel octroyé">Equipement</option>
                             <option value="Logiciel">Logiciel</option>
                             <option value="Bâtiment">Batiments</option>
                             <option value="Espace">Espace</option>
                         </select>
                         <Link className="search-link" to="">...rechercher</Link>
                         <input type="text" name="identifiant" />
+                        <label htmlFor="respoNoms">Poste affecté :</label>
+                        <input type="text" name="respoNoms" id="respoNoms" disabled />
+                        <input type="text" disabled name="respoStructure" id="respoStructure" />
+                        <Link className="search-link" to="">...rechercher</Link>
                         <label htmlFor="objet">Objet concerné :</label>
                         <input type="text" name="objet" id="objet" required />
                         <label htmlFor="lieu">Lieu :&nbsp;&nbsp;

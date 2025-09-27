@@ -260,7 +260,7 @@ p.suivant a {
 }
 
 aside {
-  width: 280px;
+  width: 300px;
   background-color: rgba(216, 144, 10, 0.767);
   flex-direction: column;
   padding: 10px 1px;
