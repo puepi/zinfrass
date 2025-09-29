@@ -32,19 +32,6 @@ export default function InterventionsSave() {
                         <label htmlFor="service">Service:</label>
                         <input type="text" name="service" id="service" required />
                         <Link className="search-link" to="" onClick={handleOpenRespoModal}>...rechercher</Link>
-                        <label htmlFor="nature">Sur :</label>
-                        <select name="nature" id="nature" required>
-                            <option value="">Sélectionner une option</option>
-                            <option value="Materiel en stock">Equipement</option>
-                            <option value="Logiciel">Logiciel</option>
-                            <option value="Bâtiment">Batiment</option>
-                            <option value="Espace">Espace</option>
-                        </select>
-                        <label htmlFor="objet">Objet:</label>
-                        <input type="text" name="objet" id="objet" />
-                        <label htmlFor="indentifiant">Identifiant :</label>
-                        <input type="text" name="indentifiant" id="indentifiant" />
-                        <Link className="search-link" to="" >...rechercher</Link>
                         <label htmlFor="raison">Raison:</label>
                         <select name="raison" id="raison">
                             <option value="">Faites un choix</option>
@@ -59,6 +46,20 @@ export default function InterventionsSave() {
                         <label htmlFor="solution">Solution:</label>
                         <input type="text" name="solution" id="solution" />
                         <div></div>
+                        <label htmlFor="nature">Sur :</label>
+                        <select name="nature" id="nature" required>
+                            <option value="">Sélectionner une option</option>
+                            <option value="Lot">Lot</option>
+                            <option value="Equipement">Equipement</option>
+                            <option value="Logiciel">Logiciel</option>
+                            <option value="Bâtiment">Batiment</option>
+                            <option value="Espace">Espace</option>
+                        </select>
+                        <label htmlFor="objet">Objet:</label>
+                        <input type="text" name="objet" id="objet" />
+                        <label htmlFor="indentifiant">Identifiant :</label>
+                        <input type="text" name="indentifiant" id="indentifiant" />
+                        <Link className="search-link" to="" >...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
                         <input type="text" disabled name="respoStructure" id="respoStructure" />
@@ -75,19 +76,6 @@ export default function InterventionsSave() {
                         <label htmlFor="autorisation">Autorisation:</label>
                         <input type="file" name="autorisation" id="autorisation" />
                         <div></div>
-                        <label htmlFor="nroIncident">N° Incident:</label>
-                        <input type="text" disabled name="nroIncident" id="nroIncident" />
-                        <Link className="search-link" to="" >...rechercher</Link>
-                        <div></div>
-                        <label htmlFor="resolu">Résolu :</label>
-                        <select name="resolu" id="resolu" required defaultValue={"ras"}>
-                            <option value="">Faites votre choix</option>
-                            <option value="ras">Aucun incident</option>
-                            <option value="oui">Oui</option>
-                            <option value="non">Non</option>
-                        </select>
-                        <div></div>
-
                         <label htmlFor="appréciations">Observations:</label>
                         <input type="text" name="appréciations" id="appréciations" required />
                         <label htmlFor="date">Date :</label>
@@ -103,6 +91,19 @@ export default function InterventionsSave() {
                             <option value="maintenance">En maintenance</option>
                         </select>
                         <div></div>
+                        <label htmlFor="nroIncident">N° Incident:</label>
+                        <input type="text" disabled name="nroIncident" id="nroIncident" />
+                        <Link className="search-link" to="" >...rechercher</Link>
+                        <div></div>
+                        <label htmlFor="resolu">Résolu :</label>
+                        <select name="resolu" id="resolu" required defaultValue={"ras"}>
+                            <option value="">Faites votre choix</option>
+                            <option value="ras">Aucun incident</option>
+                            <option value="oui">Oui</option>
+                            <option value="non">Non</option>
+                        </select>
+                        <div></div>
+
                         <label htmlFor="position">Posit° Eqmt:</label>
                         <select name="position" id="position">
                             <option value="en stock">En magasin</option>
@@ -131,6 +132,7 @@ export default function InterventionsSave() {
                                 <th>Solution</th>
                                 <th>Appréciations</th>
                                 <th>Date</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody className='interventions-body'>
@@ -144,6 +146,14 @@ export default function InterventionsSave() {
                                     <td>{intervention.solution}</td>
                                     <td>{intervention.appreciations}</td>
                                     <td>{intervention.dateIntervention}</td>
+                                    <td>
+                                        <button className="edit-btn">
+                                            &#9998;
+                                        </button>&nbsp;&nbsp;
+                                        <button className="delete-btn">
+                                            &#x1F5D1;
+                                        </button>
+                                    </td>
                                 </tr>)
                             )}
                         </tbody>

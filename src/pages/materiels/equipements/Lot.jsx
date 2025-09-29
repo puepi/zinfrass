@@ -33,8 +33,11 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
                     </select>
                     <label htmlFor="">Procès verbal: </label>
                     <input type="file" /><div></div>
-                    <button onClick={handlePrecedent} type="button">Précédent</button><div></div><div></div>
+                    <button onClick={handlePrecedent} type="button">Précédent</button>
+                    <div></div>
                     <button>{messageSubmit}</button>
+                    <div></div>
+                    <Link className="create-link">...Mettre en magasin</Link>
                 </form>
             </fieldset>
             <LotShow lots={lots} messageLoadingLot={messageLoadingLot} />

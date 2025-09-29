@@ -32,16 +32,16 @@
 
 .incidents tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 40px);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 45px);
     gap: 1px;
     border: none;
 }
 
 .incidents thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 40px);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 45px);
     gap: 1px;
 }
 
@@ -60,16 +60,16 @@
 
 .interventions tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;
 }
 
 .interventions thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
 }
 

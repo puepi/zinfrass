@@ -1,6 +1,5 @@
 .equipements {
     width: 95%;
-    margin: 0 auto;
 }
 
 #equipements-save {
@@ -358,7 +357,7 @@ textarea.caracteristiques {
 .lot .entries {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(7, 20px);
+    grid-template-rows: repeat(6, 20px);
     font-size: 0.8rem;
     padding: 1rem;
     background-color: #fff;
@@ -378,8 +377,8 @@ textarea.caracteristiques {
 
 .lot thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
 }
 
@@ -461,8 +460,8 @@ textarea.caracteristiques {
 
 .lot tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;
 }
@@ -496,7 +495,7 @@ textarea.caracteristiques {
 
 .lequipement tr.dynamic-row {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 45px);
     gap: 1px;
     border: none;
@@ -514,7 +513,7 @@ textarea.caracteristiques {
 
 .lequipement thead .show-tab {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(1, 30px);
     gap: 1px;
 }

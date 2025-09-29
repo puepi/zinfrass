@@ -128,6 +128,7 @@ export default function EquipementsAffecter() {
                                 <th>Poste</th>
                                 <th>Référence</th>
                                 <th>Date d'octroi</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody className='equipement-body'>
@@ -140,6 +141,14 @@ export default function EquipementsAffecter() {
                                     <td>{octroi.poste}</td>
                                     <td>{octroi.referenceDocument}</td>
                                     <td>{octroi.dateOctroi}</td>
+                                    <td>
+                                        <button className="edit-btn">
+                                            &#9998;
+                                        </button>&nbsp;&nbsp;
+                                        <button className="delete-btn">
+                                            &#x1F5D1;
+                                        </button>
+                                    </td>
                                 </tr>)
                             )}
                         </tbody>

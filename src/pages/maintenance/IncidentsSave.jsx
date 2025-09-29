@@ -24,7 +24,7 @@ export default function IncidentsSave() {
         setMessageLoading('...is Loading')
         await getAllIncidents()
             .then(data => { setIncidents(data); console.log(data) })
-            .catch(error => console.log(error.message))
+            .catch(error => console.log(error))
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function IncidentsSave() {
                 setIncidents(prev => [response, ...prev])
                 console.log(response)
             })
-            .catch(error => console.log(error.message))
+            .catch(error => console.log(error))
             .finally(() => {
                 setIsDisabled(false)
                 setMessageButton('Enregistrer')
@@ -81,7 +81,7 @@ export default function IncidentsSave() {
                         <label htmlFor="nature">Nature de l'obet :</label>
                         <select name="nature" id="nature" required>
                             <option value="">Sélectionner une option</option>
-                            <option value="Materiel octroyé">Equipement</option>
+                            <option value="Equipement">Equipement</option>
                             <option value="Logiciel">Logiciel</option>
                             <option value="Bâtiment">Batiments</option>
                             <option value="Espace">Espace</option>
@@ -125,6 +125,7 @@ export default function IncidentsSave() {
                                 <th>Description</th>
                                 <th>Date de survenue</th>
                                 <th>Résolu</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody className='incidence-body'>
@@ -137,6 +138,14 @@ export default function IncidentsSave() {
                                     <td>{incident.description}</td>
                                     <td>{incident.dateIncident}</td>
                                     <td>{incident.resolu}</td>
+                                    <td>
+                                        <button className="edit-btn">
+                                            &#9998;
+                                        </button>&nbsp;&nbsp;
+                                        <button className="delete-btn">
+                                            &#x1F5D1;
+                                        </button>
+                                    </td>
                                 </tr>)
                             )}
                         </tbody>

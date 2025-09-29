@@ -6,7 +6,7 @@ import BatimentSearchModal from "../../factures/BatimentSearchModal"
 import Toast from "../../../components/Toast"
 
 export default function EspacesSave() {
-    const [toast,setToast]=useState(null)
+    const [toast, setToast] = useState(null)
     const [selectedBatiment, setSelectedBatiment] = useState({})
     const [espaces, setEspaces] = useState([])
     const [loadingMessage, setLoadingMessage] = useState('Enregistrer')
@@ -56,8 +56,8 @@ export default function EspacesSave() {
     return (
         <>
             {
-                toast && 
-                <Toast message={toast.message} type={toast.type} onClose={()=>{setToast(null)}} />
+                toast &&
+                <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
             }
             <section className="batiments">
                 <fieldset className="lespace">
@@ -75,6 +75,7 @@ export default function EspacesSave() {
                             <option value="Etage">Etage</option>
                             <option value="Secrétariat">Secrétariat</option>
                             <option value="Rez de chaussée">Rez de chaussée</option>
+                            <option value="Magasin">Magasin</option>
                             <option value="Bureau">Bureau</option>
                             <option value="Sous-sol">Sous-sol</option>
                             <option value="Toilettes">Toilettes/WC</option>

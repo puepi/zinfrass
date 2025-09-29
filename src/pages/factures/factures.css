@@ -126,9 +126,9 @@ button {
 }
 
 .dynamic-row:hover {
-    background-color: goldenrod;
+    /* background-color: goldenrod;
     opacity: 0.9;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
 .factures tr.titles {
