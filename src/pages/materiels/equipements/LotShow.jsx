@@ -23,7 +23,8 @@ export default function LotShow({ lots, messageLoadingLot }) {
                         <th>Date de livraison</th>
                         <th>Fournisseur</th>
                         <th>Caractéristiques</th>
-                        <th>Réceptionné</th>
+                        <th>En magasin</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody className='lots-body'>
@@ -37,6 +38,17 @@ export default function LotShow({ lots, messageLoadingLot }) {
                             <td>{lot.providerName}</td>
                             <td>{lot.caracteristiques.substring(0, 30) + '...'}</td>
                             <td>{lot.receptionne}</td>
+                            <td>
+                                <button className="edit-btn">
+                                    &#9998;
+                                </button>&nbsp;&nbsp;
+                                <button className="delete-btn">
+                                    &#x1F5D1;
+                                </button>&nbsp;&nbsp;
+                                <button className="magasin-btn">
+                                    &#128274;
+                                </button>
+                            </td>
                         </tr>)
                     )}
                 </tbody>

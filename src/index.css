@@ -281,7 +281,7 @@ aside .accordion {
 }
 
 .edit-btn {
-  color: rgb(5, 126, 163);
+  color: rgb(24, 54, 7);
 }
 
 .delete-btn {
@@ -289,7 +289,7 @@ aside .accordion {
 }
 
 .delete-btn,
-.edit-btn {
+.edit-btn, .magasin-btn{
   cursor: pointer;
   background: none;
   padding: 3px;

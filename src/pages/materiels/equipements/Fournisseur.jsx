@@ -34,8 +34,10 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
                 <label htmlFor="email">Email : </label>
                 <input type="text" name='email' id='email' required /><div></div>
                 <label htmlFor="niu">NIU : </label>
-                <input type="text" name='niu' id='niu' required maxLength={14} minLength={14} /><div></div><div></div><div></div><div></div><div></div>
+                <input type="text" name='niu' id='niu' required maxLength={14} minLength={14} />
+                <div></div><div></div><div></div><div></div><div></div>
                 <button disabled={isDisabled}>{messageButton}</button>
+                <button type="" onClick={handleSuivant}>Suivant</button>
             </form>
             <form action="" className="show-form">
                 <label htmlFor="">Noms :</label>
@@ -82,9 +84,6 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
             <p className="nav-buttons">
                 <button>{"<"}</button>
                 <button>{">"}</button>
-            </p>
-            <p className="suivant">
-                <button className="suivant" onClick={handleSuivant}>Suivant</button>
             </p>
         </fieldset>
     )
