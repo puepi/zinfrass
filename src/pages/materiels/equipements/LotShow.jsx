@@ -47,6 +47,9 @@ export default function LotShow({ lots, messageLoadingLot }) {
                                 </button>&nbsp;&nbsp;
                                 <button className="magasin-btn">
                                     &#128274;
+                                </button>&nbsp;&nbsp;
+                                <button className="ajout-btn">
+                                    &#10010;
                                 </button>
                             </td>
                         </tr>)

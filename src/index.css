@@ -289,7 +289,10 @@ aside .accordion {
 }
 
 .delete-btn,
-.edit-btn, .magasin-btn{
+.edit-btn,
+.magasin-btn,
+.ajout-btn {
+  font-size: 0.7rem;
   cursor: pointer;
   background: none;
   padding: 3px;

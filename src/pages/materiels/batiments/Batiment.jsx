@@ -31,8 +31,11 @@ export default function Batiment({ toast, handleSubmit, isDisabled, messageButto
                 <input type="date" name="dateRetrocession" id="dateRetrocession" />
                 <label htmlFor="nature">Nature du bâtiment :</label>
                 <input type="text" name="nature" />
+                <label htmlFor="identifiant">Identifiant unique :</label>
+                <input type="text" name="identifiant" id="identifiant" />
                 <label htmlFor="photos">Photos du bâtiment :</label>
                 <input type="file" name="photos" id="photos" />
+                <div></div>
                 <button disabled={isDisabled}>{messageButton}</button>
             </form>
 
