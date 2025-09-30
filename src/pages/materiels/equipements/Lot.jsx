@@ -4,7 +4,7 @@ import { getAllLots } from "../../../utils/ApiFunctions";
 import { Link } from "react-router-dom";
 
 
-export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoadingLot }) {
+export default function Lot({ handlePrecedent, mettreAuMagasin, handleSubmitAll, messageSubmit, lots, showAllLots, messageLoadingLot }) {
 
 
     useEffect(() => {
@@ -39,8 +39,8 @@ export default function Lot({ handlePrecedent, handleSubmitAll, messageSubmit, l
                     <div></div>
                     <Link className="create-link">...Mettre en magasin</Link>
                 </form>
+                <LotShow lots={lots} messageLoadingLot={messageLoadingLot} mettreAuMagasin={mettreAuMagasin} />
             </fieldset>
-            <LotShow lots={lots} messageLoadingLot={messageLoadingLot} />
         </section>
 
     )

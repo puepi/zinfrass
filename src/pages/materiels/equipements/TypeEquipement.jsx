@@ -134,6 +134,9 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                     </select>
                     <input type="text" required disabled={isActive} value={selectedCategorie.nom} onChange={handleChangeInput} /><button type="button" disabled={isButtonActive} onClick={handleAjouter}>Ajouter</button>
                     <button disabled={isDisabled}>{messageButton}</button>
+                    <div></div><div></div>
+                    <button type="button" onClick={handlePrecedent}>Précédent</button>
+                    <button type="button" onClick={() => handleSuivant(selectedType)}>Suivant</button>
                 </form>
                 <form action="" id="show-form">
                     <label htmlFor="">Nom :</label>

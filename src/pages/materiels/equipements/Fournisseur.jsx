@@ -36,8 +36,9 @@ export default function Fournisseur({ isLoading, loadingMessage, chercherFournis
                 <label htmlFor="niu">NIU : </label>
                 <input type="text" name='niu' id='niu' required maxLength={14} minLength={14} />
                 <div></div><div></div><div></div><div></div><div></div>
-                <button disabled={isDisabled}>{messageButton}</button>
-                <button type="" onClick={handleSuivant}>Suivant</button>
+                <button className="mybutton" disabled={isDisabled}>{messageButton}</button>
+                <div></div><div></div><div></div><div></div>
+                <button type="button" onClick={handleSuivant}>Suivant</button>
             </form>
             <form action="" className="show-form">
                 <label htmlFor="">Noms :</label>
