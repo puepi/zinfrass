@@ -1,6 +1,6 @@
 
 
-export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin }) {
+export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin, deleteLot }) {
     return (
         <div className="lot">
             <form action="" id="show-form">
@@ -23,7 +23,6 @@ export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin }) {
                         <th>Date de livraison</th>
                         <th>Fournisseur</th>
                         <th>Caractéristiques</th>
-                        <th>En magasin</th>
                         <th>Options</th>
                     </tr>
                 </thead>
@@ -37,12 +36,11 @@ export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin }) {
                             <td>{lot.dateReception}</td>
                             <td>{lot.providerName}</td>
                             <td>{lot.caracteristiques.substring(0, 30) + '...'}</td>
-                            <td>{lot.receptionne}</td>
                             <td>
                                 <button type="button" className="edit-btn">
                                     &#9998;
                                 </button>&nbsp;&nbsp;
-                                <button type="button" className="delete-btn">
+                                <button type="button" className="delete-btn" onClick={()=>deleteLot(lot)}>
                                     &#x1F5D1;
                                 </button>&nbsp;&nbsp;
                                 <button type="button" className="magasin-btn" onClick={()=>mettreAuMagasin(lot)}>

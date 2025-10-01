@@ -6,7 +6,9 @@ import Fournisseur from "./Fournisseur"
 import TypeEquipement from "./TypeEquipement"
 import Equipement from "./Equipement"
 import Lot from "./Lot"
-import { addFournisseur, addLot, getAllFournisseurs, getAllLots } from "../../../utils/ApiFunctions"
+import { addFournisseur, addLot, deleteLot, getAllFournisseurs, getAllLots, updateQuantityLot } from "../../../utils/ApiFunctions"
+import Spinner from "../../../components/Spinner"
+import Toast from "../../../components/Toast"
 
 export default function EquipementsReception() {
     const [messageButton, setMessageButton] = useState('Enregistrer')
@@ -23,6 +25,8 @@ export default function EquipementsReception() {
     const [leLot, setLeLot] = useState({})
     const [equipementData, setEquipementData] = useState({})
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
+    const [showSpinner,setShowSpinner]=useState(false)
+    const [toast, setToast] = useState(null)
     const [selectedFournisseur, setSelectedFournisseur] = useState({
         nom: '',
         id: ''
@@ -152,15 +156,46 @@ export default function EquipementsReception() {
             .finally(() => { setLoadingMessage('Aucun élément trouvé'); setIsLoading(false) })
     }
     async function mettreAuMagasin(lot){
-        console.log(lot)
+        const idLot=lot.id
+        const qty=0;
+        await updateQuantityLot(idLot,qty)
+            .then(response=>{
+                setShowSpinner(true)
+                setLots(prevLots=>prevLots.map(lot=>lot.id===idLot ? response : lot))
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" });})
+            .finally(() => setShowSpinner(false))
+    }
+
+    async function handleDeleteLot(lot){
+        const idLot=lot.id
+        await deleteLot(idLot)
+            .then(response=>{
+                setShowSpinner(true)
+                setLots(prevLots=>prevLots.filter(lot=>lot.id !== idLot))
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" });})
+            .finally(() => setShowSpinner(false))
     }
     return (
         <>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur isLoading={isLoading} loadingMessage={loadingMessage} chercherFournisseurs={chercherFournisseurs} handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
-                {toShow === 'lot' && <Lot mettreAuMagasin={mettreAuMagasin} messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
+                {toShow === 'lot' && <Lot deleteLot={handleDeleteLot} mettreAuMagasin={mettreAuMagasin} messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
                 {toShow === 'equipement' && <Equipement caracteristiques={caracteristiques} handleSuivant={handleSuiv} handleRegister={handleReg} handlePrecedent={handlePrec} />}
+                {
+                    showSpinner && 
+                    <Spinner />
+                    
+
+                }
+                {
+                    toast &&
+                    <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
+                }
             </section>
         </>
     )

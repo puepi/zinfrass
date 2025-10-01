@@ -541,3 +541,28 @@ export async function getPersonnelsNomsEtPrenoms(id) {
         throw error
     }
 }
+
+
+export async function updateQuantityLot(idLot,qty){
+    const payload={
+        qty:qty
+    }
+    try {
+        const response=await api.put(`/lots/change-quantity/${idLot}`,payload)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+export async function deleteLot(idLot){
+    try {
+        const response=await api.delete(`/lots/delete/${idLot}`)
+        return true
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
