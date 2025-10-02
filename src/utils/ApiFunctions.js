@@ -567,6 +567,16 @@ export async function deleteLot(idLot) {
     }
 }
 
+export async function addEquimentsToLot(idLot,equipements){
+    try {
+        const response = await api.post(`/lots/${idLot}/add-equipements`, equipements)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    } 
+}
+
 
 export async function auMagasin(intervention) {
     try {
@@ -597,3 +607,4 @@ export async function auMagasin(intervention) {
         throw error
     }
 }
+

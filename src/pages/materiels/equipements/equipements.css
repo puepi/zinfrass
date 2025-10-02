@@ -666,3 +666,50 @@ textarea.caracteristiques {
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
 }
+
+.overlay fieldset form{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 3px;
+}
+
+.overlay fieldset {
+    padding: 10px;
+    background-color: #fff;
+    margin-left: 150px;
+}
+
+#reception .overlay fieldset legend.lalegende{
+    
+    padding-top: 10px;
+}
+
+.overlay .show-tab{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows:repeat(1,20px);
+    gap:1px;
+}
+
+.overlay .dynamic-row td {
+    color: #1B85B8;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+}
+
+.overlay tr.dynamic-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 25px);
+    gap: 1px;
+    border: none;
+}
+
+.overlay tbody{
+    font-size: 0.7rem;
+}
