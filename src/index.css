@@ -15,6 +15,10 @@ fieldset {
   padding: .2rem .3rem;
 }
 
+button:disabled {
+  cursor: default;
+}
+
 fieldset legend {
   color: #1B85B8;
   font-style: italic;

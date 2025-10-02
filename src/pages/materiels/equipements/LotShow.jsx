@@ -29,21 +29,21 @@ export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin, dele
                 <tbody className='lots-body'>
                     {lots && lots.length === 0 && <tr className='titles'><td>{messageLoadingLot}</td></tr>}
                     {lots && lots.length > 0 && (
-                        lots.map((lot, id) => <tr key={lot.id} className='dynamic-row'>
-                            <td>{lot.nroLot}</td>
-                            <td>{lot.typeEquipementName}</td>
-                            <td>{lot.quantiteStock}</td>
-                            <td>{lot.dateReception}</td>
-                            <td>{lot.providerName}</td>
-                            <td>{lot.caracteristiques.substring(0, 30) + '...'}</td>
+                        lots.map((lot, id) => <tr key={id} className='dynamic-row'>
+                            <td>{lot?.nroLot}</td>
+                            <td>{lot?.typeEquipementName}</td>
+                            <td>{lot?.quantiteStock}</td>
+                            <td>{lot?.dateReception}</td>
+                            <td>{lot?.providerName}</td>
+                            <td>{lot?.caracteristiques?.substring(0, 30) + '...'}</td>
                             <td>
                                 <button type="button" className="edit-btn">
                                     &#9998;
                                 </button>&nbsp;&nbsp;
-                                <button type="button" className="delete-btn" onClick={()=>deleteLot(lot)}>
+                                <button type="button" className="delete-btn" onClick={() => deleteLot(lot)}>
                                     &#x1F5D1;
                                 </button>&nbsp;&nbsp;
-                                <button type="button" className="magasin-btn" onClick={()=>mettreAuMagasin(lot)}>
+                                <button disabled={lot?.quantiteStock === 0} type="button" className="magasin-btn" onClick={() => mettreAuMagasin(lot)}>
                                     &#128274;
                                 </button>&nbsp;&nbsp;
                                 <button type="button" className="ajout-btn">

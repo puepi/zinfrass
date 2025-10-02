@@ -543,12 +543,12 @@ export async function getPersonnelsNomsEtPrenoms(id) {
 }
 
 
-export async function updateQuantityLot(idLot,qty){
-    const payload={
-        qty:qty
+export async function updateQuantityLot(idLot, qty) {
+    const payload = {
+        qty: qty
     }
     try {
-        const response=await api.put(`/lots/change-quantity/${idLot}`,payload)
+        const response = await api.put(`/lots/change-quantity/${idLot}`, payload)
         return response.data.data
     } catch (error) {
         console.log(error)
@@ -557,9 +557,40 @@ export async function updateQuantityLot(idLot,qty){
 }
 
 
-export async function deleteLot(idLot){
+export async function deleteLot(idLot) {
     try {
-        const response=await api.delete(`/lots/delete/${idLot}`)
+        const response = await api.delete(`/lots/delete/${idLot}`)
+        return true
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+export async function auMagasin(intervention) {
+    try {
+        const payload = {
+            nature: intervention.nature,
+            raison: intervention.raison,
+            nomsIntervenant: intervention.nomsIntervenant,
+            dateIntervention: intervention.dateIntervention,
+            poste: intervention.poste,
+            service: intervention.service,
+            objet: intervention.objet,
+            observations: intervention.observations,
+            lieu: intervention.lieu,
+            diagnostic: intervention.diagnostic,
+            solution: intervention.solution,
+            etat_objet: intervention.etat_objet,
+            ref_autorisation: intervention.ref_autorisation,
+            position_equipement: intervention.position_equipement,
+            poste_affecte: intervention.poste_affecte,
+            nature: intervention.nature,
+            structure_affecte: intervention.structure_affecte,
+        }
+        const response = await api.post(`/interventions/add`, payload)
+        return response.data.data
         return true
     } catch (error) {
         console.log(error)

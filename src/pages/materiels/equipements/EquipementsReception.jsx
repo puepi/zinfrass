@@ -6,7 +6,7 @@ import Fournisseur from "./Fournisseur"
 import TypeEquipement from "./TypeEquipement"
 import Equipement from "./Equipement"
 import Lot from "./Lot"
-import { addFournisseur, addLot, deleteLot, getAllFournisseurs, getAllLots, updateQuantityLot } from "../../../utils/ApiFunctions"
+import { addFournisseur, addLot, auMagasin, deleteLot, getAllFournisseurs, getAllLots, updateQuantityLot } from "../../../utils/ApiFunctions"
 import Spinner from "../../../components/Spinner"
 import Toast from "../../../components/Toast"
 
@@ -25,7 +25,7 @@ export default function EquipementsReception() {
     const [leLot, setLeLot] = useState({})
     const [equipementData, setEquipementData] = useState({})
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
-    const [showSpinner,setShowSpinner]=useState(false)
+    const [showSpinner, setShowSpinner] = useState(false)
     const [toast, setToast] = useState(null)
     const [selectedFournisseur, setSelectedFournisseur] = useState({
         nom: '',
@@ -155,28 +155,49 @@ export default function EquipementsReception() {
             .catch(error => console.log(error))
             .finally(() => { setLoadingMessage('Aucun élément trouvé'); setIsLoading(false) })
     }
-    async function mettreAuMagasin(lot){
-        const idLot=lot.id
-        const qty=0;
-        await updateQuantityLot(idLot,qty)
-            .then(response=>{
+    async function updateQty(interventions) {
+        return await updateQuantityLot(parseInt(interventions[0].objet), 0)
+    }
+    async function mettreAuMagasin(lot) {
+        const idLot = lot.id
+        const qty = 0;
+        const newIntervention = {
+            nature: "lot",
+            raison: "Réception",
+            nomsIntervenant: "ADMIN",
+            poste: "Chef de Cellule",
+            service: "Cellule Informatique",
+            objet: lot.id,
+            lieu: "Salle Serveur/Magasin",
+            etat_objet: "neuf",
+            ref_autorisation: "PV0215/SG/CI du 02/02/2024",
+        }
+        await auMagasin(newIntervention)
+            .then(response => {
+                console.log(response)
                 setShowSpinner(true)
-                setLots(prevLots=>prevLots.map(lot=>lot.id===idLot ? response : lot))
-                setToast({ message: "✅ Opération réussie !", type: "success" });
+                // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? response : lot))
+                return updateQty(response)
+                // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? lot : lot))
+                // setToast({ message: "🚀 Réception effectuée avec succès!", type: "success" });
             })
-            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" });})
+            .then(secondResponse => {
+                setLots(prevLots => prevLots.map(lot => lot.id === idLot ? secondResponse : lot))
+                setToast({ message: "🚀 Réception effectuée avec succès!", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ " + error.message, type: "error" }); })
             .finally(() => setShowSpinner(false))
     }
 
-    async function handleDeleteLot(lot){
-        const idLot=lot.id
+    async function handleDeleteLot(lot) {
+        const idLot = lot.id
         await deleteLot(idLot)
-            .then(response=>{
+            .then(response => {
                 setShowSpinner(true)
-                setLots(prevLots=>prevLots.filter(lot=>lot.id !== idLot))
+                setLots(prevLots => prevLots.filter(lot => lot.id !== idLot))
                 setToast({ message: "✅ Opération réussie !", type: "success" });
             })
-            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" });})
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
             .finally(() => setShowSpinner(false))
     }
     return (
@@ -187,9 +208,9 @@ export default function EquipementsReception() {
                 {toShow === 'lot' && <Lot deleteLot={handleDeleteLot} mettreAuMagasin={mettreAuMagasin} messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
                 {toShow === 'equipement' && <Equipement caracteristiques={caracteristiques} handleSuivant={handleSuiv} handleRegister={handleReg} handlePrecedent={handlePrec} />}
                 {
-                    showSpinner && 
+                    showSpinner &&
                     <Spinner />
-                    
+
 
                 }
                 {

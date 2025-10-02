@@ -36,7 +36,7 @@ export default function InterventionsSave() {
                         <select name="raison" id="raison">
                             <option value="">Faites un choix</option>
                             <option value="Installation">Installation</option>
-                            <option value="Installation">Réception</option>
+                            <option value="Réception">Réception</option>
                             <option value="Maintenance">Maintenance</option>
                             <option value="Déplacement">Déplacement</option>
                             <option value="Dépannage">Incident/Dépannage</option>
@@ -73,9 +73,14 @@ export default function InterventionsSave() {
                         <input type="text" name="lieu" id="lieu" />
                         <Link className="search-link" to="" >...rechercher</Link>
                         <div></div>
-                        <label htmlFor="autorisation">Autorisation:</label>
-                        <input type="file" name="autorisation" id="autorisation" />
+                        <label htmlFor="position">Posit° Eqmt:</label>
+                        <select name="position" id="position">
+                            <option value="en stock">En magasin</option>
+                            <option value="out stock">Hors du magasin</option>
+                        </select>
                         <div></div>
+                        {/* <label htmlFor="ref">Référence:</label> */}
+                        {/* <input type="text" name="ref" id="ref" /> */}
                         <label htmlFor="appréciations">Observations:</label>
                         <input type="text" name="appréciations" id="appréciations" required />
                         <label htmlFor="date">Date :</label>
@@ -104,12 +109,11 @@ export default function InterventionsSave() {
                         </select>
                         <div></div>
 
-                        <label htmlFor="position">Posit° Eqmt:</label>
-                        <select name="position" id="position">
-                            <option value="en stock">En magasin</option>
-                            <option value="out stock">Hors du magasin</option>
-                        </select>
-                        <div></div><div></div><div></div><div></div>
+                        <label htmlFor="autorisation">Autorisation:</label>
+                        <input type="file" name="autorisation" id="autorisation" />
+                        <label htmlFor="ref">Référence :</label>
+                        <input type="text" name="ref" id="ref" />
+                        <div></div><div></div>
                         <button>Enregistrer</button>
                     </form>
                     <form action="" className="show-form">
