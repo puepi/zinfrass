@@ -213,22 +213,26 @@ export default function EquipementsReception() {
     async function handleSubmitModal(eqpmts){
         await addEquimentsToLot(selectedLot.id,eqpmts)
             .then(response => {
+                setShowAddForm(false);
                 setShowSpinner(true)
                 setLots(prevLots=>prevLots.map(lot=>lot.id===selectedLot.id ? response : lot))
-                setToast({ message: "🚀 Réception effectuée avec succès!", type: "success" });
+                setToast({ message: "🚀 Equipements ajoutés avec succès avec succès!", type: "success" });
             })
             .catch(error => { console.log(error); setToast({ message: "❌ " + error.message, type: "error" }); })
-            .finally(() => setShowSpinner(false))
+            .finally(() => {setShowSpinner(false)})
     }
     function handleQuitter(){
         setShowAddForm(false)
+    }
+    function handleShowEquipements(){
+        
     }
     return (
         <>
             <section id="reception">
                 {toShow === 'fournisseur' && <Fournisseur isLoading={isLoading} loadingMessage={loadingMessage} chercherFournisseurs={chercherFournisseurs} handleChange={handleChange} handleSelectRow={handleSelectRowFourniseeur} fournisseurs={fournisseurs} handleSuivant={handleClick} isDisabled={isDisabled} messageButton={messageButton} selectedFournisseur={selectedFournisseur} registerFournisseur={registerFournisseur} />}
                 {toShow === 'type-equipement' && <TypeEquipement selectedType={selectedTypeEquipement} handlePrecedent={handlePrecedent} handleSuivant={handleSuivant} handleReg={handleReg} handleSelectRow={handleSelectRow} messageLoading={messageLoading} />}
-                {toShow === 'lot' && <Lot handleAddEquipements={handleAddEquipements} deleteLot={handleDeleteLot} mettreAuMagasin={mettreAuMagasin} messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
+                {toShow === 'lot' && <Lot handleShowEquipements={handleShowEquipements} handleAddEquipements={handleAddEquipements} deleteLot={handleDeleteLot} mettreAuMagasin={mettreAuMagasin} messageLoadingLot={messageLoading} lots={lots} showAllLots={showAllLots} messageSubmit={messageSubmit} handlePrecedent={handlePre} handleSubmitAll={handleSubmitAll} />}
                 {toShow === 'equipement' && <Equipement caracteristiques={caracteristiques} handleSuivant={handleSuiv} handleRegister={handleReg} handlePrecedent={handlePrec} />}
                 {
                     showSpinner &&
@@ -241,7 +245,7 @@ export default function EquipementsReception() {
                     <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
                 }
                 {
-                    showAddForm && <AddEquipementsLot handleSubmitModal={handleSubmitModal} handleQuitter={handleQuitter} />
+                    showAddForm && <AddEquipementsLot lot={selectedLot} handleSubmitModal={handleSubmitModal} handleQuitter={handleQuitter} />
                 }
                 {
                     showSpinner &&

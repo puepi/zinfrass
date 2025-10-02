@@ -666,7 +666,9 @@ textarea.caracteristiques {
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
 }
-
+#reception .overlay{
+    z-index: 9998;
+}
 .overlay fieldset form{
     padding: 10px;
     display: grid;

@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export default function AddEquipementsLot({handleQuitter,handleSubmitModal}){
+export default function AddEquipementsLot({handleQuitter,handleSubmitModal,lot}){
     const [mesEquipements,setMesEquipements]=useState([])
     const [numSerieInput,setNumSerieInput]=useState('')
     const [numUniqueInput,setNumUniqueInput]=useState('')
@@ -16,7 +16,8 @@ export default function AddEquipementsLot({handleQuitter,handleSubmitModal}){
         }
         setMesEquipements(prev=>([...prev,{
             numeroSerie:numSerieInput.toUpperCase(),
-            numeroUnique:x.toUpperCase()
+            numeroUnique:x.toUpperCase(),
+            lotId:lot.id
         }]))
         setNumSerieInput('')
     }

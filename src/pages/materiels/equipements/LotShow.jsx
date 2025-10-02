@@ -1,6 +1,6 @@
 
 
-export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin, deleteLot,handleAddEquipements }) {
+export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin, deleteLot,handleAddEquipements, handleShowEquipements }) {
     return (
         <div className="lot">
             <form action="" id="show-form">
@@ -48,6 +48,9 @@ export default function LotShow({ lots, messageLoadingLot, mettreAuMagasin, dele
                                 </button>&nbsp;&nbsp;
                                 <button type="button" className="ajout-btn" onClick={()=>handleAddEquipements(lot)}>
                                     &#10010;
+                                </button>
+                                <button type="button" className="show-btn" onClick={()=>handleShowEquipements(lot)}>
+                                    &#128083;
                                 </button>
                             </td>
                         </tr>)
