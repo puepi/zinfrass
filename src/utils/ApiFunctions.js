@@ -599,7 +599,7 @@ export async function auMagasin(intervention) {
             nature: intervention.nature,
             structure_affecte: intervention.structure_affecte,
         }
-        const response = await api.post(`/interventions/add`, payload)
+        const response = await api.post(`/interventions/add-lot-magasin`, payload)
         return response.data.data
         return true
     } catch (error) {
@@ -608,3 +608,52 @@ export async function auMagasin(intervention) {
     }
 }
 
+export async function addInstallation(intervention){
+    try {
+        const payload = {
+            nature: intervention.nature,
+            raison: intervention.raison,
+            nomsIntervenant: intervention.nomsIntervenant,
+            dateIntervention: intervention.dateIntervention,
+            poste: intervention.poste,
+            service: intervention.service,
+            objet: intervention.objet,
+            observations: intervention.observations,
+            lieu: intervention.lieu,
+            diagnostic: intervention.diagnostic,
+            solution: intervention.solution,
+            etat_objet: intervention.etat_objet,
+            ref_autorisation: intervention.ref_autorisation,
+            position_equipement: intervention.position_equipement,
+            poste_affecte: intervention.poste_affecte,
+            nature: intervention.nature,
+            structure_affecte: intervention.structure_affecte,
+        }
+        const response = await api.post(`/interventions/add-installation`, payload)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getInterventions() {
+    try {
+        const response = await api.get('/interventions/getall')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+
+export async function deleteIntervention(id){
+    try {
+        const response = await api.delete(`/interventions/${id}/delete`)
+        return true
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}

@@ -61,7 +61,7 @@
 .interventions tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 40px);
+    grid-template-rows: repeat(1, 45px);
     gap: 1px;
     border: none;
 }

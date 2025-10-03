@@ -2,11 +2,22 @@ import { useEffect, useState } from "react"
 import './maintenance.css'
 import { Link } from "react-router-dom"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
+import { deleteIntervention, getInterventions } from "../../utils/ApiFunctions"
+import Spinner from '../../components/Spinner'
 export default function InterventionsSave() {
     const [interventions, setInterventions] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [showRespoModal, setShowRespoModal] = useState(false)
     const [selectedRespo, setSelectedRespo] = useState({})
+    const [showDiagnostic,setShowDiagnostic]=useState(false)
+    const [showSolution,setShowSolution]=useState(false)
+    const [showLinkProfit,setShowLinkProfit]=useState(false)
+    const [showLinkLieu,setShowLinkLieu]=useState(false)
+    const [showLinkIncident,setShowLinkIncident]=useState(false)
+    const [showPosition,setShowPosition]=useState(false)
+    const [showSpinner,setShowSpinner]=useState(false)
+    const [toast,setToast]=useState(null)
+
     function handleCloseRespoModal() {
         setShowRespoModal(false)
     }
@@ -18,7 +29,28 @@ export default function InterventionsSave() {
     }
     useEffect(() => {
         document.title = 'Enregistrer des interventions'
+        getAllInterventions()
     }, [])
+    async function getAllInterventions(){
+        setMessageLoading('...is loading...')
+        await getInterventions()
+            .then(data => { setInterventions(data); })
+            .catch(error => console.log(error))
+            .finally(()=>setMessageLoading("Aucun élément trouvé"))
+    }
+    async function handleDeleteIntervention(intervention){
+        console.log(intervention)
+        const id=intervention.id
+        await deleteIntervention(id)
+            .then(response => {
+                setShowSpinner(true)
+                setInterventions(prevInt => prevInt.filter(interv => interv.id !== id))
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
+            .finally(() => setShowSpinner(false))
+    }
+    function handleClick(intervention){}
     return (
         <>
             <section className="maintenance interventions">
@@ -42,9 +74,9 @@ export default function InterventionsSave() {
                             <option value="Dépannage">Incident/Dépannage</option>
                         </select>
                         <label htmlFor="diagnostic">Diagnostic:</label>
-                        <input type="text" name="diagnostic" id="diagnostic" />
+                        <input disabled={showDiagnostic} type="text" name="diagnostic" id="diagnostic" />
                         <label htmlFor="solution">Solution:</label>
-                        <input type="text" name="solution" id="solution" />
+                        <input disabled={showSolution} type="text" name="solution" id="solution" />
                         <div></div>
                         <label htmlFor="nature">Sur :</label>
                         <select name="nature" id="nature" required>
@@ -62,19 +94,19 @@ export default function InterventionsSave() {
                         <Link className="search-link" to="" >...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
-                        <input type="text" disabled name="respoStructure" id="respoStructure" />
+                        <input  type="text" disabled name="respoStructure" id="respoStructure" />
                         <label htmlFor="respoPoste">Poste :</label>
                         <input type="text" disabled name="respoPoste" id="respoPoste" />
                         <label htmlFor="respoNoms">Noms :</label>
                         <input type="text" disabled name="respoNoms" id="respoNoms" />
-                        <Link className="search-link" to="" >...rechercher</Link>
+                        {showLinkProfit ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
 
                         <label htmlFor="lieu">Lieu:</label>
                         <input type="text" name="lieu" id="lieu" />
-                        <Link className="search-link" to="" >...rechercher</Link>
+                        {showLinkLieu ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
                         <div></div>
                         <label htmlFor="position">Posit° Eqmt:</label>
-                        <select name="position" id="position">
+                        <select name="position" id="position" disabled={showPosition}>
                             <option value="en stock">En magasin</option>
                             <option value="out stock">Hors du magasin</option>
                         </select>
@@ -98,7 +130,7 @@ export default function InterventionsSave() {
                         <div></div>
                         <label htmlFor="nroIncident">N° Incident:</label>
                         <input type="text" disabled name="nroIncident" id="nroIncident" />
-                        <Link className="search-link" to="" >...rechercher</Link>
+                        {showLinkIncident ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
                         <div></div>
                         <label htmlFor="resolu">Résolu :</label>
                         <select name="resolu" id="resolu" required defaultValue={"ras"}>
@@ -130,8 +162,8 @@ export default function InterventionsSave() {
                         <thead>
                             <tr className='show-tab'>
                                 <th>Intervenant</th>
-                                <th>Objet</th>
-                                <th>Raison</th>
+                                <th>Objet / Raison</th>
+                                <th>Position</th>
                                 <th>Diagnostic</th>
                                 <th>Solution</th>
                                 <th>Appréciations</th>
@@ -144,17 +176,17 @@ export default function InterventionsSave() {
                             {interventions && interventions.length > 0 && (
                                 interventions.map((intervention, id) => <tr key={intervention.id} className='dynamic-row' onClick={() => handleClick(intervention)}>
                                     <td>{intervention.nomsIntervenant}</td>
-                                    <td>{intervention.objet}</td>
-                                    <td>{intervention.raison}</td>
+                                    <td>{intervention.objet + "//" + intervention.raison}</td>
+                                    <td>{intervention.position_equipement}</td>
                                     <td>{intervention.diagnostic}</td>
                                     <td>{intervention.solution}</td>
-                                    <td>{intervention.appreciations}</td>
+                                    <td>{intervention.observations}</td>
                                     <td>{intervention.dateIntervention}</td>
                                     <td>
                                         <button className="edit-btn">
                                             &#9998;
                                         </button>&nbsp;&nbsp;
-                                        <button className="delete-btn">
+                                        <button className="delete-btn" onClick={()=>handleDeleteIntervention(intervention)}>
                                             &#x1F5D1;
                                         </button>
                                     </td>
@@ -167,6 +199,10 @@ export default function InterventionsSave() {
             {
                 showRespoModal &&
                 <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
+            }
+            {
+                showSpinner &&
+                <Spinner />
             }
         </>
     )
