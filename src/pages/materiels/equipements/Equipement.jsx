@@ -13,7 +13,7 @@ export default function Equipement({ handleSuivant, handlePrecedent, handleRegis
             const j = Math.floor(Math.random() * alpha.length)
             x += alpha[j]
         }
-        setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie, numeroUnique: x.toUpperCase() }])
+        setEquipements(prev => [...prev, { numeroSerie: selectedNumSerie.toUpperCase(), numeroUnique: x.toUpperCase() }])
         setSelectedNumSerie(' ')
     }
 

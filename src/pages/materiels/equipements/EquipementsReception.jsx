@@ -24,13 +24,13 @@ export default function EquipementsReception() {
     const [toShow2, setToShow2] = useState(false)
     const [fournisseurs, setFournisseurs] = useState([])
     const [leLot, setLeLot] = useState({})
-    const [selectedLot,setSelectedLot]=useState({})
+    const [selectedLot, setSelectedLot] = useState({})
     const [equipementData, setEquipementData] = useState({})
     const [selectedTypeEquipement, setSelectedTypeEquipement] = useState({})
     const [showSpinner, setShowSpinner] = useState(false)
     const [toast, setToast] = useState(null)
-    const [showAddForm,setShowAddForm]=useState(false)
-    const [mesEqs,setMesEqs]=useState([])
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [mesEqs, setMesEqs] = useState([])
     const [selectedFournisseur, setSelectedFournisseur] = useState({
         nom: '',
         id: ''
@@ -206,26 +206,26 @@ export default function EquipementsReception() {
             .finally(() => setShowSpinner(false))
     }
 
-    function handleAddEquipements(lot){
+    function handleAddEquipements(lot) {
         setSelectedLot(lot)
         setShowAddForm(true)
     }
-    async function handleSubmitModal(eqpmts){
-        await addEquimentsToLot(selectedLot.id,eqpmts)
+    async function handleSubmitModal(eqpmts) {
+        await addEquimentsToLot(selectedLot.id, eqpmts)
             .then(response => {
                 setShowAddForm(false);
                 setShowSpinner(true)
-                setLots(prevLots=>prevLots.map(lot=>lot.id===selectedLot.id ? response : lot))
+                setLots(prevLots => prevLots.map(lot => lot.id === selectedLot.id ? response : lot))
                 setToast({ message: "🚀 Equipements ajoutés avec succès avec succès!", type: "success" });
             })
             .catch(error => { console.log(error); setToast({ message: "❌ " + error.message, type: "error" }); })
-            .finally(() => {setShowSpinner(false)})
+            .finally(() => { setShowSpinner(false) })
     }
-    function handleQuitter(){
+    function handleQuitter() {
         setShowAddForm(false)
     }
-    function handleShowEquipements(){
-        
+    function handleShowEquipements() {
+
     }
     return (
         <>

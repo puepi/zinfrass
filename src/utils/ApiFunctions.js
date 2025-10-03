@@ -567,14 +567,15 @@ export async function deleteLot(idLot) {
     }
 }
 
-export async function addEquimentsToLot(idLot,equipements){
+export async function addEquimentsToLot(idLot, equipements) {
     try {
         const response = await api.post(`/lots/${idLot}/add-equipements`, equipements)
+        console.log(response)
         return response.data.data
     } catch (error) {
         console.log(error)
         throw error
-    } 
+    }
 }
 
 
