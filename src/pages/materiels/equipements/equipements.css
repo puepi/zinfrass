@@ -666,13 +666,17 @@ textarea.caracteristiques {
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
 }
-#reception .overlay{
+
+#reception .overlay {
     z-index: 9998;
 }
-.overlay fieldset form{
+
+.overlay fieldset form {
     padding: 10px;
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 20px);
+    background-color: aliceblue;
     gap: 3px;
 }
 
@@ -680,18 +684,20 @@ textarea.caracteristiques {
     padding: 10px;
     background-color: #fff;
     margin-left: 150px;
+    margin-top: -200px;
+    width: 75%;
 }
 
-#reception .overlay fieldset legend.lalegende{
-    
+#reception .overlay fieldset legend.lalegende {
+
     padding-top: 10px;
 }
 
-.overlay .show-tab{
+.overlay .show-tab {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-template-rows:repeat(1,20px);
-    gap:1px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 20px);
+    gap: 1px;
 }
 
 .overlay .dynamic-row td {
@@ -712,6 +718,6 @@ textarea.caracteristiques {
     border: none;
 }
 
-.overlay tbody{
+.overlay tbody {
     font-size: 0.7rem;
 }

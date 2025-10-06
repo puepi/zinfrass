@@ -71,9 +71,24 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 40px);
     gap: 1px;
+
+}
+
+.interventions thead .show-tab td {
+    font-size: 0.7rem;
 }
 
 .interventions-body {
     background-color: #fff;
+    font-size: 0.6rem;
+}
+
+.interventions-body .dynamic-row td {
+    color: #1B85B8;
     font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
 }

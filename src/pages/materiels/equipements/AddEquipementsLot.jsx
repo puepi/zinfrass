@@ -1,50 +1,60 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
-export default function AddEquipementsLot({handleQuitter,handleSubmitModal,lot}){
-    const [mesEquipements,setMesEquipements]=useState([])
-    const [numSerieInput,setNumSerieInput]=useState('')
-    const [numUniqueInput,setNumUniqueInput]=useState('')
-    const [messageLoading,setMessageLoading]=useState("Aucun élément trouvé")
-    function handleAjouter(){
+export default function AddEquipementsLot({ handleQuitter, eqpmtsFromLot, handleSubmitModal, lot }) {
+    const [mesEquipements, setMesEquipements] = useState([])
+    const [numSerieInput, setNumSerieInput] = useState('')
+    const [numUniqueInput, setNumUniqueInput] = useState('')
+    const [messageLoading, setMessageLoading] = useState("Aucun élément trouvé")
+    const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true)
+
+
+    function handleAjouter() {
+        if (!numSerieInput.trim()) {
+            return
+        }
         const alpha = 'abcdefghijklmnopqrstuvwxyz0123456'
-
         let x = ''
         for (let i = 0; i < 8; i++) {
             const j = Math.floor(Math.random() * alpha.length)
             x += alpha[j]
         }
-        setMesEquipements(prev=>([...prev,{
-            numeroSerie:numSerieInput.toUpperCase(),
-            numeroUnique:x.toUpperCase(),
-            lotId:lot.id
-        }]))
+        setMesEquipements(prev => ([{
+            numeroSerie: numSerieInput.toUpperCase(),
+            numeroUnique: x.toUpperCase(),
+            lotId: lot.id
+        }, ...prev]))
         setNumSerieInput('')
+        setIsSaveButtonDisabled(false)
     }
-    function handleChange(e){
-        if(e.target.name==="numSerie"){
-           setNumSerieInput(e.target.value)
-        }else if(e.target.name==="numUnique"){
-           setNumUniqueInput(e.target.value)
+    function handleChange(e) {
+        if (e.target.name === "numSerie") {
+            setNumSerieInput(e.target.value)
+        } else if (e.target.name === "numUnique") {
+            setNumUniqueInput(e.target.value)
         }
     }
-    function handleDelete(eq){
-        setMesEquipements(prev=>prev.filter(e=>e.numeroSerie!==eq.numeroSerie))
+    function handleDelete(eq) {
+        setMesEquipements(prev => prev.filter(e => e.numeroSerie !== eq.numeroSerie))
     }
-    return(
+    function handleSubmitLeModal(mesEqs) {
+        handleSubmitModal(mesEqs)
+        setIsSaveButtonDisabled(true)
+    }
+    return (
         <div>
             <div className="overlay">
                 <fieldset>
                     <legend className="lalegende">Ajouter des équipements au lot</legend>
                     <form action="">
                         <label htmlFor="numSerie">Numéro de série :</label>
-                        <input type="text" name="numSerie" id="numSerie" value={numSerieInput}  onChange={handleChange}/>
+                        <input type="text" required name="numSerie" id="numSerie" value={numSerieInput} onChange={handleChange} />
                         <label htmlFor="numUnique">Identifiant unique :</label>
-                        <input disabled type="text" name="numUnique" id="numUnique" value={numUniqueInput} onChange={handleChange}/>
+                        <input disabled type="text" name="numUnique" id="numUnique" value={numUniqueInput} onChange={handleChange} />
                         <button type="button" onClick={handleAjouter}>Ajouter</button>
                         <div></div>
                         <div></div><div></div>
-                        <button type="button" onClick={()=>handleSubmitModal(mesEquipements)}>Enregistrer</button>
+                        <button type="button" disabled={isSaveButtonDisabled} onClick={() => handleSubmitLeModal(mesEquipements)}>Enregistrer</button>
                         <div></div><div></div>
                         <button type="button" onClick={handleQuitter}>Quitter</button>
                     </form>
@@ -65,7 +75,33 @@ export default function AddEquipementsLot({handleQuitter,handleSubmitModal,lot})
                                     <td>{equipement.numeroSerie}</td>
                                     <td>{equipement.numeroUnique}</td>
                                     <td>
-                                        <button className="delete-btn" onClick={()=>handleDelete(equipement)}>
+                                        <button className="delete-btn" onClick={() => handleDelete(equipement)}>
+                                            &#x1F5D1;
+                                        </button>
+                                    </td>
+                                </tr>)
+                            )}
+                        </tbody>
+                    </table>
+                    <hr />
+                    <table>
+                        <thead>
+                            <tr className='show-tab'>
+                                <th>N°</th>
+                                <th>Numéro de série</th>
+                                <th>Numéro unique</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {eqpmtsFromLot && eqpmtsFromLot.length === 0 && <tr className='titles'><td>{'Aucun élément trouvé'}</td></tr>}
+                            {eqpmtsFromLot && eqpmtsFromLot.length > 0 && (
+                                eqpmtsFromLot.map((equipement, id) => <tr key={id} className='dynamic-row'>
+                                    <td>{id + 1}</td>
+                                    <td>{equipement.numeroSerie}</td>
+                                    <td>{equipement.numeroUnique}</td>
+                                    <td>
+                                        <button className="delete-btn" onClick={() => handleDelete2(equipement)}>
                                             &#x1F5D1;
                                         </button>
                                     </td>

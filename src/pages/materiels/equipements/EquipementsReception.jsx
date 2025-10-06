@@ -37,6 +37,7 @@ export default function EquipementsReception() {
     })
     const [fournisseur, setFournisseur] = useState({})
     const [caracteristiques, setCaracteristiques] = useState('')
+    const [eqpmtsFromLot, setEqpmtsFromLot] = useState([])
 
     useEffect(() => {
         document.title = 'Réceptionner un lot de matériel'
@@ -159,10 +160,11 @@ export default function EquipementsReception() {
             .catch(error => console.log(error))
             .finally(() => { setLoadingMessage('Aucun élément trouvé'); setIsLoading(false) })
     }
-    async function updateQty(interventions) {
-        return await updateQuantityLot(parseInt(interventions[0].objet), 0)
+    async function updateQty(id) {
+        return await updateQuantityLot(id, 0)
     }
     async function mettreAuMagasin(lot) {
+        console.log(lot)
         const idLot = lot.id
         const qty = 0;
         const newIntervention = {
@@ -181,7 +183,7 @@ export default function EquipementsReception() {
                 console.log(response)
                 setShowSpinner(true)
                 // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? response : lot))
-                return updateQty(response)
+                return updateQty(idLot)
                 // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? lot : lot))
                 // setToast({ message: "🚀 Réception effectuée avec succès!", type: "success" });
 
@@ -208,6 +210,15 @@ export default function EquipementsReception() {
 
     function handleAddEquipements(lot) {
         setSelectedLot(lot)
+        const eq = lot.equipements.map(e => {
+            const e1 = e.split('/')
+            return {
+                numeroSerie: e1[0].toUpperCase(),
+                numeroUnique: e1[1].toUpperCase(),
+                lotId: lot.id
+            }
+        })
+        setEqpmtsFromLot(eq)
         setShowAddForm(true)
     }
     async function handleSubmitModal(eqpmts) {
@@ -245,7 +256,7 @@ export default function EquipementsReception() {
                     <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
                 }
                 {
-                    showAddForm && <AddEquipementsLot lot={selectedLot} handleSubmitModal={handleSubmitModal} handleQuitter={handleQuitter} />
+                    showAddForm && <AddEquipementsLot eqpmtsFromLot={eqpmtsFromLot} lot={selectedLot} handleSubmitModal={handleSubmitModal} handleQuitter={handleQuitter} />
                 }
                 {
                     showSpinner &&

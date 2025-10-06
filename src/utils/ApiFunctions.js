@@ -601,15 +601,15 @@ export async function auMagasin(intervention) {
             structure_affecte: intervention.structure_affecte,
         }
         const response = await api.post(`/interventions/add-lot-magasin`, payload)
+        console.log("response=" + response.data.data)
         return response.data.data
-        return true
     } catch (error) {
         console.log(error)
         throw error
     }
 }
 
-export async function addInstallation(intervention){
+export async function addInstallation(intervention) {
     try {
         const payload = {
             nature: intervention.nature,
@@ -649,12 +649,39 @@ export async function getInterventions() {
 }
 
 
-export async function deleteIntervention(id){
+export async function deleteIntervention(id) {
     try {
         const response = await api.delete(`/interventions/${id}/delete`)
         return true
     } catch (error) {
         console.log(error.message)
         throw error
+    }
+}
+
+
+export async function addIntervention(intervention) {
+    const payload = {
+        nomsIntervenant: formData.get('intervenant'),
+        poste: formData.get('poste'),
+        service: formData.get('service'),
+        raison: formData.get('raison'),
+        diagnostic: formData.get('diagnostic'),
+        solution: formData.get('solution'),
+        nature: formData.get('nature'),
+        objet: formData.get('objet'),
+        identifiant: formData.get('identifiant'),
+        structure_affecte: formData.get('respoStructure'),
+        poste_affecte: formData.get('respoPoste'),
+        personne_affecte: formData.get('respoNoms'),
+        lieu: formData.get('lieu'),
+        position_equipement: formData.get('position'),
+        observations: formData.get('observations'),
+        dateIntervention: formData.get('date'),
+        observations: formData.get('observations'),
+        etat_objet: formData.get('etat'),
+        nroIncident: formData.get('nroIncident'),
+        resolu: formData.get('resolu'),
+        ref_autorisation: formData.get('ref')
     }
 }
