@@ -77,7 +77,6 @@ export default function InterventionsSave() {
             position_equipement: formData.get('position'),
             observations: formData.get('observations'),
             dateIntervention: formData.get('date'),
-            observations: formData.get('observations'),
             etat_objet: formData.get('etat'),
             nroIncident: formData.get('nroIncident'),
             resolu: formData.get('resolu'),

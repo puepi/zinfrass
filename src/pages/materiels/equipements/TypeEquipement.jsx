@@ -180,10 +180,6 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                     <button>{"<"}</button>
                     <button>{">"}</button>
                 </p> */}
-                <p className="suivant">
-                    <button className="precedent" onClick={handlePrecedent}>Précédent</button>
-                    <button className="suivant" onClick={() => handleSuivant(selectedType)}>Suivant</button>
-                </p>
             </fieldset>
             {/* {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />} */}
         </>
