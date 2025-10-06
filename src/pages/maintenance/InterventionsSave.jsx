@@ -24,6 +24,7 @@ export default function InterventionsSave() {
     const [showSpinner, setShowSpinner] = useState(false)
     const [toast, setToast] = useState(null)
     const [selectedIntervention, setSelectedIntervention] = useState({})
+    const [showSearchEquipement,setShowSearchEquipement]=useState(false)
 
     function handleCloseRespoModal() {
         setShowRespoModal(false)
@@ -96,6 +97,9 @@ export default function InterventionsSave() {
                 .finally(() => { setShowSpinner(false) })
         }
     }
+    function handleOpenSearchEquipementModal(){
+        setShowSearchEquipement(true)
+    }
     return (
         <>
             <section className="maintenance interventions">
@@ -136,7 +140,7 @@ export default function InterventionsSave() {
                         <input type="text" name="objet" id="objet" required />
                         <label htmlFor="indentifiant">Identifiant :</label>
                         <input type="text" name="indentifiant" id="indentifiant" required />
-                        <Link className="search-link" to="" >...rechercher</Link>
+                        <Link className="search-link" to="" onClick={handleOpenSearchEquipementModal}>...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
                         <input type="text" disabled name="respoStructure" id="respoStructure" required />
@@ -249,6 +253,10 @@ export default function InterventionsSave() {
             {
                 showSpinner &&
                 <Spinner />
+            }
+            {
+                showSearchEquipement &&
+                <EquipementSearchModal />
             }
         </>
     )
