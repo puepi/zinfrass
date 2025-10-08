@@ -99,7 +99,7 @@ export default function EquipementsAffecter() {
                         <label htmlFor="poste">Poste :</label>
                         <input type="text" className="unposte" disabled name="poste" id="poste" value={selectedRespo.nomPoste} onChange={handleChange} />
                         <label htmlFor="date">Date :</label>
-                        <input type="date" name="date" id="date" />
+                        <input type="date" name="date" id="date" required />
                         <label htmlFor="beneficiaire">Bénéficiaire :</label>
                         <input type="text" className="benef" name="beneficiaire" id="beneficiaire" value={selectedRespo.noms} required onChange={handleChange} />
                         <Link className="search-link" onClick={openRespoModal}>...rechercher</Link>

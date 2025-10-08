@@ -3,34 +3,34 @@ import { getAllLots, getAllTypesEquipement } from "../../../utils/ApiFunctions"
 import Modal from "../../../Modal"
 
 
-export default function LotSearchModal({handleCloseModal, handleSelectLot}) {
-    const [typesEquipement,setTypesEquipement]=useState([])
-    const [lots,setLots]=useState([])
-    const [messageButton,setMessageButton]=useState('Rechercher')
-    const [messageLoading,setMessageLoading]=useState('Aucun élément trouvé')
-    async function getTypesEquipement(){
+export default function LotSearchModal({ handleCloseModal, handleSelectLot }) {
+    const [typesEquipement, setTypesEquipement] = useState([])
+    const [lots, setLots] = useState([])
+    const [messageButton, setMessageButton] = useState('Rechercher')
+    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    async function getTypesEquipement() {
         getAllTypesEquipement()
-        .then(data=>setTypesEquipement(data))
-        .catch(error=>console.log(error))
+            .then(data => setTypesEquipement(data))
+            .catch(error => console.log(error))
     }
 
-    async function getLots(){
+    async function getLots() {
         setMessageLoading('...is Loading...')
         getAllLots()
-        .then(data=>setLots(data))
-        .catch(error=>{console.log(error);setMessageLoading('Aucun élément trouvé')})
+            .then(data => setLots(data))
+            .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
     }
 
-    useEffect(()=>{
-        getTypesEquipement() 
+    useEffect(() => {
+        getTypesEquipement()
         getLots()
-    },[])
+    }, [])
 
-    async function handleRechercher(){
+    async function handleRechercher() {
 
     }
 
-    function handleSelectRow(e,lot){
+    function handleSelectRow(e, lot) {
         handleSelectLot(lot)
         handleCloseModal()
     }
@@ -47,7 +47,7 @@ export default function LotSearchModal({handleCloseModal, handleSelectLot}) {
                 <select name="typEquipement" id="typEquipement" required>
                     <option value="">Choisir</option>
                     {
-                        typesEquipement.map(t=><option key={t.id} value={t.nom}>{t.nom}</option>)
+                        typesEquipement.map(t => <option key={t.id} value={t.nom}>{t.nom}</option>)
                     }
                 </select>
                 <div></div>
@@ -71,7 +71,7 @@ export default function LotSearchModal({handleCloseModal, handleSelectLot}) {
                 <tbody>
                     {lots && lots.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                     {lots && (
-                        lots.map((lot, id) => <tr key={lot.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, lot)}>
+                        lots.map((lot, id) => <tr key={lot.id} className='dynamic-row rows' onClick={(e) => handleSelectRow(e, lot)}>
                             <td>{id + 1}</td>
                             <td>{lot.nroLot}</td>
                             <td>{lot.typeEquipementName}</td>

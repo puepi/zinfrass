@@ -660,28 +660,12 @@ export async function deleteIntervention(id) {
 }
 
 
-export async function addIntervention(intervention) {
-    const payload = {
-        nomsIntervenant: formData.get('intervenant'),
-        poste: formData.get('poste'),
-        service: formData.get('service'),
-        raison: formData.get('raison'),
-        diagnostic: formData.get('diagnostic'),
-        solution: formData.get('solution'),
-        nature: formData.get('nature'),
-        objet: formData.get('objet'),
-        identifiant: formData.get('identifiant'),
-        structure_affecte: formData.get('respoStructure'),
-        poste_affecte: formData.get('respoPoste'),
-        personne_affecte: formData.get('respoNoms'),
-        lieu: formData.get('lieu'),
-        position_equipement: formData.get('position'),
-        observations: formData.get('observations'),
-        dateIntervention: formData.get('date'),
-        observations: formData.get('observations'),
-        etat_objet: formData.get('etat'),
-        nroIncident: formData.get('nroIncident'),
-        resolu: formData.get('resolu'),
-        ref_autorisation: formData.get('ref')
+export async function getEquipementsStock() {
+    try {
+        const response = await api.get('/equipements/en-stock')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
     }
 }

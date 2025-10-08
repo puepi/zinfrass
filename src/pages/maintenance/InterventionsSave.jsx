@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
 import { addInstallation, deleteIntervention, getInterventions } from "../../utils/ApiFunctions"
 import Spinner from '../../components/Spinner'
+import EquipementsSearchModal from "../materiels/equipements/EquipementsSearchModal"
 export default function InterventionsSave() {
     const [isSavingDisabled, setIsSavingDisabled] = useState(false)
     const [interventions, setInterventions] = useState([])
@@ -24,7 +25,8 @@ export default function InterventionsSave() {
     const [showSpinner, setShowSpinner] = useState(false)
     const [toast, setToast] = useState(null)
     const [selectedIntervention, setSelectedIntervention] = useState({})
-    const [showSearchEquipement,setShowSearchEquipement]=useState(false)
+    const [showSearchEquipement, setShowSearchEquipement] = useState(false)
+    const [selectedEquipement, setSelectedEquipement] = useState({})
 
     function handleCloseRespoModal() {
         setShowRespoModal(false)
@@ -87,7 +89,7 @@ export default function InterventionsSave() {
             setShowSpinner(true)
             await addInstallation(newIntervention)
                 .then(response => {
-                    setInterventions(prev => [...prev, response])
+                    setInterventions(prev => [response, ...prev])
                     setToast({ message: "✅ Opération réussie !", type: "success" });
                 })
                 .catch(error => {
@@ -96,8 +98,14 @@ export default function InterventionsSave() {
                 .finally(() => { setShowSpinner(false) })
         }
     }
-    function handleOpenSearchEquipementModal(){
+    function handleOpenSearchEquipementModal() {
         setShowSearchEquipement(true)
+    }
+    function handleCloseEquipementModal() {
+        setShowSearchEquipement(false)
+    }
+    function handleSelectEquipement(e, equipement) {
+
     }
     return (
         <>
@@ -136,9 +144,9 @@ export default function InterventionsSave() {
                             <option value="Espace">Espace</option>
                         </select>
                         <label htmlFor="objet">Objet:</label>
-                        <input type="text" name="objet" id="objet" required />
+                        <input type="text" name="objet" id="objet" required value={selectedEquipement.numeroSerie} />
                         <label htmlFor="indentifiant">Identifiant :</label>
-                        <input type="text" name="indentifiant" id="indentifiant" required />
+                        <input type="text" name="indentifiant" id="indentifiant" required value={selectedEquipement.numeroUnique} />
                         <Link className="search-link" to="" onClick={handleOpenSearchEquipementModal}>...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
@@ -255,7 +263,7 @@ export default function InterventionsSave() {
             }
             {
                 showSearchEquipement &&
-                <EquipementSearchModal />
+                <EquipementsSearchModal handleCloseModal={handleCloseEquipementModal} handleSelectEquipement={handleSelectEquipement} />
             }
         </>
     )
