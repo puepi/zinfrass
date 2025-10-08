@@ -1,9 +1,14 @@
 import { useState } from "react"
+import Modal from "../../Modal"
 
 
-export default function EquipementSearchModal(){
-    const [equipements,setEquipements]=useState([])
-    return(
+export default function EquipementSearchModal() {
+    const [equipements, setEquipements] = useState([])
+
+    async function handleRechercher() {
+
+    }
+    return (
         <Modal>
             <h4>Rechercher un équipement</h4>
             <form className='respos-search' action={handleRechercher}>
