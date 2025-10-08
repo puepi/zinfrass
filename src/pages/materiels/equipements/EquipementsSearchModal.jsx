@@ -13,6 +13,7 @@ export default function EquipementsSearchModal(handleCloseModal, handleSelectEqu
         getEquipementsStock()
             .then(data => setEquipements(data))
             .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
+            .finally(()=>setMessageLoading('Aucun élément trouvé'))
     }
 
     useEffect(() => {

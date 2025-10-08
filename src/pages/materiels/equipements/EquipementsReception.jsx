@@ -145,13 +145,14 @@ export default function EquipementsReception() {
             caracteristiques: equipementData.caracteristics,
         }
         setLeLot(newLot)
+        setShowSpinner(true)
         await addLot(newLot)
             .then(response => {
                 setLots(prev => ([response, ...prev]))
-                console.log(response)
+                setToast({ message: "🚀 Opération effectuée avec succès!", type: "success" });
             })
-            .catch(error => { console.log(error); })
-            .finally(() => setMessageSubmit('Enregistrer'))
+            .catch(error => { console.log(error);setToast({ message: "❌ " + error.message, type: "error" }); })
+            .finally(() => {setMessageSubmit('Enregistrer');setShowSpinner(false)})
     }
     function chercherFournisseurs() {
         setIsLoading(true)
@@ -178,10 +179,9 @@ export default function EquipementsReception() {
             etat_objet: "neuf",
             ref_autorisation: "PV0215/SG/CI du 02/02/2024",
         }
+        setShowSpinner(true)
         await auMagasin(newIntervention)
             .then(response => {
-                console.log(response)
-                setShowSpinner(true)
                 // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? response : lot))
                 return updateQty(idLot)
                 // setLots(prevLots => prevLots.map(lot => lot.id === idLot ? lot : lot))

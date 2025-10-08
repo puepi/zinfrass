@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Equipement from "./Equipement"
-import { addCategorie, addTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
+import { addCategorie, addTypeEquipement, deleteTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
 
 
 
@@ -16,6 +16,8 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
     const [selectedCategorie, setSelectedCategorie] = useState({ nom: '', id: '' })
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
     const [loadingMessage2, setLoadingMessage2] = useState('...data is Loading...')
+    const [toast, setToast] = useState(null) 
+    const [showSpinner, setShowSpinner] = useState(false)
     // const [selectedTypeEquipement, setSelectedTypeEquipement] = useState(selectedType)
     const [messageButton, setMessageButton] = useState('Enregistrer')
     // function handleSuivant() {
@@ -86,17 +88,19 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
         await addTypeEquipement(newTypeEquipement)
             .then(response => {
                 if (response) {
+                    setShowSpinner(true)
+                    setToast({ message: "✅ Opération réussie !", type: "success" });
                     setTypesEquipement(prev => ([response, ...prev]))
                     setSelectedTypeEquipement({
                         nom: response.nom,
                         id: response.id
                     })
                 }
-                console.log(response)
 
             })
-            .catch(error => console.log(error))
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
             .finally(() => {
+                setShowSpinner(false)
                 setIsDisabled(false)
                 setMessageButton('Enregistrer')
             })
@@ -112,6 +116,18 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
         setSelectedTypeEquipement(prev => ({ ...prev, nom: e.target.value }))
     }
 
+    async function handleDelete(type){
+        const id = type.id
+        setShowSpinner(true)
+        await deleteTypeEquipement(id)
+            .then(response => {
+                setTypeEquipement(prevTypes => prevTypes.filter(type => type.id !== id))
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
+            .finally(() => setShowSpinner(false))
+    }
+
     return (
         <>
             <fieldset className="type-equipement">
@@ -123,7 +139,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                     <label htmlFor="nom">Nom : </label>
                     <input type="text" name='nom' id='nom' required />
                     <label htmlFor="abreviation">Abréviation : </label>
-                    <input type="text" name='abreviation' id='abreviation' /><div></div>
+                    <input type="text" name='abreviation' id='abreviation' required/><div></div>
                     <label htmlFor="caracteristiques" className="caracteristics">Caractéristiques : </label>
                     <textarea required name="caracteristiques" id="caracteristiques" placeholder="Enter caracteristics separated by double slashes (//)"></textarea><div></div><div></div><div></div>
                     <label htmlFor="categorie">Categorie : </label>
@@ -168,7 +184,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                                     <button className="edit-btn">
                                         &#9998;
                                     </button>&nbsp;&nbsp;
-                                    <button className="delete-btn">
+                                    <button className="delete-btn" onClick={()=>handleDelete(type)}>
                                         &#x1F5D1;
                                     </button>
                                 </td>
@@ -176,12 +192,11 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                         )}
                     </tbody>
                 </table>
-                {/* <p className="nav-buttons">
-                    <button>{"<"}</button>
-                    <button>{">"}</button>
-                </p> */}
             </fieldset>
-            {/* {toShow2 && <Equipement handleSuivant={handleSuiv} selectedTypeEquipement={selectedType} handleRegister={handleReg} />} */}
+            {
+                showSpinner &&
+                <Spinner />
+            }
         </>
     )
 }

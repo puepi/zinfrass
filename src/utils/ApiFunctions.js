@@ -669,3 +669,14 @@ export async function getEquipementsStock() {
         throw error
     }
 }
+
+
+export async function deleteTypeEquipement(id) {
+    try {
+        const response = await api.delete(`/types-equipement/delete/${id}`)
+        return true
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
