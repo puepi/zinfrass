@@ -4,7 +4,7 @@ import Modal from "../../../Modal"
 
 
 
-export default function EquipementsSearchModal(handleCloseModal, handleSelectEquipement) {
+export default function EquipementsSearchModal({ handleCloseModal, handleSelectEquipement }) {
     const [equipements, setEquipements] = useState([])
     const [messageButton, setMessageButton] = useState('Rechercher')
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
@@ -23,6 +23,9 @@ export default function EquipementsSearchModal(handleCloseModal, handleSelectEqu
     function handleSelectRow(e, equipement) {
         handleSelectEquipement(equipement)
         handleCloseModal()
+    }
+    function handleCloseModal2() {
+        console.log("quitter")
     }
     return (
         <Modal>
@@ -58,7 +61,7 @@ export default function EquipementsSearchModal(handleCloseModal, handleSelectEqu
                 <tbody>
                     {equipements && equipements.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                     {equipements && (
-                        equipements.map((equipement, id) => <tr key={equipement.id} className='dynamic-row rows' onClick={(e) => handleSelectRow(e, lot)}>
+                        equipements.map((equipement, id) => <tr key={equipement.id} className='dynamic-row rows' onClick={(e) => handleSelectRow(e, equipement)}>
                             <td>{id + 1}</td>
                             <td>{equipement.numeroSerie}</td>
                             <td>{equipement.numeroUnique}</td>

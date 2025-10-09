@@ -4,7 +4,8 @@ import './equipements.css'
 import { useEffect, useState } from "react"
 import LotSearchModal from "./LotSearchModal"
 import RespoSearchModal from "./RespoSearchModal"
-import { addOctroi, getAllOctrois } from "../../../utils/ApiFunctions"
+import { addOctroi, deleteOctroi, getAllOctrois } from "../../../utils/ApiFunctions"
+import Toast from "../../../components/Toast"
 export default function EquipementsAffecter() {
     const [octrois, setOctrois] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
@@ -14,6 +15,9 @@ export default function EquipementsAffecter() {
     const [selectedLot, setSelectedLot] = useState({})
     const [showRespoModal, setShowRespoModal] = useState(false)
     const [selectedRespo, setSelectedRespo] = useState({})
+    const [showSpinner, setShowSpinner] = useState(false)
+    const [toast, setToast] = useState(null)
+
     async function getOctrois() {
         setMessageLoading('...loading...')
         await getAllOctrois()
@@ -75,6 +79,20 @@ export default function EquipementsAffecter() {
                 setIsDisabled(false)
                 setMessageButton('Enregistrer')
             })
+    }
+    async function handleDelete(octroi) {
+        const id = octroi.id
+        setShowSpinner(true)
+        await deleteOctroi(id)
+            .then(response => {
+                setOctrois(prevOct => prevOct.filter(octr => octr.id !== id))
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+            })
+            .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
+            .finally(() => setShowSpinner(false))
+    }
+    function handleClick(structure) {
+
     }
     return (
         <>
@@ -145,7 +163,7 @@ export default function EquipementsAffecter() {
                                         <button className="edit-btn">
                                             &#9998;
                                         </button>&nbsp;&nbsp;
-                                        <button className="delete-btn">
+                                        <button className="delete-btn" onClick={() => handleDelete(octroi)}>
                                             &#x1F5D1;
                                         </button>
                                     </td>
@@ -162,6 +180,10 @@ export default function EquipementsAffecter() {
             {
                 showRespoModal &&
                 <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
+            }
+            {
+                toast &&
+                <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
             }
         </>
     )
