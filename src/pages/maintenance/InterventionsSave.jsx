@@ -27,6 +27,8 @@ export default function InterventionsSave() {
     const [selectedIntervention, setSelectedIntervention] = useState({})
     const [showSearchEquipement, setShowSearchEquipement] = useState(false)
     const [selectedEquipement, setSelectedEquipement] = useState({})
+    const [selectedProfit, setSelectedProfit] = useState({})
+    const [showRespoProfit, setShowRespoProfit] = useState(false)
 
     function handleCloseRespoModal() {
         setShowRespoModal(false)
@@ -104,8 +106,23 @@ export default function InterventionsSave() {
     function handleCloseEquipementModal() {
         setShowSearchEquipement(false)
     }
-    function handleSelectEquipement(e, equipement) {
-
+    function handleSelectEquipement(equipement) {
+        console.log(equipement)
+        setSelectedEquipement({ identifiant: equipement.numeroUnique })
+    }
+    function handleChangeRaison(e) {
+        if (e.target.value === "Installation") {
+            setShowLinkProfit(true)
+        }
+    }
+    function handleShowRespo() {
+        setShowRespoProfit(true)
+    }
+    function handleSelectRespoProfit(profit) {
+        setSelectedProfit(profit)
+    }
+    function handleCloseRespoModalProfit() {
+        setShowRespoProfit(false)
     }
     return (
         <>
@@ -121,7 +138,7 @@ export default function InterventionsSave() {
                         <input disabled={showService} type="text" value={selectedRespo.nomStructure} name="service" id="service" required />
                         <Link className="search-link" to="" onClick={handleOpenRespoModal}>...rechercher</Link>
                         <label htmlFor="raison">Raison:</label>
-                        <select name="raison" id="raison" required>
+                        <select name="raison" id="raison" required onChange={handleChangeRaison}>
                             <option value="">Faites un choix</option>
                             <option value="Installation">Installation</option>
                             <option value="Réception">Réception</option>
@@ -144,18 +161,18 @@ export default function InterventionsSave() {
                             <option value="Espace">Espace</option>
                         </select>
                         <label htmlFor="objet">Objet:</label>
-                        <input type="text" name="objet" id="objet" required value={selectedEquipement.numeroSerie} />
+                        <input type="text" name="objet" id="objet" required />
                         <label htmlFor="indentifiant">Identifiant :</label>
-                        <input type="text" name="indentifiant" id="indentifiant" required value={selectedEquipement.numeroUnique} />
+                        <input type="text" disabled name="indentifiant" id="indentifiant" required value={selectedEquipement.identifiant} />
                         <Link className="search-link" to="" onClick={handleOpenSearchEquipementModal}>...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
-                        <input type="text" disabled name="respoStructure" id="respoStructure" required />
+                        <input type="text" disabled name="respoStructure" id="respoStructure" required value={selectedProfit.nomStructure} />
                         <label htmlFor="respoPoste">Poste :</label>
-                        <input type="text" disabled name="respoPoste" id="respoPoste" required />
+                        <input type="text" disabled name="respoPoste" id="respoPoste" required value={selectedProfit.nomPoste} />
                         <label htmlFor="respoNoms">Noms :</label>
-                        <input type="text" disabled name="respoNoms" id="respoNoms" required />
-                        {showLinkProfit ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
+                        <input type="text" disabled name="respoNoms" id="respoNoms" required value={selectedProfit.noms} />
+                        {showLinkProfit ? <Link className="search-link" to="" onClick={handleShowRespo}>...rechercher</Link> : <div></div>}
 
                         <label htmlFor="lieu">Lieu:</label>
                         <input type="text" name="lieu" id="lieu" disabled={showLieu} />
@@ -256,6 +273,10 @@ export default function InterventionsSave() {
             {
                 showRespoModal &&
                 <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
+            }
+            {
+                showRespoProfit &&
+                <RespoSearchModal handleCloseModal={handleCloseRespoModalProfit} handleSelectRespo={handleSelectRespoProfit} />
             }
             {
                 showSpinner &&

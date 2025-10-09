@@ -669,3 +669,13 @@ export async function getEquipementsStock() {
         throw error
     }
 }
+
+export async function deleteOctroi(id) {
+    try {
+        const response = await api.delete(`/octrois/${id}/delete`)
+        return true
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
