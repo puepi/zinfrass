@@ -70,7 +70,7 @@ export default function AddEquipementsLot({ handleQuitter, eqpmtsFromLot, handle
                         <tbody>
                             {mesEquipements && mesEquipements.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                             {mesEquipements && mesEquipements.length > 0 && (
-                                mesEquipements.map((equipement, id) => <tr key={id} className='dynamic-row'>
+                                mesEquipements.map((equipement, id) => <tr key={id} className='dynamic-row rows'>
                                     <td>{id + 1}</td>
                                     <td>{equipement.numeroSerie}</td>
                                     <td>{equipement.numeroUnique}</td>
@@ -96,7 +96,7 @@ export default function AddEquipementsLot({ handleQuitter, eqpmtsFromLot, handle
                         <tbody>
                             {eqpmtsFromLot && eqpmtsFromLot.length === 0 && <tr className='titles'><td>{'Aucun élément trouvé'}</td></tr>}
                             {eqpmtsFromLot && eqpmtsFromLot.length > 0 && (
-                                eqpmtsFromLot.map((equipement, id) => <tr key={id} className='dynamic-row'>
+                                eqpmtsFromLot.map((equipement, id) => <tr key={id} className='dynamic-row rows'>
                                     <td>{id + 1}</td>
                                     <td>{equipement.numeroSerie}</td>
                                     <td>{equipement.numeroUnique}</td>

@@ -71,7 +71,7 @@ export default function LotSearchModal({ handleCloseModal, handleSelectLot }) {
                 <tbody>
                     {lots && lots.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                     {lots && (
-                        lots.map((lot, id) => <tr key={lot.id} className='dynamic-row rows' onClick={(e) => handleSelectRow(e, lot)}>
+                        lots.map((lot, id) => <tr key={lot.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, lot)}>
                             <td>{id + 1}</td>
                             <td>{lot.nroLot}</td>
                             <td>{lot.typeEquipementName}</td>

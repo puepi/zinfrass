@@ -713,7 +713,7 @@ textarea.caracteristiques {
     padding: 5px;
 }
 
-.overlay tr.dynamic-row {
+.rows {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 25px);
@@ -723,14 +723,6 @@ textarea.caracteristiques {
 
 .overlay tbody {
     font-size: 0.7rem;
-}
-
-.rows {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 35px);
-    gap: 1px;
-    border: none;
 }
 
 .equipement-search {
