@@ -291,6 +291,7 @@ export async function getAllFactures() {
 export async function getAllStructures() {
     try {
         const response = await api.get('/structures/getall')
+        console.log(response.data.data)
         return response.data.data
     } catch (error) {
         console.log(error.message)

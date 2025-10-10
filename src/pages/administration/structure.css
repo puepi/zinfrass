@@ -81,7 +81,7 @@
 .lastructure-body tr.dynamic-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
+    grid-template-rows: repeat(1, 40px);
     gap: 1px;
     border: none;
 }

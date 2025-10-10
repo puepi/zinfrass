@@ -13,7 +13,7 @@ export default function EquipementsSearchModal({ handleCloseModal, handleSelectE
         getEquipementsStock()
             .then(data => setEquipements(data))
             .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
-            .finally(()=>setMessageLoading('Aucun élément trouvé'))
+            .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
 
     useEffect(() => {
@@ -35,6 +35,7 @@ export default function EquipementsSearchModal({ handleCloseModal, handleSelectE
                 <select name="position" id="position">
                     <option value="en stock">En stock</option>
                     <option value="out stock">Hors stock</option>
+                    <option value="en mémoire">En mémoire</option>
                 </select>
                 <div></div>
                 <div></div>

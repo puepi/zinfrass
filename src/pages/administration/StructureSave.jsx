@@ -200,9 +200,9 @@ export default function StructureSave() {
                                     <tbody className='lastructure-body'>
                                         {structures && structures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
                                         {structures && structures.length > 0 && (
-                                            structures.map((structure, id) => <tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>
+                                            structures.map((structure, id) => (<tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>
                                                 <td>{id + 1}</td>
-                                                <td>{structure.nom}</td>
+                                                <td>{structure.nom.substring(0, 45) + '...'}</td>
                                                 <td>{structure.subdivision.nom}</td>
                                                 <td>{structure.abreviation}</td>
                                                 <td>{structure.parent}</td>
@@ -214,7 +214,7 @@ export default function StructureSave() {
                                                         &#x1F5D1;
                                                     </button>
                                                 </td>
-                                            </tr>)
+                                            </tr>))
                                         )}
                                     </tbody>
                                 </table>
