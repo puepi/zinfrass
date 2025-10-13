@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import './structure.css'
 import { useEffect, useState } from "react"
-import { addRespo, addStructure, getAllResponsabilisations, getAllStructures, getPaginatedAllStructures } from "../../utils/ApiFunctions"
+import { addRespo, addStructure, deleteStructure, getAllResponsabilisations, getAllStructures, getPaginatedAllStructures } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
 import StructureSearchModal from "./StructureSearchModal"
 import PosteSave from "./PosteSave"
@@ -36,6 +36,7 @@ export default function StructureSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDeactivated, setIsDeactivated] = useState(false)
     const [toContinue, setToContinue] = useState('structures')
+
     const [currentPage, setCurrentPage] = useState(0)
     const [pageData, setPageData] = useState({
         content: [],
@@ -67,20 +68,19 @@ export default function StructureSave() {
     }, [currentPage, pageData.size])
 
 
-    async function getstructures() {
-        setMessageLoading('...is Loading')
-        await getAllStructures()
-            .then(data => setStructures(data))
-            .catch(error => console.log(error))
-            .finally(() => setMessageLoading('Aucun élément trouvé'))
-    }
+    // async function getstructures() {
+    //     setMessageLoading('...is Loading')
+    //     await getAllStructures()
+    //         .then(data => setStructures(data))
+    //         .catch(error => console.log(error))
+    //         .finally(() => setMessageLoading('Aucun élément trouvé'))
+    // }
     useEffect(() => {
         document.title = "Structures et postes de responsabilité"
         // getstructures()
     }, [])
     async function handleSubmit(formData) {
-        setIsDisabled(true)
-        setMessageButton("...Saving")
+        setIsLoading(true)
         const newStructure = {
             nom: formData.get("nom"),
             type: formData.get("type"),
@@ -96,8 +96,7 @@ export default function StructureSave() {
             })
             .catch(error => console.log(error))
             .finally(() => {
-                setIsDisabled(false)
-                setMessageButton('Enregistrer')
+                setIsLoading(false)
             })
     }
     function handleChange(e) {
@@ -189,7 +188,7 @@ export default function StructureSave() {
                         <button className="edit-btn">
                             &#9998;
                         </button>&nbsp;&nbsp;
-                        <button className="delete-btn">
+                        <button className="delete-btn" onClick={()=>handleDelete(structure)}>
                             &#x1F5D1;
                         </button>
                     </td>
@@ -203,6 +202,18 @@ export default function StructureSave() {
     }
     function handlePrev() {
         setCurrentPage(prev => prev - 1)
+    }
+    async function handleDelete(structure){
+        try {
+            setIsLoading(true)
+            const data=await deleteStructure(structure.id)
+            setToast({ message: "✅ Opération réussie !", type: "success" });
+
+        } catch (error) {
+            setToast({ message: "❌ Une erreur est survenue !", type: "error" });
+        }finally {
+            setIsLoading(false)
+        }
     }
     return (
         <>
@@ -306,6 +317,13 @@ export default function StructureSave() {
                     {
                         showModal2 &&
                         <StructureSearchModal handleCloseModal={handleCloseModal2} handleSelectStructure={handleSelectStructure} />
+                    }
+                    {
+                        isLoading && <Spinner />
+                    }
+                    {
+                        toast &&
+                        <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
                     }
                 </>
 

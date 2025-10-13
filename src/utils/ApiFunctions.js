@@ -757,3 +757,13 @@ export async function getInventoryEquipement() {
         throw error
     }
 }
+
+export async function deleteStructure(id){
+    try {
+        const response=await api.delete(`/structures/${id}/delete`)
+        return true
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}

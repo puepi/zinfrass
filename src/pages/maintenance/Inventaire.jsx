@@ -9,6 +9,10 @@ export default function Inventaire() {
     const [isLoading, setIsLoading] = useState()
 
     useEffect(() => {
+        document.title = 'Inventorier les équipements'
+    }, [])
+
+    useEffect(() => {
         const loadData = async () => {
             try {
                 setIsLoading(true)
@@ -30,6 +34,7 @@ export default function Inventaire() {
             inventaires.map((inventaire, id) => <tr key={inventaire.id} className='dynamic-row'>
                 <td>{inventaire.typeEquipement}</td>
                 <td>{inventaire.marque + "/" + inventaire.modele}</td>
+                <td>{inventaire.numeroSerie + "/" + inventaire.numeroUnique}</td>
                 <td>{inventaire.lieu}</td>
                 <td>{inventaire.poste}</td>
                 <td>{inventaire.currentPosition}</td>
@@ -38,8 +43,11 @@ export default function Inventaire() {
                     <button className="edit-btn">
                         &#9998;
                     </button>&nbsp;&nbsp;
-                    <button className="delete-btn" onClick={() => handleDelete(octroi)}>
+                    <button className="delete-btn" onClick={() => handleDelete(inventaire)}>
                         &#x1F5D1;
+                    </button>&nbsp;&nbsp;
+                    <button type="button" className="ajout-btn">
+                        &#128083;
                     </button>
                 </td>
             </tr>)
@@ -68,6 +76,7 @@ export default function Inventaire() {
                             <tr className='show-tab'>
                                 <th>Type d'équipement</th>
                                 <th>Marque/Modèle</th>
+                                <th>N° série/N° unique</th>
                                 <th>Lieu</th>
                                 <th>Photos</th>
                                 <th>Position</th>
