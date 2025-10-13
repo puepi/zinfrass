@@ -1,13 +1,45 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { addPersonnel, getPersonnels } from "../../utils/ApiFunctions"
+import { addPersonnel, getPaginatedAllPersonnels, getPersonnels } from "../../utils/ApiFunctions"
 import '../materiels/batiments/batiments.css'
+import Toast from "../../components/Toast"
+import Spinner from "../../components/Spinner"
+import { SpinnerRow } from "./StructureSave"
 
 export default function Personnels() {
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [personnels, setPersonnels] = useState([])
     const [isDisabled, setIsDisabled] = useState(false)
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const [toast, setToast] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await getPaginatedAllPersonnels(currentPage, pageData.size)
+                setPageData(data)
+            } catch (error) {
+                setToast({ message: "❌ Une erreur est survenue :" + error.message, type: "error" });
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
 
 
     async function handleSubmit(formData) {
@@ -39,8 +71,36 @@ export default function Personnels() {
     }
     useEffect(() => {
         document.title = "Enregistrer le personnel"
-        getAllPersonnels()
+        // getAllPersonnels()
     }, [])
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content.length > 0 && (
+            pageData.content.map((personnel, id) => <tr key={personnel.id} className='dynamic-row' >
+                <td>{id + 1 + (pageData.number * pageData.size)}</td>
+                <td>{personnel.noms}</td>
+                <td>{personnel.prenoms}</td>
+                <td>{personnel.matricule}</td>
+                <td>{personnel.genre}</td>
+                <td>
+                    <button className="edit-btn">
+                        &#9998;
+                    </button>&nbsp;&nbsp;
+                    <button className="delete-btn">
+                        &#x1F5D1;
+                    </button>
+                </td>
+            </tr>)
+        )
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
+    }
     return (
         <>
             <section className="personnel">
@@ -80,28 +140,26 @@ export default function Personnels() {
                             </tr>
                         </thead>
                         <tbody className='lepersonnel-body'>
-                            {personnels && personnels.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                            {personnels && personnels.length > 0 && (
-                                personnels.map((personnel, id) => <tr key={personnel.id} className='dynamic-row' >
-                                    <td>{id + 1}</td>
-                                    <td>{personnel.noms}</td>
-                                    <td>{personnel.prenoms}</td>
-                                    <td>{personnel.matricule}</td>
-                                    <td>{personnel.genre}</td>
-                                    <td>
-                                        <button className="edit-btn">
-                                            &#9998;
-                                        </button>&nbsp;&nbsp;
-                                        <button className="delete-btn">
-                                            &#x1F5D1;
-                                        </button>
-                                    </td>
-                                </tr>)
-                            )}
+                            {
+                                isLoading ? <SpinnerRow /> : elt
+                            }
                         </tbody>
                     </table>
+                    {
+                        pageData.content.length > 0 && (
+                            <div className="navigation">
+                                <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                                <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                                <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                            </div>
+                        )
+                    }
                 </fieldset>
             </section>
+            {
+                toast &&
+                <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
+            }
         </>
     )
 }

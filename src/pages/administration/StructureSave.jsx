@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom"
 import './structure.css'
 import { useEffect, useState } from "react"
-import { addRespo, addStructure, getAllResponsabilisations, getAllStructures } from "../../utils/ApiFunctions"
+import { addRespo, addStructure, getAllResponsabilisations, getAllStructures, getPaginatedAllStructures } from "../../utils/ApiFunctions"
 import SubdivisionSearchModal from "../materiels/batiments/SuvdivisionSearchModal"
 import StructureSearchModal from "./StructureSearchModal"
 import PosteSave from "./PosteSave"
 import RespoSave from "./RespoSave"
+import Toast from "../../components/Toast"
+import Spinner from "../../components/Spinner"
+import monSpinnerGif from '../../assets/spinner.gif'
+
+export function SpinnerRow() {
+    return (
+        <tr>
+            <td className="overlay">
+                <img src={monSpinnerGif} alt="Chargement..." className="spinner" />
+            </td>
+        </tr>
+    )
+}
 export default function StructureSave() {
     const [structures, setStructures] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
@@ -23,6 +36,37 @@ export default function StructureSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDeactivated, setIsDeactivated] = useState(false)
     const [toContinue, setToContinue] = useState('structures')
+    const [currentPage, setCurrentPage] = useState(0)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [toast, setToast] = useState(null)
+
+    useEffect(() => {
+        const loadData = async () => {
+            setIsLoading(true)
+            try {
+                const data = await getPaginatedAllStructures(currentPage, pageData.size)
+                console.log(data)
+                setPageData(data)
+            } catch (error) {
+                console.error("Erreur lors du chargement des structures:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
+
+
     async function getstructures() {
         setMessageLoading('...is Loading')
         await getAllStructures()
@@ -32,7 +76,7 @@ export default function StructureSave() {
     }
     useEffect(() => {
         document.title = "Structures et postes de responsabilité"
-        getstructures()
+        // getstructures()
     }, [])
     async function handleSubmit(formData) {
         setIsDisabled(true)
@@ -94,7 +138,7 @@ export default function StructureSave() {
     function handlePrevious() {
         setToContinue('structures')
     }
-    function handleNext() {
+    function handleNextPage() {
         setToContinue('responsabilisations')
     }
     function handleClickPostes(poste) {
@@ -128,6 +172,37 @@ export default function StructureSave() {
                 setIsDisabledRespo(false)
                 setMessageButtonRespo('Enregistrer')
             })
+    }
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content && pageData.content.length > 0 && (
+            pageData.content.map((structure, id) => (
+                <tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>
+                    <td>{id + 1 + (pageData.number * pageData.size)}</td>
+                    <td>{structure.nom.substring(0, 45) + '...'}</td>
+                    <td>{structure.subdivision.nom}</td>
+                    <td>{structure.abreviation}</td>
+                    <td>{structure.parent}</td>
+                    <td>
+                        <button className="edit-btn">
+                            &#9998;
+                        </button>&nbsp;&nbsp;
+                        <button className="delete-btn">
+                            &#x1F5D1;
+                        </button>
+                    </td>
+                </tr>
+            )
+            )
+        )
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
     }
     return (
         <>
@@ -198,30 +273,28 @@ export default function StructureSave() {
                                         </tr>
                                     </thead>
                                     <tbody className='lastructure-body'>
-                                        {structures && structures.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                                        {structures && structures.length > 0 && (
-                                            structures.map((structure, id) => (<tr key={structure.id} className='dynamic-row' onClick={() => handleClick(structure)}>
-                                                <td>{id + 1}</td>
-                                                <td>{structure.nom.substring(0, 45) + '...'}</td>
-                                                <td>{structure.subdivision.nom}</td>
-                                                <td>{structure.abreviation}</td>
-                                                <td>{structure.parent}</td>
-                                                <td>
-                                                    <button className="edit-btn">
-                                                        &#9998;
-                                                    </button>&nbsp;&nbsp;
-                                                    <button className="delete-btn">
-                                                        &#x1F5D1;
-                                                    </button>
-                                                </td>
-                                            </tr>))
-                                        )}
+                                        {
+                                            isLoading ? (<SpinnerRow />) : (
+                                                elt
+                                            )
+
+                                        }
+
                                     </tbody>
                                 </table>
+                                {
+                                    pageData.content.length > 0 && (
+                                        <div className="navigation">
+                                            <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                                            <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                                            <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                                        </div>
+                                    )
+                                }
                             </fieldset>
                         }
                         {
-                            toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNext} />
+                            toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNextPage} />
                         }{
                             toContinue === 'responsabilisations' && <RespoSave messageLoadingRespo={messageLoadingRespo} respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo} />
                         }

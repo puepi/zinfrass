@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { addPoste, getAllPostes } from "../../utils/ApiFunctions"
+import { addPoste, getAllPostes, getPaginatedAllPostes } from "../../utils/ApiFunctions"
+import { SpinnerRow } from "./StructureSave"
 
 
 export default function PosteSave({ handlePrecedent, handleSuivant, handleClickPostes }) {
@@ -8,6 +9,19 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
     const [messageButton, setMessageButton] = useState('Enregister')
     const [isDisabled, setIsDisabled] = useState(false)
     const [selectedPoste, setSelectedPoste] = useState({})
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
     async function getPostes() {
         setMessageLoading('...Loading')
         await getAllPostes()
@@ -16,8 +30,20 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
-        getPostes()
-    }, [])
+        // getPostes()
+        const loadData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await getPaginatedAllPostes(currentPage, pageData.size)
+                setPageData(data)
+            } catch (error) {
+
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
     function handleClick(poste) {
         const newPoste = {
             nom: poste.nom,
@@ -48,6 +74,33 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                 setIsDisabled(false)
                 setMessageButton('Enregistrer')
             })
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
+    }
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content.length > 0 && (
+            pageData.content.map((poste, id) => <tr key={poste.id} className='dynamic-row' onClick={() => handleClick(poste)}>
+                <td>{id + 1}</td>
+                <td>{poste.nom}</td>
+                <td>{poste.abreviation}</td>
+                <td>{poste.rang}</td>
+                <td>
+                    <button className="edit-btn">
+                        &#9998;
+                    </button>&nbsp;&nbsp;
+                    <button className="delete-btn">
+                        &#x1F5D1;
+                    </button>
+                </td>
+            </tr>)
+        )
     }
     return (
 
@@ -102,25 +155,20 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
                         </tr>
                     </thead>
                     <tbody className='lastructure-body'>
-                        {postes && postes.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                        {postes && postes.length > 0 && (
-                            postes.map((poste, id) => <tr key={poste.id} className='dynamic-row' onClick={() => handleClick(poste)}>
-                                <td>{id + 1}</td>
-                                <td>{poste.nom}</td>
-                                <td>{poste.abreviation}</td>
-                                <td>{poste.rang}</td>
-                                <td>
-                                    <button className="edit-btn">
-                                        &#9998;
-                                    </button>&nbsp;&nbsp;
-                                    <button className="delete-btn">
-                                        &#x1F5D1;
-                                    </button>
-                                </td>
-                            </tr>)
-                        )}
+                        {
+                            isLoading ? <SpinnerRow /> : elt
+                        }
                     </tbody>
                 </table>
+                {
+                    pageData.content.length > 0 && (
+                        <div className="navigation">
+                            <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                            <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                            <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                        </div>
+                    )
+                }
             </fieldset>
         </>
     )

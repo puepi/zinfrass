@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react"
-import { getAllResponsabilisations, getPersonnelsNomsEtPrenoms } from "../../utils/ApiFunctions"
+import { getAllResponsabilisations, getPaginatedAllResponsabilisations, getPersonnelsNomsEtPrenoms } from "../../utils/ApiFunctions"
 import { Link } from "react-router-dom"
 import PersonnelsModal from "./PersonnelsModal"
+import { SpinnerRow } from "./StructureSave"
 
 
 export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
     const [showModal, setShowModal] = useState(false)
     const [noms, setNoms] = useState('')
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
 
     function handleSubmit(formData) {
         const newRespo = {
@@ -33,8 +46,47 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
         setNoms(e.target.value)
     }
     useEffect(() => {
-        getRespos()
-    }, [])
+        // getRespos()
+        const loadData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await getPaginatedAllResponsabilisations(currentPage, pageData.size)
+                setPageData(data)
+            } catch (error) {
+
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
+    }
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoadingRespo}</td></tr>
+    } else {
+        elt = pageData.content && pageData.content.length > 0 && (
+            pageData.content.map((respo, id) => <tr key={respo.id} className='dynamic-row' >
+                <td>{respo.nomStructure.substring(0, 45) + '...'}</td>
+                <td>{respo.nomPoste}</td>
+                <td>{respo.noms}</td>
+                <td></td>
+                <td>
+                    <button className="edit-btn">
+                        &#9998;
+                    </button>&nbsp;&nbsp;
+                    <button className="delete-btn">
+                        &#x1F5D1;
+                    </button>
+                </td>
+            </tr>)
+        )
+    }
     return (
         <fieldset className="larespo">
             <legend>Enregistrer des Responsabilisations</legend>
@@ -85,25 +137,20 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
                     </tr>
                 </thead>
                 <tbody className='lastructure-body'>
-                    {respos && respos.length === 0 && <tr className='titles'><td>{messageLoadingRespo}</td></tr>}
-                    {respos && respos.length > 0 && (
-                        respos.map((respo, id) => <tr key={respo.id} className='dynamic-row' >
-                            <td>{respo.nomStructure}</td>
-                            <td>{respo.nomPoste}</td>
-                            <td>{respo.noms}</td>
-                            <td></td>
-                            <td>
-                                <button className="edit-btn">
-                                    &#9998;
-                                </button>&nbsp;&nbsp;
-                                <button className="delete-btn">
-                                    &#x1F5D1;
-                                </button>
-                            </td>
-                        </tr>)
-                    )}
+                    {
+                        isLoading ? <SpinnerRow /> : elt
+                    }
                 </tbody>
             </table>
+            {
+                pageData.content.length > 0 && (
+                    <div className="navigation">
+                        <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                        <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                        <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                    </div>
+                )
+            }
             {
                 showModal &&
                 <PersonnelsModal handleCloseModal={handleCloseModal} handleSelectPerso={handleSelectPerso} />

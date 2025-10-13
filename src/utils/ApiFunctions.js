@@ -691,3 +691,69 @@ export async function deleteOctroi(id) {
         throw error
     }
 }
+
+export async function getPaginatedAllStructures(page, size) {
+    try {
+        const response = await api.get(`/structures/getall/pagination?page=${page}&size=${size}&sort=nom,asc`)
+
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function getPaginatedAllPersonnels(page, size) {
+    try {
+        const response = await api.get(`/personnels/getall/pagination?page=${page}&size=${size}&sort=noms,asc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getPaginatedAllInterventions(page, size) {
+    try {
+        const response = await api.get(`/interventions/getall/pagination?page=${page}&size=${size}&sort=dateIntervention,desc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getPaginatedAllResponsabilisations(page, size) {
+    try {
+        const response = await api.get(`/responsabilisations/getall/pagination?page=${page}&size=${size}&sort=structure.nom,asc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getPaginatedAllPostes(page, size) {
+    try {
+        const response = await api.get(`/postes/getall/pagination?page=${page}&size=${size}&sort=nom,asc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getInventoryEquipement() {
+    try {
+        const response = await api.get(`/inventory/equipements`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}

@@ -41,7 +41,7 @@ export default function Menu({ accordionWidth }) {
                     <p><Link className='show-link' to="/materiels/equipements/ajouter">Ajouter des équipements au lot</Link></p>
                     <p><Link className='show-link' to="/materiels/equipements/demandes">Demandes de matériel</Link> </p>
                     <p><Link className='show-link' to="/materiels/equipements/affecter">Octroyer un équipement</Link> </p>
-                    <p><Link className='show-link' to="/materiels/equipements-affectation/show">Inventaire du stock</Link></p>
+                    <p><Link className='show-link' to="/materiels/show/inventaire">Inventaire du stock</Link></p>
 
                 </div>
             </li>
@@ -52,6 +52,7 @@ export default function Menu({ accordionWidth }) {
                 <div className="content">
                     <p><Link className='show-link' to="maintenance/incidents/save">Déclarer un incident</Link></p>
                     <p><Link className='show-link' to="maintenance/interventions/save">Enregistrer une intervention</Link></p>
+                    <p><Link className='show-link' to="maintenance/show/tableau-bord">Tableau de bord</Link></p>
                     <p><Link className='show-link' to="maintenance/show/observations">Appréciations des utilisateurs</Link></p>
 
                 </div>

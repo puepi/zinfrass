@@ -39,6 +39,7 @@ import MaterielDidactique from "./pages/big-picture/inf_materielle/MaterielDidac
 import ActionsDiverses from "./pages/big-picture/inf_materielle/ActionsDiverses";
 import { useState } from "react";
 import Personnels from "./pages/administration/Personnels";
+import Inventaire from "./pages/maintenance/Inventaire";
 
 /* export default function Example() {
   return (
@@ -121,7 +122,7 @@ function App() {
                     <Route path="/administration/structures/personnels" element={<Personnels />} />
                     <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
                     <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
-                    <Route path="/maintenance/show" element={<MaintenanceShow />} />
+                    <Route path="/materiels/show/inventaire" element={<Inventaire />} />
                     <Route path="/large/materiel" element={<InfrastructureMaterielle />} />
                     <Route path="/large/materiel/res-electrique" element={<ReseauElectrique />} />
                     <Route path="/large/materiel/informatique-electronique" element={<InformatiqueElectronique />} />

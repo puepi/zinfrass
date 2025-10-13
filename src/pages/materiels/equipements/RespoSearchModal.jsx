@@ -1,30 +1,73 @@
 import { useEffect, useState } from "react"
 import Modal from "../../../Modal"
-import { getAllResponsabilisations } from "../../../utils/ApiFunctions"
+import { getAllResponsabilisations, getPaginatedAllResponsabilisations } from "../../../utils/ApiFunctions"
+import Spinner from "../../../components/Spinner"
 
 
-export default function RespoSearchModal({handleCloseModal,handleSelectRespo}){
-    const [messageButton,setMessageButton]=useState('Rechercher')
-    const [messageLoading,setMessageLoading]=useState('Aucun élément trouvé')
-    const [respos,setRespos]=useState([])
-    async function handleRechercher(){
+export default function RespoSearchModal({ handleCloseModal, handleSelectRespo }) {
+    const [messageButton, setMessageButton] = useState('Rechercher')
+    const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
+    const [respos, setRespos] = useState([])
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        totalElements: 0,
+        totalPages: 0,
+        size: 5,
+        first: true,
+        last: true,
+        empty: true
+    })
+
+    async function handleRechercher() {
 
     }
-    async function getRespos(){
+    async function getRespos() {
         setMessageLoading('...loading...')
         getAllResponsabilisations()
-            .then(data=>setRespos(data))
-            .catch(error=>{console.log(error);setMessageLoading('Aucun élément trouvé')})
+            .then(data => setRespos(data))
+            .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
     }
-    useEffect(()=>{
-        getRespos()
-    },[])
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await getPaginatedAllResponsabilisations(currentPage, pageData.size)
+                setPageData(data)
+            } catch (error) {
 
-    function handleSelectRow(e,respo){
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
+
+    function handleSelectRow(e, respo) {
         handleSelectRespo(respo)
         handleCloseModal()
     }
-    return(
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content.map((respo, id) => <tr key={respo.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, respo)}>
+            <td>{id + 1 + (pageData.number * pageData.size)}</td>
+            <td>{respo.nomStructure}</td>
+            <td>{respo.nomPoste}</td>
+            <td>{respo.noms}</td>
+        </tr>)
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
+    }
+    return (
         <Modal>
             <h4>Rechercher une responsabilisation</h4>
             <form className='respos-search' action={handleRechercher}>
@@ -51,17 +94,20 @@ export default function RespoSearchModal({handleCloseModal,handleSelectRespo}){
                     </tr>
                 </thead>
                 <tbody>
-                    {respos && respos.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                    {respos && (
-                        respos.map((respo, id) => <tr key={respo.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, respo)}>
-                            <td>{id + 1}</td>
-                            <td>{respo.nomStructure}</td>
-                            <td>{respo.nomPoste}</td>
-                            <td>{respo.noms}</td>
-                        </tr>)
-                    )}
+                    {
+                        isLoading ? <Spinner /> : elt
+                    }
                 </tbody>
             </table>
+            {
+                pageData.content.length > 0 && (
+                    <div className="navigation">
+                        <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                        <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                        <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                    </div>
+                )
+            }
         </Modal>
     )
 }

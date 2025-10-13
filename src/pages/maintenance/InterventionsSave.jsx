@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import './maintenance.css'
 import { Link } from "react-router-dom"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
-import { addInstallation, deleteIntervention, getInterventions } from "../../utils/ApiFunctions"
+import { addInstallation, deleteIntervention, getInterventions, getPaginatedAllInterventions } from "../../utils/ApiFunctions"
 import Spinner from '../../components/Spinner'
 import EquipementsSearchModal from "../materiels/equipements/EquipementsSearchModal"
+import { SpinnerRow } from "../administration/StructureSave"
 export default function InterventionsSave() {
     const [isSavingDisabled, setIsSavingDisabled] = useState(false)
     const [interventions, setInterventions] = useState([])
@@ -30,6 +31,34 @@ export default function InterventionsSave() {
     const [selectedProfit, setSelectedProfit] = useState({})
     const [showRespoProfit, setShowRespoProfit] = useState(false)
 
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                setIsLoading(true)
+                const data = await getPaginatedAllInterventions(currentPage, pageData.size)
+                setPageData(data)
+            } catch (error) {
+
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
+
     function handleCloseRespoModal() {
         setShowRespoModal(false)
     }
@@ -41,7 +70,7 @@ export default function InterventionsSave() {
     }
     useEffect(() => {
         document.title = 'Enregistrer des interventions'
-        getAllInterventions()
+        // getAllInterventions()
     }, [])
     async function getAllInterventions() {
         setMessageLoading('...is loading...')
@@ -53,10 +82,11 @@ export default function InterventionsSave() {
     async function handleDeleteIntervention(intervention) {
         console.log(intervention)
         const id = intervention.id
+        setShowSpinner(true)
         await deleteIntervention(id)
             .then(response => {
-                setShowSpinner(true)
-                setInterventions(prevInt => prevInt.filter(interv => interv.id !== id))
+                const interv = pageData.content
+                setPageData(data => ({ ...data, content: interv.filter(int => int.id !== id) }))
                 setToast({ message: "✅ Opération réussie !", type: "success" });
             })
             .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
@@ -123,6 +153,36 @@ export default function InterventionsSave() {
     }
     function handleCloseRespoModalProfit() {
         setShowRespoProfit(false)
+    }
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content.length > 0 && (
+            pageData.content.map((intervention, id) => <tr key={intervention.id} className='dynamic-row' onClick={() => handleClick(intervention)}>
+                <td>{id + 1 + (pageData.number * pageData.size)}</td>
+                <td>{intervention.nomsIntervenant}</td>
+                <td>{intervention.objet + "//" + intervention.raison}</td>
+                <td>{intervention.position_equipement + '//' + intervention.dateIntervention}</td>
+                <td>{intervention.diagnostic}</td>
+                <td>{intervention.solution}</td>
+                <td>{intervention.observations.substring(0, 31) + '...'}</td>
+                <td>
+                    <button className="edit-btn">
+                        &#9998;
+                    </button>&nbsp;&nbsp;
+                    <button className="delete-btn" onClick={() => handleDeleteIntervention(intervention)}>
+                        &#x1F5D1;
+                    </button>
+                </td>
+            </tr>)
+        )
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
     }
     return (
         <>
@@ -235,39 +295,32 @@ export default function InterventionsSave() {
                     <table>
                         <thead>
                             <tr className='show-tab'>
+                                <th>N°</th>
                                 <th>Intervenant</th>
                                 <th>Objet / Raison</th>
-                                <th>Position</th>
+                                <th>Position/Date</th>
                                 <th>Diagnostic</th>
                                 <th>Solution</th>
                                 <th>Appréciations</th>
-                                <th>Date</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody className='interventions-body'>
-                            {interventions && interventions.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                            {interventions && interventions.length > 0 && (
-                                interventions.map((intervention, id) => <tr key={intervention.id} className='dynamic-row' onClick={() => handleClick(intervention)}>
-                                    <td>{intervention.nomsIntervenant}</td>
-                                    <td>{intervention.objet + "//" + intervention.raison}</td>
-                                    <td>{intervention.position_equipement}</td>
-                                    <td>{intervention.diagnostic}</td>
-                                    <td>{intervention.solution}</td>
-                                    <td>{intervention.observations.substring(0, 31) + '...'}</td>
-                                    <td>{intervention.dateIntervention}</td>
-                                    <td>
-                                        <button className="edit-btn">
-                                            &#9998;
-                                        </button>&nbsp;&nbsp;
-                                        <button className="delete-btn" onClick={() => handleDeleteIntervention(intervention)}>
-                                            &#x1F5D1;
-                                        </button>
-                                    </td>
-                                </tr>)
-                            )}
+                            {
+                                isLoading ? <SpinnerRow /> : elt
+                            }
                         </tbody>
                     </table>
+                    {
+                        pageData.content.length > 0 && (
+                            <div className="navigation">
+                                <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                                <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                                <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                            </div>
+                        )
+                    }
+
                 </fieldset>
             </section>
             {
