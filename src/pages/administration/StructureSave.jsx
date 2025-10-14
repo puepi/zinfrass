@@ -91,10 +91,10 @@ export default function StructureSave() {
         await addStructure(newStructure)
             .then(response => {
                 setSelectedStructure(prev => ({ ...prev, nom: response.nom }))
-                setStructures(prev => [response, ...prev])
+                setToast({ message: "✅ Opération réussie !", type: "success" });
                 console.log(response)
             })
-            .catch(error => console.log(error))
+            .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" }) })
             .finally(() => {
                 setIsLoading(false)
             })
@@ -183,12 +183,12 @@ export default function StructureSave() {
                     <td>{structure.nom.substring(0, 45) + '...'}</td>
                     <td>{structure.subdivision.nom}</td>
                     <td>{structure.abreviation}</td>
-                    <td>{structure.parent}</td>
+                    <td>{structure.parent && structure.parent.substring(0, 35) + '...'}</td>
                     <td>
                         <button className="edit-btn">
                             &#9998;
                         </button>&nbsp;&nbsp;
-                        <button className="delete-btn" onClick={()=>handleDelete(structure)}>
+                        <button className="delete-btn" onClick={() => handleDelete(structure)}>
                             &#x1F5D1;
                         </button>
                     </td>
@@ -203,15 +203,15 @@ export default function StructureSave() {
     function handlePrev() {
         setCurrentPage(prev => prev - 1)
     }
-    async function handleDelete(structure){
+    async function handleDelete(structure) {
         try {
             setIsLoading(true)
-            const data=await deleteStructure(structure.id)
+            const data = await deleteStructure(structure.id)
             setToast({ message: "✅ Opération réussie !", type: "success" });
 
         } catch (error) {
             setToast({ message: "❌ Une erreur est survenue !", type: "error" });
-        }finally {
+        } finally {
             setIsLoading(false)
         }
     }
