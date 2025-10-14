@@ -69,7 +69,7 @@ export default function InterventionsSave() {
         setShowRespoModal(true)
     }
     useEffect(() => {
-        document.title = 'Enregistrer des interventions'
+        document.title = 'Interventions'
         // getAllInterventions()
     }, [])
     async function getAllInterventions() {

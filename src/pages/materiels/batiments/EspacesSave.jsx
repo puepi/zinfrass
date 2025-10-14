@@ -41,7 +41,7 @@ export default function EspacesSave() {
             .finally(() => { setMessageButton('Aucun élément trouvé') })
     }
     useEffect(() => {
-        document.title = "Créer des espaces au sein des bâtiments"
+        document.title = "Espaces au sein des bâtiments"
         getEspaces()
     }, [])
     function handleClick() {

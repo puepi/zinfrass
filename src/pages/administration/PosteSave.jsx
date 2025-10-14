@@ -9,6 +9,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
     const [messageButton, setMessageButton] = useState('Enregister')
     const [isDisabled, setIsDisabled] = useState(false)
     const [selectedPoste, setSelectedPoste] = useState({})
+    const [change,setChange]=useState(0)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
@@ -43,7 +44,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
             }
         }
         loadData()
-    }, [currentPage, pageData.size])
+    }, [currentPage, pageData.size, change])
     function handleClick(poste) {
         const newPoste = {
             nom: poste.nom,
@@ -66,13 +67,12 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
         await addPoste(newPoste)
             .then(response => {
                 setSelectedPoste(prev => ({ ...prev, nom: response.nom }))
-                setPostes(prev => [response, ...prev])
-                console.log(response)
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+                setChange(prev=>prev + 1)
             })
-            .catch(error => console.log(error))
+            .catch(error => {setToast({ message: "❌ Une erreur est survenue !", type: "error" })})
             .finally(() => {
-                setIsDisabled(false)
-                setMessageButton('Enregistrer')
+                setIsLoading(false)
             })
     }
     function handleNext() {

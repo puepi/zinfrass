@@ -36,6 +36,7 @@ export default function StructureSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDeactivated, setIsDeactivated] = useState(false)
     const [toContinue, setToContinue] = useState('structures')
+    const [change,setChange]=useState(0)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [pageData, setPageData] = useState({
@@ -65,7 +66,7 @@ export default function StructureSave() {
             }
         }
         loadData()
-    }, [currentPage, pageData.size])
+    }, [currentPage, pageData.size, change])
 
 
     // async function getstructures() {
@@ -92,7 +93,7 @@ export default function StructureSave() {
             .then(response => {
                 setSelectedStructure(prev => ({ ...prev, nom: response.nom }))
                 setToast({ message: "✅ Opération réussie !", type: "success" });
-                console.log(response)
+                setChange(prev=>prev + 1)
             })
             .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" }) })
             .finally(() => {
@@ -208,6 +209,7 @@ export default function StructureSave() {
             setIsLoading(true)
             const data = await deleteStructure(structure.id)
             setToast({ message: "✅ Opération réussie !", type: "success" });
+            setChange(prev=>prev + 1)
 
         } catch (error) {
             setToast({ message: "❌ Une erreur est survenue !", type: "error" });

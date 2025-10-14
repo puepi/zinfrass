@@ -11,6 +11,7 @@ export default function Personnels() {
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [personnels, setPersonnels] = useState([])
     const [isDisabled, setIsDisabled] = useState(false)
+    const [change,setChange]=useState(0)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [toast, setToast] = useState(null)
@@ -39,12 +40,11 @@ export default function Personnels() {
             }
         }
         loadData()
-    }, [currentPage, pageData.size])
+    }, [currentPage, pageData.size,change])
 
 
     async function handleSubmit(formData) {
-        setIsDisabled(true)
-        setMessageButton("...Saving")
+        setIsLoading(true)
         const newPersonnel = {
             noms: formData.get("noms"),
             prenoms: formData.get("prenoms"),
@@ -53,13 +53,12 @@ export default function Personnels() {
         }
         await addPersonnel(newPersonnel)
             .then(response => {
-                setPersonnels(prev => [response, ...prev])
-                console.log(response)
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+                setChange(prev=>prev + 1)
             })
-            .catch(error => console.log(error))
+            .catch(error => {setToast({ message: "❌ Une erreur est survenue !", type: "error" })})
             .finally(() => {
-                setIsDisabled(false)
-                setMessageButton('Enregistrer')
+                setIsLoading(false)
             })
     }
     async function getAllPersonnels() {
@@ -70,7 +69,7 @@ export default function Personnels() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
-        document.title = "Enregistrer le personnel"
+        document.title = "Le Personnel"
         // getAllPersonnels()
     }, [])
     let elt

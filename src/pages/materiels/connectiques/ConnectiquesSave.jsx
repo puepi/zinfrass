@@ -8,7 +8,7 @@ export default function ConnectiquesSave() {
     const [connectiques, setConnectiques] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     useEffect(() => {
-        document.title = 'Enregistrer des connectiques'
+        document.title = 'Connectiques'
     })
     return (
         <>

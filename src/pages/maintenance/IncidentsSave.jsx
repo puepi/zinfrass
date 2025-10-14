@@ -28,7 +28,7 @@ export default function IncidentsSave() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
-        document.title = 'Enregistrer un incident'
+        document.title = 'Incidents'
         getIncidents()
     }, [])
     async function handleSubmit(formData) {
