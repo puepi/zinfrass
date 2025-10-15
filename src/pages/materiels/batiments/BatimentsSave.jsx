@@ -7,7 +7,7 @@ import SubdivisionSearchModal from "./SuvdivisionSearchModal";
 import { addBatiment, getAllBatiments } from "../../../utils/ApiFunctions";
 import Toast from "../../../components/Toast";
 export default function BatimentSave() {
-    const [toast,setToast]=useState(null)
+    const [toast, setToast] = useState(null)
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Enregistrer')
     const [message, setMessage] = useState('Aucun élément trouvé')
@@ -83,7 +83,7 @@ export default function BatimentSave() {
             .catch(error => setMessage('Aucun élément trouvé'))
     }
     useEffect(() => {
-        document.title = 'Enregistrer un nouveau bâtiment'
+        document.title = 'Bâtiments'
         showAllBatiments()
     }, [])
     return (

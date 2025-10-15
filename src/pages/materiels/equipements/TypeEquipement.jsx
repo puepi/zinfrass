@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Equipement from "./Equipement"
-import { addCategorie, addTypeEquipement, deleteTypeEquipement, getAllCategories, getAllTypesEquipement } from "../../../utils/ApiFunctions"
+import { addCategorie, addTypeEquipement, deleteTypeEquipement, getAllCategories, getAllTypesEquipement, getPaginatedAllTypesEquipements } from "../../../utils/ApiFunctions"
+import { SpinnerRow } from "../../administration/StructureSave"
 
 
 
@@ -16,10 +17,24 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
     const [selectedCategorie, setSelectedCategorie] = useState({ nom: '', id: '' })
     const [loadingMessage, setLoadingMessage] = useState('...is Loading...')
     const [loadingMessage2, setLoadingMessage2] = useState('...data is Loading...')
-    const [toast, setToast] = useState(null) 
+    const [toast, setToast] = useState(null)
     const [showSpinner, setShowSpinner] = useState(false)
     // const [selectedTypeEquipement, setSelectedTypeEquipement] = useState(selectedType)
     const [messageButton, setMessageButton] = useState('Enregistrer')
+    const [currentPage, setCurrentPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [change, setChange] = useState(0)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 3,
+        totalPages: 0,
+        totalElements: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
+
     // function handleSuivant() {
     //     setToShow2(true)
     // }
@@ -62,6 +77,21 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                 setIsSelectDisabled(false)
             })
     }
+    useEffect(() => {
+        const loadData = async () => {
+            setIsLoading(true)
+            try {
+                const data = await getPaginatedAllTypesEquipements(currentPage, pageData.size)
+                console.log(data)
+                setPageData(data)
+            } catch (error) {
+                console.error("Erreur lors du chargement des structures:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size])
     useEffect(() => {
         getAllCategories()
             .then(data => {
@@ -116,7 +146,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
         setSelectedTypeEquipement(prev => ({ ...prev, nom: e.target.value }))
     }
 
-    async function handleDelete(type){
+    async function handleDelete(type) {
         const id = type.id
         setShowSpinner(true)
         await deleteTypeEquipement(id)
@@ -127,7 +157,31 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
             .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
             .finally(() => setShowSpinner(false))
     }
-
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{loadingMessage2}</td></tr>
+    } else {
+        elt = pageData.content.map((type, id) => <tr key={type.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, type)}>
+            <td>{type.nom}</td>
+            <td>{type.abreviation}</td>
+            <td>{type.categorieNom}</td>
+            <td>{type.caracteristiques.substring(0, 55) + '...'}</td>
+            <td>
+                <button className="edit-btn">
+                    &#9998;
+                </button>&nbsp;&nbsp;
+                <button className="delete-btn" onClick={() => handleDelete(type)}>
+                    &#x1F5D1;
+                </button>
+            </td>
+        </tr>)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
     return (
         <>
             <fieldset className="type-equipement">
@@ -139,7 +193,7 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                     <label htmlFor="nom">Nom : </label>
                     <input type="text" name='nom' id='nom' required />
                     <label htmlFor="abreviation">Abréviation : </label>
-                    <input type="text" name='abreviation' id='abreviation' required/><div></div>
+                    <input type="text" name='abreviation' id='abreviation' required /><div></div>
                     <label htmlFor="caracteristiques" className="caracteristics">Caractéristiques : </label>
                     <textarea required name="caracteristiques" id="caracteristiques" placeholder="Enter caracteristics separated by double slashes (//)"></textarea><div></div><div></div><div></div>
                     <label htmlFor="categorie">Categorie : </label>
@@ -173,25 +227,18 @@ export default function TypeEquipement({ handlePrecedent, handleSuivant, selecte
                         </tr>
                     </thead>
                     <tbody className='type-equipement-body'>
-                        {typesEquipement && typesEquipement.length === 0 && <tr className='titles'><td>{loadingMessage2}</td></tr>}
-                        {typesEquipement && typesEquipement.length > 0 && (
-                            typesEquipement.map((type, id) => <tr key={type.id} className='dynamic-row' onClick={(e) => handleSelectRow(e, type)}>
-                                <td>{type.nom}</td>
-                                <td>{type.abreviation}</td>
-                                <td>{type.categorieNom}</td>
-                                <td>{type.caracteristiques.substring(0, 40) + '...'}</td>
-                                <td>
-                                    <button className="edit-btn">
-                                        &#9998;
-                                    </button>&nbsp;&nbsp;
-                                    <button className="delete-btn" onClick={()=>handleDelete(type)}>
-                                        &#x1F5D1;
-                                    </button>
-                                </td>
-                            </tr>)
-                        )}
+                        {isLoading ? <SpinnerRow /> : elt}
                     </tbody>
                 </table>
+                {
+                    pageData.content.length > 0 && (
+                        <div className="navigation">
+                            <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                            <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                            <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                        </div>
+                    )
+                }
             </fieldset>
             {
                 showSpinner &&
