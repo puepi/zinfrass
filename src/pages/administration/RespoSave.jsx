@@ -5,7 +5,7 @@ import PersonnelsModal from "./PersonnelsModal"
 import { SpinnerRow } from "./StructureSave"
 
 
-export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
+export default function RespoSave({ handlePrecedent, change, handleSubmitNow, isDisabled, messageButton, respos, getRespos, messageLoadingRespo }) {
     const [showModal, setShowModal] = useState(false)
     const [noms, setNoms] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
@@ -29,7 +29,7 @@ export default function RespoSave({ handlePrecedent, handleSubmitNow, isDisabled
             actif: formData.get('actif') === 'true' ? true : false
         }
         console.log(formData.get('noms'))
-        handleSubmitNow(newRespo)
+        handleSubmitNow(newRespo,change)
     }
     function handleCloseModal() {
         setShowModal(false)

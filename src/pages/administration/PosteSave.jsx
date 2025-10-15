@@ -9,10 +9,12 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
     const [messageButton, setMessageButton] = useState('Enregister')
     const [isDisabled, setIsDisabled] = useState(false)
     const [selectedPoste, setSelectedPoste] = useState({})
-    const [change,setChange]=useState(0)
+    const [toast, setToast] = useState(null)
+    
 
     const [currentPage, setCurrentPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
+    const [change,setChange]=useState(0)
     const [pageData, setPageData] = useState({
         content: [],
         number: 0,
@@ -57,8 +59,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
         setSelectedPoste(prev => ({ ...prev, nom: e.target.value }))
     }
     async function handleSubmitPoste(formData) {
-        setIsDisabled(true)
-        setMessageButton("...Saving")
+        setIsLoading(true)
         const newPoste = {
             nom: formData.get("nom"),
             rang: formData.get("rang"),
@@ -87,7 +88,7 @@ export default function PosteSave({ handlePrecedent, handleSuivant, handleClickP
     } else {
         elt = pageData.content.length > 0 && (
             pageData.content.map((poste, id) => <tr key={poste.id} className='dynamic-row' onClick={() => handleClick(poste)}>
-                <td>{id + 1}</td>
+                <td>{id + 1 + (currentPage * pageData.size)}</td>
                 <td>{poste.nom}</td>
                 <td>{poste.abreviation}</td>
                 <td>{poste.rang}</td>

@@ -37,6 +37,7 @@ export default function StructureSave() {
     const [isDeactivated, setIsDeactivated] = useState(false)
     const [toContinue, setToContinue] = useState('structures')
     const [change,setChange]=useState(0)
+    const [changeRespo,setChangeRespo]=useState(0)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [pageData, setPageData] = useState({
@@ -154,9 +155,10 @@ export default function StructureSave() {
             .catch(error => console.log(error))
             .finally(() => setMessageLoadingRespo('Aucun élément trouvé'))
     }
-    async function handleSubmitRespo(respo) {
+    async function handleSubmitRespo(respo,changeRespo) {
         setIsDisabledRespo(true)
         setMessageButtonRespo("...Saving")
+        setIsLoading(true)
         const newRespo = {
             structureId: selectedStructure.id,
             posteId: selectedPoste.id,
@@ -164,13 +166,14 @@ export default function StructureSave() {
         }
         await addRespo(newRespo)
             .then(response => {
-                setRespos(prev => [response, ...prev])
-                console.log(response)
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+                setChangeRespo(prev=>prev + 1)
             })
-            .catch(error => console.log(error))
+            .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" })})
             .finally(() => {
                 setIsDisabledRespo(false)
                 setMessageButtonRespo('Enregistrer')
+                setIsLoading(false)
             })
     }
     let elt
@@ -309,7 +312,7 @@ export default function StructureSave() {
                         {
                             toContinue === 'postes' && <PosteSave handleClickPostes={handleClickPostes} handlePrecedent={handlePrevious} handleSuivant={handleNextPage} />
                         }{
-                            toContinue === 'responsabilisations' && <RespoSave messageLoadingRespo={messageLoadingRespo} respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo} />
+                            toContinue === 'responsabilisations' && <RespoSave change={changeRespo} messageLoadingRespo={messageLoadingRespo} respos={respos} getRespos={getRespos} isDisabled={isDisabledRespo} messageButton={messageButtonRespo} handlePrecedent={handlePrecedRespo} handleSubmitNow={handleSubmitRespo} />
                         }
                     </section>
                     {
