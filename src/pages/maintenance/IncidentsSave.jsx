@@ -85,6 +85,7 @@ export default function IncidentsSave() {
                             <option value="Logiciel">Logiciel</option>
                             <option value="Bâtiment">Batiments</option>
                             <option value="Espace">Espace</option>
+                            <option value="Lot">Espace</option>
                         </select>
                         <Link className="search-link" to="">...rechercher</Link>
                         <input type="text" name="identifiant" />

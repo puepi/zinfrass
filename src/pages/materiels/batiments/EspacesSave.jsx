@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { addEspace, getAllEspaces } from "../../../utils/ApiFunctions"
 import BatimentSearchModal from "../../factures/BatimentSearchModal"
 import Toast from "../../../components/Toast"
+import Spinner from "../../../components/Spinner"
 
 export default function EspacesSave() {
     const [toast, setToast] = useState(null)
@@ -13,6 +14,7 @@ export default function EspacesSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [messageButton, setMessageButton] = useState('Aucun élément trouvé')
     const [showModal, setShowModal] = useState(false)
+    const [isLoading,setIsLoading]=useState(false)
     async function handleRegister(formData) {
         const newEspace = {
             nom: formData.get("nom"),
@@ -21,8 +23,7 @@ export default function EspacesSave() {
             dimensions: formData.get('dimensions'),
             batimentId: selectedBatiment.id,
         }
-        setIsDisabled(true)
-        setLoadingMessage('..in progress..')
+        setIsLoading(true)
         await addEspace(newEspace)
             .then(response => {
                 setEspaces(prev => [response, ...prev])
@@ -31,7 +32,7 @@ export default function EspacesSave() {
             .catch(error => {
                 setToast({ message: "❌ Une erreur est survenue !", type: "error" });
             })
-            .finally(() => { setIsDisabled(false); setLoadingMessage('Enregistrer') })
+            .finally(() => { setIsLoading(false) })
     }
     async function getEspaces() {
         setMessageButton('...is loading ...')
@@ -100,6 +101,9 @@ export default function EspacesSave() {
                 {
                     showModal &&
                     <BatimentSearchModal handleCloseModal={handleCloseModal} handleSelectBatiment={handleSelectBatiment} />
+                }
+                {
+                    isLoading && <Spinner />
                 }
             </section>
 
