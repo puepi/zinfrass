@@ -114,7 +114,7 @@ export async function getAllFournisseurs() {
 
 export async function getAllBatiments() {
     try {
-        const response = await api.get("/batiments/getall")
+        const response = await api.get("/batiments/public/getall")
         return response.data.data
     } catch (error) {
         console.log(error.message)

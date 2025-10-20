@@ -38,7 +38,7 @@ export default function Menu({ accordionWidth }) {
                 <label htmlFor="second">Equipement</label>
                 <div className="content">
                     <p><Link className='show-link' to="/materiels/equipements/reception">Réceptionner des équipements</Link></p>
-                    <p><Link className='show-link' to="/materiels/equipements/ajouter">Ajouter des équipements au lot</Link></p>
+                    {/* <p><Link className='show-link' to="/materiels/equipements/ajouter">Ajouter des équipements au lot</Link></p> */}
                     <p><Link className='show-link' to="/materiels/equipements/demandes">Demandes de matériel</Link> </p>
                     <p><Link className='show-link' to="/materiels/equipements/affecter">Octroyer un équipement</Link> </p>
                     <p><Link className='show-link' to="/materiels/show/inventaire">Inventaire du stock</Link></p>
