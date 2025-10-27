@@ -3,8 +3,12 @@ import './maintenance.css'
 import { useEffect, useState } from "react"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
 import { addIncident, getAllIncidents } from "../../utils/ApiFunctions"
+import { useAppStore } from "../../store/useAppStore"
 
 export default function IncidentsSave() {
+    const lesIncidents = useAppStore(state => state.incidents)
+    const setLesIncidents = useAppStore(state => state.setIncidents)
+
     const [incidents, setIncidents] = useState([])
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     const [messageButton, setMessageButton] = useState('Enregistrer')
@@ -23,17 +27,24 @@ export default function IncidentsSave() {
     async function getIncidents() {
         setMessageLoading('...is Loading')
         await getAllIncidents()
-            .then(data => { setIncidents(data); console.log(data) })
+            .then(data => {
+                setIncidents(data);
+                const theIncidents = data.filter(inc => inc.resolu === "non")
+                setLesIncidents(theIncidents.length)
+                console.log(useAppStore.getState());
+            })
             .catch(error => console.log(error))
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
         document.title = 'Incidents'
         getIncidents()
+
     }, [])
     async function handleSubmit(formData) {
         setIsDisabled(true)
         setMessageButton("...Saving")
+
         const newIncicent = {
             dateIncident: formData.get("date"),
             nomsDeclarant: formData.get("noms"),
@@ -50,6 +61,7 @@ export default function IncidentsSave() {
                 setIsDisabled(true)
                 setMessageButton('...loading...')
                 setIncidents(prev => [response, ...prev])
+                setLesIncidents(lesIncidents + 1)
                 console.log(response)
             })
             .catch(error => console.log(error))
@@ -104,6 +116,7 @@ export default function IncidentsSave() {
                         <label htmlFor="resolu">Résolu :</label>
                         <select name="resolu" id="resolu" defaultValue={"non"}>
                             <option value="non">Non</option>
+                            <option value="oui">Oui</option>
                         </select>
                         <button disabled={isDisabled}>{messageButton}</button>
                     </form>

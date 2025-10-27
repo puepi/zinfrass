@@ -40,6 +40,7 @@ import ActionsDiverses from "./pages/big-picture/inf_materielle/ActionsDiverses"
 import { useState } from "react";
 import Personnels from "./pages/administration/Personnels";
 import Inventaire from "./pages/maintenance/Inventaire";
+import { useAppStore } from "./store/useAppStore";
 
 /* export default function Example() {
   return (
@@ -91,6 +92,8 @@ function App() {
         },
     ]
 
+    console.log(useAppStore.getState())
+
     const [selectedId, setSelectedId] = useState(null)
     const [menu, setMenu] = useState(data)
     const handleClick = (id) => {
@@ -100,46 +103,46 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Common selectedId={selectedId} menu={menu} handleClick={handleClick} />}>
-                    <Route index element={<Home />} />
-                    <Route path="/factures/save" element={<FacturesSave />} />
-                    <Route path="/factures/show" element={<FacturesShow />} />
-                    <Route path="/materiels/batiments/save" element={<BatimentSave />} />
-                    <Route path="/materiels/espaces/affecter" />
-                    <Route path="/materiels/espaces/save" element={<EspacesSave />} />
-                    <Route path="/materiels/equipements/save" element={<EquipementsSave />} />
-                    <Route path="/materiels/equipements/show" element={<EquipementsShow />} />
-                    <Route path="/materiels/equipements/affecter" element={<EquipementsAffecter />} />
-                    <Route path="/materiels/equipements-affectation/show" element={<EquipementsAffecterShow />} />
-                    <Route path="/materiels/equipements/installer" element={<EquipementsInstaller />} />
-                    <Route path="/materiels/equipements/deplacer" element={<EquipementsDeplacer />} />
-                    <Route path="/materiels/equipements/reception" element={<EquipementsReception />} />
-                    <Route path="/materiels/equipements/demandes" element={<EquipementsDemande />} />
-                    <Route path="/connectiques/save" element={<ConnectiquesSave />} />
-                    <Route path="/administration/unites-admin/save" element={<UnitesAdminSave />} />
-                    <Route path="/administration/structures/save" element={<StructureSave />} />
-                    <Route path="/administration/structures/personnels" element={<Personnels />} />
-                    <Route path="/maintenance/incidents/save" element={<IncidentsSave />} />
-                    <Route path="/maintenance/interventions/save" element={<InterventionsSave />} />
-                    <Route path="/materiels/show/inventaire" element={<Inventaire />} />
-                    <Route path="/large/materiel" element={<InfrastructureMaterielle />} />
-                    <Route path="/large/materiel/res-electrique" element={<ReseauElectrique />} />
-                    <Route path="/large/materiel/informatique-electronique" element={<InformatiqueElectronique />} />
-                    <Route path="/large/materiel/res-hydraulique" element={<ReseauHydraulique />} />
-                    <Route path="/large/materiel/res-telephonique" element={<ReseauTelephonique />} />
-                    <Route path="/large/materiel/batiments" element={<Batiments />} />
-                    <Route path="/large/materiel/materiel-roulant" element={<MaterielRoulant />} />
-                    <Route path="/large/materiel/mobilier-bureau" element={<MobilierBureau />} />
-                    <Route path="/large/materiel/materiel-didactique" element={<MaterielDidactique />} />
-                    <Route path="/large/materiel/autres" element={<ActionsDiverses />} />
-                    <Route path="/large/factures" element={<InfrastructureFactures />} />
-                    <Route path="/large/logiciel" element={<InfrastructureLogicielle />} />
-                    <Route path="/large/maintenance" element={<InfrastructureMaintenance />} />
-                    <Route path="/large/administration" element={<InfrastructureAdministration />} />
-                </Route>
-
-            </Routes>
+            <Common selectedId={selectedId} menu={menu} handleClick={handleClick}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    {/* <Route index element={<Home />} /> */}
+                    <Route path="factures/save" element={<FacturesSave />} />
+                    <Route path="factures/show" element={<FacturesShow />} />
+                    <Route path="materiels/batiments/save" element={<BatimentSave />} />
+                    <Route path="materiels/espaces/affecter" />
+                    <Route path="materiels/espaces/save" element={<EspacesSave />} />
+                    <Route path="materiels/equipements/save" element={<EquipementsSave />} />
+                    <Route path="materiels/equipements/show" element={<EquipementsShow />} />
+                    <Route path="materiels/equipements/affecter" element={<EquipementsAffecter />} />
+                    <Route path="materiels/equipements-affectation/show" element={<EquipementsAffecterShow />} />
+                    <Route path="materiels/equipements/installer" element={<EquipementsInstaller />} />
+                    <Route path="materiels/equipements/deplacer" element={<EquipementsDeplacer />} />
+                    <Route path="materiels/equipements/reception" element={<EquipementsReception />} />
+                    <Route path="materiels/equipements/demandes" element={<EquipementsDemande />} />
+                    <Route path="connectiques/save" element={<ConnectiquesSave />} />
+                    <Route path="administration/unites-admin/save" element={<UnitesAdminSave />} />
+                    <Route path="administration/structures/save" element={<StructureSave />} />
+                    <Route path="administration/structures/personnels" element={<Personnels />} />
+                    <Route path="maintenance/incidents/save" element={<IncidentsSave />} />
+                    <Route path="maintenance/interventions/save" element={<InterventionsSave />} />
+                    <Route path="materiels/show/inventaire" element={<Inventaire />} />
+                    <Route path="large/materiel" element={<InfrastructureMaterielle />} />
+                    <Route path="large/materiel/res-electrique" element={<ReseauElectrique />} />
+                    <Route path="large/materiel/informatique-electronique" element={<InformatiqueElectronique />} />
+                    <Route path="large/materiel/res-hydraulique" element={<ReseauHydraulique />} />
+                    <Route path="large/materiel/res-telephonique" element={<ReseauTelephonique />} />
+                    <Route path="large/materiel/batiments" element={<Batiments />} />
+                    <Route path="large/materiel/materiel-roulant" element={<MaterielRoulant />} />
+                    <Route path="large/materiel/mobilier-bureau" element={<MobilierBureau />} />
+                    <Route path="large/materiel/materiel-didactique" element={<MaterielDidactique />} />
+                    <Route path="large/materiel/autres" element={<ActionsDiverses />} />
+                    <Route path="large/factures" element={<InfrastructureFactures />} />
+                    <Route path="large/logiciel" element={<InfrastructureLogicielle />} />
+                    <Route path="large/maintenance" element={<InfrastructureMaintenance />} />
+                    <Route path="large/administration" element={<InfrastructureAdministration />} />
+                </Routes>
+            </Common>
         </BrowserRouter>
     )
 }

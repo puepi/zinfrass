@@ -9,6 +9,7 @@ import RespoSave from "./RespoSave"
 import Toast from "../../components/Toast"
 import Spinner from "../../components/Spinner"
 import monSpinnerGif from '../../assets/spinner.gif'
+import { useAppStore } from "../../store/useAppStore"
 
 export function SpinnerRow() {
     return (
@@ -36,8 +37,8 @@ export default function StructureSave() {
     const [isDisabled, setIsDisabled] = useState(false)
     const [isDeactivated, setIsDeactivated] = useState(false)
     const [toContinue, setToContinue] = useState('structures')
-    const [change,setChange]=useState(0)
-    const [changeRespo,setChangeRespo]=useState(0)
+    const [change, setChange] = useState(0)
+    const [changeRespo, setChangeRespo] = useState(0)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [pageData, setPageData] = useState({
@@ -60,6 +61,7 @@ export default function StructureSave() {
                 const data = await getPaginatedAllStructures(currentPage, pageData.size)
                 console.log(data)
                 setPageData(data)
+                console.log(useAppStore.getState());
             } catch (error) {
                 console.error("Erreur lors du chargement des structures:", error);
             } finally {
@@ -67,6 +69,7 @@ export default function StructureSave() {
             }
         }
         loadData()
+
     }, [currentPage, pageData.size, change])
 
 
@@ -94,7 +97,7 @@ export default function StructureSave() {
             .then(response => {
                 setSelectedStructure(prev => ({ ...prev, nom: response.nom }))
                 setToast({ message: "✅ Opération réussie !", type: "success" });
-                setChange(prev=>prev + 1)
+                setChange(prev => prev + 1)
             })
             .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" }) })
             .finally(() => {
@@ -155,7 +158,7 @@ export default function StructureSave() {
             .catch(error => console.log(error))
             .finally(() => setMessageLoadingRespo('Aucun élément trouvé'))
     }
-    async function handleSubmitRespo(respo,changeRespo) {
+    async function handleSubmitRespo(respo, changeRespo) {
         setIsDisabledRespo(true)
         setMessageButtonRespo("...Saving")
         setIsLoading(true)
@@ -167,9 +170,9 @@ export default function StructureSave() {
         await addRespo(newRespo)
             .then(response => {
                 setToast({ message: "✅ Opération réussie !", type: "success" });
-                setChangeRespo(prev=>prev + 1)
+                setChangeRespo(prev => prev + 1)
             })
-            .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" })})
+            .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" }) })
             .finally(() => {
                 setIsDisabledRespo(false)
                 setMessageButtonRespo('Enregistrer')
@@ -212,7 +215,7 @@ export default function StructureSave() {
             setIsLoading(true)
             const data = await deleteStructure(structure.id)
             setToast({ message: "✅ Opération réussie !", type: "success" });
-            setChange(prev=>prev + 1)
+            setChange(prev => prev + 1)
 
         } catch (error) {
             setToast({ message: "❌ Une erreur est survenue !", type: "error" });

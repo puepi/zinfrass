@@ -724,38 +724,3 @@ textarea.caracteristiques {
 .overlay tbody {
     font-size: 0.7rem;
 }
-
-.equipement-search {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 25px);
-    border: none;
-    padding: 5px;
-    gap: 1px;
-}
-
-
-.table-equipement thead .show-tab {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
-    gap: 1px;
-}
-
-.table-equipement tr.dynamic-row {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 30px);
-    gap: 1px;
-    border: none;
-}
-
-.table-equipement .dynamic-row td {
-    color: #1B85B8;
-    font-size: 0.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    padding: 5px;
-}

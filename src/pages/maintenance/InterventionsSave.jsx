@@ -6,6 +6,7 @@ import { addInstallation, deleteIntervention, getInterventions, getPaginatedAllI
 import Spinner from '../../components/Spinner'
 import EquipementsSearchModal from "../materiels/equipements/EquipementsSearchModal"
 import { SpinnerRow } from "../administration/StructureSave"
+import EspaceSearchModal from "./EspaceSearchModal"
 export default function InterventionsSave() {
     const [isSavingDisabled, setIsSavingDisabled] = useState(false)
     const [interventions, setInterventions] = useState([])
@@ -27,9 +28,11 @@ export default function InterventionsSave() {
     const [toast, setToast] = useState(null)
     const [selectedIntervention, setSelectedIntervention] = useState({})
     const [showSearchEquipement, setShowSearchEquipement] = useState(false)
+    const [showSearchEspace, setShowSearchEspace] = useState(false)
     const [selectedEquipement, setSelectedEquipement] = useState({})
     const [selectedProfit, setSelectedProfit] = useState({})
     const [showRespoProfit, setShowRespoProfit] = useState(false)
+    const [selectedEspace, setSelectedEspace] = useState({})
 
     const [currentPage, setCurrentPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
@@ -95,7 +98,7 @@ export default function InterventionsSave() {
     function handleClick(intervention) { }
     async function handleSaveIntervention(formData) {
         const newIntervention = {
-            nomsIntervenant: formData.get('intervenant'),
+            nomsIntervenant: selectedRespo.noms,
             poste: formData.get('poste'),
             service: formData.get('service'),
             raison: formData.get('raison'),
@@ -103,11 +106,11 @@ export default function InterventionsSave() {
             solution: formData.get('solution'),
             nature: formData.get('nature'),
             objet: formData.get('objet'),
-            identifiant: formData.get('identifiant'),
+            identifiant: selectedEquipement.identifiant,
             structure_affecte: formData.get('respoStructure'),
             poste_affecte: formData.get('respoPoste'),
             personne_affecte: formData.get('respoNoms'),
-            lieu: formData.get('lieu'),
+            lieu: selectedEspace.nom,
             position_equipement: formData.get('position'),
             observations: formData.get('observations'),
             dateIntervention: formData.get('date'),
@@ -121,7 +124,8 @@ export default function InterventionsSave() {
             setShowSpinner(true)
             await addInstallation(newIntervention)
                 .then(response => {
-                    setInterventions(prev => [response, ...prev])
+                    const interv = pageData.content
+                    setPageData(prev => ({ ...prev, content: [...interv, response] }))
                     setToast({ message: "✅ Opération réussie !", type: "success" });
                 })
                 .catch(error => {
@@ -184,6 +188,18 @@ export default function InterventionsSave() {
     function handlePrev() {
         setCurrentPage(prev => prev - 1)
     }
+    function handleOpenEspaceModal() {
+        setShowSearchEspace(true)
+    }
+    function handleCloseEspaceModal() {
+        setShowSearchEspace(false)
+    }
+    function handleSelectEspace(espace) {
+        setSelectedEspace({ nom: espace.nom })
+    }
+    function handleChange(e) {
+        setSelectedEspace(e.target.value)
+    }
     return (
         <>
             <section className="maintenance interventions">
@@ -222,8 +238,8 @@ export default function InterventionsSave() {
                         </select>
                         <label htmlFor="objet">Objet:</label>
                         <input type="text" name="objet" id="objet" required />
-                        <label htmlFor="indentifiant">Identifiant :</label>
-                        <input type="text" disabled name="indentifiant" id="indentifiant" required value={selectedEquipement.identifiant} />
+                        <label htmlFor="identifiant">Identifiant :</label>
+                        <input type="text" disabled name="identifiant" id="identifiant" required value={selectedEquipement.identifiant} />
                         <Link className="search-link" to="" onClick={handleOpenSearchEquipementModal}>...rechercher</Link>
 
                         <label htmlFor="respoStructure">Au profit de :</label>
@@ -235,8 +251,8 @@ export default function InterventionsSave() {
                         {showLinkProfit ? <Link className="search-link" to="" onClick={handleShowRespo}>...rechercher</Link> : <div></div>}
 
                         <label htmlFor="lieu">Lieu:</label>
-                        <input type="text" name="lieu" id="lieu" disabled={showLieu} />
-                        {showLinkLieu ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
+                        <input type="text" name="lieu" id="lieu" disabled={showLieu} value={selectedEspace.nom} onChange={handleChange} />
+                        {showLinkLieu ? <Link className="search-link" to="" onClick={handleOpenEspaceModal}>...rechercher</Link> : <div></div>}
                         <div></div>
                         <label htmlFor="position">Posit° Eqmt:</label>
                         <select name="position" id="position" disabled={showPosition} defaultValue={"ras"}>
@@ -338,6 +354,10 @@ export default function InterventionsSave() {
             {
                 showSearchEquipement &&
                 <EquipementsSearchModal handleCloseModal={handleCloseEquipementModal} handleSelectEquipement={handleSelectEquipement} />
+            }
+            {
+                showSearchEspace &&
+                <EspaceSearchModal handleCloseModal={handleCloseEspaceModal} handleSelectEspace={handleSelectEspace} />
             }
         </>
     )

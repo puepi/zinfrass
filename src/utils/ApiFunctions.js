@@ -600,6 +600,7 @@ export async function auMagasin(intervention) {
             poste_affecte: intervention.poste_affecte,
             nature: intervention.nature,
             structure_affecte: intervention.structure_affecte,
+
         }
         const response = await api.post(`/interventions/add-lot-magasin`, payload)
         console.log("response=" + response.data.data)
@@ -630,7 +631,9 @@ export async function addInstallation(intervention) {
             poste_affecte: intervention.poste_affecte,
             nature: intervention.nature,
             structure_affecte: intervention.structure_affecte,
+            identifiant: intervention.identifiant
         }
+        console.log(payload)
         const response = await api.post(`/interventions/add-installation`, payload)
         return response.data.data
     } catch (error) {

@@ -4,15 +4,24 @@ import heroImage from './assets/about-hero.png'
 import Menu from './components/Menu'
 import { Link, Outlet } from 'react-router-dom';
 import PopUp from './components/PopUp';
-import { useState } from 'react';
+import { Children, useEffect, useState } from 'react';
+import { useAppStore } from './store/useAppStore';
 
-function Common({ menu, handleClick, selectedId }) {
+function Common({ menu, handleClick, selectedId, children }) {
 
-  const [seuil, setSeuil] = useState(0)
-  const [incidents, setIncidents] = useState(0)
-  const [interventions, setInterventions] = useState(0)
-  const [stock, setStock] = useState(0)
-
+  // const [seuil, setSeuil] = useState(0)
+  const seuils = useAppStore(state => state.seuils)
+  const incidents = useAppStore(state => state.incidents)
+  const interventions = useAppStore(state => state.interventions)
+  const stock = useAppStore(state => state.stock)
+  // const [incidents, setIncidents] = useState(0)
+  // const [interventions, setInterventions] = useState(0)
+  // const [stock, setStock] = useState(0)
+  useEffect(() => {
+    console.log("🔄 Common mounted");
+    return () => console.log("💀 Common unmounted");
+  }, []);
+  console.log("🧩 Current unresolved incidents count:", incidents);
   return (
     <div id="infra-container">
       <header>
@@ -27,7 +36,7 @@ function Common({ menu, handleClick, selectedId }) {
             MINPROFF
           </h1>
           <PopUp
-            seuil={seuil}
+            seuil={seuils}
             incidents={incidents}
             interventions={interventions}
             stock={stock}
@@ -39,7 +48,7 @@ function Common({ menu, handleClick, selectedId }) {
           <Menu accordionWidth={"100%"} />
         </aside>
         <main>
-          <Outlet />
+          {children}
         </main>
       </div>
     </div>
