@@ -2,8 +2,10 @@ import { Link } from "react-router-dom"
 import './maintenance.css'
 import { useEffect, useState } from "react"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
-import { addIncident, getAllIncidents } from "../../utils/ApiFunctions"
+import { addIncident, getAllIncidents, getPaginatedAllIncidents } from "../../utils/ApiFunctions"
 import { useAppStore } from "../../store/useAppStore"
+import { SpinnerRow } from "../administration/StructureSave"
+import Toast from "../../components/Toast"
 
 export default function IncidentsSave() {
     const lesIncidents = useAppStore(state => state.incidents)
@@ -15,6 +17,22 @@ export default function IncidentsSave() {
     const [showRespoModal, setShowRespoModal] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
     const [selectedRespo, setSelectedRespo] = useState({})
+
+    const [isLoading, setIsLoading] = useState(false)
+    const [toast, setToast] = useState(null)
+    const [change, setChange] = useState(0)
+    const [currentPage, setCurrentPage] = useState(0)
+    const [pageData, setPageData] = useState({
+        content: [],
+        number: 0,
+        size: 5,
+        totalElements: 0,
+        totalPages: 0,
+        first: true,
+        last: true,
+        empty: true
+    })
+
     function handleCloseRespoModal() {
         setShowRespoModal(false)
     }
@@ -37,14 +55,29 @@ export default function IncidentsSave() {
             .finally(() => setMessageLoading('Aucun élément trouvé'))
     }
     useEffect(() => {
+        const loadData = async () => {
+            setIsLoading(true)
+            try {
+                const data = await getPaginatedAllIncidents(currentPage, pageData.size)
+                setPageData(data)
+                const theIncidents = data.content.filter(inc => inc.resolu === "non")
+                setLesIncidents(theIncidents.length)
+            } catch (error) {
+                console.error("Erreur lors du chargement des structures:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        loadData()
+    }, [currentPage, pageData.size, change])
+    useEffect(() => {
         document.title = 'Incidents'
-        getIncidents()
-
+        // getIncidents()
     }, [])
     async function handleSubmit(formData) {
         setIsDisabled(true)
         setMessageButton("...Saving")
-
+        setIsLoading(true)
         const newIncicent = {
             dateIncident: formData.get("date"),
             nomsDeclarant: formData.get("noms"),
@@ -62,13 +95,44 @@ export default function IncidentsSave() {
                 setMessageButton('...loading...')
                 setIncidents(prev => [response, ...prev])
                 setLesIncidents(lesIncidents + 1)
-                console.log(response)
+                setToast({ message: "✅ Opération réussie !", type: "success" });
+                setChange(prev => prev + 1)
             })
-            .catch(error => console.log(error))
+            .catch(error => { setToast({ message: "❌ Une erreur est survenue !", type: "error" }) })
             .finally(() => {
                 setIsDisabled(false)
                 setMessageButton('Enregistrer')
+                setIsLoading(false)
             })
+    }
+    let elt
+    if (pageData.content.length === 0) {
+        elt = <tr className='titles'><td>{messageLoading}</td></tr>
+    } else {
+        elt = pageData.content && pageData.content.length > 0 && (
+            pageData.content.map((incident, id) => <tr key={incident.id} className='dynamic-row' onClick={() => handleClick(incident)}>
+                <td>{incident.nroIncident.toUpperCase()}</td>
+                <td>{incident.nature}</td>
+                <td>{incident.objet}</td>
+                <td>{incident.description}</td>
+                <td>{incident.dateIncident}</td>
+                <td>{incident.resolu}</td>
+                <td>
+                    <button className="edit-btn">
+                        &#9998;
+                    </button>&nbsp;&nbsp;
+                    <button className="delete-btn">
+                        &#x1F5D1;
+                    </button>
+                </td>
+            </tr>)
+        )
+    }
+    function handleNext() {
+        setCurrentPage(prev => prev + 1)
+    }
+    function handlePrev() {
+        setCurrentPage(prev => prev - 1)
     }
     return (
         <>
@@ -143,32 +207,31 @@ export default function IncidentsSave() {
                             </tr>
                         </thead>
                         <tbody className='incidence-body'>
-                            {incidents && incidents.length === 0 && <tr className='titles'><td>{messageLoading}</td></tr>}
-                            {incidents && incidents.length > 0 && (
-                                incidents.map((incident, id) => <tr key={incident.id} className='dynamic-row' onClick={() => handleClick(incident)}>
-                                    <td>{incident.nroIncident.toUpperCase()}</td>
-                                    <td>{incident.nature}</td>
-                                    <td>{incident.objet}</td>
-                                    <td>{incident.description}</td>
-                                    <td>{incident.dateIncident}</td>
-                                    <td>{incident.resolu}</td>
-                                    <td>
-                                        <button className="edit-btn">
-                                            &#9998;
-                                        </button>&nbsp;&nbsp;
-                                        <button className="delete-btn">
-                                            &#x1F5D1;
-                                        </button>
-                                    </td>
-                                </tr>)
-                            )}
+                            {
+                                isLoading ? (<SpinnerRow />) : (
+                                    elt
+                                )
+                            }
                         </tbody>
                     </table>
+                    {
+                        pageData.content.length > 0 && (
+                            <div className="navigation">
+                                <div>Page <span>{pageData.number + 1}</span> sur <span>{pageData.totalPages}</span></div>
+                                <button onClick={handlePrev} disabled={pageData.first}>&laquo;</button>
+                                <button onClick={handleNext} disabled={pageData.last}>&raquo;</button>
+                            </div>
+                        )
+                    }
                 </fieldset>
             </section>
             {
                 showRespoModal &&
                 <RespoSearchModal handleCloseModal={handleCloseRespoModal} handleSelectRespo={handleSelectRespo} />
+            }
+            {
+                toast &&
+                <Toast message={toast.message} type={toast.type} onClose={() => { setToast(null) }} />
             }
         </>
     )

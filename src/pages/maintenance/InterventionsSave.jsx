@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import './maintenance.css'
 import { Link } from "react-router-dom"
 import RespoSearchModal from "../materiels/equipements/RespoSearchModal"
-import { addInstallation, deleteIntervention, getInterventions, getPaginatedAllInterventions } from "../../utils/ApiFunctions"
+import { addDepannage, addInstallation, deleteIntervention, getInterventions, getPaginatedAllInterventions } from "../../utils/ApiFunctions"
 import Spinner from '../../components/Spinner'
 import EquipementsSearchModal from "../materiels/equipements/EquipementsSearchModal"
 import { SpinnerRow } from "../administration/StructureSave"
 import EspaceSearchModal from "./EspaceSearchModal"
+import IncidentsSearchModal from "./IncidentsSearchModal"
 export default function InterventionsSave() {
     const [isSavingDisabled, setIsSavingDisabled] = useState(false)
     const [interventions, setInterventions] = useState([])
@@ -33,8 +34,12 @@ export default function InterventionsSave() {
     const [selectedProfit, setSelectedProfit] = useState({})
     const [showRespoProfit, setShowRespoProfit] = useState(false)
     const [selectedEspace, setSelectedEspace] = useState({})
+    const [valueStock, setValueStock] = useState(null)
+    const [showSearchIncident, setShowSearchIncident] = useState(false)
+    const [selectedIncident, setSelectedIncident] = useState({})
 
     const [currentPage, setCurrentPage] = useState(0)
+    const [change, setChange] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [pageData, setPageData] = useState({
         content: [],
@@ -60,7 +65,7 @@ export default function InterventionsSave() {
             }
         }
         loadData()
-    }, [currentPage, pageData.size])
+    }, [currentPage, pageData.size, change])
 
     function handleCloseRespoModal() {
         setShowRespoModal(false)
@@ -90,6 +95,7 @@ export default function InterventionsSave() {
             .then(response => {
                 const interv = pageData.content
                 setPageData(data => ({ ...data, content: interv.filter(int => int.id !== id) }))
+                setChange(prev => prev + 1)
                 setToast({ message: "✅ Opération réussie !", type: "success" });
             })
             .catch(error => { console.log(error); setToast({ message: "❌ Une erreur est survenue !", type: "error" }); })
@@ -115,7 +121,7 @@ export default function InterventionsSave() {
             observations: formData.get('observations'),
             dateIntervention: formData.get('date'),
             etat_objet: formData.get('etat'),
-            nroIncident: formData.get('nroIncident'),
+            nroIncident: selectedIncident.nroIncident || formData.get('nroIncident'),
             resolu: formData.get('resolu'),
             ref_autorisation: formData.get('ref'),
         }
@@ -126,6 +132,21 @@ export default function InterventionsSave() {
                 .then(response => {
                     const interv = pageData.content
                     setPageData(prev => ({ ...prev, content: [...interv, response] }))
+                    setChange(prev => prev + 2)
+                    setToast({ message: "✅ Opération réussie !", type: "success" });
+                })
+                .catch(error => {
+                    setToast({ message: "❌ Une erreur est survenue !", type: "error" });
+                })
+                .finally(() => { setShowSpinner(false) })
+        }
+        if (formData.get('raison') === 'Dépannage') {
+            setShowSpinner(true)
+            await addDepannage(newIntervention)
+                .then(response => {
+                    const interv = pageData.content
+                    setPageData(prev => ({ ...prev, content: [...interv, response] }))
+                    setChange(prev => prev + 3)
                     setToast({ message: "✅ Opération réussie !", type: "success" });
                 })
                 .catch(error => {
@@ -145,8 +166,15 @@ export default function InterventionsSave() {
         setSelectedEquipement({ identifiant: equipement.numeroUnique })
     }
     function handleChangeRaison(e) {
-        if (e.target.value === "Installation") {
+        if (e.target.value === "Installation" || e.target.value === "Dépannage") {
             setShowLinkProfit(true)
+        }
+        if (e.target.value === "Dépannage") {
+            setShowDiagnostic(false)
+            setShowSolution(false)
+            setShowLinkIncident(true)
+            setShowResolu(false)
+            setValueStock('no')
         }
     }
     function handleShowRespo() {
@@ -157,6 +185,15 @@ export default function InterventionsSave() {
     }
     function handleCloseRespoModalProfit() {
         setShowRespoProfit(false)
+    }
+    function handleCloseIncidentModal() {
+        setShowSearchIncident(false)
+    }
+    function handleSelectIncident(incident) {
+        setSelectedIncident({ nroIncident: incident.nroIncident })
+    }
+    function handleChangeIncident(e) {
+        setSelectedIncident(e.target.value)
     }
     let elt
     if (pageData.content.length === 0) {
@@ -199,6 +236,9 @@ export default function InterventionsSave() {
     }
     function handleChange(e) {
         setSelectedEspace(e.target.value)
+    }
+    function handleOpenIncidentModal() {
+        setShowSearchIncident(true)
     }
     return (
         <>
@@ -271,16 +311,17 @@ export default function InterventionsSave() {
                         <select name="etat" id="etat" required>
                             <option value="">Faites un choix</option>
                             <option value="neuf">Bon état, tout neuf</option>
-                            <option value="bon">En bon état</option>
+                            <option value="bon">En bon état, réparé</option>
                             <option value="decrépitude">En décrépitude</option>
                             <option value="panne">En panne</option>
+                            <option value="observer">Réparé, à observer</option>
                             <option value="hors-usage">Hors d'usage</option>
                             <option value="maintenance">En maintenance</option>
                         </select>
                         <div></div>
                         <label htmlFor="nroIncident">N° Incident:</label>
-                        <input type="text" disabled name="nroIncident" id="nroIncident" required />
-                        {showLinkIncident ? <Link className="search-link" to="" >...rechercher</Link> : <div></div>}
+                        <input type="text" onChange={handleChangeIncident} disabled name="nroIncident" id="nroIncident" required value={selectedIncident.nroIncident} />
+                        {showLinkIncident ? <Link className="search-link" to="" onClick={handleOpenIncidentModal}>...rechercher</Link> : <div></div>}
                         <div></div>
                         <label htmlFor="resolu">Résolu :</label>
                         <select name="resolu" id="resolu" required defaultValue={"ras"} disabled={showResolu}>
@@ -353,12 +394,17 @@ export default function InterventionsSave() {
             }
             {
                 showSearchEquipement &&
-                <EquipementsSearchModal handleCloseModal={handleCloseEquipementModal} handleSelectEquipement={handleSelectEquipement} />
+                <EquipementsSearchModal value={valueStock} handleCloseModal={handleCloseEquipementModal} handleSelectEquipement={handleSelectEquipement} />
             }
             {
                 showSearchEspace &&
                 <EspaceSearchModal handleCloseModal={handleCloseEspaceModal} handleSelectEspace={handleSelectEspace} />
             }
+            {
+                showSearchIncident &&
+                <IncidentsSearchModal handleCloseModal={handleCloseIncidentModal} handleSelectIncident={handleSelectIncident} />
+            }
         </>
     )
 }
+

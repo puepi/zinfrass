@@ -642,6 +642,40 @@ export async function addInstallation(intervention) {
     }
 }
 
+
+export async function addDepannage(intervention) {
+    try {
+        const payload = {
+            nature: intervention.nature,
+            raison: intervention.raison,
+            nomsIntervenant: intervention.nomsIntervenant,
+            dateIntervention: intervention.dateIntervention,
+            poste: intervention.poste,
+            service: intervention.service,
+            objet: intervention.objet,
+            observations: intervention.observations,
+            lieu: intervention.lieu,
+            diagnostic: intervention.diagnostic,
+            solution: intervention.solution,
+            etat_objet: intervention.etat_objet,
+            ref_autorisation: intervention.ref_autorisation,
+            position_equipement: intervention.position_equipement,
+            poste_affecte: intervention.poste_affecte,
+            nature: intervention.nature,
+            structure_affecte: intervention.structure_affecte,
+            identifiant: intervention.identifiant,
+            nroIncident: intervention.nroIncident,
+            resolu: intervention.resolu
+        }
+        console.log(payload)
+        const response = await api.post(`/interventions/add-depannage`, payload)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
 export async function getInterventions() {
     try {
         const response = await api.get('/interventions/getall')
@@ -667,6 +701,16 @@ export async function deleteIntervention(id) {
 export async function getEquipementsStock() {
     try {
         const response = await api.get('/equipements/en-stock')
+        return response.data.data
+    } catch (error) {
+        console.log(error.message)
+        throw error
+    }
+}
+
+export async function getEquipementsHorsStock() {
+    try {
+        const response = await api.get('/equipements/out-stock')
         return response.data.data
     } catch (error) {
         console.log(error.message)
@@ -709,6 +753,29 @@ export async function getPaginatedAllStructures(page, size) {
 export async function getPaginatedAllPersonnels(page, size) {
     try {
         const response = await api.get(`/personnels/getall/pagination?page=${page}&size=${size}&sort=noms,asc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export async function getPaginatedAllIncidents(page, size) {
+    try {
+        const response = await api.get(`/incidents/getall/pagination?page=${page}&size=${size}&sort=dateIncident,asc`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+
+export async function getPaginatedAllInventories(page, size) {
+    try {
+        const response = await api.get(`/inventory/equipements/getall/pagination?page=${page}&size=${size}`)
         console.log(response.data.data)
         return response.data.data
     } catch (error) {

@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react"
-import { getEquipementsStock } from "../../../utils/ApiFunctions"
+import { getEquipementsHorsStock, getEquipementsStock } from "../../../utils/ApiFunctions"
 import Modal from "../../../Modal"
 
 
 
-export default function EquipementsSearchModal({ handleCloseModal, handleSelectEquipement }) {
+export default function EquipementsSearchModal({ value, handleCloseModal, handleSelectEquipement }) {
     const [equipements, setEquipements] = useState([])
     const [messageButton, setMessageButton] = useState('Rechercher')
     const [messageLoading, setMessageLoading] = useState('Aucun élément trouvé')
     async function getEquipements() {
         setMessageLoading('...is Loading...')
-        getEquipementsStock()
-            .then(data => setEquipements(data))
-            .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
-            .finally(() => setMessageLoading('Aucun élément trouvé'))
+        if (value === 'no') {
+            console.log(value)
+            getEquipementsHorsStock()
+                .then(data => setEquipements(data))
+                .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
+                .finally(() => setMessageLoading('Aucun élément trouvé'))
+        } else {
+            getEquipementsStock()
+                .then(data => setEquipements(data))
+                .catch(error => { console.log(error); setMessageLoading('Aucun élément trouvé') })
+                .finally(() => setMessageLoading('Aucun élément trouvé'))
+        }
     }
 
     useEffect(() => {
