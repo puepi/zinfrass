@@ -14,12 +14,16 @@ function Common({ menu, handleClick, selectedId, children }) {
   const incidents = useAppStore(state => state.incidents)
   const interventions = useAppStore(state => state.interventions)
   const stock = useAppStore(state => state.stock)
+  const init = useAppStore((s) => s.init);
   // const [incidents, setIncidents] = useState(0)
   // const [interventions, setInterventions] = useState(0)
   // const [stock, setStock] = useState(0)
   useEffect(() => {
-    console.log("🔄 Common mounted");
-    return () => console.log("💀 Common unmounted");
+    // call once on mount
+    init().catch((err) => {
+      // optionally show a UI error or retry
+      console.error("Failed to initialize metrics:", err);
+    });
   }, []);
   console.log("🧩 Current unresolved incidents count:", incidents);
   return (

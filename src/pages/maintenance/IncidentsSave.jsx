@@ -17,6 +17,7 @@ export default function IncidentsSave() {
     const [showRespoModal, setShowRespoModal] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
     const [selectedRespo, setSelectedRespo] = useState({})
+    const fetchMetrics = useAppStore(s => s.fetchAllMetrics)
 
     const [isLoading, setIsLoading] = useState(false)
     const [toast, setToast] = useState(null)
@@ -60,8 +61,7 @@ export default function IncidentsSave() {
             try {
                 const data = await getPaginatedAllIncidents(currentPage, pageData.size)
                 setPageData(data)
-                const theIncidents = data.content.filter(inc => inc.resolu === "non")
-                setLesIncidents(theIncidents.length)
+                fetchMetrics()
             } catch (error) {
                 console.error("Erreur lors du chargement des structures:", error);
             } finally {

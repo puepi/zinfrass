@@ -8,6 +8,7 @@ import EquipementsSearchModal from "../materiels/equipements/EquipementsSearchMo
 import { SpinnerRow } from "../administration/StructureSave"
 import EspaceSearchModal from "./EspaceSearchModal"
 import IncidentsSearchModal from "./IncidentsSearchModal"
+import { useAppStore } from "../../store/useAppStore"
 export default function InterventionsSave() {
     const [isSavingDisabled, setIsSavingDisabled] = useState(false)
     const [interventions, setInterventions] = useState([])
@@ -37,6 +38,7 @@ export default function InterventionsSave() {
     const [valueStock, setValueStock] = useState(null)
     const [showSearchIncident, setShowSearchIncident] = useState(false)
     const [selectedIncident, setSelectedIncident] = useState({})
+    const fetchMetrics = useAppStore(s => s.fetchAllMetrics)
 
     const [currentPage, setCurrentPage] = useState(0)
     const [change, setChange] = useState(0)
@@ -147,6 +149,7 @@ export default function InterventionsSave() {
                     const interv = pageData.content
                     setPageData(prev => ({ ...prev, content: [...interv, response] }))
                     setChange(prev => prev + 3)
+                    fetchMetrics()
                     setToast({ message: "✅ Opération réussie !", type: "success" });
                 })
                 .catch(error => {

@@ -848,3 +848,14 @@ export async function getPaginatedAllTypesEquipements(page, size) {
         throw error
     }
 }
+
+export async function getAllMetrics() {
+    try {
+        const response = await api.get(`/metrics/getall`)
+        console.log(response.data.data)
+        return response.data.data
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
